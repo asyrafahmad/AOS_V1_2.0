@@ -30,7 +30,7 @@
 
       
 
-    <?php  include "../includes/sidebar_nav.php"; ?>
+    <?php  include "includes/admin_navigation.php"; ?>
 
 
         
