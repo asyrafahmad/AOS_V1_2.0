@@ -31,8 +31,8 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="product.php">Senarai Produk</a>
-            <a class="collapse-item" href="product.php?source=add_product">Tambah Produk</a>
-            <a class="collapse-item" href="product.php?source=edit_product">Ubahsuai Produk</a>
+<!--            <a class="collapse-item" href="product.php?source=add_product">Tambah Produk</a>-->
+            <a class="collapse-item" href="product.php?source=edit_product">Kemaskini Produk</a>
           </div>
         </div>
       </li> 
@@ -48,7 +48,6 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="supplier.php">Senarai Petani</a>
             <a class="collapse-item" href="supplier.php?source=add_supplier">Tambah Petani</a>
-            <a class="collapse-item" href="supplier.php?source=edit_supplier">Kemaskini Petani</a>
             <hr class="sidebar-divider">
             <a class="collapse-item" href="../admin_supplier/supplier_add_product.php">Tambah Produk</a>
             <a class="collapse-item" href="../admin_supplier/supplier_edit_product.php">Ubahsuai produk</a>
@@ -66,9 +65,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="buyer.php">Senarai Pemborong</a>
-            <a class="collapse-item" href="">Maklumat Pemborong</a>
             <a class="collapse-item" href="buyer.php?source=add_buyer">Tambah Pemborong</a>
-            <a class="collapse-item" href="buyer.php?source=edit_buyer">Ubahsuai Pemborong</a>
             <hr class="sidebar-divider">
             <a class="collapse-item" href="../admin_buyer/buyer_product.php">Produk Pemborong</a>
             <a class="collapse-item" href="../admin_buyer/buyer_shoppingCart.php">Jual Beli Produk</a>

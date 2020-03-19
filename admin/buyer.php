@@ -1,11 +1,12 @@
-<?php  include "../includes/header.php"; ?>
+
+<?php  include "../includes/admin_header.php"; ?>
 
 
   <!-- Page Wrapper -->
   <div id="wrapper">
      
         
-   <?php  include "includes/admin_navigation.php"; ?>
+   <?php  include "includes/admin_sidebar_navigation.php"; ?>
 
 
 
@@ -18,7 +19,7 @@
      
 
           <!-- Top nav-->
-            <?php  include "../includes/topbar_nav.php"; ?>
+            <?php  include "includes/admin_topbar_navigation.php"; ?>
 
         
            
@@ -111,23 +112,5 @@
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<?php  include "../includes/admin_footer.php"; ?>
 
-  <!-- Core plugin JavaScript-->
-  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="../js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="../js/demo/datatables-demo.js"></script>
-
-</body>
-
-</html>

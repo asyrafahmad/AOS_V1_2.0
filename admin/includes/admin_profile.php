@@ -9,17 +9,14 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Agro Online System</title>
+  <title>SB Admin 2 - Dashboard</title>
 
-  <!-- Custom fonts for this template -->
-  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom fonts for this template-->
+  <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="../css/Style.css" rel="stylesheet">
-
-  <!-- Custom styles for this page -->
-  <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="../../css/Style.css" rel="stylesheet">
 
 </head>
 
@@ -28,17 +25,12 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-  
+
+    <?php  include "admin_sidebar_navigation.php"; ?>
+
+
         
-   <?php  include "./includes/sidebar_nav.php"; ?>
-
-
-   
-    </ul>
-    <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -46,59 +38,56 @@
       <!-- Main Content -->
       <div id="content">
 
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+     <?php  include "admin_topbar_navigation.php"; ?>
 
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-
-            
-            
-          <!-- Top nav-->
-            <?php  include "./includes/top_nav.php"; ?>
-
-        
-           
-           
-
-        </nav>
-        <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
+      
+     <!-- enctype is   -->
+     <form action="" method="post" enctype="multipart/form-data">
+    
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Supplier</h1>
-          <p class="mb-4">Product from supplier <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
-
-          <!-- DataTales Example -->
+          <!-- Starting of profile content-->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Supplier Title</h6>
+              <h6 class="m-0 font-weight-bold text-primary">User information</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-<!--                TODO: put supplier table-->
-                </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+            <div class="invalid-feedback">
+              Valid first name is required.
             </div>
           </div>
-
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Last name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+          </div>
         </div>
-        <!-- /.container-fluid -->
+      
+        <div class="form-group">
+                <input class="btn btn-primary" type="submit" name="edit_user" value="Update">
+        </div>
+  
+                  
+                </div>
+                </div>
+
+          <!--End of profile content-->
+           </div> 
+     </form> 
+
+       
+          
+          
+          
+          
 
       </div>
       <!-- End of Main Content -->
@@ -154,11 +143,11 @@
   <script src="js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 

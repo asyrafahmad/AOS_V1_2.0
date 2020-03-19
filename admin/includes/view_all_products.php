@@ -20,6 +20,8 @@
                       <th>Kuantiti (Kg)</th>
                       <th>Harga (RM) / Kg</th>
                       <th>Harga Semasa (RM) / Kg</th>
+                      <th>Lihat</th>
+                      <th>Kemaskini</th>
                       <th>Padam</th>
                     </tr>
                   </thead>

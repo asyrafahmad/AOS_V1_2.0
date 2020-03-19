@@ -2,8 +2,6 @@
 <?php include "../includes/db_connection.php";   ?>
 <!-- to call file and make it available  -->
 <?php include "../includes/functions.php";   ?>
-<!--Turn on the SESSION-->
-<?php session_start();   ?>
 
     
 
@@ -33,6 +31,7 @@
                       <th>No Telefon</th>
                       <th>Alamat</th>
                       <th>Laman Web</th>
+                      <th>Lihat</th>
                       <th>Kemaskini</th>
                       <th>Padam</th>
                     </tr>
@@ -56,6 +55,10 @@
                             $supplier_address = escape($row['supplier_address']);
                             $supplier_website = escape($row['supplier_website']);
                             
+                            //Set as global
+                            $_SESSION['supplier_id'] = $supplier_id;
+                            $_SESSION['supplier_name'] = $supplier_name;
+                            
                             echo "<tr>";
                             echo "<td>$supplier_id </td>";
                             echo "<td><img width='100'  src='../img/$supplier_image'  alt='image' class='rounded-circle' </td>";
@@ -67,8 +70,9 @@
                             
 //                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
 //                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";
-                            echo "<td><a class='btn btn-info' href=''>Ubahsuai </a></td>";
-                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";
+                            echo "<td><a class='btn btn-info' href='supplier.php?source=view_supplier&s_id={$supplier_id}'>Lihat </a></td>";
+                            echo "<td><a class='btn btn-info' href='supplier.php?source=edit_supplier&s_id={$supplier_id}'>Kemaskini </a></td>";
+//                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";
                             echo "</tr>";
 
                                 }

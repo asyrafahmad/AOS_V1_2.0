@@ -391,9 +391,8 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
 
 
     
-             $_SESSION['username'] = $db_user_username;
-             $_SESSION['name'] = $db_user_name;
-             $_SESSION['user_role'] = $db_user_role;
+             $_SESSION['user_username'] = $db_user_username;
+             $_SESSION['user_name'] = $db_user_name;
 
              header("Location: ./admin/index.php" );
         
