@@ -53,6 +53,18 @@
                 case 'view_supplier';
                     include "includes/view_supplier.php";
                     break;
+                
+                case 'add_supplier_order_product';
+                    include "includes/add_supplier_order_product.php";
+                    break;
+                
+                case 'view_supplier_order_product';
+                    include "includes/view_supplier_order_product.php";
+                    break;
+                
+                case 'view_all_supplier_order_product';
+                    include "includes/view_all_supplier_order_product.php";
+                    break;
 
                 case '200';
                     echo "NICE 200";

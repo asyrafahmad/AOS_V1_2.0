@@ -17,15 +17,16 @@
 
         while($row = mysqli_fetch_array($select_product_info_query)){
 
-            $product_category = escape($row['product_category']);
-            $product_type = escape($row['product_type']);
-            $product_image = escape($row['product_image']);
-            $product_name = escape($row['product_name']);
-            $product_gred = escape($row['product_gred']);
-            $product_description = escape($row['product_description']);
-            $product_quantity = escape($row['product_quantity']);
-            $product_price = escape($row['product_price']);
-            $product_current_price = escape($row['product_current_price']);
+//            $product_category = escape($row['product_category']);
+//            $product_image = escape($row['product_image']);
+//            $product_description = escape($row['product_description']);
+//            $product_current_price  = escape($row['product_current_price']);
+            $product_name       = escape($row['product_name']);
+            $product_type       = escape($row['product_type']);
+            $product_gred       = escape($row['product_gred']);
+            $product_quantity   = escape($row['product_quantity']);
+            $product_price      = escape($row['product_price']);
+   
                             
             
             
@@ -44,14 +45,18 @@
                   <table class="" >
                       <tr>
                            <table class="" align="center">
+<!--
                             <tr><td><label for="product_image" > <?php echo strtoupper("$product_image");  ?>  </label></td></tr>
                             <tr><td><label for="product_category" > <?php echo strtoupper("$product_category");  ?>  </label></td></tr>
-                            <tr><td><label for="product_name" > <?php echo strtoupper("$product_name");  ?>  </label></td></tr>
-                            <tr><td><label for="product_gred" > <?php echo strtoupper("$product_gred");  ?>  </label></td></tr>
                             <tr><td><label for="product_description" > <?php echo strtoupper("$product_description");  ?>  </label></td></tr>
                             <tr><td><label for="product_current_price" > <?php echo strtoupper("$product_current_price");  ?>  </label></td></tr>
+-->
+                            <tr><td><label for="product_name" > <?php echo strtoupper("$product_name");  ?>  </label></td></tr>
+                            <tr><td><label for="product_type" > <?php echo strtoupper("$product_type");  ?>  </label></td></tr>
+                            <tr><td><label for="product_gred" > <?php echo strtoupper("$product_gred");  ?>  </label></td></tr>
+                            
+                            <tr><td><label for="product_quantity" > <?php echo strtoupper("$product_quantity");  ?>  </label></td></tr>
                             <tr><td><label for="product_price" > <?php echo strtoupper("$product_price");  ?>  </label></td></tr>
-                            <tr><td><label for="product_current_price" >  </label></td></tr>
                           </table>
                       </tr>
                   </table>

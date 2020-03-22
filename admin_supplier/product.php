@@ -6,7 +6,7 @@
   <div id="wrapper">
      
         
-   <?php  include "includes/admin_sidebar_navigation.php"; ?>
+   <?php  include "includes/supplier_sidebar_navigation.php"; ?>
 
 
 
@@ -19,7 +19,7 @@
      
 
           <!-- Top nav-->
-            <?php  include "includes/admin_topbar_navigation.php"; ?>
+            <?php  include "includes/supplier_topbar_navigation.php"; ?>
 
         
            
@@ -41,24 +41,16 @@
 
             switch($source) {
                     
-                case 'add_buyer';
-                    include "includes/add_buyer.php";
-                    break; 
-
-                case 'edit_buyer';
-                    include "includes/edit_buyer.php";
+                case 'add_product';
+                    include "includes/add_product.php";
                     break;
                 
-                case 'view_buyer';
-                    include "includes/view_buyer.php";
+                case 'view_product';
+                    include "includes/view_product.php";
                     break;
                 
-                case 'view_buyer_order_product';
-                    include "includes/view_buyer_order_product.php";
-                    break;
-                
-                case 'view_all_buyer_order_product';
-                    include "includes/view_all_buyer_order_product.php";
+                case 'edit_product';
+                    include "includes/edit_product.php";
                     break;
 
                 case '200';
@@ -66,7 +58,7 @@
                     break;
 
                 default:
-                    include "includes/view_all_buyers.php";
+                    include "includes/view_all_products.php";
                     break;
             }
 
@@ -125,4 +117,3 @@
   </div>
 
 <?php  include "../includes/admin_footer.php"; ?>
-

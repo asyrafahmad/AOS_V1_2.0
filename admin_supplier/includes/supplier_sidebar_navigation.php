@@ -16,7 +16,7 @@
 
     <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="../admin/index.php">
+        <a class="nav-link" href="../admin_supplier/index.php">
           <img class="" src="../img/icon/dashboard.png" width="20%" height="20%">
           <span>Dashboard</span></a>
       </li>
@@ -24,15 +24,16 @@
 
     <!-- Nav Item - Product -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="../admin/product.php" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="../admin_supplier/product.php" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <img class="" src="../img/icon/Product.png" width="20%" height="20%">
           <span>Produk</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="product.php">Senarai Produk</a>
+            <a class="collapse-item" href="product.php?source=add_product">Tambah Produk</a>
             <hr class="sidebar-divider">
-<!--            <a class="collapse-item" href="product.php?source=add_product">Tambah Produk Pasaran</a>-->
+            <a class="collapse-item" href="product.php?source=e_lodge">E-Lodge</a>
 <!--            <a class="collapse-item" href="product.php?source=edit_product">Kemaskini Produk</a>-->
           </div>
         </div>
@@ -41,23 +42,21 @@
 
         <!-- Nav Item - Supplier -->
         <li class="nav-item">
-        <a class="nav-link collapsed" href="../admin/supplier.php" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="../admin_supplier/supplier.php" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <img class="" src="../img/icon/Buyer.png" width="20%" height="20%">
-          <span>Petani</span>
+          <span>Pesanan</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="supplier.php">Senarai Petani</a>
-            <a class="collapse-item" href="supplier.php?source=add_supplier">Tambah Petani</a>
-            <hr class="sidebar-divider">
-            <a class="collapse-item" href="supplier.php?source=view_all_supplier_order_product">Senarai Pesanan Produk</a>
-            <a class="collapse-item" href="supplier.php?source=add_supplier_order_product">Tambah Pesanan Produk</a>
+            <a class="collapse-item" href="order.php">Senarai Pesanan</a>
+<!--            <a class="collapse-item" href="order.php?source=view_order_product">Lihat Tempahan</a>-->
           </div>
         </div>
       </li>
         
 
     <!-- Nav Item - Buyer -->
+<!--
     <li class="nav-item">
         <a class="nav-link collapsed" href="../admin/buyer.php" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <img class="" src="../img/icon/supplier.png" width="20%" height="20%">
@@ -68,20 +67,19 @@
             <a class="collapse-item" href="buyer.php">Senarai Pemborong</a>
             <a class="collapse-item" href="buyer.php?source=add_buyer">Tambah Pemborong</a>
             <hr class="sidebar-divider">
-            <a class="collapse-item" href="buyer.php?source=view_all_buyer_order_product">Tempahan produk</a>
-<!--
+            <a class="collapse-item" href="../admin_buyer/buyer_product.php">Produk Pemborong</a>
             <a class="collapse-item" href="../admin_buyer/buyer_shoppingCart.php">Jual Beli Produk</a>
             <a class="collapse-item" href="../admin_buyer/buyer_orderHistory.php">Transaksi Produk</a>
--->
           </div>
         </div>
       </li>
 
+-->
 
 
         <!-- Nav Item - About Us -->
       <li class="nav-item">
-        <a class="nav-link" href="../admin/aboutus.php">
+        <a class="nav-link" href="../admin_supplier/aboutus.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Tentang kami</span></a>
       </li>

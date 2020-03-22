@@ -260,11 +260,11 @@ if(isset($_GET['unapprove'])){
 }
 
 
-function is_admin($username) {
+function is_admin($user_username) {
 
     global $connection; 
 
-    $query = "SELECT user_role FROM users WHERE username = '$username'";
+    $query = "SELECT user_role FROM user WHERE user_username = '$user_username'";
     $result = mysqli_query($connection, $query);
     confirmQuery($result);
 
@@ -272,12 +272,21 @@ function is_admin($username) {
 
 
     if($row['user_role'] == 'admin'){
+        
+        return header("Location: ./admin/index.php" );
 
-        return true;
+    }
+    else if($row['user_role'] == 'pemborong') {
 
-    }else {
+
+        return header("Location: ./admin_buyer/index.php" );
+    }
+    else if($row['user_role'] == 'pembekal') {
 
 
+        return header("Location: ./admin_supplier/index.php" );
+    }
+    else {
         return false;
     }
 
@@ -391,12 +400,12 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
 
 
     
-             $_SESSION['user_username'] = $db_user_username;
-             $_SESSION['user_name'] = $db_user_name;
+         $_SESSION['user_username'] = $db_user_username;
+         $_SESSION['user_name'] = $db_user_name;
 
-             header("Location: ./admin/index.php" );
+//             header("Location: ./admin_buyer/index.php" );
         
-
+         is_admin($db_user_username);
 
      }
 

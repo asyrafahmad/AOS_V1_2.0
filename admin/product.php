@@ -48,6 +48,10 @@
                 case 'edit_product';
                     include "includes/edit_product.php";
                     break;
+                    
+                 case 'view_product';
+                    include "includes/view_product.php";
+                    break;
 
                 case '200';
                     echo "NICE 200";

@@ -2,10 +2,6 @@
 <?php include "../includes/db_connection.php";   ?>
 <!-- to call file and make it available  -->
 <?php include "../includes/functions.php";   ?>
-<!--Turn on the SESSION-->
-<?php session_start();   ?>
-
-    
     
     
 <?php

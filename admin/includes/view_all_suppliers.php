@@ -73,6 +73,7 @@
                             echo "<td><a class='btn btn-info' href='supplier.php?source=view_supplier&s_id={$supplier_id}'>Lihat </a></td>";
                             echo "<td><a class='btn btn-info' href='supplier.php?source=edit_supplier&s_id={$supplier_id}'>Kemaskini </a></td>";
 //                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";
+                            echo "<td></td>";
                             echo "</tr>";
 
                                 }

@@ -18,15 +18,17 @@
 
         while ($row = mysqli_fetch_assoc($select_product_query)){
 
-            $product_id = escape($row['product_id']);
-            $product_category = escape($row['product_category']);
-            $product_type = escape($row['product_type']);
-            $product_image = escape($row['product_image']);
+//            $product_id = escape($row['product_id']);
+//            $product_category = escape($row['product_category']);
+//            $product_image = escape($row['product_image']);
+//            $product_description = escape($row['product_description']);
+//            $product_current_price = escape($row['product_current_price']);
             $product_name = escape($row['product_name']);
-            $product_description = escape($row['product_description']);
+            $product_type = escape($row['product_type']);
+            $product_gred = escape($row['product_gred']);
             $product_quantity = escape($row['product_quantity']);
             $product_price = escape($row['product_price']);
-            $product_current_price = escape($row['product_current_price']);
+            
                             
         }
     }
@@ -66,33 +68,43 @@
 ?>
 
 
+
 <!-- enctype is   -->
 <form action="" method="post" enctype="multipart/form-data">
 
-
+  
       <!-- Starting of profile content-->
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Ubahsuai Produk</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Tambah Produk</h6>
         </div>
         <div class="card-body">
 
 
+<!--
           <div class="col-md-6 mb-3">
              <b for="product_image">Gambar :</b>
-            <input type="file"  name="product_image">
+            <input type="file"  name="image">
           </div>
+-->
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label for="firstName">Kategori</label>
-            <input type="text" class="form-control" name="product_category" placeholder="" value="<?php echo $product_category; ?>" required="Isi nama produk">
+            <label for="firstName">Nama produk</label>
+            <input type="text" class="form-control" name="product_name" placeholder="" value="<?php echo $product_name; ?>" required="Isi nama produk">
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div> 
+          <div class="col-md-6 mb-3">
+            <label for="firstName">Jenis produk</label>
+            <input type="text" class="form-control" name="product_type" placeholder="" value="<?php echo $product_type; ?>" required="Isi nama produk">
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
           <div class="col-md-6 mb-3">
-            <label for="lastName">Jenis</label>
-            <input type="text" class="form-control" name="product_type" placeholder="" value="<?php echo $product_type; ?>" required="">
+            <label for="lastName">Gred</label>
+            <input type="text" class="form-control" name="product_gred" placeholder="" value="<?php echo $product_gred; ?>" required="">
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
@@ -100,63 +112,39 @@
         </div>
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label for="firstName">Nama</label>
-            <input type="text" class="form-control" name="product_name" placeholder="" value="<?php echo $product_name; ?>" required="">
-            <div class="invalid-feedback">
-              Valid first name is required.
-            </div>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="lastName">Deskripsi</label>
-            <input type="text" class="form-control" name="product_description" placeholder="" value="<?php echo $product_description; ?>" required="">
-            <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="firstName">Jumlah</label>
+            <label for="firstName">Kuantiti (Kg)</label>
             <input type="text" class="form-control" name="product_quantity" placeholder="" value="<?php echo $product_quantity; ?>" required="">
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-            <label for="firstName">Harga Semasa (RM) / Kg</label>
-            <input type="text" class="form-control" name="product_current_price" placeholder="" value="<?php echo $product_current_price; ?>" required="">
-            <div class="invalid-feedback">
-              Valid first name is required.
-            </div>
-          </div>
           <div class="col-md-6 mb-3">
-            <label for="firstName">Harga Jualan(RM) / Kg</label>
+            <label for="lastName">Harga (RM) / Kg</label>
             <input type="text" class="form-control" name="product_price" placeholder="" value="<?php echo $product_price; ?>" required="">
             <div class="invalid-feedback">
-              Valid first name is required.
+              Valid last name is required.
             </div>
           </div>
         </div>
 <!--
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label for="firstName">Harga Runcit (RM) / Kg</label>
-            <input type="text" class="form-control" name="product_current_price" placeholder="" value="" required="">
+            <label for="firstName">Harga Semasa (RM) / Kg</label>
+            <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
         </div>
 -->
+
+                      
         <div class="form-group">
-                <input class="btn btn-primary" type="submit" name="edit_product" value="Hantar">
+                <input class="btn btn-primary" type="submit" name="add_product" value="Hantar">
         </div>
+              
+
 
 </div>
-</div>
+</div>  
 </form> 
-
-
-             
