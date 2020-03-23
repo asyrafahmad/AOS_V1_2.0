@@ -261,6 +261,8 @@ if(isset($_GET['unapprove'])){
 
 
 function is_admin($user_username) {
+    
+    //WARNING: 1=ADMIN, 2=SUPPLIER, 3=BUYER
 
     global $connection; 
 
@@ -271,20 +273,20 @@ function is_admin($user_username) {
     $row = mysqli_fetch_array($result);
 
 
-    if($row['user_role'] == 'admin'){
+    if($row['user_role'] == '1'){
         
         return header("Location: ./admin/index.php" );
 
     }
-    else if($row['user_role'] == 'pemborong') {
-
-
-        return header("Location: ./admin_buyer/index.php" );
-    }
-    else if($row['user_role'] == 'pembekal') {
+    else if($row['user_role'] == '2') {
 
 
         return header("Location: ./admin_supplier/index.php" );
+    }
+    else if($row['user_role'] == '3') {
+
+
+        return header("Location: ./admin_buyer/index.php" );
     }
     else {
         return false;
@@ -344,27 +346,60 @@ function email_exists($email){
 }
 
 
-function register_user($user_username, $user_phone, $user_password, $user_repassword){
+function register_user($user_username, $user_phone, $user_password, $user_repassword, $user_role){
 
     global $connection;
 
-        $username = mysqli_real_escape_string($connection, $user_username);
-        $phone    = mysqli_real_escape_string($connection, $user_phone);
-        $password = mysqli_real_escape_string($connection, $user_password);
-        $repassword = mysqli_real_escape_string($connection, $user_repassword);
+    $username = mysqli_real_escape_string($connection, $user_username);
+    $phone    = mysqli_real_escape_string($connection, $user_phone);
+    $password = mysqli_real_escape_string($connection, $user_password);
+    $repassword = mysqli_real_escape_string($connection, $user_repassword);
+    $user_role = mysqli_real_escape_string($connection, $user_role);
 
-        //$password = password_hash( $password, PASSWORD_BCRYPT, array('cost' => 12));
-        //$repassword = password_hash( $repassword, PASSWORD_BCRYPT, array('cost' => 12));
-            
-            
+    //$password = password_hash( $password, PASSWORD_BCRYPT, array('cost' => 12));
+    //$repassword = password_hash( $repassword, PASSWORD_BCRYPT, array('cost' => 12));
+
+
+    if($user_role == '2'){
+        
+        //insert into user table
+        $query = "INSERT INTO user (user_username, user_phone, user_password, user_repassword , user_role, ) ";
+        $query .= "VALUES('{$username}','{$phone}','{$password}','{$repassword}','{$user_role}')";
+        
+        $register_user_query = mysqli_query($connection, $query);
+        confirmQuery($register_user_query);
+        
+        //insert into supplier table
+        $supplier_query = "INSERT INTO supplier (supplier_role, supplier_phone, supplier_date_register) ";
+        $supplier_query .= "VALUES('{$user_role}', '{$phone}', now() )";
+        
+        $register_supplier_query = mysqli_query($connection, $supplier_query);
+        confirmQuery($register_supplier_query);
+        
+    }
+    else if($user_role == '3'){
+        
+        //insert into user table
+        $query = "INSERT INTO user (user_username, user_phone, user_password, user_repassword , user_role) ";
+        $query .= "VALUES('{$username}','{$phone}','{$password}','{$repassword}','{$user_role}')";
+        
+        $register_user_query = mysqli_query($connection, $query);
+        confirmQuery($register_user_query);
+        
+         //insert into buyer table
+        $buyer_query = "INSERT INTO buyer(buyer_role, buyer_phoneNo, buyer_date_register) ";
+        $buyer_query .= "VALUES('{$user_role}', '{$phone}', now() )";
+        
+        $register_buyer_query = mysqli_query($connection, $buyer_query);
+        confirmQuery($register_buyer_query);
+    }
+    else{
         $query = "INSERT INTO user (user_username, user_phone, user_password, user_repassword) ";
         $query .= "VALUES('{$username}','{$phone}','{$password}','{$repassword}')";
+    }
     
-        $register_user_query = mysqli_query($connection, $query);
 
-        confirmQuery($register_user_query);
-    
-        header("Location: login.php" );
+    header("Location: login.php" );
         
 }
 
@@ -399,20 +434,23 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
          $db_user_name = $row['user_name'];
 
 
-    
-         $_SESSION['user_username'] = $db_user_username;
-         $_SESSION['user_name'] = $db_user_name;
+         if ($password === $db_user_password) {
 
-//             header("Location: ./admin_buyer/index.php" );
-        
-         is_admin($db_user_username);
+             $_SESSION['user_username'] = $db_user_username;
+             $_SESSION['user_name'] = $db_user_name;
+
+             is_admin($db_user_username);
+         }
+         else{
+             return false;
+         }
 
      }
-
      return true;
-
  }
 
+
+?>
 
 
 

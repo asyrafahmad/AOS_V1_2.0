@@ -31,6 +31,7 @@
                       <th>No Telefon</th>
                       <th>Alamat</th>
                       <th>Laman Web</th>
+                      <th>Tarikh Buka Akaun</th>
                       <th>Lihat</th>
                       <th>Kemaskini</th>
                       <th>Padam</th>
@@ -54,6 +55,7 @@
                             $supplier_phone = escape($row['supplier_phone']);
                             $supplier_address = escape($row['supplier_address']);
                             $supplier_website = escape($row['supplier_website']);
+                            $supplier_date_register = escape($row['supplier_date_register']);
                             
                             //Set as global
                             $_SESSION['supplier_id'] = $supplier_id;
@@ -67,6 +69,7 @@
                             echo "<td>$supplier_phone  </td>";
                             echo "<td>$supplier_address  </td>";
                             echo "<td>$supplier_website  </td>";
+                            echo "<td>$supplier_date_register </td>";
                             
 //                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
 //                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";

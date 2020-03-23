@@ -25,7 +25,7 @@
                       <th>Produk ID</th>
                       <th>Kategori Produk</th>
 -->
-                      <th>Gambar produk</th>
+                      <th>ID</th>
                       <th>Produk</th>
                       <th>Jenis</th>
                       <th>Gred</th>
@@ -45,6 +45,11 @@
                      <!-- Get data in db and display  -->
                     <?php
                       
+                      if(isset($_SESSION['user_username'])){
+                          
+                          $user_username = $_SESSION['user_username'];
+                      }
+                          
                         $query  =  "SELECT * FROM product ";    
                         $select_suppliers = mysqli_query($connection, $query);
 

@@ -25,7 +25,7 @@
                       <th>Nama</th>
                       <th>Emel</th>
                       <th>Nombor Telefon</th>
-                      <th>Date Register</th>
+                      <th>Tarikh Buka Akaun</th>
                       <th>Lihat</th>
                       <th>Kemaskini</th>
                       <th>Padam</th>
@@ -45,6 +45,7 @@
                             $buyer_name = escape($row['buyer_name']);
                             $buyer_email = escape($row['buyer_email']);
                             $buyer_phone = escape($row['buyer_phoneNo']);
+                            $buyer_date_register = escape($row['buyer_date_register']);
                             
                             //Set as global
                             $_SESSION['buyer_id'] = $buyer_id;
@@ -55,7 +56,7 @@
                             echo "<td>$buyer_name  </td>";
                             echo "<td>$buyer_email  </td>";
                             echo "<td>$buyer_phone  </td>";
-                            echo "<td>Date</td>";
+                            echo "<td>$buyer_date_register</td>";
                             
 //                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
 //                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";

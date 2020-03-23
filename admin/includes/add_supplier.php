@@ -16,12 +16,12 @@
         $admin_supplier_address      = $_POST['supplier_address'];
         $admin_supplier_website      = $_POST['supplier_website'];
 
-        move_uploaded_file($post_tmp_supplier_image, "../img/$post_supplier_image" );
+        move_uploaded_file($admin_tmp_supplier_image, "../img/$admin_supplier_image" );
        
-        if(!empty($post_supplier_name)  &&  !empty($post_supplier_email)  &&  !empty($post_supplier_phone) &&  !empty($post_supplier_address)&&  !empty($post_supplier_website)){
+        if(!empty($admin_supplier_name)  &&  !empty($admin_supplier_email)  &&  !empty($admin_supplier_phone) &&  !empty($admin_supplier_address)&&  !empty($admin_supplier_website)){
                  
-            $query = "INSERT INTO supplier(supplier_image, supplier_name, supplier_email, supplier_phone, supplier_address, supplier_website)  ";
-            $query .= "VALUES('{$admin_supplier_image}', '{$admin_supplier_name}', '{$admin_supplier_email}', '{$admin_supplier_phone}', '{$admin_supplier_address}', '{$admin_supplier_website}'  )  ";
+            $query = "INSERT INTO supplier(supplier_image, supplier_name, supplier_email, supplier_phone, supplier_address, supplier_website, supplier_date_register )  ";
+            $query .= "VALUES('{$admin_supplier_image}', '{$admin_supplier_name}', '{$admin_supplier_email}', '{$admin_supplier_phone}', '{$admin_supplier_address}', '{$admin_supplier_website}', now()  )  ";
 
             $create_post_query  =   mysqli_query($connection, $query);
 
@@ -31,7 +31,7 @@
             //to pull out last post created ID
             //$the_post_id = mysqli_insert_id($connection);
 
-            echo "<p class='bg-success'>Supplier added. </p>";
+            echo "<p class=''>Supplier added. </p>";
         }
         else{
             echo "<script>alert('Fields cannot be empty')</script>";
@@ -62,7 +62,7 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">Nama Petani</label>
-            <input type="text" class="form-control" name="supplier_name" placeholder="" value="" required="Isi nama produk">
+            <input type="text" class="form-control" name="supplier_name" placeholder="" value="" required="">
             <div class="invalid-feedback">
               Valid first name is required.
             </div>

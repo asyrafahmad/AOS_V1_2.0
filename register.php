@@ -37,8 +37,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     $user_phone    = trim($_POST['user_phone']);
     $user_password = trim($_POST['user_password']);
     $user_repassword = trim($_POST['user_repassword']);
+    $user_role = trim($_POST['user_role']);
             
-            
+            echo $user_role;
 //    $error = [
 //
 //        'user_username'=>'',
@@ -67,7 +68,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
 
-        register_user($user_username, $user_phone, $user_password, $user_repassword);
+        register_user($user_username, $user_phone, $user_password, $user_repassword ,$user_role);
 
         $data['message'] = $user_username;
         $pusher->trigger('notifications', 'new_user', $data);
@@ -101,6 +102,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 
               <form class ="user" role="form" method="post" autocomplete="off">
 
+                  
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0" align="center">
+                        <input type="radio" id="supplier" name="user_role" value="2"><br>
+                        <label for="supplier">Pembekal</label>
+                    </div>
+                    <div class="col-sm-6" align="center">
+                        <input type="radio" id="buyer" name="user_role" value="3"><br>
+                        <label for="buyer">pemborong</label>
+                    </div>
+                </div>
                   
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" name="user_username" placeholder="Username" required>

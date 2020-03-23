@@ -32,6 +32,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="product.php">Senarai Produk</a>
             <hr class="sidebar-divider">
+            <a class="collapse-item" href="product.php?source=add_product">Kategori Produk</a>
 <!--            <a class="collapse-item" href="product.php?source=add_product">Tambah Produk Pasaran</a>-->
 <!--            <a class="collapse-item" href="product.php?source=edit_product">Kemaskini Produk</a>-->
           </div>
