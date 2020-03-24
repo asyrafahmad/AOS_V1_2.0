@@ -49,8 +49,12 @@
                     include "includes/edit_product.php";
                     break;
                     
-                 case 'view_product';
+                case 'view_product';
                     include "includes/view_product.php";
+                    break;
+                    
+                case 'product_category';
+                    include "includes/product_category.php";
                     break;
 
                 case '200';

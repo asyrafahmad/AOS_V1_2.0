@@ -35,7 +35,7 @@
     if(isset($_POST['edit_product'])){
         
         $product_image = $_FILES['product_image']['name'];
-        $product_image_temp = $_FILES['supplier_image']['tmp_name'];
+        $product_image_temp = $_FILES['product_image']['tmp_name'];
         $product_category = escape($_POST['product_category']);
         $product_type = escape($_POST['product_type']);
         $product_name = escape($_POST['product_name']);
@@ -45,10 +45,10 @@
         $product_current_price= escape($_POST['product_current_price']);
 
         //move upload image to the server image file
-        move_uploaded_file($product_image_temp,"../img/$supplie$product_imager_image" );
+        move_uploaded_file($product_image_temp,"../img/$product_image" );
 
         //UPDATE query
-        $query = "UPDATE supplier SET                                   ";
+        $query = "UPDATE product SET                                   ";
         $query .= "product_image            = '{$product_image}',       ";
         $query .= "product_category         = '{$product_category}',    ";
         $query .= "product_type             = '{$product_type}',        ";
@@ -83,6 +83,30 @@
             <input type="file"  name="product_image">
           </div>
         <div class="row">
+            
+            
+          <div class="col-md-6 mb-3">
+           <div class="form-group">
+                <label for="product-title">Product Category</label>
+                <select name="product_category" id="" class="form-control">
+                <option value="">Select Category</option>
+                     <?php
+                    
+                        $query = "SELECT * FROM categories_product ";
+                        $categories_product_query = mysqli_query($connection, $query);
+
+                        while ($row = mysqli_fetch_assoc($categories_product_query)){
+
+                            $cat_product_id = $row['cat_product_id'];
+                            $cat_product_title = $row['cat_product_title'];
+
+                            echo "<option value='$cat_product_title'>{$cat_product_title}</option>";
+                        }
+                    ?>
+                </select>
+            </div>
+          </div>
+<!--
           <div class="col-md-6 mb-3">
             <label for="firstName">Kategori</label>
             <input type="text" class="form-control" name="product_category" placeholder="" value="<?php echo $product_category; ?>" required="Isi nama produk">
@@ -90,6 +114,7 @@
               Valid first name is required.
             </div>
           </div>
+-->
           <div class="col-md-6 mb-3">
             <label for="lastName">Jenis</label>
             <input type="text" class="form-control" name="product_type" placeholder="" value="<?php echo $product_type; ?>" required="">
