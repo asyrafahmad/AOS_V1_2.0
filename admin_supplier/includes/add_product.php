@@ -4,27 +4,31 @@
     
     
 <?php
+
+      if(isset($_SESSION['user_id'])){
+                          
+            $user_id = $_SESSION['user_id'];
+      }
+    
     
     if(isset($_POST['add_product'])){
         
-//        $product_image       = escape($_FILES['product_image']['name']);
-//        $product_image_temp  = escape($_FILES['product_image']['tmp_name']);
+        $product_image       = escape($_FILES['product_image']['name']);
+        $product_image_temp  = escape($_FILES['product_image']['tmp_name']);
         $product_name        = escape($_POST['product_name']);
         $product_type        = escape($_POST['product_type']);
         $product_gred        = escape($_POST['product_gred']);
         $product_quantity    = escape($_POST['product_quantity']);
         $product_price       = escape($_POST['product_price']);
-//
-//        move_uploaded_file($product_image_temp, "../img/$product_image" );
+
+        move_uploaded_file($product_image_temp, "../img/$product_image" );
        
         if(!empty($product_name)  &&  !empty($product_type)  &&  !empty($product_quantity) &&  !empty($product_price) &&  !empty($product_gred )){
                  
-            $query = "INSERT INTO product ( product_name, product_type, product_gred, product_quantity, product_price)  ";
-            $query .= "VALUES( '{$product_name}', '{$product_type}', '{$product_gred}', '{$product_quantity}', '{$product_price}'  )  ";
+            $query = "INSERT INTO product (product_image, product_name, product_type, product_gred, product_quantity, product_price, product_date_submit, product_supplier    )";
+            $query .= "VALUES( '{$product_image}', '{$product_name}', '{$product_type}', '{$product_gred}', '{$product_quantity}', '{$product_price}' , now(), '{$user_id}'  )  ";
 
             $create_post_query  =   mysqli_query($connection, $query);
-
-            // function
             confirmQuery($create_post_query);
    
             //to pull out last post created ID
@@ -36,6 +40,7 @@
             echo "<script>alert('Terdapat kekosongan pada maklumat produk')</script>";
         }
     }
+
 ?>
     
 
@@ -52,15 +57,13 @@
         <div class="card-body">
 
 
-<!--
           <div class="col-md-6 mb-3">
              <b for="product_image">Gambar :</b>
-            <input type="file"  name="image">
+            <input type="file"  name="product_image">
           </div>
--->
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label for="firstName">Nama produk</label>
+            <label for="firstName">Nama produk </label>
             <input type="text" class="form-control" name="product_name" placeholder="" value="" required="Isi nama produk">
             <div class="invalid-feedback">
               Valid first name is required.

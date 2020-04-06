@@ -1,3 +1,7 @@
+<?php include "../includes/db_connection.php";   ?>
+<!-- to call file and make it available  -->
+<?php include "../includes/functions.php";   ?>
+
 
 <?php  include "../includes/admin_header.php"; ?>
 
@@ -36,25 +40,24 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="h3 mb-0 text-gray-800">Mengenai Kami</h1>
-          </div>
-
-          <!-- Content Row -->
-     
-
-
+ 
+            
   
       <!-- Starting of profile content-->
       <div class="card shadow mb-4">
         <div class="card-body">
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="firstName">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</label>
-                <div class="invalid-feedback">
-                  Valid first name is required.
-                </div>
+                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                      <h1 class="h3 mb-0 text-gray-800"><b>Mengenai Kami</b></h1>
+                   </div>
+                  <h4><b>Agro Online System (AgrOS) developed by Peneraju Media Sdn Bhd</b></h4>
+                <label for="firstName">PENERAJU MEDIA was born out of an experience and passion to provide expert services that meet the needs of modern businesses. Our team is dedicated to delivering great results and providing amazing support.</label><br>
+              
+                <label for="firstName">
+                     <h4><b>Founders</b></h4>Afiq Manab ft  Lutfi Razak
+                  </label>
+                
               </div>
               <div class="col-md-6 mb-3" align="center">
                 <label for="lastName">
@@ -76,10 +79,10 @@
               <div class="col-md-6 mb-3" align="center">
                 <form action="" method="post" enctype="multipart/form-data">
                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                      <h1 class="h3 mb-0 text-gray-800">Mengenai Kami</h1>
+                      <h1 class="h3 mb-0 text-gray-800"><b>Hubungi Kami</b></h1>
                    </div>                    
                     <div class="form-group">
-                      <input class="form-control form-control-user" name="phone_number" placeholder="Nombor Telefon">
+                      <input class="form-control form-control-user" name="phone_number" placeholder="Nombor Telefon Anda">
                     </div>
                     <div class="form-group">
                       <input class="form-control form-control-user" name="Message" placeholder="Mesej">

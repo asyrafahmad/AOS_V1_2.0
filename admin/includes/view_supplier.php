@@ -7,23 +7,23 @@
 
 <?php
 
-    if(isset($_GET['s_id'])){
+    if(isset($_GET['supplier_id'])){
 
-        $supplier_id = $_GET['s_id'];
+        $user_id = $_GET['supplier_id'];
 
-        $query = "SELECT * FROM supplier WHERE supplier_id = '{$supplier_id}'     ";
+        $query = "SELECT * FROM user WHERE user_id = '{$user_id}'     ";
 
         $select_supplier_profile_query = mysqli_query($connection, $query);
 
         while($row = mysqli_fetch_array($select_supplier_profile_query)){
 
-          $supplier_id = escape($row['supplier_id']);
-          $supplier_name = escape($row['supplier_name']);
-          $supplier_email = escape($row['supplier_email']);
-          $supplier_phone = escape($row['supplier_phone']);
-          $supplier_address = escape($row['supplier_address']);
-          $supplier_image = escape($row['supplier_image']);
-          $supplier_website = escape($row['supplier_website']);
+          $user_id      = escape($row['user_id']);
+          $user_name    = escape($row['user_name']);
+          $user_email   = escape($row['user_email']);
+          $user_phone   = escape($row['user_phone']);
+          $user_address = escape($row['user_address']);
+          $user_image   = escape($row['user_image']);
+          $user_website = escape($row['user_website']);
             
             
         }
@@ -41,13 +41,13 @@
                   <table class="" >
                       <tr>
                            <table class="" align="center">
-                            <tr><label for="user_fullname" ><?php echo "<td><img  width='50' height='50'  src='../IMG/$supplier_image'</td>"; ?>  </label></tr>
-                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$supplier_name");  ?>  </label></td></tr>
-                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$supplier_email");  ?>  </label></td></tr>
-                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$supplier_phone");  ?>  </label></td></tr>
-                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$supplier_address");  ?>  </label></td></tr>
-                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$supplier_name");  ?>  </label></td></tr>
-                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$supplier_website");  ?>  </label></td></tr>
+                            <tr><label for="user_fullname" ><?php echo "<td><img  width='50' height='50'  src='../IMG/$user_image'</td>"; ?>  </label></tr>
+                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$user_name");  ?>  </label></td></tr>
+                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$user_email");  ?>  </label></td></tr>
+                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$user_phone");  ?>  </label></td></tr>
+                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$user_address");  ?>  </label></td></tr>
+                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$user_name");  ?>  </label></td></tr>
+                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$user_website");  ?>  </label></td></tr>
                           </table>
                       </tr>
                   </table>

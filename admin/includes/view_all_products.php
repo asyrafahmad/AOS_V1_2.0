@@ -22,15 +22,14 @@
                   <thead>
                     <tr>
                       <th>Produk ID</th>
-                      <th>Kategori Produk</th>
+<!--                      <th>Kategori Produk</th>-->
                       <th>Gambar produk</th>
                       <th>Produk</th>
-                      <th>Jenis (Gred)</th>
+                      <th>Gred</th>
                       <th>Kuantiti (Kg)</th>
-                      <th>Deskripsi</th>
+<!--                      <th>Deskripsi</th>-->
                       <th>Harga Semasa (RM) / Kg</th>
                       <th>Harga Jualan(RM) / Kg</th>
-                      <th>Harga Runcit(RM) / Kg</th>
                       <th>Lihat</th>
                       <th>Kemaskini</th>
                       <th>Padam</th>
@@ -49,6 +48,7 @@
                             $product_id = escape($row['product_id']);
                             $product_category = escape($row['product_category']);
                             $product_type = escape($row['product_type']);
+                            $product_gred = escape($row['product_gred']);
                             $product_image = escape($row['product_image']);
                             $product_name = escape($row['product_name']);
                             $product_description = escape($row['product_description']);
@@ -62,22 +62,20 @@
                             
                             echo "<tr>";
                             echo "<td>$product_id </td>";
-                            echo "<td>$product_category </td>";
-                            echo "<td><img width='100'  src='../img/$product_image'  alt='image' class='rounded-circle' </td>";
+//                            echo "<td>$product_category </td>";
+                            echo "<td><img height='10%' width='90%'  src='../img/$product_image'  alt='image' class='rounded-circle' </td>";
                             echo "<td>$product_name  </td>";
-                            echo "<td>$product_type  </td>";
+                            echo "<td>$product_gred  </td>";
                             echo "<td>$product_quantity  </td>";
-                            echo "<td>$product_description  </td>";
+//                            echo "<td>$product_description  </td>";
                             echo "<td>$product_current_price  </td>";
                             echo "<td>$product_price  </td>";
-                            echo "<td> </td>";
                             
 //                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
 //                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";
                             echo "<td><a class='btn btn-info' href='product.php?source=view_product&p_id={$product_id}'>Lihat </a></td>";
                             echo "<td><a class='btn btn-info' href='product.php?source=edit_product&p_id={$product_id}'>Kemaskini </a></td>";
-//                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";
-                            echo "<td> </td>";
+                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Anda pasti untuk padam maklumat ini? ');  \"  href='product.php?delete={$product_id} '>Padam </a></td>";
                             echo "</tr>";
 
                                 }

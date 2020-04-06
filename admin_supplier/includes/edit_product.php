@@ -37,29 +37,30 @@
     if(isset($_POST['edit_product'])){
         
         $product_image = $_FILES['product_image']['name'];
-        $product_image_temp = $_FILES['supplier_image']['tmp_name'];
-        $product_category = escape($_POST['product_category']);
+        $product_image_temp = $_FILES['product_image']['tmp_name'];
+//        $product_category = escape($_POST['product_category']);
         $product_type = escape($_POST['product_type']);
         $product_name = escape($_POST['product_name']);
-        $product_description= escape($_POST['product_description']);
+//        $product_description= escape($_POST['product_description']);
         $product_quantity= escape($_POST['product_quantity']);
         $product_price= escape($_POST['product_price']);
-        $product_current_price= escape($_POST['product_current_price']);
+//        $product_current_price= escape($_POST['product_current_price']);
 
         //move upload image to the server image file
-        move_uploaded_file($product_image_temp,"../img/$supplie$product_imager_image" );
+        move_uploaded_file($product_image_temp,"../img/$product_image" );
 
         //UPDATE query
-        $query = "UPDATE supplier SET                                   ";
-        $query .= "product_image            = '{$product_image}',       ";
-        $query .= "product_category         = '{$product_category}',    ";
-        $query .= "product_type             = '{$product_type}',        ";
-        $query .= "product_name             = '{$product_name}',        ";
-        $query .= "product_description      = '{$product_description}', ";
-        $query .= "product_quantity         = '{$product_quantity}',    ";
-        $query .= "product_price            = '{$product_price}',       ";
-        $query .= "product_current_price    = '{$product_current_price}'";
-        $query .= "WHERE product_id         =  {$product_id}             ";
+        $query = "UPDATE product SET                                       ";
+        $query .= "product_image            = '{$product_image}',           ";
+//        $query .= "product_category         = '{$product_category}',    ";
+        $query .= "product_type             = '{$product_type}',            ";
+        $query .= "product_name             = '{$product_name}',            ";
+//        $query .= "product_description      = '{$product_description}', ";
+        $query .= "product_quantity         = '{$product_quantity}',        ";
+        $query .= "product_price            = '{$product_price}',           ";
+//        $query .= "product_current_price    = '{$product_current_price}',";
+        $query .= "product_date_modified    = now()                         ";
+        $query .= "WHERE product_id         =  {$product_id}                ";
 
         $edit_product_query = mysqli_query($connection,$query);
         confirmQuery($edit_product_query);
@@ -81,12 +82,10 @@
         <div class="card-body">
 
 
-<!--
           <div class="col-md-6 mb-3">
              <b for="product_image">Gambar :</b>
-            <input type="file"  name="image">
+            <input type="file"  name="product_image">
           </div>
--->
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">Nama produk</label>
@@ -140,7 +139,7 @@
 
                       
         <div class="form-group">
-                <input class="btn btn-primary" type="submit" name="add_product" value="Hantar">
+                <input class="btn btn-primary" type="submit" name="edit_product" value="Hantar">
         </div>
               
 

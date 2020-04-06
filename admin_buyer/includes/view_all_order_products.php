@@ -22,16 +22,18 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Tempahan ID</th>
+<!--                      <th>Tempahan ID</th>-->
+                      <th>Invoice</th>
                       <th>Produk</th>
                       <th>Kuantiti (Kg)</th>
-                      <th>Harga (RM) / Kg</th>
-                      <th>Invoice</th>
+                      <th>Jumlah Harga</th>
                       <th>Tarikh Tempahan</th>
                       <th>Status</th>
                       <th>Lihat Tempahan</th>
+<!--
                       <th>Cetak</th>
                       <th>Muat Turun</th>
+-->
                     </tr>
                   </thead>
                  
@@ -57,19 +59,19 @@
                             $_SESSION['order_product'] = $order_product;
                             
                             echo "<tr>";
-                            echo "<td>$order_id </td>";
+//                            echo "<td>$order_id </td>";
+                            echo "<td>$order_invoice  </td>";
                             echo "<td>$order_product </td>";
                             echo "<td>$order_quantity  </td>";
-                            echo "<td>$order_price  </td>";
-                            echo "<td>$order_invoice  </td>";
+                            echo "<td>RM$order_price  </td>";
                             echo "<td>$order_booking_date  </td>";
                             echo "<td>$order_status  </td>";
                             
 //                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
 //                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";
                             echo "<td><a class='btn btn-info' href='order.php?source=view_order_product&o_p_id={$order_id}'>Lihat Tempahan</a></td>";
-                            echo "<td><a href=''>Cetak</a></td>";
-                            echo "<td><a href=''>Download</a></td>";
+//                            echo "<td><a href=''>Cetak</a></td>";
+//                            echo "<td><a href=''>Download</a></td>";
 //                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";
                             echo "</tr>";
 

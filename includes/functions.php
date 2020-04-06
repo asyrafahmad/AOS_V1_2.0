@@ -1,51 +1,33 @@
 <?php
 
 function redirect($location){
-
-
     header("Location:" . $location);
     exit;
-
 }
 
 
 function ifItIsMethod($method=null){
 
     if($_SERVER['REQUEST_METHOD'] == strtoupper($method)){
-
         return true;
-
     }
-
     return false;
-
 }
 
 function isLoggedIn(){
 
     if(isset($_SESSION['user_role'])){
-
         return true;
-
-
     }
-
-
-   return false;
-
+    return false;
 }
 
 function checkIfUserIsLoggedInAndRedirect($redirectLocation=null){
 
     if(isLoggedIn()){
-
         redirect($redirectLocation);
-
     }
-
 }
-
-
 
 
 
@@ -272,6 +254,7 @@ function is_admin($user_username) {
 
     $row = mysqli_fetch_array($result);
 
+    
 
     if($row['user_role'] == '1'){
         
@@ -313,10 +296,6 @@ function username_exists($username){
         return false;
 
     }
-
-
-
-
 
 }
 
@@ -363,15 +342,15 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
     if($user_role == '2'){
         
         //insert into user table
-        $query = "INSERT INTO user (user_username, user_phone, user_password, user_repassword , user_role, ) ";
+        $query = "INSERT INTO user (user_username, user_phone, user_password, user_repassword , user_role ) ";
         $query .= "VALUES('{$username}','{$phone}','{$password}','{$repassword}','{$user_role}')";
         
         $register_user_query = mysqli_query($connection, $query);
         confirmQuery($register_user_query);
         
         //insert into supplier table
-        $supplier_query = "INSERT INTO supplier (supplier_role, supplier_phone, supplier_date_register) ";
-        $supplier_query .= "VALUES('{$user_role}', '{$phone}', now() )";
+        $supplier_query = "INSERT INTO supplier (supplier_name, supplier_role, supplier_phone, supplier_date_register) ";
+        $supplier_query .= "VALUES('{$username}','{$user_role}', '{$phone}', now() )";
         
         $register_supplier_query = mysqli_query($connection, $supplier_query);
         confirmQuery($register_supplier_query);
@@ -387,8 +366,8 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
         confirmQuery($register_user_query);
         
          //insert into buyer table
-        $buyer_query = "INSERT INTO buyer(buyer_role, buyer_phoneNo, buyer_date_register) ";
-        $buyer_query .= "VALUES('{$user_role}', '{$phone}', now() )";
+        $buyer_query = "INSERT INTO buyer(buyer_name, buyer_role, buyer_phoneNo, buyer_date_register) ";
+        $buyer_query .= "VALUES('{$username}','{$user_role}', '{$phone}', now() )";
         
         $register_buyer_query = mysqli_query($connection, $buyer_query);
         confirmQuery($register_buyer_query);
@@ -436,6 +415,7 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
 
          if ($password === $db_user_password) {
 
+             $_SESSION['user_id'] = $db_user_id;
              $_SESSION['user_username'] = $db_user_username;
              $_SESSION['user_name'] = $db_user_name;
 

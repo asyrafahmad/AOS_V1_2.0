@@ -24,7 +24,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <th>No</th>
                       <th>Gambar</th>
                       <th>Petani</th>
                       <th>Email</th>
@@ -32,9 +32,10 @@
                       <th>Alamat</th>
                       <th>Laman Web</th>
                       <th>Tarikh Buka Akaun</th>
-                      <th>Lihat</th>
-                      <th>Kemaskini</th>
-                      <th>Padam</th>
+                      <th>Profil petani</th>
+                      <th>Kemaskini Profil Petani</th>
+                      <th>Produk Petani</th>
+<!--                      <th>Padam</th>-->
                     </tr>
                   </thead>
                  
@@ -43,40 +44,46 @@
                     <!-- Get data in db and display  -->
                     <?php
                       
-                        $query  =  "SELECT * FROM supplier ";    
+                        if(isset($_SESSION['user_id'])){
+                          
+                            $user_id = $_SESSION['user_id'];
+                        }
+                      
+                        $query  =  "SELECT * FROM user WHERE user_role = '2' ";    
                         $select_suppliers = mysqli_query($connection, $query);
 
                         while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-                            $supplier_id = escape($row['supplier_id']);
-                            $supplier_image = escape($row['supplier_image']);
-                            $supplier_name = escape($row['supplier_name']);
-                            $supplier_email = escape($row['supplier_email']);
-                            $supplier_phone = escape($row['supplier_phone']);
-                            $supplier_address = escape($row['supplier_address']);
-                            $supplier_website = escape($row['supplier_website']);
-                            $supplier_date_register = escape($row['supplier_date_register']);
+                            $user_id = escape($row['user_id']);
+                            $user_image = escape($row['user_image']);
+                            $user_name = escape($row['user_username']);
+                            $user_email = escape($row['user_email']);
+                            $user_phone = escape($row['user_phone']);
+                            $user_address = escape($row['user_address']);
+                            $user_website = escape($row['user_website']);
+//                            $user_date_register = escape($row['user_date_register']);
                             
                             //Set as global
-                            $_SESSION['supplier_id'] = $supplier_id;
-                            $_SESSION['supplier_name'] = $supplier_name;
+                            $_SESSION['supplier_id'] = $user_id;
+                            $_SESSION['supplier_name'] = $user_name;
                             
                             echo "<tr>";
-                            echo "<td>$supplier_id </td>";
-                            echo "<td><img width='100'  src='../img/$supplier_image'  alt='image' class='rounded-circle' </td>";
-                            echo "<td>$supplier_name  </td>";
-                            echo "<td>$supplier_email  </td>";
-                            echo "<td>$supplier_phone  </td>";
-                            echo "<td>$supplier_address  </td>";
-                            echo "<td>$supplier_website  </td>";
-                            echo "<td>$supplier_date_register </td>";
+                            echo "<td>$user_id </td>";
+                            echo "<td><img width='100'  src='../img/$user_image'  alt='image' class='rounded-circle' </td>";
+                            echo "<td>$user_name  </td>";
+                            echo "<td>$user_email  </td>";
+                            echo "<td>$user_phone  </td>";
+                            echo "<td>$user_address  </td>";
+                            echo "<td>$user_website  </td>";
+                            echo "<td> </td>";
                             
 //                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
 //                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";
-                            echo "<td><a class='btn btn-info' href='supplier.php?source=view_supplier&s_id={$supplier_id}'>Lihat </a></td>";
-                            echo "<td><a class='btn btn-info' href='supplier.php?source=edit_supplier&s_id={$supplier_id}'>Kemaskini </a></td>";
+                            echo "<td><a class='btn btn-info' href='supplier.php?source=view_supplier&supplier_id={$user_id}'>Lihat Profil </a></td>";
+                            echo "<td><a class='btn btn-info' href='supplier.php?source=edit_supplier&supplier_id={$user_id}'>Kemaskini Profil</a></td>";
+                            echo "<td><a class='btn btn-info' href='supplier.php?source=view_supplier_product&supplier_id={$user_id}'>Lihat Produk </a></td>";
 //                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";
-                            echo "<td></td>";
+//                            echo "<td></td>";
                             echo "</tr>";
 
                                 }

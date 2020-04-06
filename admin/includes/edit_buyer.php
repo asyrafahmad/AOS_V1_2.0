@@ -9,34 +9,39 @@
 <?php
 
     //View data
-    if(isset($_GET['b_id'])){
+    if(isset($_GET['buyer_id'])){
 
-        $buyer_id = $_GET['b_id'];
+        $user_id = $_GET['buyer_id'];
 
-        $query  =  "SELECT * FROM buyer WHERE buyer_id = $buyer_id ";    
+        $query  =  "SELECT * FROM user WHERE user_id = $user_id ";    
         $select_buyers_query = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($select_buyers_query)){
-
-          $buyer_name   = escape($row['buyer_name']);
-          $buyer_email  = escape($row['buyer_email']);
-          $buyer_phoneNo= escape($row['buyer_phoneNo']);
+            $user_image     = escape($row['user_image']);
+            $user_username  = escape($row['user_username']);
+            $user_email     = escape($row['user_email']);
+            $user_phone     = escape($row['user_phone']);
         }
     }
 
     //Update data
     if(isset($_POST['edit_buyer'])){
         
-        $buyer_name     = escape($_POST['buyer_name']);
-        $buyer_email    = escape($_POST['buyer_email']);
-        $buyer_phoneNo  = escape($_POST['buyer_phoneNo']);
+        $user_image         = $_FILES['user_image']['name'];
+        $user_image_temp    = $_FILES['user_image']['tmp_name'];
+        $user_username      = escape($_POST['user_username']);
+        $user_email         = escape($_POST['user_email']);
+        $user_phone         = escape($_POST['user_phone']);
+        
+        move_uploaded_file($user_image_temp,"../img/$user_image" );
 
         //UPDATE query
-        $query = "UPDATE buyer SET                           ";
-        $query .= "buyer_name        = '{$buyer_name}',   ";
-        $query .= "buyer_email       = '{$buyer_email}',  ";
-        $query .= "buyer_phoneNo     = '{$buyer_phoneNo}' ";
-        $query .= "WHERE buyer_id    =  {$buyer_id}       ";
+        $query = "UPDATE user SET                       ";
+        $query .= "user_image       = '{$user_image}',  ";
+        $query .= "user_username    = '{$user_username}',   ";
+        $query .= "user_email       = '{$user_email}',  ";
+        $query .= "user_phone       = '{$user_phone}'   ";
+        $query .= "WHERE user_id    =  {$user_id}       ";
 
         $edit_buyers_query = mysqli_query($connection,$query);
         confirmQuery($edit_buyers_query);
@@ -58,18 +63,21 @@
         <div class="card-body">
 
 
-
+        <div class="col-md-6 mb-3">
+             <b for="product_image">Gambar :</b>
+            <input type="file"  name="user_image" >
+        </div>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">Nama</label>
-            <input type="text" class="form-control" name="buyer_name" placeholder="" value="<?php echo $buyer_name; ?>" required="Isi nama produk">
+            <input type="text" class="form-control" name="user_username" placeholder="" value="<?php echo $user_username; ?>" required="">
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="lastName">Emel </label>
-            <input type="text" class="form-control" name="buyer_email" placeholder="" value="<?php echo $buyer_email; ?>" required="">
+            <input type="text" class="form-control" name="user_email" placeholder="" value="<?php echo $user_email; ?>" required="">
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
@@ -78,7 +86,7 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">Nombor Telefon</label>
-            <input type="text" class="form-control" name="buyer_phoneNo" placeholder="" value="<?php echo $buyer_phoneNo; ?>" required="">
+            <input type="text" class="form-control" name="user_phone" placeholder="" value="<?php echo $user_phone; ?>" required="">
             <div class="invalid-feedback">
               Valid first name is required.
             </div>

@@ -3,6 +3,60 @@
 <?php  include "../includes/db_connection.php"; ?>    
 
 
+
+
+
+<?php
+
+if(isset($_POST['sendotp'])){
+    
+
+	// Account details
+    $username = "are.syraf97@yahoo.com";
+	$apiKey = urlencode('9nG/95vKCro-p2qpXsf1tL9TYGkARCSBhxBTisC3dB');
+
+    $test="0";
+	$name = $_POST['uname'];
+	// Message details
+	$numbers = $_POST['mobile'];
+	$sender = urlencode('Apit sms testing');
+    $otp = mt_rand(100000,999999);
+    setcookie("otp", $otp);
+	$message = "Hey ".@name. "your OTP is ".$otp;
+ 
+	// Prepare data for POST request
+	$data = array('apikey' => $apiKey, 'numbers' => $numbers, "sender" => $sender, "message" => $message);
+ 
+	// Send the POST request with cURL
+	$ch = curl_init('https://api.txtlocal.com/send/');
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$response = curl_exec($ch);
+    
+        echo("OTS SEND SUCCESSFULLY");
+	curl_close($ch);
+    
+    
+	
+	// Process your response here
+	echo $response;
+}
+
+if(isset($_POST['verifyotp'])){
+    $verifyotp = $_POST['otp'];
+    
+    if($verifyotp == $_COOKIE['otp']){
+        echo("success");
+    }
+    else{
+        echo("failed");
+    }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,10 +108,16 @@
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="mobile" name="mobile" placeholder="Nombor Telefon" value="" maxlength="10" placeholder="Enter valid mobile number" required>
                 </div>
+                  <div>
+                    <input type="submit" name="sendotp" value="Send OTP">
+                  </div>
+                  <div class="form-group">
+                  <input type="text" class="form-control form-control-user" id="mobile" name="otp" placeholder="OTP code"  >
+                </div>
                 
 
                 <div class="">
-                    <input type="submit" name="sendopt"  class="btn btn-primary btn-user btn-block" value="Hantar OTP">
+                    <input type="submit" name="verifyotp"  class="btn btn-primary btn-user btn-block" value="Verify OTP">
                 </div>
               </form>
                 

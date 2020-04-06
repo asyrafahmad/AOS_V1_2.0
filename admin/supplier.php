@@ -54,6 +54,17 @@
                     include "includes/view_supplier.php";
                     break;
                 
+                case 'view_supplier_product';
+                    include "includes/view_supplier_product.php";
+                    break; 
+                
+                case 'view_elodge_supplier';
+                    include "includes/view_elodge_supplier.php";
+                    break;
+                
+                    
+                    
+                    
                 case 'add_supplier_order_product';
                     include "includes/add_supplier_order_product.php";
                     break;

@@ -23,9 +23,10 @@
                     <tr>
                       <th>Tempahan ID</th>
                       <th>Produk</th>
+                      <th>Jenis</th>
                       <th>Kuantiti (Kg)</th>
                       <th>Harga (RM) / Kg</th>
-                      <th>Invoice</th>
+<!--                      <th>Invoice</th>-->
                       <th>Tarikh Tempahan</th>
                       <th>Status</th>
                       <th>Lihat Tempahan</th>
@@ -38,42 +39,42 @@
                      <!-- Get data in db and display  -->
                     <?php
                       
-                        $query  =  "SELECT * FROM order_product ";    
-                        $select_suppliers = mysqli_query($connection, $query);
+                        $query  =  "SELECT * FROM buyer_order_product ";    
+                        $buyer_order_product_query = mysqli_query($connection, $query);
 
-                        while ($row = mysqli_fetch_assoc($select_suppliers)){
+                        while ($row = mysqli_fetch_assoc($buyer_order_product_query)){
 
-                            $order_id = escape($row['order_id']);
-                            $order_product = escape($row['order_product']);
-                            $order_quantity = escape($row['order_quantity']);
-                            $order_price = escape($row['order_price']);
-                            $order_invoice = escape($row['order_invoice']);
-                            $order_booking_date = escape($row['order_booking_date']);
-                            $order_status = escape($row['order_status']);
+                            $b_o_product_id = escape($row['b_o_product_id']);
+                            $b_o_product_name = escape($row['b_o_product_name']);
+                            $b_o_product_type = escape($row['b_o_product_type']);
+                            $b_o_product_price = escape($row['b_o_product_price']);
+                            $b_o_product_quantity = escape($row['b_o_product_quantity']);
+//                            $b_o_product_invoice = escape($row['b_o_product_invoice']);
+                            $b_o_product_total_price = escape($row['b_o_product_total_price']);
+                            $b_o_product_booking_date = escape($row['b_o_product_booking_date']);
+                            $b_o_product_status = escape($row['b_o_product_status']);
                             
                             //Set as global
-                            $_SESSION['order_id'] = $order_id;
-                            $_SESSION['order_product'] = $order_product;
+                            $_SESSION['b_o_product_id'] = $b_o_product_id;
+                            $_SESSION['b_o_product_name'] = $b_o_product_name;
                             
                             echo "<tr>";
-                            echo "<td>$order_id </td>";
-                            echo "<td>$order_product </td>";
-                            echo "<td>$order_quantity  </td>";
-                            echo "<td>$order_price  </td>";
-                            echo "<td>$order_invoice  </td>";
-                            echo "<td>$order_booking_date  </td>";
-                            echo "<td>$order_status  </td>";
+                            echo "<td>$b_o_product_id </td>";
+                            echo "<td>$b_o_product_name </td>";
+                            echo "<td>$b_o_product_type  </td>";
+                            echo "<td>$b_o_product_quantity  </td>";
+//                            echo "<td>$b_o_product_invoice  </td>";
+                            echo "<td>$b_o_product_total_price  </td>";
+                            echo "<td>$b_o_product_booking_date  </td>";
+                            echo "<td>$b_o_product_status  </td>";
                             
-//                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
-//                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";
-                            echo "<td><a class='btn btn-info' href='buyer.php?source=view_buyer_order_product&o_p_id={$order_id}'>Lihat Tempahan</a></td>";
+                            echo "<td><a class='btn btn-info' href='buyer.php?source=view_buyer_order_product&b_o_id={$b_o_product_id}'>Lihat Tempahan</a></td>";
                             echo "<td><a href=''>Cetak</a></td>";
                             echo "<td><a href=''>Download</a></td>";
-//                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";
                             echo "</tr>";
 
-                                }
-                         ?>
+                            }
+                     ?>
                   </tbody>
                 </table>
               </div>

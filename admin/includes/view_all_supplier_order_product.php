@@ -21,13 +21,15 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Tempahan ID</th>
-                      <th>Produk</th>
+                      <th>Gambar</th>
+                      <th>Nama Produk</th>
                       <th>Jenis</th>
                       <th>Gred</th>
                       <th>Kuantiti (Kg)</th>
+                      <th>Jumlah Harga</th>
                       <th>Tarikh Tempahan</th>
                       <th>Status</th>
+                      <th>Invoice</th>
                       <th>Lihat Tempahan</th>
                       <th>Cetak</th>
                       <th>Muat Turun</th>
@@ -45,8 +47,8 @@
 
                             $order_id = escape($row['order_id']);
                             $order_product = escape($row['order_product']);
-//                            $order_type = escape($row['order_type']);
-//                            $order_gred = escape($row['order_gred']);
+                            $order_type = escape($row['order_type']);
+                            $order_gred = escape($row['order_gred']);
                             $order_quantity = escape($row['order_quantity']);
                             $order_price = escape($row['order_price']);
                             $order_invoice = escape($row['order_invoice']);
@@ -58,13 +60,14 @@
                             $_SESSION['order_product'] = $order_product;
                             
                             echo "<tr>";
-                            echo "<td> </td>";
-                            echo "<td> </td>";
-                            echo "<td> </td>";
-                            echo "<td> </td>";
-                            echo "<td>  </td>";
-                            echo "<td>  </td>";
-                            echo "<td>  </td>";
+                            echo "<td>$order_id</td>";
+                            echo "<td>$order_product</td>";
+                            echo "<td>$order_type</td>";
+                            echo "<td>$order_gred</td>";
+                            echo "<td>$order_quantity</td>";
+                            echo "<td></td>";
+                            echo "<td>$order_booking_date</td>";
+                            echo "<td>$order_status</td>";
                             
 //                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
 //                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";

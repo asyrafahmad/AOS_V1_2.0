@@ -31,7 +31,8 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="product.php">Senarai Produk</a>
-            <hr class="sidebar-divider">
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">Kategori</h6>
             <a class="collapse-item" href="product.php?source=product_category">Kategori Produk</a>
 <!--            <a class="collapse-item" href="product.php?source=add_product">Tambah Produk Pasaran</a>-->
 <!--            <a class="collapse-item" href="product.php?source=edit_product">Kemaskini Produk</a>-->
@@ -50,6 +51,9 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="supplier.php">Senarai Petani</a>
             <a class="collapse-item" href="supplier.php?source=add_supplier">Tambah Petani</a>
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">E-Lodge</h6>
+            <a class="collapse-item" href="supplier.php?source=view_elodge_supplier">Senarai E-Lodge Produk</a>
             <hr class="sidebar-divider">
             <a class="collapse-item" href="supplier.php?source=view_all_supplier_order_product">Senarai Pesanan Produk</a>
             <a class="collapse-item" href="supplier.php?source=add_supplier_order_product">Tambah Pesanan Produk</a>
@@ -95,16 +99,27 @@
                 <span>Log Keluar</span></a>
         </li>
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+<!--
+        
 <div hidden>
-      <!-- Divider -->
+    
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
       <div class="sidebar-heading">
         Interface
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
+    
+    
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
@@ -119,7 +134,8 @@
         </div>
       </li>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
+    
+    
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
@@ -136,15 +152,18 @@
         </div>
       </li>
 
-      <!-- Divider -->
+    
+    
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
+    
+    
       <div class="sidebar-heading">
         Addons
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
+    
+    
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
@@ -164,7 +183,8 @@
         </div>
       </li>
 
-      <!-- Nav Item - Charts -->
+    
+    
       <li class="nav-item">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
@@ -172,11 +192,14 @@
       </li>
 </div>
     
+-->
 
-        <!-- Divider -->
+        
+        
       <hr class="sidebar-divider d-none d-md-block">
 
-      <!-- Sidebar Toggler (Sidebar) -->
+        
+        
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
@@ -184,4 +207,3 @@
 
    
     </ul>
-    <!-- End of Sidebar -->

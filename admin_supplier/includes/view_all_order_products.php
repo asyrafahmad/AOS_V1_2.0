@@ -6,12 +6,12 @@
     
 <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Pesanan Produk</h1>
-          <p class="mb-4">Pesanan Produk. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
+          <p class="mb-4">Maklumat Pesanan Produk. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Tempahan Produk</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Maklumat Pesanan Produk</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -21,13 +21,12 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Tempahan ID</th>
+                      <th>Invoice</th>
                       <th>Produk</th>
                       <th>Kuantiti (Kg)</th>
-                      <th>Harga (RM) / Kg</th>
-                      <th>Invoice</th>
-                      <th>Tarikh Tempahan</th>
-                      <th>Status</th>
+                      <th>Jumlah Bayaran (RM)</th>
+                      <th>Tarikh Tempahan Dihantar</th>
+                      <th>Status Bayaran</th>
                       <th>Lihat Tempahan</th>
                       <th>Cetak</th>
                       <th>Muat Turun</th>
@@ -56,11 +55,10 @@
                             $_SESSION['order_product'] = $order_product;
                             
                             echo "<tr>";
-                            echo "<td>$order_id </td>";
+                            echo "<td>$order_invoice  </td>";
                             echo "<td>$order_product </td>";
                             echo "<td>$order_quantity  </td>";
-                            echo "<td>$order_price  </td>";
-                            echo "<td>$order_invoice  </td>";
+                            echo "<td>RM$order_price  </td>";
                             echo "<td>$order_booking_date  </td>";
                             echo "<td>$order_status  </td>";
                             

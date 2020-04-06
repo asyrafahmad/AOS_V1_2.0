@@ -1,3 +1,5 @@
+<?php include "../includes/db_connection.php";   ?>
+<?php include "../includes/functions.php";   ?>
 
 <?php  include "../includes/admin_header.php"; ?>
 
@@ -38,7 +40,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Pembekal/Petani Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800">Pemborong Dashboard</h1>
            
           </div>
 
@@ -52,7 +54,15 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Pesanan</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">99</div>
+                        <?php 
+                            global $connection;
+                        
+                            $query = "SELECT * FROM buyer_order_product";
+                            $select_all_buyer_order_products = mysqli_query($connection,$query);
+                            $buyer_order_product_count = mysqli_num_rows($select_all_buyer_order_products);
+
+                            echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>{$buyer_order_product_count}</div>"
+                        ?>
                     </div>
                     <div class="col-auto">
                         <img class="img-profile rounded-circle" src="../img/icon/product.png" height="50" width="50">

@@ -35,9 +35,9 @@
           </div>
         </div>
       </li> 
-
-
-    <!-- Nav Item - Buyer -->
+        
+        
+<!-- Nav Item - Buyer -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="../admin_buyer/order.php" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <img class="" src="../img/icon/Buyer.png" width="20%" height="20%">
@@ -51,6 +51,36 @@
         </div>
       </li>  
         
+<!-- Nav Item - E-Lodge -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="../admin_buyer/e-lodge.php" data-toggle="collapse" data-target="#elodge" aria-expanded="true" aria-controls="collapseUtilities">
+          <img class="" src="../img/icon/Product.png" width="20%" height="20%">
+          <span>E-Lodge</span>
+        </a>
+        <div id="elodge" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="e-lodge.php">Senarai Produk E-Lodge</a>
+            <a class="collapse-item" href="e-lodge.php?source=view_book_elodge_product">Lihat Pesanan E-Lodge</a>
+          </div>
+        </div>
+      </li>
+        
+   <!-- Nav Item - E-Bargain-->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="../admin_buyer/e-bargain.php" data-toggle="collapse" data-target="#ebargain" aria-expanded="true" aria-controls="collapseUtilities">
+          <img class="" src="../img/icon/Product.png" width="20%" height="20%">
+          <span>E-Bargain</span>
+        </a>
+        <div id="ebargain" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="e-bargain.php">Senarai Produk E-Bargain</a>
+          </div>
+        </div>
+      </li> 
+
+
+
+        
     <!-- Nav Item - Buyer -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="../admin_buyer/order.php" data-toggle="collapse" data-target="#collapseOrder" aria-expanded="true" aria-controls="collapseOrder">
@@ -59,11 +89,27 @@
         </a>
         <div id="collapseOrder" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="order.php?source=view_all_order_products">Senarai Pesanan</a>
-            <a class="collapse-item" href="order.php?source=status_order_product">Status Pesanan</a>
+            <a class="collapse-item" href="order.php?source=view_all_order_products">Sejarah Pesanan Produk</a>
+            <a class="collapse-item" href="order.php?source=view_all_elodge_order_products">Sejarah Pesanan E-Lodge</a>
+          </div>
+        </div>
+      </li>    
+        
+        
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="../admin_buyer/toyyibpayApi.php" data-toggle="collapse" data-target="#toyyibPay" aria-expanded="true" aria-controls="collapseOrder">
+          <img class="" src="" width="20%" height="20%">
+          <span>ToyyibPay</span>
+        </a>
+        <div id="toyyibPay" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="toyyibpayApi.php?source=createBill">Create bill</a>
+            <a class="collapse-item" href="toyyibpayApi.php?source=view_all_elodge_order_products">Sejarah Pesanan E-Lodge</a>
           </div>
         </div>
       </li>
+        
+   
         
 
 

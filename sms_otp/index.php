@@ -12,8 +12,13 @@
 	<div class="col-md-9 col-md-offset-2">
 		<?php
         if(isset($_POST['sendopt'])){
+            
             require('textlocal.class.php');
-            require('credential.php');
+            
+            define("API_KEY", '9nG/95vKCro-p2qpXsf1tL9TYGkARCSBhxBTisC3dB');
+
+            /*You can enter mobile number here*/
+            define("MOBILE", '192649693');
 
             $textlocal = new Textlocal(false, false, API_KEY);
 

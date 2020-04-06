@@ -31,10 +31,27 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="product.php">Senarai Produk</a>
+<!--
             <a class="collapse-item" href="product.php?source=add_product">Tambah Produk</a>
             <hr class="sidebar-divider">
             <a class="collapse-item" href="product.php?source=e_lodge">E-Lodge</a>
+-->
 <!--            <a class="collapse-item" href="product.php?source=edit_product">Kemaskini Produk</a>-->
+          </div>
+        </div>
+      </li>     
+        
+        
+    <!-- Nav Item - E-Lodge -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="../admin_supplier/e-lodge.php" data-toggle="collapse" data-target="#collapseElodge" aria-expanded="true" aria-controls="collapseUtilities">
+          <img class="" src="../img/icon/Product.png" width="20%" height="20%">
+          <span>E-Lodge</span>
+        </a>
+        <div id="collapseElodge" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="e-lodge.php">Senarai E-Lodge</a>
+            <a class="collapse-item" href="e-lodge.php?source=add_elodge">Tambah E-Lodge</a>
           </div>
         </div>
       </li> 
@@ -44,7 +61,7 @@
         <li class="nav-item">
         <a class="nav-link collapsed" href="../admin_supplier/supplier.php" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <img class="" src="../img/icon/Buyer.png" width="20%" height="20%">
-          <span>Pesanan</span>
+          <span>Sejarah Pesanan</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -86,11 +103,36 @@
 
     
     <hr>
-        <!-- Nav Item - Logout -->
-        <li class="nav-item" >
-            <a class="nav-link" href="../login.php" > 
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+		
+	 <div class="text-center d-none d-md-inline">
+        <a class="nav-link" href="../admin_supplier/profile.php?source=edit_profile" >
+
+                <img class="img-profile rounded-circle" height="20%" width ="20%" src="../img/icon/user.png" ><br>
+			    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['user_username'] ?></span>
+              </a>
+
+      </div>
+
+
+		 <div class="text-center d-none d-md-inline">
+ 
+            <a class="nav-link" href="../includes/logout.php" > 
                 <span>Log Keluar</span></a>
-        </li>
+
+		</div>
+		
+		
+		
+		
+		
+		
+		
 
 <div hidden>
       <!-- Divider -->

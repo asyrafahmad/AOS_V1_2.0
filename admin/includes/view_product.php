@@ -44,14 +44,14 @@
                   <table class="" >
                       <tr>
                            <table class="" align="center">
-                            <tr><td><label for="product_image" > <?php echo strtoupper("$product_image");  ?>  </label></td></tr>
-                            <tr><td><label for="product_category" > <?php echo strtoupper("$product_category");  ?>  </label></td></tr>
-                            <tr><td><label for="product_name" > <?php echo strtoupper("$product_name");  ?>  </label></td></tr>
-                            <tr><td><label for="product_gred" > <?php echo strtoupper("$product_gred");  ?>  </label></td></tr>
-                            <tr><td><label for="product_description" > <?php echo strtoupper("$product_description");  ?>  </label></td></tr>
-                            <tr><td><label for="product_current_price" > <?php echo strtoupper("$product_current_price");  ?>  </label></td></tr>
-                            <tr><td><label for="product_price" > <?php echo strtoupper("$product_price");  ?>  </label></td></tr>
-                            <tr><td><label for="product_current_price" >  </label></td></tr>
+                            <tr><td><img height="50%" width="50%"  src="../img/<?php echo $product_image;  ?>"  alt="image" ></td></tr>
+                            <tr><td><h3><b><p for="product_name" ><?php echo strtoupper("$product_name");  ?>  </b></h3></td></tr>
+                            <tr><td><p for="product_category" > <?php echo strtoupper("$product_category");  ?>  </p></td></tr>
+                            <tr><td><p for="product_gred" > <?php echo strtoupper("$product_gred");  ?>  </p></td></tr>
+                            <tr><td><p for="product_description" > <?php echo strtoupper("$product_description");  ?>  </p></td></tr>
+                            <tr><td><p for="product_current_price" > <?php echo strtoupper("$product_current_price");  ?>  </p></td></tr>
+                            <tr><td><p for="product_price" > <?php echo strtoupper("$product_price");  ?>  </p></td></tr>
+                            <tr><td><p for="product_current_price" >  </p></td></tr>
                           </table>
                       </tr>
                   </table>

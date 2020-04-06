@@ -4,6 +4,34 @@
 <!-- to call file and make it available  -->
 <?php include "../includes/functions.php";   ?>
 
+
+
+
+
+<?php
+
+        //ADD-TO-CART    
+        if(isset($_POST['add_to_cart'])){
+            
+            for($i = 0; $i <= 10; $i++){
+                   $product_name = $_POST['item_name_'.i];
+            }
+         
+
+            $query = "INSERT INTO buyer_order_product (b_o_product_name ";
+            $add_to_cart_query .= "VALUES('{$product_name}' )  ";
+
+            $create_post_query  =   mysqli_query($connection, $add_to_cart_query);
+
+            confirmQuery($create_post_query);
+
+        }
+        //ADD-TO-CART
+
+?>
+
+
+
    
 <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -49,9 +77,9 @@
                                     $product_quantity  = escape($row['product_quantity']);
                                     
                                     //if order product doesn't exceed the quantity product store
-                                    if($product_quantity != $_SESSION['product_quantity_' . $_GET['add']]){
+                                    if($product_quantity != $_SESSION['product_quantity_'.$_GET['add']]){
                                         
-                                        $_SESSION['product_quantity_' . $_GET['add']] +=1;
+                                        $_SESSION['product_quantity_'.$_GET['add']] +=1;
                                     }
                                     else{
                                         echo "<script>alert('Maaf ! Jumlah stok tidak mencukupi.')</script>";
@@ -78,10 +106,18 @@
                             }
                         
                         
+                            //function cart()
                             function cart(){
                                 
-                            $total = 0;         //variable for total amount of all items
+                            $total = 0;                //variable for total amount of all items
+                            $total2 = 0;                //variable for total amount of all items
                             $total_quantity = 0;     //variable for total quantity of all items
+                                
+                            //STORE TO DB VARIABLES
+                            $item_name = 1;
+                            $item_number = 1;
+                            $amount = 1;
+                            $quantity = 1;
                                 
                             foreach ($_SESSION as $name => $value){
 
@@ -103,30 +139,55 @@
                                         $product_id = escape($row['product_id']);
                                         $product_image = escape($row['product_image']);
                                         $product_name  = escape($row['product_name']);
+                                        $product_category  = escape($row['product_category']);
+                                        $product_gred  = escape($row['product_gred']);
+                                        $product_price  = escape($row['product_price']);
                                         $product_quantity  = escape($row['product_quantity']);
                                         $product_current_price  = escape($row['product_current_price']);
-
-                                        $total_price = product_current_price*$value;
+                                        
+                                        $total_price = $product_price*$value;
+                                        $total_price_afterConvert = ($product_price*$value)/0.01;
                                         $total_quantity += $value;
 
                                         echo"<tr>";
                                         echo"<td><img class='' src='../img/$product_image' width='50' height='50'> </td>";
                                         echo"<td>$product_name</td>";
                                         echo"<td>RM$product_price</td>";
-                                        echo"<td>$value</td>";
-                                        echo"<td>$product_current_price</td>";
-                                        echo"<td><a class='btn btn-warning' href='order.php?remove={$product_id}'><span class='glyphicon glyphicon-minus'>-</span></a>
-                                            <a class='btn btn-success' href='order.php?add={$product_id}'><span class='glyphicon glyphicon-plus'>+</span></a>
+                                        echo"<td>
+                                        <a class='btn btn-warning' href='order.php?remove={$product_id}'><span class='glyphicon glyphicon-minus'>-</span></a>
+                                        <a class='btn'><span class='glyphicon glyphicon-minus'>$value</span></a>
+                                        <a class='btn btn-success' href='order.php?add={$product_id}'><span class='glyphicon glyphicon-plus'>+</span></a></td>";
+                                        echo"<td>RM$total_price</td>";
+                                        echo"<td>
+                                            
                                             <a class='btn btn-danger' href='order.php?delete={$product_id}'><span class='glyphicon glyphicon-remove'>x</span></a>
                                             </td>";
                                         echo"</tr>";
+                                        
+                                        
+                                        //STORE ITEM INTO DATABASE
+                                        echo "<input type='hidden' name='item_name_{$item_name}' value='{$product_name}'    >";
+                                        echo "<input type='hidden' name='item_number_{$item_number}' value='{$product_id}'  >";
+                                        echo "<input type='hidden' name='amount_{$amount}' value='{$total_price}'           >";
+                                        echo "<input type='hidden' name='quantity_{$quantity}' value='{$value}'             >";
+                                        
+                                        
+                                        $item_name++;
+                                        $item_number++;
+                                        $amount++;
+                                        $quantity++;
+                               
 
-                                    }
+                                        }
                                     
-                                    $_SESSION['item_total_price'] = $total += $total_price;
+                                    
+                                    $_SESSION['total_price'] = $total += $total_price;
+                                    $_SESSION['total_price_afterConvert'] = $total2 += $total_price_afterConvert;
                                     $_SESSION['item_total_quantity'] = $total_quantity;
+                                    $_SESSION['product_id'] = $product_name;
                                     
-                                }
+                                    
+                                    }
                                 }
                                 elseif($value == 0){
                                     $_SESSION['item_total_price'] = $total;
@@ -135,159 +196,12 @@
                                 }
 
                             }
-                            }
+                                     
+                        }
+                        //function cart()
                         
                         
-                        
-                        
-                        
-                        
-                        
-                        
-//                            if(isset($_GET['add'])) {
-//                                
-//                                $order_product_id = $_GET['add'];
-//
-//                                $query  =  "SELECT * FROM product WHERE product_id = '{$order_product_id}'";    
-//                                $order_product_query = mysqli_query($connection, $query);
-//
-//                                while ($row = mysqli_fetch_assoc($order_product_query)){
-//
-//                                    $product_image = escape($row['product_image']);
-//                                    $product_name  = escape($row['product_name']);
-//                                    $product_quantity  = escape($row['product_quantity']);
-//                                    $product_price  = escape($row['product_price']);
-//
-//                                    //if order product doesn't exceed the quantity product store
-//                                    if($product_quantity != $_SESSION['product_quantity_' . $order_product_id]){
-//                                        
-//                                        $product_quantity = $_SESSION['product_quantity_' . $_GET['add']] +=1;
-//                                        
-//                                        $total_price = $product_quantity*$product_price;
-//                                        
-//                                        echo"<tr>";
-//                                        echo"<td><img class='' src='../img/$product_image' width='50' height='50'> </td>";
-//                                        echo"<td>$product_name</td>";
-//                                        echo"<td>RM$product_price</td>";
-//                                        echo"<td>$product_quantity </td>";
-//                                        echo"<td>RM$total_price</td>";
-//                                        echo"<td><a href='order.php?remove=$order_product_id'>Remove</a></td>";
-//                                        echo"<td><a href='order.php?delete=1'>Delete</a></td>";
-//                                        echo"</tr>";
-//                                    }
-//                                    else{
-//                                        
-////                                        set_message("Maaf ! Jumlah stok tidak mencukupi.");
-////                                        redirect("../order.php");
-////                                        
-//                                        echo "<script>alert('Maaf ! Jumlah stok tidak mencukupi.')</script>";
-//                                    } 
-//                                }
-//                            }
-                        
-                            
-//                            if(isset($_GET['remove'])){
-//                                
-//                                $order_product_id = $_GET['remove'];
-//                                
-//                                $query  =  "SELECT * FROM product WHERE product_id = '{$order_product_id}'";    
-//                                $order_product_query = mysqli_query($connection, $query);
-//
-//                                while ($row = mysqli_fetch_assoc($order_product_query)){
-//
-//                                    $product_image = escape($row['product_image']);
-//                                    $product_name  = escape($row['product_name']);
-//                                    $product_quantity  = escape($row['product_quantity']);
-//                                    $product_price  = escape($row['product_price']);
-//
-//                                    //if order product doesn't exceed the quantity product store
-//                                    if( $_SESSION['product_quantity_' . $order_product_id] >= 0){
-//                                        
-//                                        $product_quantity = $_SESSION['product_quantity_' . $_GET['remove']] --;
-//                                        
-//                                        $total_price = $product_quantity*$product_price;
-//                                        
-//                                        echo"<tr>";
-//                                        echo"<td><img class='' src='../img/$product_image' width='50' height='50'> </td>";
-//                                        echo"<td>$product_name</td>";
-//                                        echo"<td>RM$product_price</td>";
-//                                        echo"<td>$product_quantity </td>";
-//                                        echo"<td>RM$total_price</td>";
-//                                        echo"<td><a href='order.php?remove=$order_product_id'>Remove</a></td>";
-//                                        echo"<td><a href='order.php?delete=1'>Delete</a></td>";
-//                                        echo"</tr>";
-//                                    }
-//                                    else{
-//                                        
-////                                        set_message("Maaf ! Jumlah stok tidak mencukupi.");
-////                                        redirect("../order.php");
-////                                        
-//                                        echo "<script>alert('Kuantiti sudah kosong.')</script>";
-//                                    }
-//                                }
-//                              
-//                            }
-                        
-//                            if(isset($_GET['delete'])){
-//                                
-//                                $_SESSION['product_quantity_' . $_GET['delete']] = 0;
-//                                redirect("");
-//                            }
-                            
-                            
-//                            function cart(){
-//                                
-//                            //array, $name of the product, $value is the ID product
-//                            foreach($_SESSION as $name => $value){
-//                                
-//                                if($value > 0){
-//                                    
-//                                //if substr count number is equal to number of word "product_"
-//                                if(substr($name, 0, 8 ) == "product_"){
-//                                    
-////                                    $length = strlen($name - 8);
-//                                    $length = strlen("product_");
-//                                    
-//                                    $id = substr($name, 8 , $length);
-//
-//                                    
-//                                    global $connection;
-//
-//                                    $query = "SELECT * FROM product WHERE product_id = " . escape($id). " ";
-//                                    $add_to_cart_query = mysqli_query($connection, $query);
-//
-//                                    while ($row = mysqli_fetch_assoc($add_to_cart_query)){
-//
-//                                        $product_image = escape($row['product_image']);
-//                                        $product_name  = escape($row['product_name']);
-//                                        $product_quantity  = escape($row['product_quantity']);
-//                                        $product_price  = escape($row['product_price']);
-//
-//                                        $total_price = $product_price*$value;
-//
-//                                        echo"<tr>";
-//                                        echo"<td><img class='' src='../img/$product_image' width='50' height='50'> </td>";
-//                                        echo"<td>$product_name</td>";
-//                                        echo"<td>RM$product_price</td>";
-////                                        echo"<td>$product_quantity </td>";
-//                                        echo"<td>{$value} </td>";
-//                                        echo"<td>RM$total_price</td>";
-//                                        echo"<td><a class='btn btn-warning' href='order.php?remove=1'><span class='glyphicon glyphicon-minus'>-</span></a>
-//                                        <a class='btn btn-success' href='order.php?add=1'><span class='glyphicon glyphicon-plus'>+</span></a>
-//                                        <a class='btn btn-danger' href='order.php?delete=1'><span class='glyphicon glyphicon-remove'>x</span></a>
-//                                        </td>";
-//                                        echo"</tr>";
-//                                    }
-//
-//                                }
-//                                }
-//
-//                            }
-//                                
-//                               //$order_product_id = $_GET['remove'];
-//                                
-//                            }
-                        
+    
                         ?>
                         
                          <?php cart(); ?>
@@ -296,8 +210,8 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><strong><span class="amount"><?php echo $_SESSION['item_total_quantity'] ?></span></strong></td>
-                        <td><strong><span class="amount">RM<?php echo $_SESSION['item_total_price']; ?></span></strong></td>
+                        <td><strong>Total: &nbsp;<span class="amount"><?php echo $_SESSION['item_total_quantity'] ?></span></strong></td>
+                        <td><strong><span class="amount">RM<?php echo $_SESSION['total_price']; ?></span></strong></td>
                         <td></td>
                         </tr>
                         
@@ -315,8 +229,80 @@
                 </table>
                 
                 
-                <div class="col-xs-4 pull-right">
+         <?php if($_SESSION['item_total_quantity'] >= 1){  ?>
+                
+                
+            <div class="col-xs-1" align="center">
+<!--                <td><input type="button" class="btn btn-success"  name="add_to_cart" onclick=addToCart() value="Seterusnya"/></td>-->
+<!--                <td><a class='btn btn-success' href='order.php?source=createBill'>Seterusnya </a></td>-->
+                <td><a class='btn btn-success' href='./includes/test.php'>Seterusnya </a></td>
+            </div>
+    
+         <?php }else{ echo "<script>alert('Tiada barang di dalam troli')</script>"; }  ?>
+                
+            
+                
+            </form>
+            
+            
+            
+     <?php   
+            
+        
+
+          ?>  
+            
+            
+            
+            
+            
+            
+        </div>
+            
+ </div> 
+</div>
+
+<br>
+
+
+
+
+<!--
+
+
+
+<div class="card shadow mb-6">
+<div class="card-body">
+
+   
+                <div class="">
                 <h2>Jumlah Keseluruhan</h2>
+                    
+                <table class="table table-bordered" cellspacing="0">
+
+                    <tr class="cart-subtotal">
+                    <th>Gambar:</th>
+                    <th>Nama Produk:</th>
+                    <th>Kuantiti:</th>
+                   
+                    </tr>
+                    <tr class="cart-subtotal">
+                     <td><span class="amount">4</span></td>
+                     <td><span class="amount">4</span></td>
+                     <td><span class="amount">4</span></td>
+                   
+                    </tr>
+
+            
+                </table>
+                    
+                <hr>
+                    
+                    
+                    
+                    
+                    
+                <hr>
 
                 <table class="table table-bordered" cellspacing="0">
 
@@ -334,13 +320,12 @@
                     <th>Jumlah Harga</th>
                     <td><strong><span class="amount">RM<?php echo $_SESSION['item_total_price']; ?></span></strong></td>
                     </tr>
-                </table></div>
-                
-                
-            </form>
-        </div>
-            
-            
-            
-          </div> </div>
+                </table>
+                    
+                <hr>
+                    
+                </div>
+
+</div> </div>
     
+    -->

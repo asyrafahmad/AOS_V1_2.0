@@ -7,23 +7,25 @@
 
 <?php
 
-    if(isset($_GET['b_id'])){
+    if(isset($_GET['buyer_id'])){
 
-        $buyer_id = $_GET['b_id'];
+        $user_id = $_GET['buyer_id'];
 
-        $query = "SELECT * FROM buyer WHERE buyer_id = '{$buyer_id}'     ";
+        $query = "SELECT * FROM user WHERE user_id = '{$user_id}'     ";
 
         $select_buyer_profile_query = mysqli_query($connection, $query);
 
         while($row = mysqli_fetch_array($select_buyer_profile_query)){
 
-          $buyer_id = escape($row['buyer_id']);
-          $buyer_name = escape($row['buyer_name']);
-          $buyer_email = escape($row['buyer_email']);
-          $buyer_phoneNo = escape($row['buyer_phoneNo']);
+          $user_id      = escape($row['user_id']);
+          $user_image   = escape($row['user_image']);
+          $user_username    = escape($row['user_username']);
+          $user_email   = escape($row['user_email']);
+          $user_phone   = escape($row['user_phone']);
+          $user_address = escape($row['user_address']);
+          $user_website = escape($row['user_website']);
           //TOD0:date register
-            
-            
+
         }
     }
 
@@ -39,9 +41,12 @@
                   <table class="" >
                       <tr>
                            <table class="" align="center">
-                            <tr><td><label for="buyer_name" > <?php echo strtoupper("$buyer_name");  ?>  </label></td></tr>
-                            <tr><td><label for="buyer_email" > <?php echo strtoupper("$buyer_email");  ?>  </label></td></tr>
-                            <tr><td><label for="buyer_phoneNo" > <?php echo strtoupper("$buyer_phoneNo");  ?>  </label></td></tr>
+                            <tr><td><img width="100"  src="../img/<?php echo $user_image;  ?>"  alt="image" class="rounded-circle" ></td></tr>
+                            <tr><td><p for="user_name" > <?php echo strtoupper("$user_username");  ?>  </p></td></tr>
+                            <tr><td><p for="user_phone" >0<?php echo strtoupper("$user_phone");  ?>  </p></td></tr>
+                            <tr><td><p for="user_email" > <?php echo strtoupper("$user_email");  ?>  </p></td></tr>
+                            <tr><td><p for="user_address" > <?php echo strtoupper("$user_address");  ?>  </p></td></tr>
+                            <tr><td><p for="user_website" > <?php echo strtoupper("$user_website");  ?>  </p></td></tr>
                           </table>
                       </tr>
                   </table>

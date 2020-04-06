@@ -51,6 +51,10 @@
                 
                 case 'view_buyer';
                     include "includes/view_buyer.php";
+                    break; 
+                
+                case 'view_buyer_history';
+                    include "includes/view_buyer_history.php";
                     break;
                 
                 case 'view_buyer_order_product';

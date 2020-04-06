@@ -49,9 +49,7 @@
                     echo "NICE 200";
                     break;
 
-                default:
-                    include "";
-                    break;
+            
             }
 
         ?>

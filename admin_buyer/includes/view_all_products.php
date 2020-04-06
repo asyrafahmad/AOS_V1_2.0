@@ -20,7 +20,7 @@
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
+                <button class="btn btn-success" type="button">
                   <i class="fas fa-search fa-sm"></i>
                 </button>
               </div>
@@ -45,18 +45,18 @@
 
                         <?php
 
-                            $query  =  "SELECT * FROM product ";    
-                            $select_product = mysqli_query($connection, $query);
+                            $query  =  "SELECT * FROM categories_product ";    
+                            $select_categories_product = mysqli_query($connection, $query);
 
-                            while ($row = mysqli_fetch_assoc($select_product)){
+                            while ($row = mysqli_fetch_assoc($select_categories_product)){
 
-                                $product_image = escape($row['product_image']);
-                                $product_category = escape($row['product_category']);
-
-
-                                echo "<div class='card-body col-xl-2' align='center'>";
-                                echo "<a href='product.php?p_c=$product_category'><img style='height:100px; width:' src='../img/$product_image' alt=''></a>";
-                                echo "<a class='align-items-center'>$product_category</a>";
+                                $cat_product_title = escape($row['cat_product_title']);
+                                $cat_product_image = escape($row['cat_product_image']);
+                                
+                                echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                                echo "<div class='' align='center'>";
+                                echo "<a href='product.php?p_c=$cat_product_title'><img style='height:100px; width:' src='../img/$cat_product_image' alt=''></a><br>";
+                                echo "<a class='align-items-center'>$cat_product_title</a>";
                                 echo "</div>";   
                                 
                                 
@@ -100,11 +100,11 @@
                                 $product_image = escape($row['product_image']);
 
 
-                                echo "<div class='col-xl-2'>";
+                                echo "<div class='col-xl-3 py-3'>";
                                 echo "<div class='card shadow '>";
                                 echo "<div class='card-body'>";
                                 echo "<div class='no-gutters align-items-center'>";
-                                echo "<a href='product.php?b_p_id={$product_id}'><img style='height:50px;' src='../img/$product_image' alt=''></a>";
+                                echo "<a href='product.php?b_p_id={$product_id}'><img style='height:80px;' src='../img/$product_image' alt=''></a>";
                                 echo "</div>";
                                 echo "<h4>$product_name</h4>";
                                 echo "<h6>RM$product_current_price</h6>";
@@ -148,16 +148,16 @@
 
                                 echo "<div class='col-md-6 mb-3' align='center'>";
                                 echo "<label for='lastName'>";
-                                echo "<img class='' src='../img/$product_image' width='400' height='250'>";   
+                                echo "<img class='' src='../img/$product_image' width='50%' height='50%'>";   
                                 echo "</label>";
                                 echo "</div>";
                                 
                                 
                                 echo "<div class='col-md-6 mb-3'";
-                                echo "<h1>$product_name</h1><br>";
-                                echo "<label>$product_description</label>";
-                                echo "<p>Price: RM$product_current_price</p>";
-                                echo "<p>Stock: $product_quantity</p>";
+                                echo "<p><h3><b>$product_name</b></h3></p>";
+                                echo "<p>Huraian: $product_description</p>";
+                                echo "<p>Harga: RM$product_current_price</p>";
+                                echo "<p>Kuantiti: $product_quantity</p>";
                                 echo "<a class='btn btn-info' href='order.php?add=$product_id'>Tambah ke troli</a>";
                                 echo "</div>";
                             } 

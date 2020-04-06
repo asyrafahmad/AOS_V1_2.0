@@ -7,22 +7,25 @@
 
 <?php
 
-    if(isset($_GET['o_p_id'])){
+    if(isset($_GET['b_o_id'])){
 
-        $order_product_id = $_GET['o_p_id'];
+        $b_o_product_id = $_GET['b_o_id'];
 
-        $query = "SELECT * FROM order_product WHERE order_id = '{$order_product_id}'     ";
+        $query = "SELECT * FROM buyer_order_product WHERE b_o_product_id = '{$b_o_product_id}'     ";
 
-        $select_order_product_query = mysqli_query($connection, $query);
+        $select_buyer_order_product_query = mysqli_query($connection, $query);
 
-        while($row = mysqli_fetch_array($select_order_product_query)){
+        while($row = mysqli_fetch_array($select_buyer_order_product_query)){
 
-            $order_product = escape($row['order_product']);
-            $order_quantity = escape($row['order_quantity']);
-            $order_price = escape($row['order_price']);
-            $order_invoice = escape($row['order_invoice']);
-            $order_booking_date = escape($row['order_booking_date']);
-            $order_status = escape($row['order_status']);
+            $b_o_product_id = escape($row['b_o_product_id']);
+            $b_o_product_name = escape($row['b_o_product_name']);
+            $b_o_product_type = escape($row['b_o_product_type']);
+            $b_o_product_price = escape($row['b_o_product_price']);
+            $b_o_product_quantity = escape($row['b_o_product_quantity']);
+//            $b_o_product_invoice = escape($row['b_o_product_invoice']);
+            $b_o_product_total_price = escape($row['b_o_product_total_price']);
+            $b_o_product_booking_date = escape($row['b_o_product_booking_date']);
+            $b_o_product_status = escape($row['b_o_product_status']);
             
         }
     }
@@ -39,12 +42,12 @@
                   <table class="" >
                       <tr>
                            <table class="" align="center">
-                            <tr><td><label for="order_product" > <?php echo strtoupper("$order_product");  ?>  </label></td></tr>
-                            <tr><td><label for="order_quantity" > <?php echo strtoupper("$order_quantity");  ?>  </label></td></tr>
-                            <tr><td><label for="order_price" > <?php echo strtoupper("$order_price");  ?>  </label></td></tr>
-                            <tr><td><label for="order_invoice" > <?php echo strtoupper("$order_invoice");  ?>  </label></td></tr>
-                            <tr><td><label for="order_booking_date" > <?php echo strtoupper("$order_booking_date");  ?>  </label></td></tr>
-                            <tr><td><label for="order_status" > <?php echo strtoupper("$order_status");  ?>  </label></td></tr>
+                            <tr><td><label for="b_o_product_name" > <?php echo strtoupper("$b_o_product_name");  ?>  </label></td></tr>
+                            <tr><td><label for="b_o_product_type" > <?php echo strtoupper("$b_o_product_type");  ?>  </label></td></tr>
+                            <tr><td><label for="b_o_product_quantity" > <?php echo strtoupper("$b_o_product_price");  ?>  </label></td></tr>
+                            <tr><td><label for="b_o_product_price" > <?php echo strtoupper("$b_o_product_price");  ?>  </label></td></tr>
+                            <tr><td><label for="b_o_product_booking_date" > <?php echo strtoupper("$b_o_product_booking_date");  ?>  </label></td></tr>
+                            <tr><td><label for="b_o_product_status" > <?php echo strtoupper("$b_o_product_status");  ?>  </label></td></tr>
                           </table>
                       </tr>
                   </table>

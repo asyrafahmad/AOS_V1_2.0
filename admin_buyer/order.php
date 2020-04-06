@@ -49,9 +49,18 @@
                     include "includes/view_all_order_products.php";
                     break;
                 
+                case 'view_all_elodge_order_products';
+                    include "includes/view_all_elodge_order_products.php";
+                    break;
+                
                 case 'status_order_product';
                     include "includes/status_order_product.php";
                     break;
+                
+                case 'createBill';
+                    include "includes/createBill.php";
+                    break;
+            
 
                 case '200';
                     echo "NICE 200";

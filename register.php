@@ -110,15 +110,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                     </div>
                     <div class="col-sm-6" align="center">
                         <input type="radio" id="buyer" name="user_role" value="3"><br>
-                        <label for="buyer">pemborong</label>
+                        <label for="buyer">Pemborong</label>
                     </div>
                 </div>
                   
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" name="user_username" placeholder="Username" required>
+                    <input  class="form-control form-control-user" name="user_username" placeholder="Username" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" name="user_phone" placeholder="Phone Number" required>
+                  <input class="form-control form-control-user" name="user_phone" placeholder="Phone Number" required>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
