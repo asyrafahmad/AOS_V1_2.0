@@ -43,6 +43,10 @@
                     
                 case 'createBill';
                     include "includes/createBill.php";
+                    break;
+				
+				case 'thankyou';
+                    include "includes/thankyou.php";
                     break;    
                     
                 case 'view_all_order_products';

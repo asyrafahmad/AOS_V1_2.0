@@ -61,6 +61,11 @@
                 case 'view_elodge_supplier';
                     include "includes/view_elodge_supplier.php";
                     break;
+				
+				case 'view_elodge_details';
+                    include "includes/view_elodge_details.php";
+                    break;
+					
                 
                     
                     

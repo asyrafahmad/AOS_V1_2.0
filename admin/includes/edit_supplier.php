@@ -27,6 +27,8 @@
         }
     }
 
+
+
     //Update data
     if(isset($_POST['update_supplier'])){
         

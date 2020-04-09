@@ -38,6 +38,7 @@
                           
                             $user_username = $_SESSION['user_username'];
                         }
+					  
                           
                         $query  =  "SELECT * FROM elodge_product_book WHERE book_buyer_name = '{$user_username}' ";    
                         $select_product_book = mysqli_query($connection, $query);

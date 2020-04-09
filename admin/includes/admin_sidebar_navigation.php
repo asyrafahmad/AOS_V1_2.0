@@ -54,9 +54,11 @@
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">E-Lodge</h6>
             <a class="collapse-item" href="supplier.php?source=view_elodge_supplier">Senarai E-Lodge Produk</a>
+<!--
             <hr class="sidebar-divider">
             <a class="collapse-item" href="supplier.php?source=view_all_supplier_order_product">Senarai Pesanan Produk</a>
             <a class="collapse-item" href="supplier.php?source=add_supplier_order_product">Tambah Pesanan Produk</a>
+-->
           </div>
         </div>
       </li>
@@ -73,11 +75,7 @@
             <a class="collapse-item" href="buyer.php">Senarai Pemborong</a>
             <a class="collapse-item" href="buyer.php?source=add_buyer">Tambah Pemborong</a>
             <hr class="sidebar-divider">
-            <a class="collapse-item" href="buyer.php?source=view_all_buyer_order_product">Tempahan produk</a>
-<!--
-            <a class="collapse-item" href="../admin_buyer/buyer_shoppingCart.php">Jual Beli Produk</a>
-            <a class="collapse-item" href="../admin_buyer/buyer_orderHistory.php">Transaksi Produk</a>
--->
+<!--            <a class="collapse-item" href="buyer.php?source=view_all_buyer_order_product">Tempahan produk</a>-->
           </div>
         </div>
       </li>
@@ -87,19 +85,25 @@
         <!-- Nav Item - About Us -->
       <li class="nav-item">
         <a class="nav-link" href="../admin/aboutus.php">
-          <i class="fas fa-fw fa-table"></i>
+          <img src="../img/icon/phone.png" width="20%" height="20%">
           <span>Tentang kami</span></a>
       </li>
 
     
-    <hr>
-        <!-- Nav Item - Logout -->
-        <li class="nav-item" >
-            <a class="nav-link" href="../login.php" > 
-                <span>Log Keluar</span></a>
-        </li>
+		<hr><hr><hr><hr><hr><hr><hr><hr>
+		
+	 <div class="text-center">
+        <a class="nav-link" href="../admin/profile.php?source=edit_profile" >
+           	<img class="img-profile rounded-circle" height="30%" width ="30%" src="../img/<?php echo $_SESSION['user_image'] ?>" ><br>
+        </a>
+      </div>
 
-        
+
+		<div class="text-center">
+            <a style="color:black" class="nav-link " href="../includes/logout.php" > 
+			<img src="../img/icon/logout.png" width="10%" height="10%">
+            <span>Log Keluar</span></a>
+		</div>
         
         
         

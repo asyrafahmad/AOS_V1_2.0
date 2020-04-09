@@ -39,9 +39,12 @@
                   <tbody>
                      <!-- Get data in db and display  -->
                     <?php
+					  
+					  	$var = 0;
                       
                         $query  =  "SELECT * FROM product ";    
                         $select_suppliers = mysqli_query($connection, $query);
+					  	
 
                         while ($row = mysqli_fetch_assoc($select_suppliers)){
 
@@ -77,9 +80,13 @@
                             echo "<td><a class='btn btn-info' href='product.php?source=edit_product&p_id={$product_id}'>Kemaskini </a></td>";
                             echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Anda pasti untuk padam maklumat ini? ');  \"  href='product.php?delete={$product_id} '>Padam </a></td>";
                             echo "</tr>";
+							
+							$_SESSION['total'] = $var += $product_price ;
 
-                                }
-                         ?>
+                       }
+					  
+					  echo $_SESSION['total'];
+                  ?>
                   </tbody>
                 </table>
               </div>

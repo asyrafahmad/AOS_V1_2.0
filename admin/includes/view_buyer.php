@@ -31,27 +31,18 @@
 
 ?>
                         
-   <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary" align="center">Profil Pemborong/Pembeli</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                  <table class="" >
-                      <tr>
-                           <table class="" align="center">
-                            <tr><td><img width="100"  src="../img/<?php echo $user_image;  ?>"  alt="image" class="rounded-circle" ></td></tr>
-                            <tr><td><p for="user_name" > <?php echo strtoupper("$user_username");  ?>  </p></td></tr>
-                            <tr><td><p for="user_phone" >0<?php echo strtoupper("$user_phone");  ?>  </p></td></tr>
-                            <tr><td><p for="user_email" > <?php echo strtoupper("$user_email");  ?>  </p></td></tr>
-                            <tr><td><p for="user_address" > <?php echo strtoupper("$user_address");  ?>  </p></td></tr>
-                            <tr><td><p for="user_website" > <?php echo strtoupper("$user_website");  ?>  </p></td></tr>
-                          </table>
-                      </tr>
-                  </table>
-                 
-                  
-              </div>
-            </div>
-          </div>
+	<div class="col-xl-12 col-lg-5" align="center">
+	  <div class="card shadow mb-4">
+		<div class="card-header py-3">
+		  <h6 class="m-0 font-weight-bold text-primary" >Profil Pemborong/Pembeli</h6>
+		</div>
+		  <div class="card-body">
+			  <td align="center"><img height="25%" width="25%"src="../img/<?php echo $user_image;  ?>"  ></td>
+			  <td><p for="user_name"><b>Nama: </b> <?php echo strtoupper("$user_username");  ?>  </p></td>
+			  <td><p for="user_phone" ><b>No Telefon: </b>0<?php echo strtoupper("$user_phone");  ?>  </p></td>
+			  <td><p for="user_email" ><b>Emel: </b> <?php echo strtoupper("$user_email");  ?>  </p></td>
+			  <td><p for="user_address" ><b>Alamat: </b> <?php echo strtoupper("$user_address");  ?>  </p></td>
+			  <td><p for="user_website" ><b>Website: </b> <?php echo strtoupper("$user_website");  ?>  </p></td>
+		  </div>
+	  </div>
+    </div>

@@ -95,7 +95,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
+                <h1 class="h4 text-gray-900 mb-4">Pembukaan Akaun</h1>
               </div>
                 
                 
@@ -115,17 +115,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
                   
                 <div class="form-group">
-                    <input  class="form-control form-control-user" name="user_username" placeholder="Username" required>
+                    <input  class="form-control form-control-user" name="user_username" placeholder="ID Pengguna" required>
                 </div>
                 <div class="form-group">
-                  <input class="form-control form-control-user" name="user_phone" placeholder="Phone Number" required>
+                  <input class="form-control form-control-user" name="user_phone" placeholder="Nombor Telefon" required>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" name="user_password" placeholder="Password" required>
+                    <input type="password" class="form-control form-control-user" name="user_password" placeholder="Katalaluan" required>
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" name="user_repassword" placeholder="Repeat Password" required>
+                    <input type="password" class="form-control form-control-user" name="user_repassword" placeholder="Ulangan Katalaluan" required>
                   </div>
                 </div>
 <!--
@@ -134,7 +134,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 </a>
 -->
                 <div class="">
-                    <input type="submit" name="register"  class="btn btn-primary btn-user btn-block" value="Register">
+                    <input type="submit" name="register"  class="btn btn-primary btn-user btn-block" value="Daftar">
                 </div>
               </form>
                 
@@ -146,7 +146,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
               </div>
 -->
               <div class="text-center">
-                <a class="small" href="login.php">Already have an account? Login!</a>
+                <a class="small" href="login.php">Sudah mempunyai akaun? Log Masuk!</a>
               </div>
             </div>
           </div>

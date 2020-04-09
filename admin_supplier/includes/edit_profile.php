@@ -29,7 +29,6 @@
         }
     
 
-    
     if(isset($_POST['edit_supplier_profile'])){
         
         $user_image       = escape($_FILES['user_image']['name']);

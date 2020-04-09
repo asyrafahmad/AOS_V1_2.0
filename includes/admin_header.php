@@ -21,11 +21,22 @@
   <!-- Custom styles for this page -->
   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     
-    
-                
+  <!-- Category css-->
+<!--  <link href="../css/category.css" rel="stylesheet">        -->
       
-    <?php session_start(); ?>
-    
+  <?php session_start(); ?>
+	
+	
+		
+	
+	<?php
+	
+		if(!isset($_SESSION['user_role'])){
+			
+			header("location: ../login.php");
+		}
+	?>
+
 </head>
 
     

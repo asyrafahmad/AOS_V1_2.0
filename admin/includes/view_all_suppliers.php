@@ -24,13 +24,11 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>No</th>
+<!--                      <th>No</th>-->
                       <th>Gambar</th>
                       <th>Petani</th>
-                      <th>Email</th>
                       <th>No Telefon</th>
-                      <th>Alamat</th>
-                      <th>Laman Web</th>
+<!--                      <th>Jumlah Produk</th>-->
                       <th>Tarikh Buka Akaun</th>
                       <th>Profil petani</th>
                       <th>Kemaskini Profil Petani</th>
@@ -49,33 +47,36 @@
                             $user_id = $_SESSION['user_id'];
                         }
                       
+//                        $query  =  "SELECT *,count(product.product_quantity) as number FROM user  INNER JOIN product ON user.user_id = product.product_supplier WHERE user_role = '2' ";  
                         $query  =  "SELECT * FROM user WHERE user_role = '2' ";    
                         $select_suppliers = mysqli_query($connection, $query);
 
+
                         while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-                            $user_id = escape($row['user_id']);
-                            $user_image = escape($row['user_image']);
-                            $user_name = escape($row['user_username']);
-                            $user_email = escape($row['user_email']);
-                            $user_phone = escape($row['user_phone']);
-                            $user_address = escape($row['user_address']);
-                            $user_website = escape($row['user_website']);
-//                            $user_date_register = escape($row['user_date_register']);
+                            $user_id 			= escape($row['user_id']);
+                            $user_image 		= escape($row['user_image']);
+                            $user_name 			= escape($row['user_username']);
+                            $user_email 		= escape($row['user_email']);
+                            $user_phone 		= escape($row['user_phone']);
+                            $user_address 		= escape($row['user_address']);
+                            $user_website 		= escape($row['user_website']);
+                            $user_date_register = escape($row['user_date_register']);
+                            $user_website 		= escape($row['user_website']);
+							
+//							$product_quantity   = escape($row['number']);
                             
                             //Set as global
                             $_SESSION['supplier_id'] = $user_id;
                             $_SESSION['supplier_name'] = $user_name;
                             
                             echo "<tr>";
-                            echo "<td>$user_id </td>";
+//                            echo "<td>$user_id </td>";
                             echo "<td><img width='100'  src='../img/$user_image'  alt='image' class='rounded-circle' </td>";
                             echo "<td>$user_name  </td>";
-                            echo "<td>$user_email  </td>";
-                            echo "<td>$user_phone  </td>";
-                            echo "<td>$user_address  </td>";
-                            echo "<td>$user_website  </td>";
-                            echo "<td> </td>";
+                            echo "<td>0$user_phone  </td>";
+//                            echo "<td>$product_quantity</td>";
+                            echo "<td>$user_date_register</td>";
                             
 //                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
 //                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";

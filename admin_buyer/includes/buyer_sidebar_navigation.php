@@ -1,4 +1,6 @@
- <!-- Sidebar -->
+
+
+<!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
@@ -38,6 +40,7 @@
         
         
 <!-- Nav Item - Buyer -->
+<!--
     <li class="nav-item">
         <a class="nav-link collapsed" href="../admin_buyer/order.php" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <img class="" src="../img/icon/Buyer.png" width="20%" height="20%">
@@ -46,12 +49,20 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="order.php">Pesanan Saya</a>
-<!--            <a class="collapse-item" href="order.php?source=view_order_product">Lihat Tempahan</a>-->
+            <a class="collapse-item" href="order.php?source=view_order_product">Lihat Tempahan</a>
           </div>
         </div>
       </li>  
         
+-->
 <!-- Nav Item - E-Lodge -->
+		
+		
+		
+
+		
+		
+		
     <li class="nav-item">
         <a class="nav-link collapsed" href="../admin_buyer/e-lodge.php" data-toggle="collapse" data-target="#elodge" aria-expanded="true" aria-controls="collapseUtilities">
           <img class="" src="../img/icon/Product.png" width="20%" height="20%">
@@ -90,7 +101,6 @@
         <div id="collapseOrder" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="order.php?source=view_all_order_products">Sejarah Pesanan Produk</a>
-            <a class="collapse-item" href="order.php?source=view_all_elodge_order_products">Sejarah Pesanan E-Lodge</a>
           </div>
         </div>
       </li>    
@@ -104,7 +114,6 @@
         <div id="toyyibPay" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="toyyibpayApi.php?source=createBill">Create bill</a>
-            <a class="collapse-item" href="toyyibpayApi.php?source=view_all_elodge_order_products">Sejarah Pesanan E-Lodge</a>
           </div>
         </div>
       </li>
@@ -121,13 +130,29 @@
           <span>Tentang kami</span></a>
       </li>
 
+		
+		
+		
+		
+		
+		
+		
     
-    <hr>
-        <!-- Nav Item - Logout -->
-        <li class="nav-item" >
-            <a class="nav-link" href="../login.php" > 
-                <span>Log Keluar</span></a>
-        </li>
+  <hr><hr>
+		
+	 <div class="text-center d-none d-md-inline">
+        <a class="nav-link" href="profile.php?source=edit_profile" >
+           	<img class="img-profile rounded-circle" height="30%" width ="30%" src="../img/<?php echo $_SESSION['user_image'] ?>" ><br>
+<!--			<span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['user_username'] ?></span>-->
+        </a>
+      </div>
+
+
+		<div class="text-center d-none d-md-inline">
+            <a class="nav-link" href="../includes/logout.php" > 
+            <span>Log Keluar</span></a>
+		</div>
+		
 
 <div hidden>
       <!-- Divider -->

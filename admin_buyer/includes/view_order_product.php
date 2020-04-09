@@ -130,6 +130,10 @@
                                     $id = substr($name, 17, $length);
 
                                     global $connection;
+									
+//									$send_order = query("INSERT INTO orders (order_amount, order_transaction, order_status) VALUES ('{$amount}', '{$trasaction}', '{$status}')")
+//									$last_id = last_id ();
+//									confirmQuery($send_order);
 
                                     $query  =  "SELECT * FROM product WHERE product_id = " . escape($id) . " ";    
                                     $add_to_cart_query = mysqli_query($connection, $query);
@@ -229,16 +233,31 @@
                 </table>
                 
                 
-         <?php if($_SESSION['item_total_quantity'] >= 1){  ?>
+         	<?php 
+				
+				if($_SESSION['item_total_quantity'] >= 1){ 
+					
+				echo "<div class='col-xs-1' align='center'>";
+                echo "<td><a class='btn btn-success' href='./includes/createBill.php'>Seterusnya </a></td>";
+            	echo "</div>"
+			?>
                 
                 
+<!--
             <div class="col-xs-1" align="center">
-<!--                <td><input type="button" class="btn btn-success"  name="add_to_cart" onclick=addToCart() value="Seterusnya"/></td>-->
-<!--                <td><a class='btn btn-success' href='order.php?source=createBill'>Seterusnya </a></td>-->
-                <td><a class='btn btn-success' href='./includes/test.php'>Seterusnya </a></td>
+                <td><a class='btn btn-success' href='./includes/createBill.php'>Seterusnya </a></td>
             </div>
+-->
     
-         <?php }else{ echo "<script>alert('Tiada barang di dalam troli')</script>"; }  ?>
+         	<?php 
+				
+				}
+				else{ 
+					
+					echo "<script>alert('Tiada barang di dalam troli')</script>"; 
+//					header("Location: ../includes/product.php" );
+				}  
+			?>
                 
             
                 
@@ -246,15 +265,7 @@
             
             
             
-     <?php   
-            
-        
-
-          ?>  
-            
-            
-            
-            
+ 
             
             
         </div>

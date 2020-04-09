@@ -51,7 +51,7 @@
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class="no-gutters align-items-center" align="center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Petani</div>
                        <?php 
@@ -76,7 +76,7 @@
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class=" no-gutters align-items-center" align="center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Pemborong</div>
                         <?php 
@@ -101,10 +101,9 @@
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class=" no-gutters align-items-center" align="center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Keseluruhan Produk</div>
-                      <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                             <?php 
                             global $connection;
@@ -116,14 +115,6 @@
                             echo "<div class='h5 mb-0 mr-3 font-weight-bold text-gray-800'>{$product_count}</div>";
                             ?>
                         </div>
-                        <div class="col">
-<!--
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
--->
-                        </div>
-                      </div>
                     </div>
                     <div class="col-auto">
                       <img class="img-profile rounded-circle" src="../img/icon/product.png" height="50" width="50">
@@ -137,7 +128,7 @@
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class="no-gutters align-items-center" align="center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">E-Lodge</div>
                         <?php 
@@ -163,160 +154,399 @@
             
             
             
-<!--
-           <div class="row">
-            <div class="col-xl-12 col-lg-7">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                    <canvas id="myAreaChart" width="107" height="160" class="chartjs-render-monitor" style="display: block; width: 107px; height: 160px;"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </div>
--->
+				<?php 
+						$var = 0;
+					
+//						$query  =  "SELECT MONTHNAME(product_date_submit) as month, product_price, product_name FROM product WHERE product_name = 'Guava' AND MONTH(product_date_submit)   ";    
+						$query  =  "SELECT MONTH(product_date_submit) as month, AVG(product_price) as product_price FROM product WHERE product_name = 'Guava' GROUP BY MONTH(product_date_submit)  ";    
+                        $select_suppliers = mysqli_query($connection, $query);
+						$number_of_rows = mysqli_num_rows ( $select_suppliers );
+			
 
-            
-            
-    
-            <!-- Graph average price for each product-->
-          <div class="row">
+                        while ($row = mysqli_fetch_assoc($select_suppliers)){
+							
+							echo $row['month'];
+							echo $row['product_price'];
+							
+							//$average_total_price = ($var += $product_price);
+						}
+			
+//						echo $month;
+//						echo $average_total_price/$number_of_rows;
+			
+				?>  
+			
+			
+			
 
-            <!-- Area Chart -->
-                <script type="text/javascript" src="../js/resizeChart.js"></script>
-                <script type="text/javascript" src="../js/barChartProductSupplier.js"></script>
-                <script type="text/javascript">
-                  
-                      google.charts.load('current', {'packages':['line']});
-                      google.charts.setOnLoadCallback(drawChart);
+                   <script type="text/javascript" src="../js/barChartProductSupplier.js"></script>
+        
+                   <script type="text/javascript">
+                                          
+                    google.charts.load('current', {'packages':['corechart']});  
+					google.charts.load("current", {packages:["corechart"]});
+					google.charts.load('current', {'packages':['line']});
+					google.charts.load('current', {'packages':['bar']});
+					google.charts.load('current', {'packages':['bar']});
+					google.charts.load('current', {'packages':['bar']});
+					google.charts.load("current", {packages:["corechart"]});
+                       
+                    google.charts.setOnLoadCallback(totalSupplier);  
+					google.charts.setOnLoadCallback(totalProduct);
+      				google.charts.setOnLoadCallback(averageProduct);
+					google.charts.setOnLoadCallback(productBought);
+					google.charts.setOnLoadCallback(productEachMonth);
+					google.charts.setOnLoadCallback(stockDemand);
+					google.charts.setOnLoadCallback(quantityProductDemand);
+                       
+                       
+                    function totalSupplier(){ 
+                        var data = google.visualization.arrayToDataTable([  
+                                  ['Negeri', 'Jumlah'],  
+                                  <?php  
+									//No of supplier from each state
+									$chart_query = "SELECT user_state , count(*) as number FROM user WHERE user_role = '2' GROUP BY user_state ";  
+									$result = mysqli_query($connection, $chart_query);
 
-                    function drawChart() {
 
-                      var data = new google.visualization.DataTable();
-                      data.addColumn('number', 'Day');
-                      data.addColumn('number', 'Guardians of the Galaxy');
-                      data.addColumn('number', 'The Avengers');
-                      data.addColumn('number', 'Transformers: Age of Extinction');
-
-                      data.addRows([
-                        [1,  37.8, 80.8, 41.8],
-                        [2,  30.9, 69.5, 32.4]
-                          
-                          <?php
-                                global $connection;
-
-                                $query  =  "SELECT * FROM product ";    
-                                $select_products = mysqli_query($connection, $query);
-                                $all_products_price_count = mysqli_num_rows($select_products);
-
-                                while ($row = mysqli_fetch_assoc($select_products)){
-
-                                    $product_price = escape($row['product_price']);
-
-                                    echo "['$product_name'" . "," . "{$product_quantity}],";
-                                }
-                                ?> 
-                      ]);
-
-                      var options = {
-                        chart: {
-                          title: 'Average price of product each months',
-                          subtitle: ''
-                        },
-                        width: '100%',
-                        height: 500
-                      };
-
-                      var chart = new google.charts.Line(document.getElementById('linechart_material'));
-
-                      chart.draw(data, google.charts.Line.convertOptions(options));
+									  while($row = mysqli_fetch_array($result))  
+									  {  
+										   echo "['".$row["user_state"]."', ".$row["number"]."],";  
+									  }  
+								   ?>  
+                             		]); 
+						
+                        var options = {  
+                              //title: 'Jumlah pembeli mengikut negeri',  
+                              //is3D:true,  
+                              pieHole: 0.1  
+                             };  
+                        var chart = new google.visualization.PieChart(document.getElementById('totalSupplier'));  
+                        chart.draw(data, options);  
                     }
+					   
+					function totalProduct() {
+						var data = google.visualization.arrayToDataTable([
+						  ['Task', 'Hours per Day'],
+						   <?php  
+//							No of product from each state
+								$chart2_query = "SELECT user_state, count(*) as number FROM user JOIN product ON user.user_id = product.product_supplier GROUP BY user_state";  
+								$result2 = mysqli_query($connection, $chart2_query);  
 
-              </script>
+								while($row = mysqli_fetch_array($result2))  
+								{  
+								   echo "['".$row["user_state"]."', ".$row["number"]."],";  
+								}  
+                           ?>
+						]);
 
-              
-              
-              
-              
-            <div class="col-xl-12 col-lg-7">
+						var options = {
+//						  title: 'My Daily Activities',
+						  pieHole: 0.1,
+						};
+
+						var chart = new google.visualization.PieChart(document.getElementById('totalProduct'));
+						chart.draw(data, options);
+					  }
+					   
+					   
+					function averageProduct() {
+
+						  var data = new google.visualization.DataTable();
+						  data.addColumn('number', 'Bulan');
+						  data.addColumn('number', 'Guava');
+
+						  data.addRows([
+							[0,  7],
+							[1,  7],
+							[2,  4],
+							  <?php  
+								$query  =  "SELECT MONTH(product_date_submit) as month, AVG(product_price) as product_price FROM product WHERE product_name = 'Guava' GROUP BY MONTH(product_date_submit)  ";    
+								$select_suppliers = mysqli_query($connection, $query);
+
+								while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+									echo "[".$row["month"].",  ".$row["product_price"]."],";  
+								}
+							 ?>
+							[5,  15],
+						    [6,  13],
+						    [7,  12],
+						    [8,  1],
+						    [9,  4],
+						    [10,  6],
+						    [11,  8],
+						    [12,  11],
+						  ]);
+
+						  var options = {
+							chart: {
+//							  title: 'Purata Harga Guava Mengikut Bulan',
+//							  subtitle: 'in millions of dollars (USD)'
+							},
+							width: 900,
+							height: 500
+						  };
+
+						  var chart = new google.charts.Line(document.getElementById('averageProduct'));
+
+						  chart.draw(data, google.charts.Line.convertOptions(options));
+						}
+					   
+					   
+					  function productBought() {
+							var data = new google.visualization.arrayToDataTable([
+							  ['Move', 'Percentage'],
+							  ["King's pawn (e4)", 44],
+							  ["Queen's pawn (d4)", 31],
+							  ["Knight to King 3 (Nf3)", 12],
+							  ["Queen's bishop pawn (c4)", 10],
+							  ['Other', 3]
+							]);
+
+							var options = {
+							  width: 800,
+							  legend: { position: 'none' },
+							  chart: {
+								title: 'Chess opening moves',
+								subtitle: 'popularity by percentage' },
+							  axes: {
+								x: {
+								  0: { side: 'top', label: 'White to move'} // Top x-axis.
+								}
+							  },
+							  bar: { groupWidth: "90%" }
+							};
+
+							var chart = new google.charts.Bar(document.getElementById('productBought'));
+							// Convert the Classic options to Material options.
+							chart.draw(data, google.charts.Bar.convertOptions(options));
+						  };
+					   
+					   
+					     
+					  function productEachMonth() {
+							var data = new google.visualization.arrayToDataTable([
+							  ['Move', 'Percentage'],
+							  ["King's pawn (e4)", 44],
+							  ["Queen's pawn (d4)", 31],
+							  ["Knight to King 3 (Nf3)", 12],
+							  ["Queen's bishop pawn (c4)", 10],
+							  ['Other', 3]
+							]);
+
+							var options = {
+							  width: 800,
+							  legend: { position: 'none' },
+							  chart: {
+								title: 'Chess opening moves',
+								subtitle: 'popularity by percentage' },
+							  axes: {
+								x: {
+								  0: { side: 'top', label: 'White to move'} // Top x-axis.
+								}
+							  },
+							  bar: { groupWidth: "90%" }
+							};
+
+							var chart = new google.charts.Bar(document.getElementById('productEachMonth'));
+							// Convert the Classic options to Material options.
+							chart.draw(data, google.charts.Bar.convertOptions(options));
+						  };
+					   
+					   
+					 function stockDemand() {
+						   
+							var data = google.visualization.arrayToDataTable([
+							  ['Year', 'Sales', 'Expenses', 'Profit'],
+							  ['2014', 1000, 400, 200],
+							  ['2015', 1170, 460, 250],
+							  ['2016', 660, 1120, 300],
+							  ['2017', 1030, 540, 350]
+							]);
+
+							var options = {
+							  chart: {
+								title: 'Company Performance',
+								subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+							  }
+							};
+
+							var chart = new google.charts.Bar(document.getElementById('stockDemand'));
+
+							chart.draw(data, google.charts.Bar.convertOptions(options));
+						  }
+					   
+					   
+					   
+					  function quantityProductDemand() {
+							  var data = google.visualization.arrayToDataTable([
+								['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
+								 'Western', 'Literature', { role: 'annotation' } ],
+								['2010', 10, 24, 20, 32, 18, 5, ''],
+								['2020', 16, 22, 23, 30, 16, 9, ''],
+								['2030', 28, 19, 29, 30, 12, 13, '']
+							  ]);
+
+							  var view = new google.visualization.DataView(data);
+							  view.setColumns([0, 1,
+											   { calc: "stringify",
+												 sourceColumn: 1,
+												 type: "string",
+												 role: "annotation" },
+											   2]);
+
+							   var options = {
+								width: 600,
+								height: 400,
+								legend: { position: 'top', maxLines: 3 },
+								bar: { groupWidth: '75%' },
+								isStacked: true
+							  };
+							  var chart = new google.visualization.BarChart(document.getElementById("quantityProductDemand"));
+							  chart.draw(view, options);
+						  }
+					   
+                       
+						//RESPONSIVE CHART
+						$(window).resize(function(){
+							totalSupplier();
+							totalProduct();
+							averageProduct();
+							productEachMonth();
+							stockDemand();
+							quantityProductDemand();
+						});
+                       
+                    </script>
+		
+
+			
+			
+			
+         
+	<div class="row">
+				
+				        <!-- Pie Chart -->
+            <div class="col-xl-6 col-lg-5">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Graf Purata Harga Produk Setiap Bulan</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Petani Mengikut Negeri</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div id="linechart_material"></div>
+                  <div id="totalSupplier" style="width: 100%; height: 100%;"></div>  
                 </div>
               </div>
             </div>
-              
- 
+				
+				
+						
+            <div class="col-xl-6 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Produk Mengikut Negeri</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div id="totalProduct" style="width: 100%; height: 100%;"></div>  
+                </div>
+              </div>
+            </div>
+				
+	</div>	
+			
+			
+			
+	<div class="row">
+					
 
             <!-- Area Chart -->
-<!--
             <div class="col-xl-12 col-lg-7">
               <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </div>
+				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				  <h6 class="m-0 font-weight-bold text-primary">Harga Purata Setiap Produk</h6>
+				</div>
                 <div class="card-body">
-                  <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                    <canvas id="myAreaChart" width="107" height="160" class="chartjs-render-monitor" style="display: block; width: 107px; height: 160px;"></canvas>
-                  </div>
+                  <div id="averageProduct" style="width: 100%; height: 100%;"></div>  
                 </div>
               </div>
             </div>
--->
 
-            <!-- Pie Chart -->
-           
+    
+    </div>
+			
+			
+			
+			
+			
+	`<div class="row">
+			<div class="col-xl-12 col-lg-7">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
+                </div>
+                <div class="card-body">
+                 <div id="productBought" style="width: 100%; height: 100%;"></div>  
+                </div>
+              </div>
+            </div>
+       </div>
+						
+			
+			
+	`<div class="row">
+			<div class="col-xl-12 col-lg-7">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
+                </div>
+                <div class="card-body">
+                 <div id="productEachMonth" style="width: 100%; height: 100%;"></div>  
+                </div>
+              </div>
+            </div>
+       </div>
+			
+			
+			
+			
+	<div class="row">
+			<div class="col-xl-12 col-lg-7">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
+                </div>
+                <div class="card-body">
+                 <div id="stockDemand" style="width: 100%; height: 100%;"></div>  
+                </div>
+              </div>
+            </div>
+       </div>
+						
+			
+	<div class="row">
+			<div class="col-xl-12 col-lg-7">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
+                </div>
+                <div class="card-body">
+                 <div id="quantityProductDemand" style="width: 100%; height: 100%;"></div>  
+                </div>
+              </div>
+            </div>
+       </div>
+			
+			
+		
+			
+			
+            
+            
   
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-          </div>
-            <!-- Graph average price for each product-->
          
         </div>
         <!-- /.container-fluid -->

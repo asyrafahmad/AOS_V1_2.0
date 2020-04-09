@@ -69,8 +69,8 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <img src="img/PenerajuMedia.jpg" height="150" alt="Italian Trulli">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <img src="img/bg/MakmurLogo.png" height="150" alt="MakmurLogo">
+                    <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                   </div>
                     
                     
@@ -80,17 +80,19 @@
                     
                 <form id="login-form" role="form" autocomplete="off" class="user" method="post">
                     <div class="form-group">
-                      <input class="form-control form-control-user" name="inputUsername" placeholder="Username">
+                      <input class="form-control form-control-user" name="inputUsername" placeholder="ID pengguna">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" name="inputPassword" placeholder="Password">
+                      <input type="password" class="form-control form-control-user" name="inputPassword" placeholder="Katalaluan">
                     </div>
+<!--
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
+-->
                     <div class="">
                         <input name="login" class="btn btn-primary btn-user btn-block" value="Submit" type="submit">
                     </div>
@@ -115,7 +117,10 @@
                   </div>
 -->
                   <div class="text-center">
-                    <a class="small" href="register.php">Create an Account!</a>
+                    <a class="small" href="register.php">Daftar Akaun !</a>
+                  </div>
+					<div class="text-center">
+                    <a class="small" href="register.php">Lupa Katalaluan ?</a>
                   </div>
                 </div>
               </div>

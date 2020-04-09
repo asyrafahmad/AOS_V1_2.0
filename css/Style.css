@@ -238,7 +238,7 @@ button {
 
 button:focus {
   outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
 input,
@@ -11062,11 +11062,13 @@ input[type=text] {
     height: 0;
 }
     /* IMAGE STYLES */
-    .hiddenradio [type=radio] + img {
-        cursor: pointer;
-    }
-    /* CHECKED STYLES */
-    .hiddenradio [type=radio]:checked + img {
-        outline: 2px solid #0094ff;
-        border: 10px;
-    }
+.hiddenradio [type=radio] + img {
+	cursor: pointer;
+}
+/* CHECKED STYLES */
+.hiddenradio [type=radio]:checked + img {
+	outline: 2px solid #0094ff;
+	border: 10px;
+}
+
+

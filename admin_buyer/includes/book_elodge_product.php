@@ -75,7 +75,7 @@
 //            $query .= "elodge_buyer                 = '{$user_username}',               ";
             $query .= "elodge_product_quantity      = '{$amount_left}',                 ";
             $query .= "elodge_product_amount_booked = '{$elodge_product_amount_booked}',";
-            $query .= "elodge_product_status        = 'Ditempah'    ";
+            $query .= "elodge_product_status        = 'Berjaya'    ";
             $query .= "WHERE elodge_product_id      =  {$elodge_product_id}             ";
 
             $edit_elodge_query = mysqli_query($connection,$query);

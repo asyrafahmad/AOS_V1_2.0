@@ -28,7 +28,7 @@
                       <th>Kuantiti (Kg)</th>
                       <th>Tarikh Menuai</th>
                       <th>Jumlah Ditempah</th>
-                      <th>Ditempah oleh</th>
+                      <th>Status</th>
                       <th>Tempah</th>
                     </tr>
                   </thead>
@@ -60,7 +60,7 @@
                             echo "<td><img width='100'  src='../img/$elodge_product_image'  alt='image' class='rounded-circle' /></td>";
                             echo "<td>$elodge_product_name  </td>";
                             echo "<td>$elodge_product_quantity  </td>";
-                            echo "<td>$elodge_product_harvest_date  </td>";
+                            echo "<td>Bulan: $elodge_product_harvest_date  </td>";
                             echo "<td><p class='text-danger'>$elodge_product_amount_booked</p></td>";
                             echo "<td><p class='text-danger'>$elodge_product_status </p></td>";
                             echo "<td><a class='btn btn-success' href='e-lodge.php?source=book_elodge_product&b_e_p_id={$elodge_product_id}'>Tempah </a></td>";

@@ -23,11 +23,9 @@
                   <thead>
                     <tr>
 <!--                      <th>Tempahan ID</th>-->
-                      <th>Invoice</th>
-                      <th>Produk</th>
-                      <th>Kuantiti (Kg)</th>
-                      <th>Jumlah Harga</th>
-                      <th>Tarikh Tempahan</th>
+                      <th>Invoice#</th>
+                      <th>Bayaran</th>
+                      <th>Tarikh Transaksi Dibuat</th>
                       <th>Status</th>
                       <th>Lihat Tempahan</th>
 <!--
@@ -40,38 +38,32 @@
                   <tbody>
                      <!-- Get data in db and display  -->
                     <?php
-                      
-                        $query  =  "SELECT * FROM order_product ";    
+					  
+					    if(isset($_SESSION['user_id'])){
+		
+							$user_id = $_SESSION['user_id'];
+						}
+					  
+
+                        $query  =  "SELECT * FROM order_product_history WHERE buyer_id = '{$user_id}'	";    
                         $select_suppliers = mysqli_query($connection, $query);
 
                         while ($row = mysqli_fetch_assoc($select_suppliers)){
 
                             $order_id = escape($row['order_id']);
-                            $order_product = escape($row['order_product']);
-                            $order_quantity = escape($row['order_quantity']);
-                            $order_price = escape($row['order_price']);
-                            $order_invoice = escape($row['order_invoice']);
-                            $order_booking_date = escape($row['order_booking_date']);
+                            $order_product_id = escape($row['order_product_id']);
+                            $order_billcode = escape($row['order_billcode']);
                             $order_status = escape($row['order_status']);
-                            
-                            //Set as global
-                            $_SESSION['order_id'] = $order_id;
-                            $_SESSION['order_product'] = $order_product;
+                            $order_payment = escape($row['order_payment']);
+                            $order_date_payment = escape($row['order_date_payment']);
+                           
                             
                             echo "<tr>";
-//                            echo "<td>$order_id </td>";
-                            echo "<td>$order_invoice  </td>";
-                            echo "<td>$order_product </td>";
-                            echo "<td>$order_quantity  </td>";
-                            echo "<td>RM$order_price  </td>";
-                            echo "<td>$order_booking_date  </td>";
+                            echo "<td>#$order_product_id  </td>";
+                            echo "<td>RM$order_payment  </td>";
+                            echo "<td>$order_date_payment  </td>";
                             echo "<td>$order_status  </td>";
-                            
-//                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
-//                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";
-                            echo "<td><a class='btn btn-info' href='order.php?source=view_order_product&o_p_id={$order_id}'>Lihat Tempahan</a></td>";
-//                            echo "<td><a href=''>Cetak</a></td>";
-//                            echo "<td><a href=''>Download</a></td>";
+                            echo "<td><a class='btn btn-info' href='order.php?source=view_product&o_p_id={$order_id}'>Lihat Tempahan</a></td>";
 //                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";
                             echo "</tr>";
 

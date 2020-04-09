@@ -257,19 +257,23 @@ function is_admin($user_username) {
     
 
     if($row['user_role'] == '1'){
+		
+		$_SESSION['user_role'] = 1;
         
         return header("Location: ./admin/index.php" );
 
     }
     else if($row['user_role'] == '2') {
 
-
+		$_SESSION['user_role'] = 2;
+		
         return header("Location: ./admin_supplier/index.php" );
     }
     else if($row['user_role'] == '3') {
 
-
-        return header("Location: ./admin_buyer/index.php" );
+		$_SESSION['user_role'] = 3;
+		
+        return header("Location: ./admin_buyer/menu.php" );
     }
     else {
         return false;
@@ -410,14 +414,14 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
          $db_user_id = $row['user_id'];
          $db_user_username = $row['user_username'];
          $db_user_password = $row['user_password'];
-         $db_user_name = $row['user_name'];
+         $db_user_image = $row['user_image'];
 
 
          if ($password === $db_user_password) {
 
              $_SESSION['user_id'] = $db_user_id;
              $_SESSION['user_username'] = $db_user_username;
-             $_SESSION['user_name'] = $db_user_name;
+             $_SESSION['user_image'] = $db_user_image;
 
              is_admin($db_user_username);
          }
@@ -429,6 +433,12 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
      return true;
  }
 
+
+//admin_buyer fucntion to display list of order items
+function display_order(){
+	
+	$query = query("SELECT * FROM orders");
+}
 
 ?>
 

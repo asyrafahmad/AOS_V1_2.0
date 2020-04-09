@@ -7,18 +7,19 @@
 
 global $connection;
 
-        $query  =  "SELECT * FROM user ";    
-        $select_user = mysqli_query($connection, $query);
+	$query  =  "SELECT * FROM user ";    
+	$select_user = mysqli_query($connection, $query);
 
-        while ($row = mysqli_fetch_assoc($select_user)){
+	while ($row = mysqli_fetch_assoc($select_user)){
 
-            $user_id = escape($row['user_id']);
-            $user_password = escape($row['user_password']);
-                             
-        }
+		$user_id = escape($row['user_id']);
+		$user_password = escape($row['user_password']);
+		$user_image = escape($row['user_image']);
+
+	}
 
 
- if(isset($_POST['edit_user_profile'])){
+ 	if(isset($_POST['edit_user_profile'])){
         
         $user_image       = escape($_FILES['user_image']['name']);
         $user_image_temp  = escape($_FILES['user_image']['tmp_name']);

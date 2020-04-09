@@ -41,8 +41,8 @@
 
             switch($source) {
                     
-                case 'view_order_product';
-                    include "includes/view_order_product.php";
+                case 'view_product';
+                    include "includes/view_product.php";
                     break;    
                     
                 case 'view_all_order_products';

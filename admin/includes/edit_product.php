@@ -163,7 +163,7 @@
           </div>
           <div class="col-md-6 mb-3">
             <label for="firstName">Harga Jualan(RM) / Kg</label>
-            <input type="number" min="0.10" step="0.10" class="form-control" name="product_price" placeholder="" value="<?php echo $product_price; ?>" required="">
+            <input type="number" class="form-control" name="product_price" placeholder="" value="<?php echo $product_price; ?>" required="">
             <div class="invalid-feedback">
               Valid first name is required.
             </div>

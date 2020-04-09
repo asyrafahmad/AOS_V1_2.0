@@ -40,7 +40,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Petani Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800">Dashboard Petani</h1>
            
           </div>
 
@@ -51,7 +51,7 @@
             <div class="col-xl-4 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class="no-gutters align-items-center" align="center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Produk</div>
                         <?php 
@@ -75,7 +75,7 @@
             <div class="col-xl-4 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class="no-gutters align-items-center" align="center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Bayaran Selesai</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">25</div>
@@ -92,14 +92,10 @@
             <div class="col-xl-4  mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class="no-gutters align-items-center" align="center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Produk E-lodge</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">40</div>
-                        </div>
-                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">40</div>
                     </div>
                     <div class="col-auto">
                       <img class="img-profile rounded-circle" src="../img/icon/product.png" height="50" width="50">
@@ -113,12 +109,7 @@
             
 <!----------------------------------------------------------------------------------------------------------------------------------------------  --> 
             
-            
-<!--Fruit Graph-->
-        <div class="card-body">  
-              <div class="col-xl-16">
-              <div class="card shadow mb-5">
-                  
+
                    <?php  
                      $query = "SELECT buyer_state, count(*) as number FROM buyer GROUP BY buyer_state";  
                      $result = mysqli_query($connection, $query);  
@@ -129,14 +120,42 @@
         
                    <script type="text/javascript">
                        
-                    google.charts.load('current', {'packages':['bar']});                    
-                    google.charts.load('current', {'packages':['corechart']});  
+                                        
+                    google.charts.load('current', {'packages':['corechart']});
+					google.charts.load('current', {'packages':['bar']});
+					google.charts.load('current', {'packages':['bar']});
+					google.charts.load("current", {packages:["corechart"]});  
                        
-                    google.charts.setOnLoadCallback(drawCharts);
-                    google.charts.setOnLoadCallback(drawChart);  
+                    
+                    google.charts.setOnLoadCallback(supplierEachState);
+					google.charts.setOnLoadCallback(productSoldEachMonth);
+					google.charts.setOnLoadCallback(stockDemand);
+					google.charts.setOnLoadCallback(quantityProductDemand);  
 
                        
-                    function drawCharts() {
+                       
+                    function supplierEachState(){ 
+                        var data = google.visualization.arrayToDataTable([  
+                                  ['Negeri', 'Jumlah'],  
+                                  <?php  
+                                  while($row = mysqli_fetch_array($result))  
+                                  {  
+                                       echo "['".$row["buyer_state"]."', ".$row["number"]."],";  
+                                  }  
+                                  ?>  
+                             ]);  
+                        var options = {  
+                              //title: 'Jumlah pembeli mengikut negeri',  
+                              //is3D:true,  
+                              pieHole: 0.5  
+                             };  
+                        var chart = new google.visualization.PieChart(document.getElementById('supplierEachState'));  
+                        chart.draw(data, options);  
+                    }
+					   
+					   
+					 
+					function productSoldEachMonth() {
                         var data = google.visualization.arrayToDataTable([
                           ['Nama Buah', 'Kuantiti'],
                                 <?php
@@ -174,59 +193,145 @@
                           }
                         };
                           
-                        var chart = new google.charts.Bar(document.getElementById('fruit_graph'));
+                        var chart = new google.charts.Bar(document.getElementById('productSoldEachMonth'));
 
                         chart.draw(data, google.charts.Bar.convertOptions(options));
                       }
                        
-                       
-                    function drawChart(){ 
-                        var data = google.visualization.arrayToDataTable([  
-                                  ['Negeri', 'Jumlah'],  
-                                  <?php  
-                                  while($row = mysqli_fetch_array($result))  
-                                  {  
-                                       echo "['".$row["buyer_state"]."', ".$row["number"]."],";  
-                                  }  
-                                  ?>  
-                             ]);  
-                        var options = {  
-                              //title: 'Jumlah pembeli mengikut negeri',  
-                              //is3D:true,  
-                              pieHole: 0.5  
-                             };  
-                        var chart = new google.visualization.PieChart(document.getElementById('piechart'));  
-                        chart.draw(data, options);  
-                    }
+					   
+						   
+					 function stockDemand() {
+						   
+							var data = google.visualization.arrayToDataTable([
+							  ['Year', 'Sales', 'Expenses', 'Profit'],
+							  ['2014', 1000, 400, 200],
+							  ['2015', 1170, 460, 250],
+							  ['2016', 660, 1120, 300],
+							  ['2017', 1030, 540, 350]
+							]);
+
+							var options = {
+							  chart: {
+								title: 'Company Performance',
+								subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+							  }
+							};
+
+							var chart = new google.charts.Bar(document.getElementById('stockDemand'));
+
+							chart.draw(data, google.charts.Bar.convertOptions(options));
+						  }
+					   
+					   
+					   
+					  function quantityProductDemand() {
+							  var data = google.visualization.arrayToDataTable([
+								['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
+								 'Western', 'Literature', { role: 'annotation' } ],
+								['2010', 10, 24, 20, 32, 18, 5, ''],
+								['2020', 16, 22, 23, 30, 16, 9, ''],
+								['2030', 28, 19, 29, 30, 12, 13, '']
+							  ]);
+
+							  var view = new google.visualization.DataView(data);
+							  view.setColumns([0, 1,
+											   { calc: "stringify",
+												 sourceColumn: 1,
+												 type: "string",
+												 role: "annotation" },
+											   2]);
+
+							   var options = {
+								width: 600,
+								height: 400,
+								legend: { position: 'top', maxLines: 3 },
+								bar: { groupWidth: '75%' },
+								isStacked: true
+							  };
+							  var chart = new google.visualization.BarChart(document.getElementById("quantityProductDemand"));
+							  chart.draw(view, options);
+						  }
+					   
                        
                     //RESPONSIVE CHART
                     $(window).resize(function(){
-                        drawCharts();
-                        drawChart();
+                        supplierEachState();
+                        productSoldEachMonth();
+						stockDemand();
+						quantityProductDemand();
                     });
                        
                     </script>
                   
                   
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Pembelian Mengikut Kontan</h6>
-                    </div><br>
-                    <div id="fruit_graph" style="width: 95%; height: 800px;"></div><br>
+                    
+                    
 
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          			
+	<div class="row">
+            <div class="col-xl-12 col-lg-7">
+              <div class="card shadow mb-4">
+				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Pembeli Mengikut Negeri</h6>
                     </div>
+                <div class="card-body">
+                   <div id="supplierEachState" style="width: 100%; height: 350px;"></div>  
 
-                    <div id="piechart" style="width: 100%; height: 350px;"></div>  
+                </div>
+              </div>
+            </div>
+    </div>
+			              
                 
                   
-               </div>       
+       			
+	<div class="row">
+            <div class="col-xl-12 col-lg-7">
+              <div class="card shadow mb-4">
+				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Pembelian Mengikut Kontan</h6>
+                    </div>
+                <div class="card-body">
+                  <div id="productSoldEachMonth" style="width: 95%; height: 800px;"></div><br>
+
+                </div>
               </div>
-        </div>  
-   <!--Fruit Graph--> 
+            </div>
+    </div>
+			               
+  
             
             
-            
+			
+				
+	<div class="row">
+			<div class="col-xl-12 col-lg-7">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
+                </div>
+                <div class="card-body">
+                 <div id="stockDemand" style="width: 100%; height: 100%;"></div>  
+                </div>
+              </div>
+            </div>
+       </div>
+						
+			
+	<div class="row">
+			<div class="col-xl-12 col-lg-7">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
+                </div>
+                <div class="card-body">
+                 <div id="quantityProductDemand" style="width: 100%; height: 100%;"></div>  
+                </div>
+              </div>
+            </div>
+       </div>
+			
+			
             
             
  <!----------------------------------------------------------------------------------------------------------------------------------------------  -->           

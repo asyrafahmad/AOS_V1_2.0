@@ -35,28 +35,21 @@
 ?>
                         
    <!-- DataTales Example -->
+	<div class="col-xl-12 col-lg-5" align="center">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary" align="center">Maklumat produk</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                  <table class="" >
-                      <tr>
-                           <table class="" align="center">
-                            <tr><td><img height="50%" width="50%"  src="../img/<?php echo $product_image;  ?>"  alt="image" ></td></tr>
-                            <tr><td><h3><b><p for="product_name" ><?php echo strtoupper("$product_name");  ?>  </b></h3></td></tr>
-                            <tr><td><p for="product_category" > <?php echo strtoupper("$product_category");  ?>  </p></td></tr>
-                            <tr><td><p for="product_gred" > <?php echo strtoupper("$product_gred");  ?>  </p></td></tr>
-                            <tr><td><p for="product_description" > <?php echo strtoupper("$product_description");  ?>  </p></td></tr>
-                            <tr><td><p for="product_current_price" > <?php echo strtoupper("$product_current_price");  ?>  </p></td></tr>
-                            <tr><td><p for="product_price" > <?php echo strtoupper("$product_price");  ?>  </p></td></tr>
-                            <tr><td><p for="product_current_price" >  </p></td></tr>
-                          </table>
-                      </tr>
-                  </table>
-                 
-                  
+				 <div class="card-body">
+				  <td align="center"><img height="25%" width="25%"  src="../img/<?php echo $product_image;  ?>"  alt="image" ></td>
+				  <td><p for="product_name"><b>Nama: </b> <?php echo strtoupper("$product_name");  ?>  </p></td>
+				  <td><p for="product_category" ><b>kategori: </b><?php echo strtoupper("$product_category");  ?>  </p></td>
+				  <td><p for="product_gred" ><b>Gred: </b> <?php echo strtoupper("$product_gred");  ?>  </p></td>
+				  <td><p for="product_description" ><b>Huraian: </b> <?php echo strtoupper("$product_description");  ?>  </p></td>
+				  <td><p for="product_current_price" ><b>Harga Semasa: RM</b><?php echo strtoupper("$product_current_price");  ?>  </p></td>
+				  <td><p for="product_price" ><b>Harga Jualan: RM</b><?php echo strtoupper("$product_price");  ?>  </p></td>
+				</div>
               </div>
             </div>
-          </div>
+    </div>

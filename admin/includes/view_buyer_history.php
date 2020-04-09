@@ -3,56 +3,66 @@
 <!-- to call file and make it available  -->
 <?php include "../includes/functions.php";   ?>
 
+    
 
-
-<?php
-
-//    if(isset($_GET['b_o_id'])){
-//
-//        $b_o_product_id = $_GET['b_o_id'];
-//
-//        $query = "SELECT * FROM buyer_order_product WHERE b_o_product_id = '{$b_o_product_id}'     ";
-//
-//        $select_buyer_order_product_query = mysqli_query($connection, $query);
-//
-//        while($row = mysqli_fetch_array($select_buyer_order_product_query)){
-//
-//            $b_o_product_id = escape($row['b_o_product_id']);
-//            $b_o_product_name = escape($row['b_o_product_name']);
-//            $b_o_product_type = escape($row['b_o_product_type']);
-//            $b_o_product_price = escape($row['b_o_product_price']);
-//            $b_o_product_quantity = escape($row['b_o_product_quantity']);
-////            $b_o_product_invoice = escape($row['b_o_product_invoice']);
-//            $b_o_product_total_price = escape($row['b_o_product_total_price']);
-//            $b_o_product_booking_date = escape($row['b_o_product_booking_date']);
-//            $b_o_product_status = escape($row['b_o_product_status']);
-//            
-//        }
-//    }
-
-?>
-                        
-   <!-- DataTales Example -->
+          <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary" align="center">Sejarah Pembelian Produk</h6>
+            <div class="card-header py-3" align="center">
+              <h6 class="m-0 font-weight-bold text-primary">Sejarah Pembelian</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                  <table class="" >
-                      <tr>
+                  
+                  
+<!--           TODO: put product table-->
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Resit</th>
+                      <th>Status</th>
+                      <th>Jumlah Bayaran</th>
+                      <th>Tarikh Pembelian Dibuat</th>
 <!--
-                           <table class="" align="center">
-                            <tr><td><label for="b_o_product_name" > <?php echo strtoupper("$b_o_product_name");  ?>  </label></td></tr>
-                            <tr><td><label for="b_o_product_type" > <?php echo strtoupper("$b_o_product_type");  ?>  </label></td></tr>
-                            <tr><td><label for="b_o_product_quantity" > <?php echo strtoupper("$b_o_product_price");  ?>  </label></td></tr>
-                            <tr><td><label for="b_o_product_price" > <?php echo strtoupper("$b_o_product_price");  ?>  </label></td></tr>
-                            <tr><td><label for="b_o_product_booking_date" > <?php echo strtoupper("$b_o_product_booking_date");  ?>  </label></td></tr>
-                            <tr><td><label for="b_o_product_status" > <?php echo strtoupper("$b_o_product_status");  ?>  </label></td></tr>
-                          </table>
+                      <th>Nama Produk</th>
+                      <th>Gred</th>
+                      <th>Kuantiti (Kg)</th>
 -->
-                      </tr>
-                  </table>
+                    </tr>
+                  </thead>
+                 
+                  <tbody>
+                     <!-- Get data in db and display  -->
+                    <?php
+					  
+					  	if(isset($_GET['buyer_id'])){
+							
+							$buyer_id = $_GET['buyer_id'];
+						}
+                      
+                        $query  =  "SELECT * FROM order_product_history WHERE buyer_id = '{$buyer_id}' ";    
+                        $buyer_order_history_query = mysqli_query($connection, $query);
+
+                        while ($row = mysqli_fetch_assoc($buyer_order_history_query)){
+
+                            $order_id 			= escape($row['order_id']);
+                            $order_product_id 	= escape($row['order_product_id']);
+                            $order_status 		= escape($row['order_status']);
+                            $order_payment 		= escape($row['order_payment']);
+                            $order_date_payment = escape($row['order_date_payment']);
+                            
+                            echo "<tr>";
+                            echo "<td>$order_id </td>";
+                            echo "<td>$order_product_id </td>";
+                            echo "<td>$order_status  </td>";
+                            echo "<td>RM$order_payment  </td>";
+                            echo "<td>$order_date_payment  </td>";
+                            echo "</tr>";
+
+                            }
+                     ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

@@ -39,12 +39,12 @@
                   <table class="" >
                       <tr>
                            <table class="" align="center">
-                            <tr><td><label for="order_product" > <?php echo strtoupper("$order_product");  ?>  </label></td></tr>
-                            <tr><td><label for="order_quantity" > <?php echo strtoupper("$order_quantity");  ?>  </label></td></tr>
-                            <tr><td><label for="order_price" > <?php echo strtoupper("$order_price");  ?>  </label></td></tr>
-                            <tr><td><label for="order_invoice" > <?php echo strtoupper("$order_invoice");  ?>  </label></td></tr>
-                            <tr><td><label for="order_booking_date" > <?php echo strtoupper("$order_booking_date");  ?>  </label></td></tr>
-                            <tr><td><label for="order_status" > <?php echo strtoupper("$order_status");  ?>  </label></td></tr>
+                            <tr><td align="center"><label for="order_product" ><b>Nama:</b> <?php echo strtoupper("$order_product");  ?>  </label></td></tr>
+                            <tr><td align="center"><label for="order_quantity" ><b>Kuantiti:</b> <?php echo strtoupper("$order_quantity");  ?>  </label></td></tr>
+                            <tr><td align="center"><label for="order_price" ><b>Harga Bayaran:</b> <?php echo strtoupper("$order_price");  ?>  </label></td></tr>
+                            <tr><td align="center"><label for="order_invoice" ><b>Invois:</b> <?php echo strtoupper("$order_invoice");  ?>  </label></td></tr>
+                            <tr><td align="center"><label for="order_booking_date" ><b>Tarikh Tempahan Dibuat Pada:</b> <?php echo strtoupper("$order_booking_date");  ?>  </label></td></tr>
+                            <tr><td align="center"><label for="order_status" ><b>Status:</b> <?php echo strtoupper("$order_status");  ?>  </label></td></tr>
                           </table>
                       </tr>
                   </table>

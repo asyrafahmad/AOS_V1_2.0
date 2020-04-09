@@ -12,7 +12,7 @@
           <div class="card shadow mb-4">
               
               
-            <div class="card-header py-3">
+            <div class="card-header py-2">
                 <div class="row">
                   <div class="col-md-6">
                      <h5 class="m-2 font-weight-bold text-primary">Senarai Produk</h5>
@@ -43,7 +43,8 @@
                           
                         $query  =  "SELECT * FROM product WHERE product_supplier = '{$user_id}'    ";    
                         $select_suppliers = mysqli_query($connection, $query);
-
+				  
+				  		
                         while ($row = mysqli_fetch_assoc($select_suppliers)){
 
                             $product_id = escape($row['product_id']);
@@ -66,7 +67,7 @@
                                 echo "<div class='no-gutters align-items-center'>";
                                 echo "<a href='product.php?source=view_product&p_id={$product_id}'><img style='height:80px;' src='../img/$product_image' alt=''></a>";
                                 echo "</div>";
-                                echo "<h4><b>$product_name</b></h4>";
+                                echo "<h4 align='center'><b>$product_name</b></h4>";
                                 echo "<h6>Gred: $product_gred </h6>";
                                 echo "<h6>Kuantiti: $product_quantity </h6>";
                                 echo "<h6>RM$product_price</h6>";

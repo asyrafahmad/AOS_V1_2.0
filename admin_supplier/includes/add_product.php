@@ -16,6 +16,7 @@
         $product_image       = escape($_FILES['product_image']['name']);
         $product_image_temp  = escape($_FILES['product_image']['tmp_name']);
         $product_name        = escape($_POST['product_name']);
+        $product_description = escape($_POST['product_description']);
         $product_type        = escape($_POST['product_type']);
         $product_gred        = escape($_POST['product_gred']);
         $product_quantity    = escape($_POST['product_quantity']);
@@ -25,8 +26,8 @@
        
         if(!empty($product_name)  &&  !empty($product_type)  &&  !empty($product_quantity) &&  !empty($product_price) &&  !empty($product_gred )){
                  
-            $query = "INSERT INTO product (product_image, product_name, product_type, product_gred, product_quantity, product_price, product_date_submit, product_supplier    )";
-            $query .= "VALUES( '{$product_image}', '{$product_name}', '{$product_type}', '{$product_gred}', '{$product_quantity}', '{$product_price}' , now(), '{$user_id}'  )  ";
+            $query = "INSERT INTO product (product_image, product_name, product_description, product_type, product_gred, product_quantity, product_price, product_date_submit, product_supplier    )";
+            $query .= "VALUES( '{$product_image}', '{$product_name}', '{$product_description}', '{$product_type}', '{$product_gred}', '{$product_quantity}', '{$product_price}' , now(), '{$user_id}'  )  ";
 
             $create_post_query  =   mysqli_query($connection, $query);
             confirmQuery($create_post_query);
@@ -35,11 +36,15 @@
             //$the_post_id = mysqli_insert_id($connection);
 
             echo "<p class=''>Produk telah berjaya ditambah</p>";
+			
+			
         }
         else{
             echo "<script>alert('Terdapat kekosongan pada maklumat produk')</script>";
         }
     }
+
+
 
 ?>
     
@@ -70,6 +75,13 @@
             </div>
           </div> 
           <div class="col-md-6 mb-3">
+            <label for="firstName">Deskripsi</label>
+            <input type="text" class="form-control" name="product_description" placeholder="" value="" required="Deskripsi">
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div>
+			<div class="col-md-6 mb-3">
             <label for="firstName">Jenis produk</label>
             <input type="text" class="form-control" name="product_type" placeholder="" value="" required="Isi nama produk">
             <div class="invalid-feedback">

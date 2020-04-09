@@ -18,7 +18,7 @@
         while($row = mysqli_fetch_array($select_supplier_profile_query)){
 
           $user_id      = escape($row['user_id']);
-          $user_name    = escape($row['user_name']);
+          $user_username    = escape($row['user_username']);
           $user_email   = escape($row['user_email']);
           $user_phone   = escape($row['user_phone']);
           $user_address = escape($row['user_address']);
@@ -32,27 +32,20 @@
 ?>
                         
    <!-- DataTales Example -->
-          <div class="card shadow mb-4">
+	<div class="col-xl-12 col-lg-5" align="center">
+          <div class="card shadow ">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary" align="center">Profil Petani</h6>
             </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                  <table class="" >
-                      <tr>
-                           <table class="" align="center">
-                            <tr><label for="user_fullname" ><?php echo "<td><img  width='50' height='50'  src='../IMG/$user_image'</td>"; ?>  </label></tr>
-                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$user_name");  ?>  </label></td></tr>
-                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$user_email");  ?>  </label></td></tr>
-                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$user_phone");  ?>  </label></td></tr>
-                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$user_address");  ?>  </label></td></tr>
-                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$user_name");  ?>  </label></td></tr>
-                            <tr><td><label for="user_fullname" > <?php echo strtoupper("$user_website");  ?>  </label></td></tr>
-                          </table>
-                      </tr>
-                  </table>
-                 
-                  
-              </div>
+            <div class="card-body" >
+              <div class="card-body">
+				  <td align="center"><img height="25%" width="25%"  src="../img/<?php echo $user_image;  ?>"   ></td>
+				  <td><p for="user_name"><b>Nama: </b> <?php echo strtoupper("$user_username");  ?>  </p></td>
+				  <td><p for="user_phone" ><b>No Telefon: </b>0<?php echo strtoupper("$user_phone");  ?>  </p></td>
+				  <td><p for="user_email" ><b>Emel: </b> <?php echo strtoupper("$user_email");  ?>  </p></td>
+				  <td><p for="user_address" ><b>Alamat: </b> <?php echo strtoupper("$user_address");  ?>  </p></td>
+				  <td><p for="user_website" ><b>Website: </b> <?php echo strtoupper("$user_website");  ?>  </p></td>
+				</div>
             </div>
           </div>
+     </div>
