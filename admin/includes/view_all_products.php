@@ -15,6 +15,22 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
+				  
+				  
+				<?php
+					if(isset($_GET['delete'])){
+
+						$product_id = $_GET['delete'];
+
+						$query = "DELETE FROM product WHERE product_id = {$product_id}	";
+						$delete_query = mysqli_query($connection, $query);
+
+						echo "<p>Produk telah dibuang.</p>";
+					}
+
+				?>    
+                  
+                  
                   
                   
 <!--           TODO: put product table-->

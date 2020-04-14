@@ -195,7 +195,7 @@
 					google.charts.setOnLoadCallback(totalProduct);
       				google.charts.setOnLoadCallback(averageProduct);
 					google.charts.setOnLoadCallback(productBought);
-					google.charts.setOnLoadCallback(productEachMonth);
+					google.charts.setOnLoadCallback(productSoldEachMonth);
 					google.charts.setOnLoadCallback(stockDemand);
 					google.charts.setOnLoadCallback(quantityProductDemand);
                        
@@ -296,23 +296,35 @@
 					   
 					  function productBought() {
 							var data = new google.visualization.arrayToDataTable([
-							  ['Move', 'Percentage'],
-							  ["King's pawn (e4)", 44],
-							  ["Queen's pawn (d4)", 31],
-							  ["Knight to King 3 (Nf3)", 12],
-							  ["Queen's bishop pawn (c4)", 10],
-							  ['Other', 3]
+							  ['Month', 'Produk Jualan'],
+								
+							 <?php
+                                global $connection;
+
+                                $query  =  "SELECT COUNT(*) as count, MONTHNAME(product_date_submit) as month FROM product GROUP BY MONTHNAME(product_date_submit) ";    
+                                $select_suppliers = mysqli_query($connection, $query);
+                                $all_product_count = mysqli_num_rows($select_suppliers);
+
+                                while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                                    $month = escape($row['month']);
+                                    $count = escape($row['count']);
+
+                                    echo "['$month'" . "," . "'$count'],";
+                                }
+                             ?>
 							]);
 
 							var options = {
 							  width: 800,
 							  legend: { position: 'none' },
 							  chart: {
-								title: 'Chess opening moves',
-								subtitle: 'popularity by percentage' },
+								title: 'Jumlah produk dijual setiap bulan',
+//								subtitle: 'popularity by percentage' 
+							  },
 							  axes: {
 								x: {
-								  0: { side: 'top', label: 'White to move'} // Top x-axis.
+								  0: { side: 'top', label: 'Jumlah produk'} // Top x-axis.
 								}
 							  },
 							  bar: { groupWidth: "90%" }
@@ -325,57 +337,84 @@
 					   
 					   
 					     
-					  function productEachMonth() {
-							var data = new google.visualization.arrayToDataTable([
-							  ['Move', 'Percentage'],
-							  ["King's pawn (e4)", 44],
-							  ["Queen's pawn (d4)", 31],
-							  ["Knight to King 3 (Nf3)", 12],
-							  ["Queen's bishop pawn (c4)", 10],
-							  ['Other', 3]
-							]);
+					  function productSoldEachMonth() {
+                        var data = google.visualization.arrayToDataTable([
+                          ['Nama Buah', 'Kuantiti'],
+                                <?php
+                                global $connection;
 
-							var options = {
-							  width: 800,
-							  legend: { position: 'none' },
-							  chart: {
-								title: 'Chess opening moves',
-								subtitle: 'popularity by percentage' },
-							  axes: {
-								x: {
-								  0: { side: 'top', label: 'White to move'} // Top x-axis.
-								}
-							  },
-							  bar: { groupWidth: "90%" }
-							};
+                                $query  =  "SELECT * FROM product WHERE product_type = 'Buah-buahan' ";    
+                                $select_suppliers = mysqli_query($connection, $query);
+                                $all_product_count = mysqli_num_rows($select_suppliers);
 
-							var chart = new google.charts.Bar(document.getElementById('productEachMonth'));
-							// Convert the Classic options to Material options.
-							chart.draw(data, google.charts.Bar.convertOptions(options));
-						  };
+                                while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                                    $product_name = escape($row['product_name']);
+                                    $product_quantity = escape($row['product_quantity']);
+
+                                    echo "['$product_name'" . "," . "{$product_quantity}],";
+                                }
+                                ?> 
+                        ]);
+
+                        var options = {
+                          chart: {
+                            title: '',
+                            subtitle: '',
+                          },
+                          bars: 'horizontal',
+                          series: {
+                            0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
+                            1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
+                          },
+                          axes: {
+                            x: {
+                              distance: {label: 'Jumlah'}, // Bottom x-axis.
+                              brightness: {side: 'top', label: 'apparent magnitude'} // Top x-axis.
+                            }
+                          }
+                        };
+                          
+                        var chart = new google.charts.Bar(document.getElementById('productSoldEachMonth'));
+
+                        chart.draw(data, google.charts.Bar.convertOptions(options));
+                      }
+                       
 					   
 					   
 					 function stockDemand() {
-						   
 							var data = google.visualization.arrayToDataTable([
-							  ['Year', 'Sales', 'Expenses', 'Profit'],
-							  ['2014', 1000, 400, 200],
-							  ['2015', 1170, 460, 250],
-							  ['2016', 660, 1120, 300],
-							  ['2017', 1030, 540, 350]
+//							  ['Year', 'Sales', 'Expenses', 'Profit'],
+							  ['Produk', 'Kuantiti Semasa'],
+							  <?php
+                                global $connection;
+
+                                $query  =  "SELECT * FROM product WHERE product_type = 'Buah-buahan' ";    
+                                $select_suppliers = mysqli_query($connection, $query);
+                                $all_product_count = mysqli_num_rows($select_suppliers);
+
+                                while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                                    $product_name = escape($row['product_name']);
+                                    $product_quantity = escape($row['product_quantity']);
+
+                                    echo "['$product_name'" . "," . "{$product_quantity}],";
+                                }
+                                ?> 
 							]);
 
 							var options = {
 							  chart: {
-								title: 'Company Performance',
-								subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-							  }
+								title: 'Jumlah Stok & Kuantiti Permintaan Bagi Setiap Produk',
+								subtitle: '',
+							  },
+							  bars: 'horizontal' // Required for Material Bar Charts.
 							};
 
 							var chart = new google.charts.Bar(document.getElementById('stockDemand'));
 
 							chart.draw(data, google.charts.Bar.convertOptions(options));
-						  }
+					}
 					   
 					   
 					   
@@ -386,6 +425,23 @@
 								['2010', 10, 24, 20, 32, 18, 5, ''],
 								['2020', 16, 22, 23, 30, 16, 9, ''],
 								['2030', 28, 19, 29, 30, 12, 13, '']
+								  
+								  <?php
+									global $connection;
+
+									$query  =  "SELECT * FROM ebargain_product GROUP BY ebargain_product_name ";    
+									$select_ebargain = mysqli_query($connection, $query);
+									$all_product_count = mysqli_num_rows($select_ebargain);
+
+									while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+										$ebargain_product_name 		= escape($row['ebargain_product_name']);
+										$ebargain_product_quantity 	= escape($row['ebargain_product_quantity']);
+										$ebargain_product_month 	= escape($row['ebargain_product_month']);
+
+										echo "['$ebargain_product_month'" . "," . "{$product_quantity}],";
+									}
+                              ?> 
 							  ]);
 
 							  var view = new google.visualization.DataView(data);
@@ -461,84 +517,77 @@
 			
 			
 	<div class="row">
-					
-
-            <!-- Area Chart -->
-            <div class="col-xl-12 col-lg-7">
-              <div class="card shadow mb-4">
-				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-				  <h6 class="m-0 font-weight-bold text-primary">Harga Purata Setiap Produk</h6>
-				</div>
-                <div class="card-body">
-                  <div id="averageProduct" style="width: 100%; height: 100%;"></div>  
-                </div>
-              </div>
-            </div>
-
-    
+		<div class="col-xl-12 col-lg-7">
+		  <div class="card shadow mb-4">
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+			  <h6 class="m-0 font-weight-bold text-primary">Harga Purata Setiap Produk</h6>
+			</div>
+			<div class="card-body">
+			  <div id="averageProduct" style="width: 100%; height: 100%;"></div>  
+			</div>
+		  </div>
+		</div>
     </div>
 			
 			
 			
-			
-			
-	`<div class="row">
-			<div class="col-xl-12 col-lg-7">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
-                </div>
-                <div class="card-body">
-                 <div id="productBought" style="width: 100%; height: 100%;"></div>  
-                </div>
-              </div>
-            </div>
-       </div>
+	<div class="row">
+		<div class="col-xl-12 col-lg-7">
+		  <div class="card shadow mb-4">
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+			  <h6 class="m-0 font-weight-bold text-primary">Jumlah Produk Dijual Setiap Bulan</h6>
+			</div>
+			<div class="card-body">
+			 <div id="productBought" style="width: 100%; height: 100%;"></div>  
+			</div>
+		  </div>
+		</div>
+   </div>
 						
 			
 			
-	`<div class="row">
-			<div class="col-xl-12 col-lg-7">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
-                </div>
-                <div class="card-body">
-                 <div id="productEachMonth" style="width: 100%; height: 100%;"></div>  
-                </div>
-              </div>
-            </div>
-       </div>
+	<div class="row">
+		<div class="col-xl-12 col-lg-7">
+		  <div class="card shadow mb-4">
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+			  <h6 class="m-0 font-weight-bold text-primary">Jumlah Jualan Untuk Setiap Produk</h6>
+			</div>
+			<div class="card-body">
+			 <div id="productSoldEachMonth" style="width: 100%; height: 500px;"></div>  
+			</div>
+		  </div>
+		</div>
+   </div>
 			
 			
 			
 			
 	<div class="row">
-			<div class="col-xl-12 col-lg-7">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
-                </div>
-                <div class="card-body">
-                 <div id="stockDemand" style="width: 100%; height: 100%;"></div>  
-                </div>
-              </div>
-            </div>
-       </div>
+		<div class="col-xl-12 col-lg-7">
+		  <div class="card shadow mb-4">
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+			  <h6 class="m-0 font-weight-bold text-primary">Jumlah Stok & Kuantiti Permintaan Bagi Setiap Produk</h6>
+			</div>
+			<div class="card-body">
+			 <div id="stockDemand" style="width: 100%; height: 500px;"></div>  
+			</div>
+		  </div>
+		</div>
+   </div>
 						
 			
 	<div class="row">
-			<div class="col-xl-12 col-lg-7">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
-                </div>
-                <div class="card-body">
-                 <div id="quantityProductDemand" style="width: 100%; height: 100%;"></div>  
-                </div>
-              </div>
-            </div>
-       </div>
+		<div class="col-xl-12 col-lg-7">
+		  <div class="card shadow mb-4">
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+			  <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
+			</div>
+			<div class="card-body">
+			 <div id="quantityProductDemand" style="width: 100%; height: 100%;"></div>  
+			</div>
+		  </div>
+		</div>
+   </div>
 			
 			
 		

@@ -17,12 +17,12 @@
 
         while($row = mysqli_fetch_array($select_order_product_query)){
 
-            $order_product = escape($row['order_product']);
-            $order_quantity = escape($row['order_quantity']);
-            $order_price = escape($row['order_price']);
-            $order_invoice = escape($row['order_invoice']);
+            $order_product 		= escape($row['order_product']);
+            $order_quantity 	= escape($row['order_quantity']);
+            $order_price 		= escape($row['order_price']);
+            $order_transaction 	= escape($row['order_transaction']);
             $order_booking_date = escape($row['order_booking_date']);
-            $order_status = escape($row['order_status']);
+            $order_status 		= escape($row['order_status']);
             
         }
     }
@@ -42,7 +42,7 @@
                             <tr><td align="center"><label for="order_product" ><b>Nama:</b> <?php echo strtoupper("$order_product");  ?>  </label></td></tr>
                             <tr><td align="center"><label for="order_quantity" ><b>Kuantiti:</b> <?php echo strtoupper("$order_quantity");  ?>  </label></td></tr>
                             <tr><td align="center"><label for="order_price" ><b>Harga Bayaran:</b> <?php echo strtoupper("$order_price");  ?>  </label></td></tr>
-                            <tr><td align="center"><label for="order_invoice" ><b>Invois:</b> <?php echo strtoupper("$order_invoice");  ?>  </label></td></tr>
+<!--                            <tr><td align="center"><label for="order_invoice" ><b>Invois:</b> <?php echo strtoupper("$order_transaction");  ?>  </label></td></tr>-->
                             <tr><td align="center"><label for="order_booking_date" ><b>Tarikh Tempahan Dibuat Pada:</b> <?php echo strtoupper("$order_booking_date");  ?>  </label></td></tr>
                             <tr><td align="center"><label for="order_status" ><b>Status:</b> <?php echo strtoupper("$order_status");  ?>  </label></td></tr>
                           </table>

@@ -95,8 +95,6 @@ global $connection;
 <!-- enctype is   -->
      <form action="" method="post" enctype="multipart/form-data">
     
-        <div class="container-fluid">
-
           <!-- Starting of profile content-->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -176,8 +174,7 @@ global $connection;
                 </div>
                 </div>
 
-          <!--End of profile content-->
-           </div> 
+         
      </form> 
 
        

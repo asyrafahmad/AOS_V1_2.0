@@ -124,12 +124,14 @@
                     google.charts.load('current', {'packages':['corechart']});
 					google.charts.load('current', {'packages':['bar']});
 					google.charts.load('current', {'packages':['bar']});
+					google.charts.load('current', {'packages':['bar']});
 					google.charts.load("current", {packages:["corechart"]});  
                        
                     
                     google.charts.setOnLoadCallback(supplierEachState);
-					google.charts.setOnLoadCallback(productSoldEachMonth);
 					google.charts.setOnLoadCallback(stockDemand);
+					google.charts.setOnLoadCallback(productSoldEachMonth);
+					google.charts.setOnLoadCallback(totalProductSellEachMonth);
 					google.charts.setOnLoadCallback(quantityProductDemand);  
 
                        
@@ -154,8 +156,43 @@
                     }
 					   
 					   
-					 
-					function productSoldEachMonth() {
+					 function stockDemand() {
+						   
+							var data = google.visualization.arrayToDataTable([
+							  ['Month', 'Produk Jualan'],
+								
+								 <?php
+                                global $connection;
+
+                                $query  =  "SELECT COUNT(*) as count, MONTHNAME(product_date_submit) as month FROM product GROUP BY MONTHNAME(product_date_submit) ";    
+                                $select_suppliers = mysqli_query($connection, $query);
+                                $all_product_count = mysqli_num_rows($select_suppliers);
+
+                                while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                                    $month = escape($row['month']);
+                                    $count = escape($row['count']);
+
+                                    echo "['$month'" . "," . "'$count'],";
+                                }
+                                ?>
+							]);
+
+							var options = {
+							  chart: {
+//								title: 'Jumlah Jualan Produk Setiap Bulan',
+//								subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+							  }
+							};
+
+							var chart = new google.charts.Bar(document.getElementById('stockDemand'));
+
+							chart.draw(data, google.charts.Bar.convertOptions(options));
+						  }  
+					   
+					   
+					   
+					   function productSoldEachMonth() {
                         var data = google.visualization.arrayToDataTable([
                           ['Nama Buah', 'Kuantiti'],
                                 <?php
@@ -200,27 +237,58 @@
                        
 					   
 						   
-					 function stockDemand() {
-						   
-							var data = google.visualization.arrayToDataTable([
-							  ['Year', 'Sales', 'Expenses', 'Profit'],
-							  ['2014', 1000, 400, 200],
-							  ['2015', 1170, 460, 250],
-							  ['2016', 660, 1120, 300],
-							  ['2017', 1030, 540, 350]
-							]);
+					
+					   
+					   
+					   
+					   
+					 
+					 
+					function totalProductSellEachMonth() {
+                        var data = google.visualization.arrayToDataTable([
+                          ['Nama Buah', 'Kuantiti'],
+                                <?php
+                                global $connection;
 
-							var options = {
-							  chart: {
-								title: 'Company Performance',
-								subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-							  }
-							};
+                                $query  =  "SELECT *, MONTHNAME(product_date_submit) as month FROM product GROUP BY MONTHNAME(product_date_submit) ";    
+                                $select_suppliers = mysqli_query($connection, $query);
+                                $all_product_count = mysqli_num_rows($select_suppliers);
 
-							var chart = new google.charts.Bar(document.getElementById('stockDemand'));
+                                while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-							chart.draw(data, google.charts.Bar.convertOptions(options));
-						  }
+                                    $product_name = escape($row['product_name']);
+                                    $product_quantity = escape($row['product_quantity']);
+
+                                    echo "['$product_name'" . "," . "{$product_quantity}],";
+                                }
+                                ?> 
+                        ]);
+
+                        var options = {
+                          chart: {
+                            title: '',
+                            subtitle: '',
+                          },
+                          bars: 'horizontal',
+                          series: {
+                            0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
+                            1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
+                          },
+                          axes: {
+                            x: {
+                              distance: {label: 'Jumlah'}, // Bottom x-axis.
+                              brightness: {side: 'top', label: 'apparent magnitude'} // Top x-axis.
+                            }
+                          }
+                        };
+                          
+                        var chart = new google.charts.Bar(document.getElementById('totalProductSellEachMonth'));
+
+                        chart.draw(data, google.charts.Bar.convertOptions(options));
+                      }
+                          
+					 
+					
 					   
 					   
 					   
@@ -256,8 +324,9 @@
                     //RESPONSIVE CHART
                     $(window).resize(function(){
                         supplierEachState();
-                        productSoldEachMonth();
 						stockDemand();
+						productSoldEachMonth();
+                        totalProductSellEachMonth();
 						quantityProductDemand();
                     });
                        
@@ -281,11 +350,24 @@
               </div>
             </div>
     </div>
-			              
-                
-                  
-       			
+			
+			
 	<div class="row">
+		<div class="col-xl-12 col-lg-7">
+		  <div class="card shadow mb-4">
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+			  <h6 class="m-0 font-weight-bold text-primary">Jumlah Jualan Produk Setiap Bulan</h6>
+			</div>
+			<div class="card-body">
+			 <div id="stockDemand" style="width: 100%; height: 100%;"></div>  
+			</div>
+		  </div>
+		</div>
+   </div>
+			  
+			
+			
+   <div class="row">
             <div class="col-xl-12 col-lg-7">
               <div class="card shadow mb-4">
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -297,25 +379,34 @@
                 </div>
               </div>
             </div>
+    </div>             
+               
+			
+       			
+	<div class="row">
+            <div class="col-xl-12 col-lg-7">
+              <div class="card shadow mb-4">
+				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Pembelian Mengikut Kontan</h6>
+                    </div>
+                <div class="card-body">
+                  <div id="totalProductSellEachMonth" style="width: 95%; height: 800px;"></div><br>
+
+                </div>
+              </div>
+            </div>
     </div>
+			                     
+                  
+       			
+	
 			               
   
             
             
 			
 				
-	<div class="row">
-			<div class="col-xl-12 col-lg-7">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
-                </div>
-                <div class="card-body">
-                 <div id="stockDemand" style="width: 100%; height: 100%;"></div>  
-                </div>
-              </div>
-            </div>
-       </div>
+
 						
 			
 	<div class="row">

@@ -15,10 +15,10 @@
             <div class="card-header py-2">
                 <div class="row">
                   <div class="col-md-6">
-                     <h5 class="m-2 font-weight-bold text-primary">Senarai Produk</h5>
+                     <h6 class="m-2 font-weight-bold text-primary">Senarai Produk</h6>
                   </div>
                   <div class="col-md-6" align="center">
-                     <div align="right"><a class='btn btn-info' href='product.php?source=add_product'>+ Produk </a></div>
+                     <div align="right"><a class='btn btn-success' href='product.php?source=add_product'>+ Produk </a></div>
                   </div>
                 </div>
             </div>

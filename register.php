@@ -22,6 +22,58 @@
 
   <!-- Custom styles for this template-->
   <link href="css/Style.css" rel="stylesheet">
+	
+	<style>
+		
+	/* Green */
+	.success {
+	  color: green;
+	}
+
+	.success:hover {
+	  background-color: #4CAF50;
+	  color: white;
+	}
+
+	/* Blue */
+	.info {
+	  color: dodgerblue;
+	}
+
+	.info:hover {
+	  background: #2196F3;
+	  color: white;
+	}
+
+	/* Orange */
+	.warning {
+	  color: orange;
+	}
+
+	.warning:hover {
+	  background: #ff9800;
+	  color: white;
+	}
+
+	/* Red */
+	.danger {
+	  color: red;
+	}
+
+	.danger:hover {
+	  background: #f44336;
+	  color: white;
+	}
+
+	/* Gray */
+	.default {
+	  color: black;
+	}
+
+	.default:hover {
+	  background: #e7e7e7;
+	}
+	</style>
 
 </head>
 
@@ -39,7 +91,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     $user_repassword = trim($_POST['user_repassword']);
     $user_role = trim($_POST['user_role']);
             
-            echo $user_role;
+
 //    $error = [
 //
 //        'user_username'=>'',
@@ -91,11 +143,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
-          <div class="col-lg-5 d-none d-lg-block"></div>
+          <div class="col-lg-5 ">
+			  
+			<div class="p-5">
+				<div class="text-center">
+					<img src="img/bg/register.png" height="80%" width="100%" alt="MakmurLogo">
+					<h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
+				</div>
+			</div>
+			  
+		  </div>
+			
+			
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Pembukaan Akaun</h1>
+                <h1 class="h4 text-gray-900 mb-4"><b>DAFTAR AKAUN</b></h1>
               </div>
                 
                 
@@ -104,15 +167,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
                   
                 <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0" align="center">
-                        <input type="radio" id="supplier" name="user_role" value="2"><br>
-                        <label for="supplier">Pembekal</label>
+                    <div class="col-sm-6 mb-3 mb-sm-0" align="right">
+                        <input type="button" class="btn info" id="supplier" name="user_role" value="Petani"><br>
                     </div>
-                    <div class="col-sm-6" align="center">
-                        <input type="radio" id="buyer" name="user_role" value="3"><br>
-                        <label for="buyer">Pemborong</label>
+                    <div class="col-sm-6 mb-3 mb-sm-0" align="left">
+                        <input type="button"  class="btn info" id="buyer" name="user_role" value="Pemborong"><br>
                     </div>
                 </div>
+				  
+				  
+				
+				  
                   
                 <div class="form-group">
                     <input  class="form-control form-control-user" name="user_username" placeholder="ID Pengguna" required>
@@ -146,7 +211,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
               </div>
 -->
               <div class="text-center">
-                <a class="small" href="login.php">Sudah mempunyai akaun? Log Masuk!</a>
+                <p>Sudah mempunyai akaun? <a class="" href="login.php">Log Masuk</a></p>
               </div>
             </div>
           </div>

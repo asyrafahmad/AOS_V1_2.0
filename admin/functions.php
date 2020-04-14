@@ -7,18 +7,21 @@ function add_category(){
     if(isset($_POST['add_product_category'])) {
         
         $cat_product_title = $_POST['cat_product_title'];
+        $cat_product_image = $_POST['cat_product_image'];
+		
         if(!empty($cat_product_title)) {
 
-            $query = "INSERT INTO categories_product (cat_product_title) VALUES ('{$cat_product_title}') ";
+            $query = "INSERT INTO categories_product (cat_product_title, cat_product_image) VALUES ('{$cat_product_title}', '{$cat_product_image}') ";
             
             $product_category_query = mysqli_query($connection, $query);
             confirmQuery($product_category_query);
             
-            set_message("Kategori berjaya ditambah");
+//            set_message("Kategori berjaya ditambah");
+			echo "<p>Kategori berjaya ditambah</p>";
         } 
         else{
             
-            echo "<p class='bg-danger'>Sila isi di ruangan kosong</p>";
+            echo "<p>Sila isi di ruangan kosong</p>";
         }
     }
 }

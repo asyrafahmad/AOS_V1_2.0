@@ -6,7 +6,7 @@
    <div class="row">
 	   
 	   
-    <div class="col-12 col-md-4 text-center" id="">
+    <div class="col-12 col-md-4 text-center" >
       <a href="index.php" class="custom-card">
         <div class="card elodge">
           <div class="row py-4 no-gutters">

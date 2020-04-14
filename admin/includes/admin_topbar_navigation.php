@@ -45,13 +45,7 @@
             </li>
               
               
-            <li>
-              <a class="nav-link " href="../login.php" id="alertsDropdown" role="button" >
-                <span class="text">Login</span>
-              </a>
-           
-            </li>
-
+       
             <li>
               <a class="nav-link" href="../register.php" id="messagesDropdown" >
                  <span class="text">Register</span>

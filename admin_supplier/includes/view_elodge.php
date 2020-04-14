@@ -41,7 +41,7 @@
                             <tr><td><label for="elodge_product_image" ><?php echo "<a><img style='height:200px;' src='../img/$elodge_product_image' alt=''></a>";?> </label></td></tr>
                             <tr><td align="center"><label for="elodge_product_name" ><b>Nama Produk:</b> <?php echo strtoupper("$elodge_product_name");  ?>  </label></td></tr>
                             <tr><td align="center"><label for="elodge_product_quantity" ><b>Kuantiti:</b> <?php echo strtoupper("$elodge_product_quantity");  ?>  </label></td></tr>
-                            <tr><td align="center"><label for="elodge_product_harvest_date" ><b>Tarikh Menuai Pada:</b> <?php echo strtoupper("$elodge_product_harvest_date");  ?>  </label></td></tr>
+                            <tr><td align="center"><label for="elodge_product_harvest_date" ><b>Tarikh Menuai Pada:</b> Bulan  <?php echo strtoupper("$elodge_product_harvest_date");  ?>  </label></td></tr>
                             <tr><td align="center"><label for="elodge_product_amount_booked" ><b>Jumlah Tempahan:</b> <?php echo strtoupper("$elodge_product_amount_booked");  ?>  </label></td></tr>
                             <tr><td align="center"><label for="elodge_product_status" ><b>Status:</b> <?php echo strtoupper("$elodge_product_status");  ?>  </label></td></tr>
                           </table>

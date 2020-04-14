@@ -134,7 +134,7 @@
 					echo "</div>";
 					echo "<h4>$product_name</h4>";
 					echo "<h6>RM$product_current_price</h6>";
-					echo "<a class='btn btn-success' href='product.php?b_p_id={$product_id}'>Tambah ke troli</a>";
+					echo "<a class='btn btn-success' href='order.php?add=$product_id'>Tambah ke troli</a>";
 					echo "</div>";  
 					echo "</div>"; 
 					echo "</div>";

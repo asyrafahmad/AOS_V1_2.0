@@ -48,18 +48,10 @@
     //Update data
     if(isset($_POST['edit_elodge'])){
         
-//        $elodge_product_image            = $_FILES['elodge_product_image']['name'];
-//        $elodge_product_image_temp       = $_FILES['elodge_product_image']['tmp_name'];
-//        $elodge_product_name             = escape($_POST['elodge_product_name']);
-//        $elodge_product_quantity         = escape($_POST['elodge_product_quantity']);
-//        $elodge_product_harvest_date     = escape($_POST['elodge_product_harvest_date']);
-        $elodge_product_amount_booked    = escape($_POST['elodge_product_amount_booked']);
-//        $elodge_product_status           = escape($_POST['elodge_product_status']);
 
-//        move_uploaded_file($elodge_product_image_temp,"../img/$elodge_product_image" );
+        $elodge_product_amount_booked    = escape($_POST['elodge_product_amount_booked']);
         
-        
-        if($elodge_product_amount_booked <= $elodge_product_quantity){
+        if($elodge_product_amount_booked <= $elodge_product_quantity && !empty($elodge_product_amount_booked)){
             
        
             $query = "INSERT INTO elodge_product_book (book_buyer_product_id, book_buyer_name, book_buyer_product_quantity, book_buyer_product_name, book_buyer_product_image, book_buyer_product_date)  ";
@@ -71,8 +63,6 @@
             $amount_left = (($elodge_product_quantity)-($elodge_product_amount_booked));
             
             $query = "UPDATE elodge_product SET                                         ";
-//        $query .= "elodge_product_image            = '{$elodge_product_image}',       ";
-//            $query .= "elodge_buyer                 = '{$user_username}',               ";
             $query .= "elodge_product_quantity      = '{$amount_left}',                 ";
             $query .= "elodge_product_amount_booked = '{$elodge_product_amount_booked}',";
             $query .= "elodge_product_status        = 'Berjaya'    ";
@@ -80,10 +70,11 @@
 
             $edit_elodge_query = mysqli_query($connection,$query);
             confirmQuery($edit_elodge_query);
+			
+			header("Location: ./includes/elodge.php" );
         }
         else{
-            //TODO: put error message  "kuantiti tidak mencukupi"
-            return false;
+            echo "<script>alert('Sila isi maklumat pada ruangan kosong.')</script>";
         }
         
 
@@ -117,7 +108,7 @@
           </div>
           <div class="col-md-6 mb-3">
             <label for="firstName">Jumlah Kuantiti Produk Tempahan</label>
-            <input type="text" class="form-control" name="elodge_product_amount_booked" placeholder="" value="<?php echo $elodge_product_quantity; ?>" required="Isi nama produk">
+            <input type="text" class="form-control" name="elodge_product_amount_booked" placeholder="<?php echo $elodge_product_quantity; ?>" value="" required="Isi nama produk" >
             <div class="invalid-feedback">
               Valid first name is required.
             </div>

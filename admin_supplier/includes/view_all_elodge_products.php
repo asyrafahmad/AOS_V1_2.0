@@ -17,33 +17,50 @@
 		    <div class="card-header py-2">
                 <div class="row">
 					<div class="col-md-6">
-						 <h5 class="m-2 font-weight-bold text-primary">Senarai E-Lodge Produk</h5>
+						 <h6 class="m-2 font-weight-bold text-primary">Senarai E-Lodge Produk</h6>
 					</div>
+<!--
 					<div class="col-md-4">
 						<form >
 							<div class="input-group">
 							  <input type="text" class="form-control bg-light border-1 " placeholder="Search for..." >
-<!--
 							  <div class="input-group-append">
 								<button class="btn btn-primary" type="button">
 								  <i class="fas fa-search fa-sm"></i>
 								</button>
 							  </div>
--->
 							</div>
 						 </form>
 					</div>
+-->
 					
+				
+				  <div class="col-md-6" align="center">
+                     <div align="right"><a class="btn btn-success" href="e-lodge.php?source=add_elodge">+ Produk </a></div>
+                  </div>
                 </div>
             </div>      
 			  
 			  
 			  
 			  
+			<?php
+				if(isset($_GET['delete'])){
+
+					$elodge_product_id = $_GET['delete'];
+
+					$elodge_product_query = "DELETE FROM elodge_product WHERE elodge_product_id = {$elodge_product_id}	";
+					$delete_query = mysqli_query($connection, $elodge_product_query);
+
+					echo "<p>Produk e-lodge telah dibuang.</p>";
+				}
+
+			?>  
+			  
+			  
+			  
             <div class="card-body">
-				<div class="col-md-12" align="center">
-                     <div align="right"><a class="btn btn-info" href="e-lodge.php?source=add_elodge">+ Produk </a></div>
-                  </div><br>
+				
               <div class="table-responsive">
                   		  
                   

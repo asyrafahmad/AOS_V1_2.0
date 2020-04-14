@@ -111,13 +111,12 @@
       </div>
 
 
-		<div class="text-center d-none d-md-inline">
-            <a class="nav-link" href="../includes/logout.php" > 
-			<img  height="30%" width ="30%" src="../img/icon/logout.png>" >
+		<div class="text-center">
+            <a style="color:black" class="nav-link " href="../includes/logout.php" > 
+			<img src="../img/icon/logout.png" width="10%" height="10%">
             <span>Log Keluar</span></a>
 		</div>
-		
-		
+        
 		
 		
         <!-- Divider -->

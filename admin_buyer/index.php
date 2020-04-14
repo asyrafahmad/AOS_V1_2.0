@@ -47,22 +47,22 @@
           <!-- Content Row -->
           <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
+			  
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class="no-gutters align-items-center" align="center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Pesanan</div>
-                        <?php 
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Petani</div>
+                       <?php 
                             global $connection;
-                        
-                            $query = "SELECT * FROM buyer_order_product";
-                            $select_all_buyer_order_products = mysqli_query($connection,$query);
-                            $buyer_order_product_count = mysqli_num_rows($select_all_buyer_order_products);
 
-                            echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>{$buyer_order_product_count}</div>"
-                        ?>
+                            $query = "SELECT * FROM supplier";
+                            $select_all_suppliers = mysqli_query($connection,$query);
+                            $suppliers_count = mysqli_num_rows($select_all_suppliers);
+
+                            echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>{$suppliers_count}</div>";
+                      ?>
                     </div>
                     <div class="col-auto">
                         <img class="img-profile rounded-circle" src="../img/icon/product.png" height="50" width="50">
@@ -72,68 +72,82 @@
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+			<div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class="no-gutters align-items-center" align="center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Pembelian</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">25</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Pemborong</div>
+                       <?php 
+                            global $connection;
+
+                            $query = "SELECT * FROM user WHERE user_role = '3' ";
+                            $select_all_buyers = mysqli_query($connection,$query);
+                            $buyers_count = mysqli_num_rows($select_all_buyers);
+
+                            echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>{$buyers_count}</div>";
+                      ?>
                     </div>
                     <div class="col-auto">
-                      <img class="img-profile rounded-circle" src="../img/icon/product.png" height="50" width="50">
+                        <img class="img-profile rounded-circle" src="../img/icon/product.png" height="50" width="50">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
+         
+
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class="no-gutters align-items-center" align="center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Buah-buahan</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">40</div>
-                        </div>
-                        <div class="col">
-<!--
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
--->
-                        </div>
-                      </div>
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Product</div>
+                       <?php 
+                            global $connection;
+
+                            $query = "SELECT * FROM product ";
+                            $select_all_products = mysqli_query($connection,$query);
+                            $products_count = mysqli_num_rows($select_all_products);
+
+                            echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>{$products_count}</div>";
+                      ?>
                     </div>
                     <div class="col-auto">
-                      <img class="img-profile rounded-circle" src="../img/icon/product.png" height="50" width="50">
+                        <img class="img-profile rounded-circle" src="../img/icon/product.png" height="50" width="50">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+			  
 
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class="no-gutters align-items-center" align="center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Kontan</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Jumlah Product</div>
+                       <?php 
+                            global $connection;
+
+                            $query = "SELECT * FROM elodge_product ";
+                            $select_all_elodge_products = mysqli_query($connection,$query);
+                            $elodge_products_count = mysqli_num_rows($select_all_elodge_products);
+
+                            echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>{$elodge_products_count}</div>";
+                      ?>
                     </div>
                     <div class="col-auto">
-                      <img class="img-profile rounded-circle" src="../img/icon/product.png" height="50" width="50">
+                        <img class="img-profile rounded-circle" src="../img/icon/product.png" height="50" width="50">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+			  
+       </div>
 
           <!-- Content Row -->
 
@@ -181,11 +195,16 @@
 					function totalProduct() {
 						var data = google.visualization.arrayToDataTable([
 						  ['Task', 'Hours per Day'],
-						  ['Work',     11],
-						  ['Eat',      2],
-						  ['Commute',  2],
-						  ['Watch TV', 2],
-						  ['Sleep',    7]
+						 <?php  
+//							No of product from each state
+								$chart2_query = "SELECT user_state, count(*) as number FROM user JOIN product ON user.user_id = product.product_supplier GROUP BY user_state";  
+								$result2 = mysqli_query($connection, $chart2_query);  
+
+								while($row = mysqli_fetch_array($result2))  
+								{  
+								   echo "['".$row["user_state"]."', ".$row["number"]."],";  
+								}  
+                           ?>
 						]);
 
 						var options = {
@@ -201,32 +220,36 @@
 					function averageProduct() {
 
 						  var data = new google.visualization.DataTable();
-						  data.addColumn('number', 'Day');
-						  data.addColumn('number', 'Guardians of the Galaxy');
-						  data.addColumn('number', 'The Avengers');
-						  data.addColumn('number', 'Transformers: Age of Extinction');
+						  data.addColumn('number', 'Bulan');
+						  data.addColumn('number', 'Guava');
 
 						  data.addRows([
-							[1,  37.8, 80.8, 41.8],
-							[2,  30.9, 69.5, 32.4],
-							[3,  25.4,   57, 25.7],
-							[4,  11.7, 18.8, 10.5],
-							[5,  11.9, 17.6, 10.4],
-							[6,   8.8, 13.6,  7.7],
-							[7,   7.6, 12.3,  9.6],
-							[8,  12.3, 29.2, 10.6],
-							[9,  16.9, 42.9, 14.8],
-							[10, 12.8, 30.9, 11.6],
-							[11,  5.3,  7.9,  4.7],
-							[12,  6.6,  8.4,  5.2],
-							[13,  4.8,  6.3,  3.6],
-							[14,  4.2,  6.2,  3.4]
+							[0,  7],
+							[1,  7],
+							[2,  4],
+							  <?php  
+								$query  =  "SELECT MONTH(product_date_submit) as month, AVG(product_price) as product_price FROM product WHERE product_name = 'Guava' GROUP BY MONTH(product_date_submit)  ";    
+								$select_suppliers = mysqli_query($connection, $query);
+
+								while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+									echo "[".$row["month"].",  ".$row["product_price"]."],";  
+								}
+							 ?>
+							[5,  15],
+						    [6,  13],
+						    [7,  12],
+						    [8,  1],
+						    [9,  4],
+						    [10,  6],
+						    [11,  8],
+						    [12,  11],
 						  ]);
 
 						  var options = {
 							chart: {
-							  title: 'Box Office Earnings in First Two Weeks of Opening',
-							  subtitle: 'in millions of dollars (USD)'
+							  title: 'Harga Purata Bagi Produk Guava untuk Setiap Bulan',
+//							  subtitle: 'in millions of dollars (USD)'
 							},
 							width: 900,
 							height: 500
@@ -240,23 +263,28 @@
 					   
 					  function productBought() {
 							var data = new google.visualization.arrayToDataTable([
-							  ['Move', 'Percentage'],
-							  ["King's pawn (e4)", 44],
-							  ["Queen's pawn (d4)", 31],
-							  ["Knight to King 3 (Nf3)", 12],
-							  ["Queen's bishop pawn (c4)", 10],
-							  ['Other', 3]
+							  ['Bulan', 'Jumlah Produk'],
+							<?php  
+								$query  =  "SELECT count(*) as count, MONTH(order_date_payment) as month FROM order_product_history WHERE order_status = 'Successful' GROUP BY MONTH(order_date_payment)";    
+								$select_order_product = mysqli_query($connection, $query);
+								$order_product_count = mysqli_num_rows($select_order_product);
+
+								while ($row = mysqli_fetch_assoc($select_order_product)){
+
+									echo "[".$row["month"].",  ".$row["count"]."],";  
+								}
+							 ?>
 							]);
 
 							var options = {
 							  width: 800,
 							  legend: { position: 'none' },
-							  chart: {
-								title: 'Chess opening moves',
-								subtitle: 'popularity by percentage' },
+//							  chart: {
+//								title: 'Jumlah Produk Yang Dijual Pada Setiap Bulan',
+//								subtitle: '' },
 							  axes: {
 								x: {
-								  0: { side: 'top', label: 'White to move'} // Top x-axis.
+								  0: { side: 'top', label: 'Jumlah produk berjaya dijual'} // Top x-axis.
 								}
 							  },
 							  bar: { groupWidth: "90%" }

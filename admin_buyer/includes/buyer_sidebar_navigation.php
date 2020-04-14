@@ -24,42 +24,23 @@
       </li>
 
 
-    <!-- Nav Item - Product -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="../admin_buyer/product.php" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <img class="" src="../img/icon/Product.png" width="20%" height="20%">
-          <span>Produk</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="product.php">Senarai Produk</a>
-<!--            <a class="collapse-item" href="product.php?source=edit_product">Kemaskini Produk</a>-->
-          </div>
-        </div>
-      </li> 
-        
-        
-<!-- Nav Item - Buyer -->
-<!--
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="../admin_buyer/order.php" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <img class="" src="../img/icon/Buyer.png" width="20%" height="20%">
-          <span>Pesanan</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="order.php">Pesanan Saya</a>
-            <a class="collapse-item" href="order.php?source=view_order_product">Lihat Tempahan</a>
-          </div>
-        </div>
-      </li>  
-        
--->
-<!-- Nav Item - E-Lodge -->
-		
-		
+
 		
 
+    	<li class="nav-item">
+			<a class="nav-link collapsed" href="../admin_buyer/product.php" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+			  <img class="" src="../img/icon/Product.png" width="20%" height="20%">
+			  <span>Produk</span>
+			</a>
+			<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+			  <div class="bg-white py-2 collapse-inner rounded">
+				<a class="collapse-item" href="product.php">Senarai Produk</a>
+			  </div>
+			</div>
+      	</li> 
+    
+		
+	
 		
 		
 		
@@ -148,11 +129,13 @@
       </div>
 
 
-		<div class="text-center d-none d-md-inline">
-            <a class="nav-link" href="../includes/logout.php" > 
+	
+		<div class="text-center">
+            <a style="color:black" class="nav-link " href="../includes/logout.php" > 
+			<img src="../img/icon/logout.png" width="10%" height="10%">
             <span>Log Keluar</span></a>
 		</div>
-		
+        
 
 <div hidden>
       <!-- Divider -->
