@@ -1,0 +1,19 @@
+{
+    "name": "asyraf/aos_1.0_v1",
+    "require-dev": {
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.1"
+    },
+	"autoload": {
+		"classmap": [
+			"classes"
+		]
+	},
+	"authors": [
+		{
+			"name": "Asyraf",
+			"email": "asyraf@penerajumedia.com"
+		}
+	]
+}

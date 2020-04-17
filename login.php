@@ -102,7 +102,7 @@
                     </div>
 -->
                     <div class="">
-                        <input name="login" class="btn btn-primary btn-user btn-block" value="Submit" type="submit">
+                        <input name="login" class="btn btn-primary btn-user btn-block" value="Log Masuk" type="submit">
                     </div>
 <!--
                     <hr>
@@ -128,7 +128,7 @@
                     <a class="small" href="register.php">Daftar Akaun !</a>
                   </div>
 					<div class="text-center">
-                    <a class="small" href="register.php">Lupa Katalaluan ?</a>
+                    <a class="small" href="forgotPassword.php?forgot=<?php echo uniqid(true); ?>">Lupa Katalaluan ?</a>
                   </div>
                 </div>
               </div>

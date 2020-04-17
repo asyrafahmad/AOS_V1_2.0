@@ -118,8 +118,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 //    }
 
 
-
-
         register_user($user_username, $user_phone, $user_password, $user_repassword ,$user_role);
 
         $data['message'] = $user_username;
@@ -168,10 +166,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                   
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0" align="right">
-                        <input type="button" class="btn info" id="supplier" name="user_role" value="Petani"><br>
+                        <input type="radio" class="btn info" id="supplier" name="user_role" value="Petani"><br>
                     </div>
                     <div class="col-sm-6 mb-3 mb-sm-0" align="left">
-                        <input type="button"  class="btn info" id="buyer" name="user_role" value="Pemborong"><br>
+                        <input type="radio"  class="btn info" id="buyer" name="user_role" value="Pemborong"><br>
                     </div>
                 </div>
 				  

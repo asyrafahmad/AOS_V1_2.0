@@ -1,11 +1,12 @@
 <?php
 
+//to redirect file location
 function redirect($location){
     header("Location:" . $location);
     exit;
 }
 
-
+//if application needs to react on request of type POST
 function ifItIsMethod($method=null){
 
     if($_SERVER['REQUEST_METHOD'] == strtoupper($method)){
@@ -216,23 +217,16 @@ function email_exists($email){
 
     global $connection;
 
+    $query = "SELECT user_email FROM user WHERE user_email = '$email'";
+    $email_query = mysqli_query($connection, $query);
+    confirmQuery($email_query);
 
-    $query = "SELECT user_email FROM users WHERE user_email = '$email'";
-    $result = mysqli_query($connection, $query);
-    confirmQuery($result);
-
-    if(mysqli_num_rows($result) > 0) {
-
+    if(mysqli_num_rows($email_query) > 0) {
         return true;
 
     } else {
-
         return false;
-
     }
-
-
-
 }
 
 
@@ -246,8 +240,7 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
     $repassword = mysqli_real_escape_string($connection, $user_repassword);
     $user_role = mysqli_real_escape_string($connection, $user_role);
 
-    //$password = password_hash( $password, PASSWORD_BCRYPT, array('cost' => 12));
-    //$repassword = password_hash( $repassword, PASSWORD_BCRYPT, array('cost' => 12));
+    $password = password_hash( $password, PASSWORD_BCRYPT, array('cost' => 12));
 
 
     if($user_role == 'Petani'){
@@ -257,7 +250,7 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
         
         //insert into user table
         $query = "INSERT INTO user (user_username, user_phone, user_password, user_repassword , user_role ) ";
-        $query .= "VALUES('{$username}','{$phone}','{$password}','{$repassword}', '{$user_role}')";
+        $query .= "VALUES('{$username}','{$phone}','{$password}','{$password}', '{$user_role}')";
         
         $register_user_query = mysqli_query($connection, $query);
         confirmQuery($register_user_query);
@@ -278,7 +271,7 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
         
         //insert into user table
         $query = "INSERT INTO user (user_username, user_phone, user_password, user_repassword , user_role) ";
-        $query .= "VALUES('{$username}','{$phone}','{$password}','{$repassword}', '{$user_role}')";
+        $query .= "VALUES('{$username}','{$phone}','{$password}','{$password}', '{$user_role}')";
         
         $register_user_query = mysqli_query($connection, $query);
         confirmQuery($register_user_query);
@@ -292,7 +285,7 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
     }
     else{
         $query = "INSERT INTO user (user_username, user_phone, user_password, user_repassword) ";
-        $query .= "VALUES('{$username}','{$phone}','{$password}','{$repassword}')";
+        $query .= "VALUES('{$username}','{$phone}','{$password}','{$password}')";
     }
     
 
@@ -330,6 +323,8 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
          $db_user_password = $row['user_password'];
          $db_user_image = $row['user_image'];
 
+		 
+		 $password = crypt($password, $db_user_password);
 
          if ($password === $db_user_password) {
 
@@ -348,11 +343,6 @@ function register_user($user_username, $user_phone, $user_password, $user_repass
  }
 
 
-//admin_buyer fucntion to display list of order items
-function display_order(){
-	
-	$query = query("SELECT * FROM orders");
-}
 
 ?>
 

@@ -9,12 +9,13 @@
 
 
 <?php
+//echo '<meta http-equiv=Refresh content="2;url=order.php?reload=1">';
 
         //ADD-TO-CART    
         if(isset($_POST['add_to_cart'])){
             
             for($i = 0; $i <= 10; $i++){
-                   $product_name = $_POST['item_name_'.i];
+                   $product_name = $_POST['item_name_'.$i];
             }
          
 
