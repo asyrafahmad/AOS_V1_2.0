@@ -25,133 +25,68 @@
 	
 	<style>
 		
-	/* Green */
-	.success {
-	  color: green;
+
+	
+	.radio-toolbar {
+	  margin: 10px;
 	}
 
-	.success:hover {
-	  background-color: #4CAF50;
-	  color: white;
+	.radio-toolbar input[type="radio"] {
+	  opacity: 0;
+	  position: fixed;
+	  width: 0;
 	}
 
-	/* Blue */
-	.info {
-	  color: dodgerblue;
+	.radio-toolbar label {
+		display: inline-block;
+		background-color: #00FF7F;
+		padding: 10px 20px;
+		font-family: sans-serif, Arial;
+		font-size: 16px;
+		border: 2px solid #00FF00;
+		border-radius: 4px;
 	}
 
-	.info:hover {
-	  background: #2196F3;
-	  color: white;
+	.radio-toolbar label:hover {
+	  background-color: #dfd;
 	}
 
-	/* Orange */
-	.warning {
-	  color: orange;
+	.radio-toolbar input[type="radio"]:focus + label {
+		border: 2px dashed #00FF00;
 	}
 
-	.warning:hover {
-	  background: #ff9800;
-	  color: white;
+	.radio-toolbar input[type="radio"]:checked + label {
+		background-color: #bfb;
+		border-color: #4c4;
 	}
 
-	/* Red */
-	.danger {
-	  color: red;
-	}
-
-	.danger:hover {
-	  background: #f44336;
-	  color: white;
-	}
-
-	/* Gray */
-	.default {
-	  color: black;
-	}
-
-	.default:hover {
-	  background: #e7e7e7;
-	}
+		
+		
 	</style>
 
 </head>
 
     
-<?php
 
-
-
-
-if($_SERVER['REQUEST_METHOD'] == "POST") {
-
-    $user_username = trim($_POST['user_username']);
-    $user_phone    = trim($_POST['user_phone']);
-    $user_password = trim($_POST['user_password']);
-    $user_repassword = trim($_POST['user_repassword']);
-    $user_role = trim($_POST['user_role']);
-            
-
-//    $error = [
-//
-//        'user_username'=>'',
-//        'user_phone'=>'',
-//        'user_password'=>'',
-//        'user_repassword'=>''
-//    ];
-//
-//
-//    if(strlen($user_username) < 4){
-//        $error['user_username'] = 'Username needs to be longer';
-//    }
-//
-//     if(strlen($user_phone) < 12){
-//        $error['user_phone'] = 'Phone number cannot be exceed 11 number';
-//    }
-//
-//    if($user_password == '') {
-//        $error['password'] = 'Password cannot be empty';
-//    }
-//    
-//    if($user_password == '') {
-//        $error['user_password'] = 'Retype password cannot be empty';
-//    }
-
-
-        register_user($user_username, $user_phone, $user_password, $user_repassword ,$user_role);
-
-        $data['message'] = $user_username;
-        $pusher->trigger('notifications', 'new_user', $data);
-
-        login_user($user_username, $user_password);
-
-} 
-
-
-?>
     
    
     
     
 <body class="bg-gradient-primary">
-
   <div class="container">
-
     <div class="card o-hidden border-0 shadow-lg my-5">
       <div class="card-body p-0">
-        <!-- Nested Row within Card Body -->
+		 
+		<!--row start-->
         <div class="row">
           <div class="col-lg-5 ">
-			  
 			<div class="p-5">
 				<div class="text-center">
-					<img src="img/bg/register.png" height="80%" width="100%" alt="MakmurLogo">
-					<h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
+					<img src="img/bg/register.png" height="80%" width="110%" alt="MakmurLogo">
+					<h1 class="h4 text-gray-900 mb-4"><b>Selamat Datang!</b></h1>
 				</div>
 			</div>
-			  
 		  </div>
-			
 			
           <div class="col-lg-7">
             <div class="p-5">
@@ -159,26 +94,39 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 <h1 class="h4 text-gray-900 mb-4"><b>DAFTAR AKAUN</b></h1>
               </div>
                 
-                
-                
               <form class ="user" role="form" method="post" autocomplete="off">
 
-                  
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0" align="right">
-                        <input type="radio" class="btn info" id="supplier" name="user_role" value="Petani"><br>
-                    </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0" align="left">
-                        <input type="radio"  class="btn info" id="buyer" name="user_role" value="Pemborong"><br>
-                    </div>
-                </div>
+				  
+			
+				<!--TODO: make radio button with image displayed-->
+<!--
+				<div class="form-group row">
+					<div class="col-sm-6 mb-3 mb-sm-0" align="right">
+						<input type="radio" class="btn info" id="supplier" name="user_role" value="Petani"><br>
+					</div>
+					<div class="col-sm-6 mb-3 mb-sm-0" align="left">
+						<input type="radio"  class="btn info" id="buyer" name="user_role" value="Pemborong"><br>
+					</div>
+				</div>
+-->
+				  
+				<div class="" align="center">
+					<div class="radio-toolbar">
+						<input type="radio"  id="Petani" name="user_role" value="Petani">
+						<label for="Petani">Petani</label>
+
+						<input type="radio"  class="btn info" id="Pemborong" name="user_role" value="Pemborong">
+						<label for="Pemborong">Pemborong</label>
+					</div>
+					</div>
 				  
 				  
-				
 				  
-                  
                 <div class="form-group">
                     <input  class="form-control form-control-user" name="user_username" placeholder="ID Pengguna" required>
+                </div>
+				<div class="form-group">
+                  <input class="form-control form-control-user" name="user_email" placeholder="Emel" required>
                 </div>
                 <div class="form-group">
                   <input class="form-control form-control-user" name="user_phone" placeholder="Nombor Telefon" required>
@@ -188,35 +136,92 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                     <input type="password" class="form-control form-control-user" name="user_password" placeholder="Katalaluan" required>
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" name="user_repassword" placeholder="Ulangan Katalaluan" required>
+                    <input type="password" class="form-control form-control-user" name="user_repassword" placeholder="Ulang Katalaluan" required>
                   </div>
                 </div>
-<!--
-                <a href="login.php" class="btn btn-primary btn-user btn-block">
-                  Register Account
-                </a>
--->
+
+				<?php
+				  
+					if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+						$user_username = trim($_POST['user_username']);
+						$user_email = trim($_POST['user_email']);
+						$user_role = trim($_POST['user_role']);
+						$user_phone    = trim($_POST['user_phone']);
+						$user_password = trim($_POST['user_password']);
+						$user_repassword = trim($_POST['user_repassword']);
+
+//					    $error = [
+//					
+//					        'user_username'=>'',
+//					        'user_email'=>'',
+//					        'user_phone'=>'',
+//					        'user_password'=>'',
+//					        'user_repassword'=>''
+//					    ];
+//					
+//					
+//					    if(strlen($user_username) < 4){
+//					        $error['user_username'] = 'Username needs to be longer';
+//					    }
+//						
+//						if(strlen($user_username) < 4){
+//					        $error['user_email'] = 'Username needs to be longer';
+//					    }
+//					
+//					     if(strlen($user_phone) < 12){
+//					        $error['user_phone'] = 'Phone number cannot be exceed 11 number';
+//					    }
+//					
+//					    if($user_password == '') {
+//					        $error['password'] = 'Password cannot be empty';
+//					    }
+//					    
+//					    if($user_password == '') {
+//					        $error['user_password'] = 'Retype password cannot be empty';
+//					    }
+
+						if($user_password === $user_repassword){
+							register_user($user_username, $user_email, $user_phone, $user_password ,$user_role);
+
+							$data['message'] = $user_username;
+//							$pusher->trigger('notifications', 'new_user', $data);
+
+							echo "<div class='text-center'>";
+							echo "<p>Akaun telah berjaya didaftarkan.";
+							echo "</div>";
+						}
+						else {
+							echo "<div class='text-center'>";
+							echo "<p>Katalaluan tidak sama. Sila isi semula katalaluan.</p>";
+							echo "</div>";
+						}  
+					} 
+
+
+				?>
+				  
                 <div class="">
                     <input type="submit" name="register"  class="btn btn-primary btn-user btn-block" value="Daftar">
                 </div>
               </form>
-                
-                
 <!--
               <hr>
               <div class="text-center">
                 <a class="small" href="forgot-password.html">Forgot Password?</a>
               </div>
 -->
+			<hr>
               <div class="text-center">
-                <p>Sudah mempunyai akaun? <a class="" href="login.php">Log Masuk</a></p>
+                <p class="small">Sudah mempunyai akaun? <a class="" href="login.php">Log Masuk</a></p>
               </div>
             </div>
           </div>
         </div>
+		<!--row end-->
+		  
       </div>
     </div>
-
   </div>
 
   <!-- Bootstrap core JavaScript-->

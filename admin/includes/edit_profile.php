@@ -24,13 +24,15 @@ global $connection;
         $user_image       = escape($_FILES['user_image']['name']);
         $user_image_temp  = escape($_FILES['user_image']['tmp_name']);
         $user_password    = escape($_POST['user_password']);
+		
+		$password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
 
         move_uploaded_file($user_image_temp,"../img/$user_image" );
 
         //UPDATE query
         $query = "UPDATE user SET                               ";
         $query .= "user_image        = '{$user_image}',     ";
-        $query .= "user_password     = '{$user_password}'      ";
+        $query .= "user_password     = '{$password}'      ";
         $query .= "WHERE user_id =  {$user_id}          ";
 
         $edit_user_query = mysqli_query($connection,$query);
@@ -115,7 +117,7 @@ global $connection;
             
           <div class="col-md-6 mb-3">
             <label for="firstName">Katalaluan</label>
-            <input type="text" class="form-control" name="user_password" placeholder="<?php echo $user_password ?>" value="<?php echo $user_password ?>" required="">
+            <input type="text" class="form-control" name="user_password" placeholder="" value="<?php echo $user_password ?>" required="">
             <div class="invalid-feedback">
               Valid first name is required.
             </div>

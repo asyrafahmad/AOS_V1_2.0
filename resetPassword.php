@@ -1,69 +1,10 @@
-
 <?php include "includes/functions.php"; ?> 
 <?php  include "includes/db_connection.php"; ?>    
     
 <?php  include "includes/head.php"; ?>    
     
     
-<?php
-	
-global $connection;
-	
 
-	
-	
-$user_token= '04362562e3a672cb4965690736de57669cb4a272bd91e8431266ec1dabb47ff2c674634af5b213c6fe70e05e3daa832174fd';
-	
-if($stmt = mysqli_prepare($connection, "SELECT user_username, user_email, user_token FROM user WHERE user_token = ? ")){
-	
-	mysqli_stmt_bind_param($stmt, "s", $user_token);
-	
-	mysqli_stmt_execute($stmt);
-	
-	mysqli_stmt_bind_result($stmt, $user_username, $user_email, $user_token);
-	
-	mysqli_stmt_fetch($stmt);
-	
-	mysqli_stmt_close($stmt);
-	
-
-//	
-//	if($_GET['user_token'] !== $user_token || $_GET['user_email'] !== $user_email){
-//		
-//		echo "NICE";
-//	}
-}
-	
-	if(isset($_GET['email'])){
-		$email = $_GET['email'];
-	}
-
-	if(isset($_POST['password']) &&  isset($_POST['retypePassword'])){
-		
-		if($_POST['password'] === $_POST['retypePassword']){
-			
-			$password = $_POST['password'];
-			
-			$hashedPassword = password_hash($password, PASSWORD_BCRYPT, array('cost'=>12));
-			
-			if($stmt = mysqli_prepare($connection, "UPDATE user SET user_token='', user_password='{$password}' WHERE user_email = ? ")){
-				
-				mysqli_stmt_bind_param($stmt, "s", $email);
-				mysqli_stmt_execute($stmt);
-				
-				if(mysqli_stmt_affected_rows($stmt) >= 1){
-					echo "Katalaluan telah berjaya ditukar.";
-					
-					redirect('login.php');
-				}
-			}
-			else{
-				echo "Error.";
-			}
-		}
-	}
-	
-?>
     
     
     
@@ -104,6 +45,60 @@ if($stmt = mysqli_prepare($connection, "SELECT user_username, user_email, user_t
                       <input type="password" class="form-control form-control-user" name="retypePassword" placeholder="Isi Semula Katalaluan">
                     </div>
                   
+					<?php
+	
+						global $connection;
+
+						$user_token= '04362562e3a672cb4965690736de57669cb4a272bd91e8431266ec1dabb47ff2c674634af5b213c6fe70e05e3daa832174fd';
+
+						if($stmt = mysqli_prepare($connection, "SELECT user_username, user_email, user_token FROM user WHERE user_token = ? ")){
+
+							mysqli_stmt_bind_param($stmt, "s", $user_token);							//bind parameters for markers
+
+							mysqli_stmt_execute($stmt);													//execute query
+
+							mysqli_stmt_bind_result($stmt, $user_username, $user_email, $user_token);	//bind result variables
+
+							mysqli_stmt_fetch($stmt);													//fetch value
+
+							mysqli_stmt_close($stmt);													//close statement
+						}
+
+						if(isset($_GET['email'])){
+							$email = $_GET['email'];
+						}
+
+						if(isset($_POST['password']) &&  isset($_POST['retypePassword'])){
+
+							if($_POST['password'] === $_POST['retypePassword']){
+
+								$password = $_POST['password'];
+
+								$hashedPassword = password_hash($password, PASSWORD_BCRYPT, array('cost'=>12));
+
+								if($stmt = mysqli_prepare($connection, "UPDATE user SET user_token='', user_password='{$hashedPassword}' WHERE user_email = ? ")){
+
+									mysqli_stmt_bind_param($stmt, "s", $email);
+									mysqli_stmt_execute($stmt);
+
+									if(mysqli_stmt_affected_rows($stmt) >= 1){
+										echo "<a class='small'>Katalaluan telah berjaya ditukar.</a>";
+									}
+
+									mysqli_stmt_close($stmt);
+								}
+								else{
+									echo "Error.";
+								}
+							}
+							else{
+								echo "<a class='small'>Terdapat kesalahan pada katalaluan. Sila isi semula.</a>";
+							}
+						}
+
+					?>
+					
+					
                     <div class="">
                         <input name="reset" class="btn btn-primary btn-user btn-block" value="Hantar" type="submit">
                     </div>
@@ -111,8 +106,6 @@ if($stmt = mysqli_prepare($connection, "SELECT user_username, user_email, user_t
 					<input type="hidden" class="hide" name="user_token" id="token" value="">
 
                   </form>
-                    
-                    
                     
                     
                   <div class="text-center">

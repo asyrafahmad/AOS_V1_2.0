@@ -47,9 +47,9 @@
               
        
             <li>
-              <a class="nav-link" href="../register.php" id="messagesDropdown" >
-                 <span class="text">Register</span>
-              </a>
+<!--              <a class="nav-link" href="../register.php" id="messagesDropdown" >-->
+                 <span class="text">AOS</span>
+<!--              </a>-->
               
             </li>
 

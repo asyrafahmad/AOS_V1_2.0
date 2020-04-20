@@ -4,7 +4,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?menu=<?php echo $menu; ?>&">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -18,15 +18,123 @@
 
     <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="../admin_buyer/index.php">
+        <a class="nav-link" href="../admin_buyer/index.php?menu=<?php echo $menu; ?>">
           <img class="" src="../img/icon/dashboard.png" width="20%" height="20%">
           <span>Dashboard</span></a>
       </li>
 
 
+        
+<?php
+        
+        
+ if(isset($_GET['menu'])){
 
-		
+   if($_GET['menu'] == 'eselling'){
 
+        $menu = $_GET['menu'];
+        ?>
+
+
+    	<li class="nav-item">
+			<a class="nav-link collapsed" href="../admin_buyer/product.php" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+			  <img class="" src="../img/icon/Product.png" width="20%" height="20%">
+			  <span>Produk</span>
+			</a>
+			<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+			  <div class="bg-white py-2 collapse-inner rounded">
+				<a class="collapse-item" href="product.php?menu=<?php echo $menu; ?>">Senarai Produk</a>
+			  </div>
+			</div>
+      	</li> 
+
+        
+        
+        
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="../admin_buyer/order.php" data-toggle="collapse" data-target="#collapseOrder" aria-expanded="true" aria-controls="collapseOrder">
+          <img class="" src="../img/icon/history.png" width="20%" height="20%">
+          <span>Pesanan</span>
+        </a>
+        <div id="collapseOrder" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="order.php?menu=<?php echo $menu; ?>&source=view_all_order_products">Sejarah Pesanan Produk</a>
+          </div>
+        </div>
+      </li>
+        
+        
+                
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="../admin_buyer/toyyibpayApi.php" data-toggle="collapse" data-target="#toyyibPay" aria-expanded="true" aria-controls="collapseOrder">
+          <img class="" src="" width="20%" height="20%">
+          <span>ToyyibPay</span>
+        </a>
+        <div id="toyyibPay" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="toyyibpayApi.php?menu=<?php echo $menu; ?>&source=createBill">Create bill</a>
+          </div>
+        </div>
+      </li>
+        
+   
+    
+        
+  <?php      }
+
+    else if($_GET['menu'] == 'elodge'){
+        
+        $menu = $_GET['menu'];
+        
+    ?>
+ 
+        
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="../admin_buyer/e-lodge.php" data-toggle="collapse" data-target="#elodge" aria-expanded="true" aria-controls="collapseUtilities">
+          <img class="" src="../img/icon/Product.png" width="20%" height="20%">
+          <span>E-Lodge</span>
+        </a>
+        <div id="elodge" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="e-lodge.php?menu=<?php echo $menu;?>">Senarai Produk E-Lodge</a>
+            <a class="collapse-item" href="e-lodge.php?menu=<?php echo $menu; ?>&source=view_book_elodge_product">Lihat Pesanan E-Lodge</a>
+          </div>
+        </div>
+      </li>
+        
+
+    
+<?php
+    }
+
+    else if($_GET['menu'] == 'ebargain'){
+        
+        $menu = $_GET['menu'];
+        
+?>
+         
+         
+           <li class="nav-item">
+        <a class="nav-link collapsed" href="../admin_buyer/e-bargain.php" data-toggle="collapse" data-target="#ebargain" aria-expanded="true" aria-controls="collapseUtilities">
+          <img class="" src="../img/icon/Product.png" width="20%" height="20%">
+          <span>E-Bargain</span>
+        </a>
+        <div id="ebargain" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="e-bargain.php?menu=<?php echo $menu; ?>">Senarai Produk E-Bargain</a>
+          </div>
+        </div>
+      </li> 
+        
+<?php
+     }
+ }
+?>
+        
+
+<!--
     	<li class="nav-item">
 			<a class="nav-link collapsed" href="../admin_buyer/product.php" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
 			  <img class="" src="../img/icon/Product.png" width="20%" height="20%">
@@ -38,12 +146,8 @@
 			  </div>
 			</div>
       	</li> 
+
     
-		
-	
-		
-		
-		
     <li class="nav-item">
         <a class="nav-link collapsed" href="../admin_buyer/e-lodge.php" data-toggle="collapse" data-target="#elodge" aria-expanded="true" aria-controls="collapseUtilities">
           <img class="" src="../img/icon/Product.png" width="20%" height="20%">
@@ -56,8 +160,7 @@
           </div>
         </div>
       </li>
-        
-   <!-- Nav Item - E-Bargain-->
+
     <li class="nav-item">
         <a class="nav-link collapsed" href="../admin_buyer/e-bargain.php" data-toggle="collapse" data-target="#ebargain" aria-expanded="true" aria-controls="collapseUtilities">
           <img class="" src="../img/icon/Product.png" width="20%" height="20%">
@@ -70,43 +173,23 @@
         </div>
       </li> 
 
+-->
 
 
         
-    <!-- Nav Item - Buyer -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="../admin_buyer/order.php" data-toggle="collapse" data-target="#collapseOrder" aria-expanded="true" aria-controls="collapseOrder">
-          <img class="" src="../img/icon/history.png" width="20%" height="20%">
-          <span>Pesanan</span>
-        </a>
-        <div id="collapseOrder" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="order.php?source=view_all_order_products">Sejarah Pesanan Produk</a>
-          </div>
-        </div>
-      </li>    
         
         
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="../admin_buyer/toyyibpayApi.php" data-toggle="collapse" data-target="#toyyibPay" aria-expanded="true" aria-controls="collapseOrder">
-          <img class="" src="" width="20%" height="20%">
-          <span>ToyyibPay</span>
-        </a>
-        <div id="toyyibPay" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="toyyibpayApi.php?source=createBill">Create bill</a>
-          </div>
-        </div>
-      </li>
         
-   
+    
+        
+
         
 
 
 
         <!-- Nav Item - About Us -->
       <li class="nav-item">
-        <a class="nav-link" href="../admin_buyer/aboutus.php">
+        <a class="nav-link" href="../admin_buyer/aboutus.php?menu=<?php echo $menu; ?>&">
           <img class="" src="../img/icon/phone.png" width="20%" height="20%">
           <span>Tentang kami</span></a>
       </li>
@@ -122,7 +205,7 @@
   <hr><hr>
 		
 	 <div class="text-center d-none d-md-inline">
-        <a class="nav-link" href="profile.php?source=edit_profile" >
+        <a class="nav-link" href="profile.php?menu=<?php echo $menu; ?>&source=edit_profile" >
            	<img class="img-profile rounded-circle" height="30%" width ="30%" src="../img/<?php echo $_SESSION['user_image'] ?>" ><br>
 <!--			<span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['user_username'] ?></span>-->
         </a>

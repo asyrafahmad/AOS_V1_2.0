@@ -47,10 +47,10 @@
               
         
 
-            <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="../register.php" id="messagesDropdown" >
-                 <span class="text">Register</span>
+<!--              <a class="nav-link dropdown-toggle" href="../register.php" id="messagesDropdown" >-->
+              <a class="nav-link dropdown-toggle" href="" id="messagesDropdown" >
+                 <span class="text">AOS</span>
               </a>
               
             </li>

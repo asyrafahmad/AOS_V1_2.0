@@ -105,7 +105,7 @@
 		
 	 <div class="text-center d-none d-md-inline">
         <a class="nav-link" href="../admin_supplier/profile.php?source=edit_profile" >
-           	<img class="img-profile rounded-circle" height="30%" width ="30%" src="../img/<?php echo $_SESSION['user_image'] ?>" ><br>
+           	<img class="img-profile rounded-circle" height="30%" width ="30%" src="../img/<?php echo $_SESSION['user_image'] ?>" alt="gambar pengguna"><br>
 <!--			<span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['user_username'] ?></span>-->
         </a>
       </div>

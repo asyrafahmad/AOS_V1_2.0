@@ -8,108 +8,93 @@
     
     
 <?php
-	
-	
-//EMAIL PHPMailer
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 require './classes/Config.php';
-
-// Load Composer's autoloader
-require 'vendor/autoload.php';
+require 'vendor/autoload.php';		// Load Composer's autoloader
 
 	
+//if it is not GET unique id for forgot password request then go to login.php
+if(!ifItIsMethod('get') && !isset($_GET['forgot'])){
+
+	redirect('login.php');
+}
 	
-    
-	//if it is not GET unique id for forgot password request then go to login.php
-	if(!ifItIsMethod('get') && !isset($_GET['forgot'])){
-		
-		redirect('login.php');
-	}
-	
-	if(ifItIsMethod('post')){
-		
-		
+if(ifItIsMethod('post')){
+
+	if(isset($_POST['user_email'])){
+
+		$email = $_POST['user_email'];
+
+		$length = 50;
 
 		
-		
-		if(isset($_POST['user_email'])){
-			
-			$email = $_POST['user_email'];
-			
-			$length = 50;
-			
-			
-			//Generates a string of pseudo-random bytes, with the number of bytes determined by the length parameter.
-			$token = bin2hex(openssl_random_pseudo_bytes($length));
-			
-			if(email_exists($email)){
+		$token = bin2hex(openssl_random_pseudo_bytes($length));		//Generates a string of pseudo-random bytes, with the number of bytes determined by the length parameter.
+
+		if(email_exists($email)){
+
+			if($stmt = mysqli_prepare($connection, "UPDATE user SET user_token='{$token}' WHERE user_email = ? ")){
+				mysqli_stmt_bind_param($stmt, "s" , $email);			// "s" = string for "email = ?" , $email = variable
+				mysqli_stmt_execute($stmt);								// to execute statement
+				mysqli_stmt_close($stmt);								// close connection
+
+				/*
+				* configure PHPMailer
+				*/
 				
-				if($stmt = mysqli_prepare($connection, "UPDATE user SET user_token='{$token}' WHERE user_email = ? ")){
-					mysqli_stmt_bind_param($stmt, "s" , $email);			// "s" = string for "email = ?" , $email = variable
-					mysqli_stmt_execute($stmt);								// to execute statement
-					mysqli_stmt_close($stmt);								// close connection
-					
-					
-					/*
-					*
-					* configure PHPMailer
-					*
-					*/
-					
-					
-					// Instantiation and passing `true` enables exceptions
-					$mail = new PHPMailer(true);
+				$mail = new PHPMailer(true);		// Instantiation and passing `true` enables exceptions
 
-					try {
-						//Server settings
-					//    $mail->SMTPDebug = SMTP::SMTP_SERVER;                      // Enable verbose debug output
-						$mail->isSMTP();                                            // Send using SMTP
-						$mail->Host       = Config::SMTP_HOST;                    // Set the SMTP server to send through
-						$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-						$mail->Username   = Config::SMTP_USER;                     // SMTP username
-						$mail->Password   = Config::SMTP_PASSWORD;                               // SMTP password
-					//    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-						$mail->Port       = Config::SMTP_PORT;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-						$mail->CharSet    = 'UTF-8';
+				try {
+//					Server settings
+//				    $mail->SMTPDebug = SMTP::SMTP_SERVER;                      // Enable verbose debug output
+					$mail->isSMTP();                                            // Send using SMTP
+					$mail->Host       = Config::SMTP_HOST;                    // Set the SMTP server to send through
+					$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+					$mail->Username   = Config::SMTP_USER;                     // SMTP username
+					$mail->Password   = Config::SMTP_PASSWORD;                               // SMTP password
+//				    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+					$mail->Port       = Config::SMTP_PORT;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+					$mail->CharSet    = 'UTF-8';
 
-						//Recipients
-						$mail->setFrom('are.syraf97@yahoo.com', 'Mailer');	// Add a sender
-						$mail->addAddress($email);     						// Add a recipient
+//					Recipients
+					$mail->setFrom('are.syraf97@yahoo.com', 'Mailer');	// Add a sender
+					$mail->addAddress($email);     						// Add a recipient
 
 
-						// Content
-						$mail->isHTML(true);                                  // Set email format to HTML
-						$mail->Subject = 'Terlupa Katalaluan';
-						$mail->Body    = '<p>Sila tekan link ini untuk menetapkan semula katalaluan anda. <a href="http://localhost/DEVELOPMENT/AOS_1.0_V1/resetPassword.php?email='.$email.'&token='.$token.' ">http://localhost/DEVELOPMENT/AOS_1.0_V1/resetPassword.php?email='.$email.'&token='.$token.'</a></p>';
-//						$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+//					Content
+					$mail->isHTML(true);                                  // Set email format to HTML
+					$mail->Subject = 'Lupa Katalaluan';
+					$mail->Body    = '<p>Sila tekan link ini untuk menetapkan semula katalaluan anda. <a href="http://localhost/DEVELOPMENT/AOS_1.0_V1/resetPassword.php?email='.$email.'&token='.$token.' ">http://localhost/DEVELOPMENT/AOS_1.0_V1/resetPassword.php?email='.$email.'&token='.$token.'</a></p>';
+//					$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-						$mail->send();
-						
-						echo 'Emel telah berjaya dihantar.';
-						
+					$mail->send();
+
+					echo "<a class='small'>Emel telah berjaya dihantar.</a>";
+
 //						if($mail => send()){
 //							$emailSent = true;
-////							echo 'Emel telah berjaya dihantar.';
+//							echo 'Testing';
 //						}
 //						else{
 //							$emailSent = false;
 //						}
-						
-					} catch (Exception $e) {
-						echo "Mail Error: {$mail->ErrorInfo}";
-					}
 
-					
-				}
-				else{
-				
-					echo "Emel ini tidak sah.";
+				} 
+				catch (Exception $e) {
+					echo "Mail Error: {$mail->ErrorInfo}";
 				}
 			}
+			else{
+				echo "<a class='small'>Emel ini tidak sah.</a>";
+			}
+		}
+		else{
+			echo "<a class='small'>Emel tiada dalam pangkalan data.</a>";
 		}
 	}
+}
 		
 ?>
    
@@ -142,14 +127,6 @@ require 'vendor/autoload.php';
 					
 				<?php 
 						
-	if(isset($_SESSION['emails'])){
-		$emails = $_SESSION['emails'];
-	
-	}
-	
-	echo $emails;
-					
-					
 					
 					if(!isset($emailSent)): ?>	
 					
@@ -174,9 +151,7 @@ require 'vendor/autoload.php';
 
                   </form>
                     
-                    
-                    
-                    
+					
                   <div class="text-center">
                     <a class="small" href="login.php">Log Masuk</a>
                   </div>

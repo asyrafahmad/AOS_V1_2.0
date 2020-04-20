@@ -7,7 +7,7 @@
 	   
 	   
     <div class="col-12 col-md-4 text-center" >
-      <a href="index.php" class="custom-card">
+      <a href="index.php?menu=elodge" class="custom-card">
         <div class="card elodge">
           <div class="row py-4 no-gutters">
             <div class="col-4 col-md-12">
@@ -25,7 +25,7 @@
     </div>
 
     <div class="col-12 col-md-4 text-center">
-      <a href="index.php" class="custom-card">
+      <a href="index.php?menu=eselling" class="custom-card">
         <div class="card eselling">
           <div class="row py-4">
             <div class="col-4 col-md-12">
@@ -43,7 +43,7 @@
     </div>
 
     <div class="col-12 col-md-4 text-center">
-      <a href="index.php" class="custom-card">
+      <a href="index.php?menu=ebargain" class="custom-card">
         <div class="card ebargain">
           <div class="row py-4">
             <div class="col-4 col-md-12">

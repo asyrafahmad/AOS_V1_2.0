@@ -35,27 +35,30 @@
     
     if(isset($_POST['edit_buyer_profile'])){
         
-        $buyer_image       = escape($_FILES['buyer_image']['name']);
-        $buyer_image_temp  = escape($_FILES['buyer_image']['tmp_name']);
-        $buyer_name        = escape($_POST['buyer_name']);
-        $buyer_phone       = escape($_POST['buyer_phone']);
-        $buyer_email       = escape($_POST['buyer_email']);
-        $buyer_website     = escape($_POST['buyer_website']);
-        $buyer_state       = escape($_POST['buyer_state']);
-        $buyer_address     = escape($_POST['buyer_address']);
+        $user_image       = escape($_FILES['user_image']['name']);
+        $user_image_temp  = escape($_FILES['user_image']['tmp_name']);
+        $user_name        = escape($_POST['user_name']);
+        $user_phone       = escape($_POST['user_phone']);
+        $user_email       = escape($_POST['user_email']);
+        $user_website     = escape($_POST['user_website']);
+        $user_state       = escape($_POST['user_state']);
+        $user_address     = escape($_POST['user_address']);
+        $user_password    = escape($_POST['user_password']);
+		
+		$password = password_hash($buyer_password, PASSWORD_BCRYPT, array('cost' => 12));
 
-        move_uploaded_file($buyer_image_temp,"../img/$buyer_image" );
+        move_uploaded_file($user_image_temp,"../img/$user_image" );
 
         //UPDATE query
         $query = "UPDATE buyer SET                               ";
-        $query .= "buyer_image        = '{$buyer_image}',     ";
-        $query .= "buyer_name         = '{$buyer_name}',      ";
-        $query .= "buyer_phone        = '{$buyer_phone}',     ";
-        $query .= "buyer_email        = '{$buyer_email}',     ";
-        $query .= "buyer_website      = '{$buyer_website}',   ";
-        $query .= "buyer_state        = '{$buyer_state}',     ";
-        $query .= "buyer_address      = '{$buyer_address}'    ";
-        $query .= "WHERE buyer_id     =  {$buyer_id}          ";
+        $query .= "user_image        = '{$user_image}',     ";
+        $query .= "user_name         = '{$user_name}',      ";
+        $query .= "user_phone        = '{$user_phone}',     ";
+        $query .= "user_email        = '{$user_email}',     ";
+        $query .= "user_website      = '{$user_website}',   ";
+        $query .= "user_state        = '{$user_state}',     ";
+        $query .= "user_address      = '{$user_address}'    ";
+        $query .= "WHERE user_id     =  {$user_id}          ";
 
         $edit_buyer_query = mysqli_query($connection,$query);
         confirmQuery($edit_buyer_query);
@@ -86,14 +89,14 @@
             
           <div class="col-md-6 mb-3">
             <label for="firstName">Nama</label>
-            <input type="text" class="form-control" name="supplier_name" placeholder="<?php echo $user_username ?>" value="" required="">
+            <input type="text" class="form-control" name="supplier_name" placeholder="" value="<?php echo $user_username ?>" required="">
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="lastName">Nombor Telefon</label>
-            <input type="text" class="form-control" name="supplier_phone" placeholder="<?php echo $user_phone ?>" value="" required="">
+            <input type="text" class="form-control" name="supplier_phone" placeholder="" value="<?php echo $user_phone ?>" required="">
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
@@ -101,14 +104,14 @@
             
         <div class="col-md-6 mb-3">
             <label for="lastName">Emel</label>
-            <input type="text" class="form-control" name="supplier_email" placeholder="<?php echo $user_email ?>" value="" required="">
+            <input type="text" class="form-control" name="supplier_email" placeholder="" value="<?php echo $user_email ?>" required="">
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
           </div>
            <div class="col-md-6 mb-3">
             <label for="lastName">Website</label>
-            <input type="text" class="form-control" name="supplier_website" placeholder="<?php echo $user_website ?>" value="" required="">
+            <input type="text" class="form-control" name="supplier_website" placeholder="" value="<?php echo $user_website ?>" required="">
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
@@ -116,18 +119,22 @@
         
             <div class="col-md-6 mb-3">
             <label for="lastName">Negeri</label>
-            <input type="text" class="form-control" name="supplier_state" placeholder="<?php echo $user_state ?>" value="" required="">
+            <input type="text" class="form-control" name="supplier_state" placeholder="" value="<?php echo $user_state ?>" required="">
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
           </div>
         <div class="col-md-6 mb-3">
             <label for="lastName">Alamat</label>
-            <input type="text" class="form-control" name="supplier_address" placeholder="<?php echo $user_address ?>" value="" required="">
+            <input type="text" class="form-control" name="supplier_address" placeholder="" value="<?php echo $user_address ?>" required="">
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
           </div>
+		<div class="col-md-6 mb-3">
+            <label for="lastName">Katalaluan</label>
+            <input type="text" class="form-control" name="user_password" placeholder="" value="<?php echo $user_password ?>" required="">
+         </div>
             
         
                      
