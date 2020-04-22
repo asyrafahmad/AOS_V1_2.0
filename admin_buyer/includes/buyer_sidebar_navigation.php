@@ -4,7 +4,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?menu=<?php echo $menu; ?>&">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?menu=<?php echo $menu; ?>">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -37,7 +37,7 @@
 
 
     	<li class="nav-item">
-			<a class="nav-link collapsed" href="../admin_buyer/product.php" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+			<a class="nav-link collapsed" href="../admin_buyer/product.php?menu=<?php echo $menu; ?>" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
 			  <img class="" src="../img/icon/Product.png" width="20%" height="20%">
 			  <span>Produk</span>
 			</a>
@@ -52,7 +52,7 @@
         
         
     <li class="nav-item">
-        <a class="nav-link collapsed" href="../admin_buyer/order.php" data-toggle="collapse" data-target="#collapseOrder" aria-expanded="true" aria-controls="collapseOrder">
+        <a class="nav-link collapsed" href="../admin_buyer/order.php?menu=<?php echo $menu; ?>" data-toggle="collapse" data-target="#collapseOrder" aria-expanded="true" aria-controls="collapseOrder">
           <img class="" src="../img/icon/history.png" width="20%" height="20%">
           <span>Pesanan</span>
         </a>
@@ -66,7 +66,7 @@
         
                 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="../admin_buyer/toyyibpayApi.php" data-toggle="collapse" data-target="#toyyibPay" aria-expanded="true" aria-controls="collapseOrder">
+        <a class="nav-link collapsed" href="../admin_buyer/toyyibpayApi.php?menu=<?php echo $menu; ?>" data-toggle="collapse" data-target="#toyyibPay" aria-expanded="true" aria-controls="collapseOrder">
           <img class="" src="" width="20%" height="20%">
           <span>ToyyibPay</span>
         </a>
@@ -92,7 +92,7 @@
 
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="../admin_buyer/e-lodge.php" data-toggle="collapse" data-target="#elodge" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="../admin_buyer/e-lodge.php?menu=<?php echo $menu; ?>" data-toggle="collapse" data-target="#elodge" aria-expanded="true" aria-controls="collapseUtilities">
           <img class="" src="../img/icon/Product.png" width="20%" height="20%">
           <span>E-Lodge</span>
         </a>
@@ -117,7 +117,7 @@
          
          
            <li class="nav-item">
-        <a class="nav-link collapsed" href="../admin_buyer/e-bargain.php" data-toggle="collapse" data-target="#ebargain" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="../admin_buyer/e-bargain.php?menu=<?php echo $menu; ?>" data-toggle="collapse" data-target="#ebargain" aria-expanded="true" aria-controls="collapseUtilities">
           <img class="" src="../img/icon/Product.png" width="20%" height="20%">
           <span>E-Bargain</span>
         </a>

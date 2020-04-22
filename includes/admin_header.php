@@ -33,7 +33,8 @@
 	
 		if(!isset($_SESSION['user_role'])){
 			
-			header("location: ../login.php");
+//			header("location: ../login.php");
+			redirect("../login.php");
 		}
 	?>
 

@@ -306,16 +306,19 @@ function is_admin($user_username) {
 
     if($row['user_role'] == '1'){
 		$_SESSION['user_role'] = 1;
-        return header("Location: ./admin/index.php" );
+//        return header("Location: ./admin/index.php" );
+        redirect("./admin/index.php" );
 
     }
     else if($row['user_role'] == '2') {
 		$_SESSION['user_role'] = 2;
-        return header("Location: ./admin_supplier/index.php" );
+//        return header("Location: ./admin_supplier/index.php" );
+        redirect("./admin_supplier/index.php" );
     }
     else if($row['user_role'] == '3') {
 		$_SESSION['user_role'] = 3;
-        return header("Location: ./admin_buyer/menu.php" );
+//        return header("Location: ./admin_buyer/menu.php" );
+        redirect("./admin_buyer/menu.php");
     }
     else {
         return false;

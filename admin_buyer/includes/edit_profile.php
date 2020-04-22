@@ -27,6 +27,7 @@
             $user_state = escape($row['user_state']);
             $user_address = escape($row['user_address']);
             $user_website = escape($row['user_website']);
+            $user_password = escape($row['user_password']);
                              
         }
     
@@ -133,7 +134,7 @@
           </div>
 		<div class="col-md-6 mb-3">
             <label for="lastName">Katalaluan</label>
-            <input type="text" class="form-control" name="user_password" placeholder="" value="<?php echo $user_password ?>" required="">
+            <input type="password" class="btn border-secondary form-control" name="user_password" placeholder="" value="<?php echo $user_password ?>" required="">
          </div>
             
         

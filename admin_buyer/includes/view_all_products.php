@@ -10,7 +10,7 @@
               <h1 class="text-gray-800">Produk</h1>
 			  <div class="col-xl-1" align="center">
 				  <div class="card shadow py-2 ">
-				  <a href="order.php"><img height="75%" width="75%" src="../img/icon/add-to-cart.png" ></a>
+				  <a href="order.php?menu=<?php echo $menu; ?>"><img height="75%" width="75%" src="../img/icon/add-to-cart.png" ></a>
 				  </div>
 			  </div>
           </div>
@@ -45,8 +45,8 @@
                                 $cat_product_image = escape($row['cat_product_image']);
                                 
                                 echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                                echo "<div class='' align='center'>";
-                                echo "<a href='product.php?p_c=$cat_product_title'><img style='height:100px; width:' src='../img/$cat_product_image' ></a><br>";
+                                echo "<div align='center'>";
+                                echo "<a href='product.php?menu=$menu&p_c=$cat_product_title'><img style='height:100px; width:' src='../img/$cat_product_image' ></a><br>";
                                 echo "<a class='align-items-center'>$cat_product_title</a>";
                                 echo "</div>";   
                                 
@@ -84,7 +84,7 @@
 					echo "<div class='card shadow'>";
 					echo "<div class='card-body'>";
 					echo "<div class='no-gutters align-items-center'>";
-					echo "<a href='product.php?p_c=$cat_product_title'><img width='40%' height='40%' src='../img/$cat_product_image' ></a><br>";
+					echo "<a href='product.php?menu=$menu&p_c=$cat_product_title'><img width='40%' height='40%' src='../img/$cat_product_image' ></a><br>";
 					echo "<a class='align-items-center'>$cat_product_title</a>";
 					echo "</div>";   
 					echo "</div>";   
@@ -130,11 +130,11 @@
 					echo "<div class='card shadow'>";
 					echo "<div class='card-body'>";
 					echo "<div class='no-gutters align-items-center'>";
-					echo "<a href='product.php?b_p_id={$product_id}'><img width='50%' height='50%' src='../img/$product_image' ></a>";
+					echo "<a href='product.php?menu=$menu&b_p_id={$product_id}'><img width='50%' height='50%' src='../img/$product_image' ></a>";
 					echo "</div>";
 					echo "<h4>$product_name</h4>";
 					echo "<h6>RM$product_current_price</h6>";
-					echo "<a class='btn btn-success' href='order.php?add=$product_id'>Tambah ke troli</a>";
+					echo "<a class='btn btn-success' href='order.php?menu=$menu&add=$product_id'>Tambah ke troli</a>";
 					echo "</div>";  
 					echo "</div>"; 
 					echo "</div>";
@@ -185,7 +185,7 @@
 					echo "<p>Huraian: $product_description</p>";
 					echo "<p>Harga: RM$product_current_price</p>";
 					echo "<p>Kuantiti: $product_quantity</p>";
-					echo "<a class='btn btn-success' href='order.php?add=$product_id'>Tambah ke troli</a>";
+					echo "<a class='btn btn-success' href='order.php?menu=$menu&add=$product_id'>Tambah ke troli</a>";
 					echo "</div>";
 				} 
 

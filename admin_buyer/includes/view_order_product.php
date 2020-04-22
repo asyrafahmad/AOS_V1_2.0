@@ -11,6 +11,8 @@
 <?php
 //echo '<meta http-equiv=Refresh content="2;url=order.php?reload=1">';
 
+
+
         //ADD-TO-CART    
         if(isset($_POST['add_to_cart'])){
             
@@ -67,6 +69,8 @@
 
                         <?php
                         
+                    
+                        
                         
                           if(isset($_GET['add'])) {
                                 
@@ -81,6 +85,7 @@
                                     if($product_quantity != $_SESSION['product_quantity_'.$_GET['add']]){
                                         
                                         $_SESSION['product_quantity_'.$_GET['add']] +=1;
+                                         echo "<script>window.location='./order.php?menu=$menu'</script>";
                                     }
                                     else{
                                         echo "<script>alert('Maaf ! Jumlah stok tidak mencukupi.')</script>";
@@ -109,6 +114,13 @@
                         
                             //function cart()
                             function cart(){
+                                
+                                
+                            if(isset($_GET['menu'])){
+                            
+                                $menu = $_GET['menu'];
+                            }
+                        
                                 
                             $total = 0;                //variable for total amount of all items
                             $total2 = 0;                //variable for total amount of all items
@@ -159,13 +171,13 @@
                                         echo"<td>$product_name</td>";
                                         echo"<td>RM$product_price</td>";
                                         echo"<td>
-                                        <a class='btn btn-warning' href='order.php?remove={$product_id}'><span class='glyphicon glyphicon-minus'>-</span></a>
+                                        <a class='btn btn-warning' href='order.php?menu=$menu&remove={$product_id}'><span class='glyphicon glyphicon-minus'>-</span></a>
                                         <a class='btn'><span class='glyphicon glyphicon-minus'>$value</span></a>
-                                        <a class='btn btn-success' href='order.php?add={$product_id}'><span class='glyphicon glyphicon-plus'>+</span></a></td>";
+                                        <a class='btn btn-success' href='order.php?menu=$menu&add={$product_id}'><span class='glyphicon glyphicon-plus'>+</span></a></td>";
                                         echo"<td>RM$total_price</td>";
                                         echo"<td>
                                             
-                                            <a class='btn btn-danger' href='order.php?delete={$product_id}'><span class='glyphicon glyphicon-remove'>x</span></a>
+                                            <a class='btn btn-danger' href='order.php?menu=$menu&delete={$product_id}'><span class='glyphicon glyphicon-remove'>x</span></a>
                                             </td>";
                                         echo"</tr>";
                                         
@@ -235,11 +247,16 @@
                 
                 
          	<?php 
+                 if(isset($_GET['menu'])){
+                            
+                    $menu = $_GET['menu'];
+                }
+                        
 				
 				if($_SESSION['item_total_quantity'] >= 1){ 
 					
 				echo "<div class='col-xs-1' align='center'>";
-                echo "<td><a class='btn btn-success' href='./includes/createBill.php'>Seterusnya </a></td>";
+                echo "<td><a class='btn btn-success' href='./includes/createBill.php?menu=$menu'>Seterusnya </a></td>";
             	echo "</div>"
 			?>
                 

@@ -4,7 +4,7 @@
 
 <?php
 
-
+//
 //     	global $connection;
 //        $query  =  "SELECT * FROM buyer ";    
 //        $select_buyer = mysqli_query($connection, $query);
@@ -20,8 +20,8 @@
 //            $buyer_address = escape($row['buyer_address']);
 //                             
 //        }
-
-
+//
+//
 
 
 
@@ -66,7 +66,7 @@
   curl_close($curl);
 
   $obj = json_decode($result);
-  echo $result;
+//  echo $result;
 
 //categoryCode = 76q6uc4k
 
@@ -84,13 +84,17 @@
     'billDescription'=>'Payment for buying product',
     'billPriceSetting'=>0,
     'billPayorInfo'=>0,
-    'billAmount'=>$_SESSION['total_price_afterConvert'],
+//    'billAmount'=>$_SESSION['total_price_afterConvert'],
+    'billAmount'=>'',
     'billReturnUrl'=>'http://localhost/DEVELOPMENT/AOS_1.0_V1/admin_buyer/toyyibpayApi.php?source=thankyou',
     'billCallbackUrl'=>'',
     'billExternalReferenceNo' => 'AFR341DFI',
-    'billTo'=>'Asyraf Ahmad',
-    'billEmail'=> $_SESSION['user_email'],
-    'billPhone'=> $_SESSION['user_phone'],
+//    'billTo'=>'Asyraf Ahmad',
+//    'billEmail'=> $_SESSION['user_email'],
+//    'billPhone'=> $_SESSION['user_phone'],   
+    'billTo'=>'',
+    'billEmail'=> '',
+    'billPhone'=> '',
     'billSplitPayment'=>0,
     'billSplitPaymentArgs'=>'',
     'billPaymentChannel'=>'2',
@@ -109,7 +113,7 @@
   $info = curl_getinfo($curl);  
   curl_close($curl);
   $obj = json_decode($result);
-  echo $result;
+//  echo $result;
 
   	//to get billCode as SESSION
 	foreach($obj as $key => $val){

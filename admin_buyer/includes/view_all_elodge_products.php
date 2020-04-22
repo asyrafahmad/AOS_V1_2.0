@@ -63,7 +63,7 @@
                             echo "<td>Bulan: $elodge_product_harvest_date  </td>";
                             echo "<td><p class='text-danger'>$elodge_product_amount_booked</p></td>";
                             echo "<td><p class='text-danger'>$elodge_product_status </p></td>";
-                            echo "<td><a class='btn btn-success' href='e-lodge.php?source=book_elodge_product&b_e_p_id={$elodge_product_id}'>Tempah </a></td>";
+                            echo "<td><a class='btn btn-success' href='e-lodge.php?menu=$menu&source=book_elodge_product&b_e_p_id={$elodge_product_id}'>Tempah </a></td>";
                             echo "</tr>";
 
                                 }

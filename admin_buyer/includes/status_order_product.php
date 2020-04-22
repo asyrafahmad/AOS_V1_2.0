@@ -120,9 +120,9 @@
                                         echo"<td>RM$product_price</td>";
                                         echo"<td>$value</td>";
                                         echo"<td>$total_price</td>";
-                                        echo"<td><a class='btn btn-warning' href='order.php?remove={$product_id}'><span class='glyphicon glyphicon-minus'>-</span></a>
-                                            <a class='btn btn-success' href='order.php?add={$product_id}'><span class='glyphicon glyphicon-plus'>+</span></a>
-                                            <a class='btn btn-danger' href='order.php?delete={$product_id}'><span class='glyphicon glyphicon-remove'>x</span></a>
+                                        echo"<td><a class='btn btn-warning' href='order.php?menu=$menu&remove={$product_id}'><span class='glyphicon glyphicon-minus'>-</span></a>
+                                            <a class='btn btn-success' href='order.php?menu=$menu&add={$product_id}'><span class='glyphicon glyphicon-plus'>+</span></a>
+                                            <a class='btn btn-danger' href='order.php?menu=$menu&delete={$product_id}'><span class='glyphicon glyphicon-remove'>x</span></a>
                                             </td>";
                                         echo"</tr>";
 
