@@ -353,20 +353,18 @@
         </div> 
     </div>
 
-    <div class="row">
-      <div class="card-body">  
-              <div class="col-xl-16">
-                <div class="card shadow mb-5">               
-                  
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Pembelian Mengikut Kontan</h6>
-                    </div><br>
-                    <div id="totalProductSellEachMonth" style="width: 95%; height: 800px;"></div><br>
-                  
-               </div>       
-              </div>
-        </div> 
+  <div class="row">
+    <div class="col-xl-12 col-lg-7">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
+        </div>
+        <div class="card-body">
+         <div id="quantityProductDemand" style="width: 100%; height: 100%;"></div>  
+        </div>
+      </div>
     </div>
+  </div>
 
     </div>
 
