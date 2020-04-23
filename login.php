@@ -24,16 +24,7 @@ if(ifItIsMethod('post')){
 
 
 ?>
-<<<<<<< HEAD
-<!--    Testing branch Asyraf Ahmad-->
-    
-=======
-    
-<!--    Testing push-->
 
-
-
->>>>>>> 95e69b05f8cd87ff14da164242143950231e42cd
   <div class="container">
 
     <!-- Outer Row -->
