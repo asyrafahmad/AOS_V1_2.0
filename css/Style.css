@@ -1738,7 +1738,7 @@ pre code {
 .form-control:focus {
   color: #6e707e;
   background-color: #fff;
-  border-color: #bac8f3;
+  border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
 }
@@ -1849,7 +1849,7 @@ textarea.form-control {
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  /*margin-bottom: 1rem;*/
 }
 
 .form-text {
@@ -3231,10 +3231,15 @@ input[type="button"].btn-block {
 
 .input-group {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
   align-items: stretch;
-  width: 100%;
+  width: 100%; }
 }
 
 .input-group > .form-control,
@@ -4347,6 +4352,7 @@ input[type="button"].btn-block {
 }
 
 .card-title {
+  display: inline-flex;
   margin-bottom: 0.75rem;
 }
 
@@ -11296,7 +11302,30 @@ a.profile img{
       transform: rotate(0deg);
     }
 
+}
 
+
+/*search*/
+.has-search input[type=text] {
+  border:none;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+    background: #fafafa;
+    border-radius: 30px;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 3.3rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
 }
 
 @media (max-width: 576px){
