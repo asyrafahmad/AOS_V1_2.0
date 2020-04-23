@@ -64,7 +64,7 @@
                   <!-- </li> -->
 
                   <li id="logout" class="nav-item p-4">
-                    <a href="../admin_supplier/aboutus.php" class="nav-link">
+                    <a href="../includes/logout.php" class="nav-link">
                         <img src="../img/icon/logout.svg" height="24px">
                           Keluar
                       </a>
