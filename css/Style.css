@@ -1849,7 +1849,7 @@ textarea.form-control {
 }
 
 .form-group {
-  /*margin-bottom: 1rem;*/
+  margin-bottom: 0;
 }
 
 .form-text {
@@ -11309,6 +11309,7 @@ a.profile img{
 .has-search input[type=text] {
   border:none;
 }
+
 
 .has-search .form-control {
     padding-left: 2.375rem;
