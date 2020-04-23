@@ -1,35 +1,33 @@
-
 <?php  include "../includes/admin_header.php"; ?>
 
+<div class="wrapper d-flex align-items-stretch">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
-     
-        
-   <?php  include "includes/supplier_sidebar_navigation.php"; ?>
+  <?php include "includes/supplier_sidebar_navigation.php" ?>
+  
+  <!-- Page Content  -->
+  <div id="content" class="">
 
+    <?php include "../includes/topbar_nav.php" ?>
 
+    <div class="container-fluid">
+      
+    <div class="d-sm-flex align-items-center justify-content-between m-4">
+      <h1 class="h3 mb-0 text-gray-800">Profile</h1>
+    </div>
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Content Row -->
+    <div class="row">
 
-      <!-- Main Content -->
-      <div id="content">
-
-     
-
-          <!-- Top nav-->
-            <?php  include "includes/supplier_topbar_navigation.php"; ?>
-
-        
-           
-
-
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-          
+     <div class="col-xl-12">
+        <div class="card p-4 border">
+          <div class="card-title justify-content-between align-items-center">
+            <i class="fas fa-angle-left fa-2x"></i>
+            <div class="form-group has-search">
+              <span class="fa fa-search form-control-feedback"></span>
+              <input type="text" class="form-control" placeholder="Search">
+           </div>
+          </div>
+            <div class="card-body">
         <?php
 
             if(isset($_GET['source'])){
@@ -41,7 +39,7 @@
 
             switch($source) {
                     
-                 case 'edit_profile';
+                case 'edit_profile';
                     include "includes/edit_profile.php";
                     break;
 
@@ -54,22 +52,20 @@
                     break;
             }
 
-        ?>
+        ?>              
+            </div>
+        </div>
+      </div>
+
+    </div>
+
 
  
-        </div>
-        <!-- /.container-fluid -->
 
-          
-          
-          
-          
-          
-      </div>
-      <!-- End of Main Content -->
-
+    </div>
+      
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+      <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; Agro Online System 2020 - Ver1.0</span>
@@ -78,12 +74,10 @@
       </footer>
       <!-- End of Footer -->
 
-    </div>
-    <!-- End of Content Wrapper -->
-
   </div>
-  <!-- End of Page Wrapper -->
 
+
+</div>
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
