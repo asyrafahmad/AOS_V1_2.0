@@ -5,7 +5,6 @@
 
     
 <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Produk</h1>
           <p class="mb-4">Produk Pasaran. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
 
           <!-- DataTales Example -->

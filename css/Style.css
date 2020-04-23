@@ -11329,6 +11329,12 @@ a.profile img{
     color: #aaa;
 }
 
+/*about us*/
+.about_us{
+  background: transparent;
+  border: none;
+}
+
 @media (max-width: 576px){
 
     #content{
@@ -11366,6 +11372,13 @@ a.profile img{
     #sidebar.active a.profile img{
       display: none;
     }
+
+/*    .about_us{
+      background: none;
+      object-fit: ;
+      height: 200px;
+      max-height: 200px;
+    }   */ 
 
 }
 
