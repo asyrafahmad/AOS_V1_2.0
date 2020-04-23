@@ -72,66 +72,6 @@
     </div>
  
 
-<!--      <div class="col-xl-12"> -->
-<!-- Starting of profile content-->
-      <!-- <div class="card shadow mb-4">
-        <div class="card-body">
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                      <h1 class="h3 mb-0 text-gray-800"><b>Mengenai Kami</b></h1>
-                   </div>
-                  <h4><b>Agro Online System (AgrOS) developed by Peneraju Media Sdn Bhd</b></h4>
-                <label for="firstName">PENERAJU MEDIA was born out of an experience and passion to provide expert services that meet the needs of modern businesses. Our team is dedicated to delivering great results and providing amazing support.</label><br>
-              
-                <label for="firstName">
-                     <h4><b>Founders</b></h4>Afiq Manab ft  Lutfi Razak
-                  </label>
-                
-              </div>
-              <div class="col-md-6 mb-3" align="center">
-                <label for="lastName">
-                    <img class="" src="../img/bg/aboutus_bg.png" width="400" height="250">
-                </label>
-              </div>
-            </div>
-        </div>
-      </div> 
-    
-    <div class="card shadow mb-4">
-        <div class="card-body">
-            <div class="row">
-              <div class="col-md-6 mb-3" align="center">
-                <label for="lastName">
-                    <img class="" src="../img/bg/aboutus_bg.png" width="400" height="250">
-                </label>
-              </div>
-              <div class="col-md-6 mb-3" align="center">
-                <form action="" method="post" enctype="multipart/form-data">
-                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                      <h1 class="h3 mb-0 text-gray-800"><b>Hubungi Kami</b></h1>
-                   </div>                    
-                    <div class="form-group">
-                      <input class="form-control form-control-user" name="phone_number" placeholder="Nombor Telefon Anda">
-                    </div>
-                    <div class="form-group">
-                      <input class="form-control form-control-user" name="Message" placeholder="Mesej">
-                    </div>
-                   <div class="form-group">
-                      <input class="btn btn-primary" type="submit" name="aboutus_form" value="Hantar">
-                   </div>
-                </form>
-              </div>
-              
-            </div>
-        </div>
-      </div>  
-      </div> -->
-
-    
-
-
- 
 
     </div>
       
