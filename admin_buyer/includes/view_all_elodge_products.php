@@ -27,8 +27,10 @@
                       <th>Nama Produk</th>
                       <th>Kuantiti (Kg)</th>
                       <th>Tarikh Menuai</th>
+<!--
                       <th>Jumlah Ditempah</th>
                       <th>Status</th>
+-->
                       <th>Tempah</th>
                     </tr>
                   </thead>
@@ -48,8 +50,8 @@
                             $elodge_product_image           = escape($row['elodge_product_image']);
                             $elodge_product_quantity        = escape($row['elodge_product_quantity']);
                             $elodge_product_harvest_date    = escape($row['elodge_product_harvest_date']);
-                            $elodge_product_amount_booked   = escape($row['elodge_product_amount_booked']);
-                            $elodge_product_status          = escape($row['elodge_product_status']);
+//                            $elodge_product_amount_booked   = escape($row['elodge_product_amount_booked']);
+//                            $elodge_product_status          = escape($row['elodge_product_status']);
                             
                             //Set as global
                             $_SESSION['elodge_product_id'] = $elodge_product_id;
@@ -61,8 +63,8 @@
                             echo "<td>$elodge_product_name  </td>";
                             echo "<td>$elodge_product_quantity  </td>";
                             echo "<td>Bulan: $elodge_product_harvest_date  </td>";
-                            echo "<td><p class='text-danger'>$elodge_product_amount_booked</p></td>";
-                            echo "<td><p class='text-danger'>$elodge_product_status </p></td>";
+//                            echo "<td><p class='text-danger'>$elodge_product_amount_booked</p></td>";
+//                            echo "<td><p class='text-danger'>$elodge_product_status </p></td>";
                             echo "<td><a class='btn btn-success' href='e-lodge.php?menu=$menu&source=book_elodge_product&b_e_p_id={$elodge_product_id}'>Tempah </a></td>";
                             echo "</tr>";
 

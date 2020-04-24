@@ -71,7 +71,7 @@
             $edit_elodge_query = mysqli_query($connection,$query);
             confirmQuery($edit_elodge_query);
 			
-			//			header("Location: ./includes/elodge.php" );
+//			header("Location: ./includes/elodge.php" );
 //          echo "<script>window.location='./order.php?menu=$menu'</script>";
             
             echo "<script>alert('Tempahan telah berjaya.')</script>";
@@ -80,10 +80,9 @@
             echo "<script>alert('Sila isi maklumat pada ruangan kosong.')</script>";
         }
         
-
-        
     }
 
+   
 ?>
 
 
@@ -106,24 +105,23 @@
             <img width="100"  src="../img/<?php echo $elodge_product_image; ?>"  alt="image" class="rounded-circle" /><br><br>
             <label for="">Nama Produk : <?php echo $elodge_product_name; ?></label><br>
             <label for="">Kuantiti : <?php echo $elodge_product_quantity; ?></label>
-            
-          
           </div>
+            
           <div class="col-md-6 mb-3">
             <label for="firstName">Jumlah Kuantiti Produk Tempahan</label>
             <input type="text" class="form-control" name="elodge_product_amount_booked" placeholder="<?php echo $elodge_product_quantity; ?>" value="" required="Isi nama produk" >
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
                              
             <div class="form-group">
                  <input class="btn btn-primary" type="submit" name="edit_elodge" value="Hantar">
             </div>
+              
+      
           </div>
-        
         </div>
 
-
-
-       
-              
 
 
 </div>
@@ -132,47 +130,51 @@
 
 
 
-<div class="card shadow mb-4">
 
-    <div class="card-body">
-      <div class="table-responsive">
+          <div class="card shadow mb-4">
+         
+            <div class="card-body">
+              <div class="table-responsive">
+                  
+                  
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                     <tr>
+                        <th>Tarikh Tempahan Dibuat</th>
+                        <th>Produk</th>
+                        <th>Kuantiti Tempahan</th>
+
+                    </tr> 
+                  </thead>
+                 
+                  <tbody>
+                      <?php
+                
+                        $user_username = $_SESSION['user_username'];
 
 
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-          <thead>
-             <tr>
-                <th>Tarikh Tempahan Dibuat</th>
-                <th>Kuantiti Tempahan</th>
-                <th>Kuantiti Tempahan</th>
+                        $query  =  "SELECT * FROM elodge_product_book WHERE book_buyer_name = '{$user_username}'   ";    
+                        $elodge_book_query = mysqli_query($connection, $query);
 
-            </tr> 
-          </thead>
+                        while ($row = mysqli_fetch_assoc($elodge_book_query)){
 
-          <tbody>
-              <?php
+                            $book_buyer_id                  = escape($row['book_buyer_id']);
+                            $book_buyer_product_name         = escape($row['book_buyer_product_name']);
+                            $book_buyer_product_image                  = escape($row['book_buyer_product_image']);
+                            $book_buyer_product_date        = escape($row['book_buyer_product_date']);
+                            $book_buyer_product_quantity    = escape($row['book_buyer_product_quantity']);
 
-                $user_username = $_SESSION['user_username'];
+                            echo "<tr>";
+                            echo "<td>$book_buyer_product_date</td>";
+                            echo "<td>$book_buyer_product_name</td>";
+                            echo "<td>$book_buyer_product_quantity</td>";
+                            echo "</tr>";
+                        }
 
-
-                $query  =  "SELECT * FROM elodge_product_book WHERE book_buyer_name = '{$user_username}'   ";    
-                $elodge_book_query = mysqli_query($connection, $query);
-
-                while ($row = mysqli_fetch_assoc($elodge_book_query)){
-
-                    $book_buyer_id                  = escape($row['book_buyer_id']);
-                    $book_buyer_product_date    = escape($row['book_buyer_product_date']);
-                    $book_buyer_product_quantity    = escape($row['book_buyer_product_quantity']);
-
-                    echo "<tr>";
-                    echo "<td>$book_buyer_product_date</td>";
-                    echo "<td>$book_buyer_product_quantity</td>";
-                    echo "</tr>";
-                }
-
-            ?>
-
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+                    ?>
+                
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
