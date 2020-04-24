@@ -1,112 +1,107 @@
-
 <?php  include "../includes/admin_header.php"; ?>
 
+<div class="wrapper d-flex align-items-stretch">
 
+  <?php include "includes/admin_sidebar_navigation.php" ?>
+  
+  <!-- Page Content  -->
+  <div id="content" class="">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
-     
-        
-   <?php  include "includes/admin_sidebar_navigation.php"; ?>
+    <?php include "../includes/topbar_nav.php" ?>
 
+    <div class="container-fluid">
+      
+    <div class="d-sm-flex align-items-center justify-content-between m-4">
+      <h1 class="h3 mb-0 text-gray-800">Petani</h1>
+    </div>
 
+    <!-- Content Row -->
+    <div class="row">
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+     <div class="col-xl-12">
+        <div class="card p-4 border">
+          <div class="card-title justify-content-between align-middle">
+            <i class="fas fa-angle-left fa-2x"></i>
+            <div id="search" class="form-group has-search">
+              <span class="fa fa-search form-control-feedback"></span>
+              <input type="text" class="form-control" placeholder="Search">
+           </div>
+          </div>
+            <div class="card-body">
+              <?php
 
-      <!-- Main Content -->
-      <div id="content">
+                  if(isset($_GET['source'])){
+                      $source = $_GET['source'];
+                  } 
+                  else {
+                      $source = '';
+                  }
 
-     
+                  switch($source) {
+                          
+                      case 'add_supplier';
+                          include "includes/add_supplier.php";
+                          break; 
 
-          <!-- Top nav-->
-            <?php  include "includes/admin_topbar_navigation.php"; ?>
-
-        
-           
-
-
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-          
-        <?php
-
-            if(isset($_GET['source'])){
-                $source = $_GET['source'];
-            } 
-            else {
-                $source = '';
-            }
-
-            switch($source) {
-                    
-                case 'add_supplier';
-                    include "includes/add_supplier.php";
-                    break; 
-
-                case 'edit_supplier';
-                    include "includes/edit_supplier.php";
-                    break;
+                      case 'edit_supplier';
+                          include "includes/edit_supplier.php";
+                          break;
+                      
+                      case 'view_supplier';
+                          include "includes/view_supplier.php";
+                          break;
+                      
+                      case 'view_supplier_product';
+                          include "includes/view_supplier_product.php";
+                          break; 
+                      
+                      case 'view_elodge_supplier';
+                          include "includes/view_elodge_supplier.php";
+                          break;
+              
+              case 'view_elodge_details';
+                          include "includes/view_elodge_details.php";
+                          break;
                 
-                case 'view_supplier';
-                    include "includes/view_supplier.php";
-                    break;
-                
-                case 'view_supplier_product';
-                    include "includes/view_supplier_product.php";
-                    break; 
-                
-                case 'view_elodge_supplier';
-                    include "includes/view_elodge_supplier.php";
-                    break;
-				
-				case 'view_elodge_details';
-                    include "includes/view_elodge_details.php";
-                    break;
-					
-                
-                    
-                    
-                    
-                case 'add_supplier_order_product';
-                    include "includes/add_supplier_order_product.php";
-                    break;
-                
-                case 'view_supplier_order_product';
-                    include "includes/view_supplier_order_product.php";
-                    break;
-                
-                case 'view_all_supplier_order_product';
-                    include "includes/view_all_supplier_order_product.php";
-                    break;
+                      
+                          
+                          
+                          
+                      case 'add_supplier_order_product';
+                          include "includes/add_supplier_order_product.php";
+                          break;
+                      
+                      case 'view_supplier_order_product';
+                          include "includes/view_supplier_order_product.php";
+                          break;
+                      
+                      case 'view_all_supplier_order_product';
+                          include "includes/view_all_supplier_order_product.php";
+                          break;
 
-                case '200';
-                    echo "NICE 200";
-                    break;
+                      case '200';
+                          echo "NICE 200";
+                          break;
 
-                default:
-                    include "includes/view_all_suppliers.php";
-                    break;
-            }
+                      default:
+                          include "includes/view_all_suppliers.php";
+                          break;
+                  }
 
-        ?>
+              ?>              
+            </div>
+        </div>
+      </div>
+
+    </div>
+
 
  
-        </div>
-        <!-- /.container-fluid -->
 
-          
-          
-          
-          
-          
-      </div>
-      <!-- End of Main Content -->
-
+    </div>
+      
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+      <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; Agro Online System 2020 - Ver1.0</span>
@@ -115,35 +110,10 @@
       </footer>
       <!-- End of Footer -->
 
-    </div>
-    <!-- End of Content Wrapper -->
-
   </div>
-  <!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
+
 
 <?php  include "../includes/admin_footer.php"; ?>
-
