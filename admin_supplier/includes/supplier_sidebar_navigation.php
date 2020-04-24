@@ -58,7 +58,7 @@
 
                 <div class="sidebar_bottom">
                   <!-- <li id="profile" class="profile nav-item"> -->
-                    <a href="../admin_supplier/profile.php" class="profile">
+                    <a href="../admin_supplier/profile.php?source=edit_profile" class="profile">
                       <img src="../img/user/1.jpg">
                     </a>
                   <!-- </li> -->
