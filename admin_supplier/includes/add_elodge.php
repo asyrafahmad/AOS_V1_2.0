@@ -58,9 +58,9 @@
           </div>
         <div class="row">
           <div class="col-md-4 mb-3">
-            <label for="firstName">Nama produk</label>
+            <label for="firstName">Nama Produk</label>
             <div>
-					<select name="elodge_product_Name" id="" class="btn border-secondary form-control">
+					<select name="elodge_product_name" id="" class="btn border-secondary form-control">
 						<option value="">Pilih Produk...</option>
 						<optgroup label="Buah-buahan">
 							<option value="Belimbing">Belimbing</option>
@@ -116,49 +116,30 @@
 					</select>
 				</div>
           </div> 
+			
+          <div class="col-md-4 mb-3">
+            <label for="firstName">Tarikh Menuai Pada Bulan</label>
+            <input type="number" class="border-secondary form-control" name="elodge_product_harvest_date"  oninput="maxLengthCheck(this)" maxlength ="1" min="1" max="12">
+          </div>
+            <script>
+              function maxLengthCheck(object)
+              {
+                if (object.value.length > object.maxLength)
+                  object.value = object.value.slice(0, object.maxLength)
+              }
+            </script>
         </div> 
 			
 		<div class="row">
           <div class="col-md-4 mb-3">
-            <label for="firstName">Kuantiti</label>
-            <input type="text" class="form-control" name="elodge_product_quantity" placeholder="" value="" required="Isi nama produk">
-            <div class="invalid-feedback">
-              Valid first name is required.
-            </div>
-          </div>
-<!--
-          <div class="col-md-6 mb-3">
-            <label for="lastName">Jumlah Tempahan (Kg)</label>
-            <input type="text" class="form-control" name="elodge_product_amount_booked" placeholder="" value="" required="">
-            <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
-          </div>
--->
-          <div class="col-md-4 mb-3">
-            <label for="firstName">Tarikh Menuai Pada Bulan</label>
-            <input type="text" class="form-control" name="elodge_product_harvest_date" placeholder="" value="" required="">
-            <div class="invalid-feedback">
-              Valid first name is required.
-            </div>
+            <label for="firstName">Kuantiti (Kg)</label>
+            <input type="text" class="form-control" name="elodge_product_quantity" required="">
           </div>
         </div>
-			
-            
-            
-<!--
-          <div class="col-md-6 mb-3">
-            <label for="lastName">Status</label>
-            <input type="text" class="form-control" name="elodge_product_status" placeholder="" value="" required="">
-            <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
-          </div>
--->
 
                       
         <div class="form-group">
-                <input class="btn btn-primary" type="submit" name="add_elodge_product" value="Hantar">
+            <input class="btn btn-primary" type="submit" name="add_elodge_product" value="Hantar">
         </div>
               
 

@@ -71,7 +71,10 @@
             $edit_elodge_query = mysqli_query($connection,$query);
             confirmQuery($edit_elodge_query);
 			
-			header("Location: ./includes/elodge.php" );
+			//			header("Location: ./includes/elodge.php" );
+//          echo "<script>window.location='./order.php?menu=$menu'</script>";
+            
+            echo "<script>alert('Tempahan telah berjaya.')</script>";
         }
         else{
             echo "<script>alert('Sila isi maklumat pada ruangan kosong.')</script>";
@@ -109,13 +112,10 @@
           <div class="col-md-6 mb-3">
             <label for="firstName">Jumlah Kuantiti Produk Tempahan</label>
             <input type="text" class="form-control" name="elodge_product_amount_booked" placeholder="<?php echo $elodge_product_quantity; ?>" value="" required="Isi nama produk" >
-            <div class="invalid-feedback">
-              Valid first name is required.
-            </div>
                              
-        <div class="form-group">
-                <input class="btn btn-primary" type="submit" name="edit_elodge" value="Hantar">
-        </div>
+            <div class="form-group">
+                 <input class="btn btn-primary" type="submit" name="edit_elodge" value="Hantar">
+            </div>
           </div>
         
         </div>
@@ -129,3 +129,50 @@
 </div>
 </div>  
 </form> 
+
+
+
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+      <div class="table-responsive">
+
+
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+             <tr>
+                <th>Tarikh Tempahan Dibuat</th>
+                <th>Kuantiti Tempahan</th>
+                <th>Kuantiti Tempahan</th>
+
+            </tr> 
+          </thead>
+
+          <tbody>
+              <?php
+
+                $user_username = $_SESSION['user_username'];
+
+
+                $query  =  "SELECT * FROM elodge_product_book WHERE book_buyer_name = '{$user_username}'   ";    
+                $elodge_book_query = mysqli_query($connection, $query);
+
+                while ($row = mysqli_fetch_assoc($elodge_book_query)){
+
+                    $book_buyer_id                  = escape($row['book_buyer_id']);
+                    $book_buyer_product_date    = escape($row['book_buyer_product_date']);
+                    $book_buyer_product_quantity    = escape($row['book_buyer_product_quantity']);
+
+                    echo "<tr>";
+                    echo "<td>$book_buyer_product_date</td>";
+                    echo "<td>$book_buyer_product_quantity</td>";
+                    echo "</tr>";
+                }
+
+            ?>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

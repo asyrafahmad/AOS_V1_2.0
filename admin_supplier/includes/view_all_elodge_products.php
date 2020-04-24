@@ -74,8 +74,8 @@
                       <th>Nama Produk</th>
                       <th>Kuantiti (Kg)</th>
                       <th>Tarikh Menuai</th>
-                      <th>Jumlah Ditempah</th>
-                      <th>Status</th>
+                      <th>Jumlah Tempahan</th>
+                      <th>Nama Pemborong</th>
                       <th>Lihat</th>
                       <th>Kemaskini</th>
                       <th>Padam</th>
@@ -93,7 +93,7 @@
                       }
                       
                           
-                        $query  =  "SELECT * FROM elodge_product WHERE elodge_supplier = '{$user_id}' ";    
+                        $query  =  "SELECT *, SUM(book_buyer_product_quantity) as sum  FROM elodge_product JOIN elodge_product_book ON elodge_product.elodge_product_id = elodge_product_book.book_buyer_product_id WHERE elodge_product.elodge_supplier = '{$user_id}' GROUP BY elodge_product_book.book_buyer_name ";     
                         $select_suppliers = mysqli_query($connection, $query);
 
                         while ($row = mysqli_fetch_assoc($select_suppliers)){
@@ -103,8 +103,10 @@
                             $elodge_product_image           = escape($row['elodge_product_image']);
                             $elodge_product_quantity        = escape($row['elodge_product_quantity']);
                             $elodge_product_harvest_date    = escape($row['elodge_product_harvest_date']);
-                            $elodge_product_amount_booked   = escape($row['elodge_product_amount_booked']);
+                            $elodge_product_amount_booked   = escape($row['sum']);
                             $elodge_product_status          = escape($row['elodge_product_status']);
+                            
+                            $book_buyer_name          = escape($row['book_buyer_name']);
                             
                             //Set as global
                             $_SESSION['elodge_product_id'] = $elodge_product_id;
@@ -115,9 +117,10 @@
                             echo "<td><img height='15%' width='80%'  src='../img/$elodge_product_image'  alt='image' class='rounded-circle' </td>";
                             echo "<td>$elodge_product_name  </td>";
                             echo "<td>$elodge_product_quantity  </td>";
-                            echo "<td>$elodge_product_harvest_date  </td>";
-                            echo "<td>$elodge_product_amount_booked</td>";
-                            echo "<td>$elodge_product_status</td>";
+                            echo "<td>Bulan $elodge_product_harvest_date  </td>";
+                            echo "<td class='text-info'>$elodge_product_amount_booked</td>";
+                            echo "<td class='text-info'>$book_buyer_name</td>";
+//                            echo "<td>$elodge_product_status</td>";
                             
                             echo "<td><a class='btn btn-info' href='e-lodge.php?source=view_elodge&e_p_id={$elodge_product_id}'>Lihat </a></td>";
                             echo "<td><a class='btn btn-info' href='e-lodge.php?source=edit_elodge&e_p_id={$elodge_product_id}'>Kemaskini </a></td>";
@@ -125,7 +128,7 @@
                             echo "<td><a href=''>Download</a></td>";
                             echo "</tr>";
 
-                                }
+                        }
                          ?>
                   </tbody>
                 </table>
