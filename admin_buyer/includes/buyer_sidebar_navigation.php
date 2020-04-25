@@ -106,7 +106,7 @@
                   ?>
 
                   <li id="ebargain" class="nav-item">
-                    <a href="../admin_supplier/aboutus.php" class="nav-link">
+                    <a href="../admin_buyer/e-bargain.php?menu=<?php echo $menu; ?>" class="nav-link">
                         <img src="../img/icon/aboutus.svg" height="24px">
                           E-Bargain
                       </a>
@@ -118,7 +118,7 @@
                   ?>
 
                   <li id="aboutus" class="nav-item">
-                    <a href="e-bargain.php?menu=<?php echo $menu; ?>" class="nav-link">
+                    <a href="../admin_buyer/aboutus.php?menu=<?php echo $menu; ?>&" class="nav-link">
                         <img src="../img/icon/aboutus.svg" height="24px">
                           Mengenai Kami
                       </a>
@@ -132,7 +132,7 @@
                   <!-- </li> -->
 
                   <li id="logout" class="nav-item p-4">
-                    <a href="../admin_supplier/aboutus.php" class="nav-link">
+                    <a href="../includes/logout.php" class="nav-link">
                         <img src="../img/icon/logout.svg" height="24px">
                           Keluar
                       </a>

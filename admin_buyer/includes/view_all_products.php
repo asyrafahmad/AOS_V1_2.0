@@ -4,16 +4,7 @@
 <!-- to call file and make it available  -->
 <?php include "../includes/functions.php";   ?>
 
-        
 
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="text-gray-800">Produk</h1>
-			  <div class="col-xl-1" align="center">
-				  <div class="card shadow py-2 ">
-				  <a href="order.php?menu=<?php echo $menu; ?>"><img height="75%" width="75%" src="../img/icon/add-to-cart.png" ></a>
-				  </div>
-			  </div>
-          </div>
 
  
 <!--
