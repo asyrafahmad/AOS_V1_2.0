@@ -584,7 +584,7 @@ pre code {
 }
 
 .container-fluid {
-  width: 100%;
+  max-width: 1079px;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -11392,3 +11392,4 @@ a.profile img{
 
 }
 
+. main
