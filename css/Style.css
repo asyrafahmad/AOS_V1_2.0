@@ -11209,6 +11209,16 @@ a.profile img{
   height: 40px;
 }
 
+#close{
+  background: #14CC60;
+  color: #fff;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  border:none;
+  justify-content: flex-end;
+}
+
 /*topbar_nav*/
 .topnav{
   background: #fafafa;
