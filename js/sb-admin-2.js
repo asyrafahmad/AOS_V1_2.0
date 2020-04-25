@@ -5,7 +5,7 @@
   $('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');
       $('#content').toggleClass('active');
-      $('.topnav').toggleClass('active');
+      // $('.topnav').toggleClass('active');
   });
 
   // Toggle the side navigation
@@ -17,7 +17,7 @@
   $('.custom-menu').on('click', function () {
       $('#sidebar').toggleClass('active');
       $('#content').toggleClass('active');
-      $('.topnav').toggleClass('active');
+      // $('.topnav').toggleClass('active');
       $('.custom-menu').toggleClass('active');
       // $('#product').remove(); /*remove option from sidebar*/
   });
