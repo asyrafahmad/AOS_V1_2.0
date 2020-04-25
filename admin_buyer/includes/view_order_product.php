@@ -49,8 +49,8 @@
             
         <div class="">
             <form action="" method="post">
-<!--                <table class="table table-striped">-->
-                <table class="table ">
+                <div class="table-responsive">
+                <table class="table">
                     <thead>
                       <tr>
                        <th>Gambar</th>
@@ -241,6 +241,7 @@
                         
                     </tbody>
                 </table>
+            </div>
                 
                 
          	<?php 
