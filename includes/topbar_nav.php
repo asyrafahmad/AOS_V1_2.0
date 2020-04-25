@@ -4,7 +4,7 @@
       <img src="../img/icon/menu.png" height="36">
     </button>
     <a href="../admin_supplier/profile.php" class="profile">
-      <img src="../img/user/1.jpg">
+      <img src="../img/<?php echo $_SESSION['user_image'] ?>">
     </a>
 
 </div>
