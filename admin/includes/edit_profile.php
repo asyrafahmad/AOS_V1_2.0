@@ -5,9 +5,16 @@
     
 <?php
 
+if(isset($_SESSION['user_username'])){
+		
+		$user_username = $_SESSION['user_username'];
+	}
+
+echo $user_username;
+
 global $connection;
 
-	$query  =  "SELECT * FROM user ";    
+	$query  =  "SELECT * FROM user WHERE user_role = '1' AND user_username= '{$user_username}' ";    
 	$select_user = mysqli_query($connection, $query);
 
 	while ($row = mysqli_fetch_assoc($select_user)){
@@ -33,7 +40,7 @@ global $connection;
         $query = "UPDATE user SET                               ";
         $query .= "user_image        = '{$user_image}',     ";
         $query .= "user_password     = '{$password}'      ";
-        $query .= "WHERE user_id =  {$user_id}          ";
+        $query .= "WHERE user_id     =  {$user_id}          ";
 
         $edit_user_query = mysqli_query($connection,$query);
         confirmQuery($edit_user_query);
