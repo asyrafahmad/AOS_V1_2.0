@@ -34,6 +34,8 @@
 
     if(isset($_POST['edit_buyer_profile'])){
         
+        $_SESSION['user_image'] = null;
+        
         $user_image       = escape($_FILES['user_image']['name']);
         $user_image_temp  = escape($_FILES['user_image']['tmp_name']);
         $user_username    = escape($_POST['user_username']);
@@ -47,6 +49,7 @@
 //		$password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
         
         $_SESSION['user_username'] = $user_username;
+        $_SESSION['user_image'] = $user_image;
 
         move_uploaded_file($user_image_temp,"../img/$user_image" );
 
@@ -64,7 +67,13 @@
 
         $edit_buyer_query = mysqli_query($connection,$query);
         confirmQuery($edit_buyer_query);
+        
+            echo "<p class=''>Profil berjaya dikemaskini.</p>";
+            echo "<script>window.location='./profile.php?menu=$menu'</script>";
     }
+    
+
+
 ?>  
 
 
