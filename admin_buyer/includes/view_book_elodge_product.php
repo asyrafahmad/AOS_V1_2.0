@@ -27,7 +27,7 @@
                       <th>Nama Produk</th>
                       <th>Kuantiti</th>
                       <th>Tarikh Tempahan</th>
-                      <th>Padam Tempahan</th>
+<!--                      <th>Padam Tempahan</th>-->
                     </tr>
                   </thead>
                  
@@ -60,7 +60,7 @@
                             echo "<td>$book_buyer_product_name  </td>";
                             echo "<td>$book_buyer_product_quantity  </td>";
                             echo "<td>$book_buyer_product_date  </td>";
-                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Anda pasti untuk padam maklumat ini? ');  \"  href='e-lodge.php?delete={$book_buyer_id} '>Padam </a></td>";
+//                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Anda pasti untuk padam maklumat ini? ');  \"  href='e-lodge.php?delete={$book_buyer_id} '>Padam </a></td>";
                             echo "</tr>";
 
                          }

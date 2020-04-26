@@ -136,7 +136,21 @@
 					</select>
 				</div>
             </div>
+            
+           <div class="col-md-4 mb-3">
+            <label for="firstName">Tarikh Menuai Pada Bulan</label>
+            <input type="number" class="border-secondary form-control" name="elodge_product_harvest_date"  oninput="maxLengthCheck(this)" maxlength ="2" min="1" max="12">
+          </div>
+            <script>
+              function maxLengthCheck(object)
+              {
+                if (object.value.length > object.maxLength)
+                  object.value = object.value.slice(0, object.maxLength)
+              }
+            </script>
         </div>
+            
+            
 		<div class="row">
           <div class="col-md-4 mb-3">
             <label for="firstName">Kuantiti (Kg)</label>
@@ -145,32 +159,8 @@
               Valid first name is required.
             </div>
           </div>
-          <div class="col-md-4 mb-3">
-            <label for="lastName">Tarikh mula tanaman</label>
-            <input type="text" class="form-control" name="elodge_product_harvest_date" placeholder="" value="<?php echo $elodge_product_harvest_date; ?>" required="">
-            <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
-          </div>
         </div>
-<!--
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="firstName">Jumlah tempahan</label>
-            <input type="text" class="form-control" name="elodge_product_amount_booked" placeholder="" value="<?php echo $elodge_product_amount_booked; ?>" required="">
-            <div class="invalid-feedback">
-              Valid first name is required.
-            </div>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="lastName">Status</label>
-            <input type="text" class="form-control" name="elodge_product_status" placeholder="" value="<?php echo $elodge_product_status; ?>" required="">
-            <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
-          </div>
-        </div>
--->
+
 
 
                       

@@ -58,8 +58,12 @@
 
                 <div class="sidebar_bottom">
                   <!-- <li id="profile" class="profile nav-item"> -->
+
                     <a href="../admin_supplier/profile.php?source=edit_profile">
                       <img src="../img/<?php echo $_SESSION['user_image'] ?>">
+
+                    <a href="../admin_supplier/profile.php?source=edit_profile" class="profile">
+                      <img src="../img/user/1.jpg">
                     </a>
                   <!-- </li> -->
 

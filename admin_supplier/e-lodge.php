@@ -29,7 +29,7 @@
           </div>
             <div class="card-body">
         
-        <?php
+             <?php
 
             if(isset($_GET['source'])){
                 $source = $_GET['source'];
@@ -40,8 +40,16 @@
 
             switch($source) {
                     
-                 case 'view_order_product';
-                    include "includes/view_order_product.php";
+                case 'add_elodge';
+                    include "includes/add_elodge.php";
+                    break;
+                
+                case 'view_elodge';
+                    include "includes/view_elodge.php";
+                    break;
+                
+                case 'edit_elodge';
+                    include "includes/edit_elodge.php";
                     break;
 
                 case '200';
@@ -49,11 +57,11 @@
                     break;
 
                 default:
-                    include "includes/view_all_order_products.php";
+                    include "includes/view_all_elodge_products.php";
                     break;
             }
 
-        ?>            
+        ?>          
             </div>
         </div>
       </div>
