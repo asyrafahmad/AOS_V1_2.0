@@ -68,8 +68,8 @@
         $edit_buyer_query = mysqli_query($connection,$query);
         confirmQuery($edit_buyer_query);
         
-            echo "<p class=''>Profil berjaya dikemaskini.</p>";
-            echo "<script>window.location='./profile.php?menu=$menu'</script>";
+        echo "<p class=''>Profil berjaya dikemaskini.</p>";
+        echo "<script>window.location='./profile.php?menu=$menu'</script>";
     }
     
 

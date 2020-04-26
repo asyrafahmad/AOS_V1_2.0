@@ -46,6 +46,10 @@
                     case '200';
                         echo "NICE 200";
                         break;
+                        
+                   default:
+                    include "includes/edit_profile.php";
+                    break;
 
                 
                 }

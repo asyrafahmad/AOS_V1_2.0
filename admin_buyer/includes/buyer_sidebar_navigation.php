@@ -139,7 +139,7 @@
                   </li>
 
 
-                  <div hidden>
+ <div hidden>
                     <!-- Divider -->
                     <hr class="sidebar-divider">
 

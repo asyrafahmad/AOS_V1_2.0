@@ -32,6 +32,8 @@
 
     if(isset($_POST['edit_supplier_profile'])){
         
+        $_SESSION['user_image'] = null;
+        
         $user_image       = escape($_FILES['user_image']['name']);
         $user_image_temp  = escape($_FILES['user_image']['tmp_name']);
         $user_username    = escape($_POST['user_username']);
@@ -41,6 +43,9 @@
         $user_address     = escape($_POST['user_address']);
         $user_website     = escape($_POST['user_website']);
         $user_password    = escape($_POST['user_password']);
+        
+        $_SESSION['user_username'] = $user_username;
+        $_SESSION['user_image'] = $user_image;
 		
 		$password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
 
@@ -60,6 +65,9 @@
 
         $edit_supplier_query = mysqli_query($connection,$query);
         confirmQuery($edit_supplier_query);
+        
+        echo "<p class=''>Profil berjaya dikemaskini.</p>";
+        echo "<script>window.location='./profile.php?menu=$menu'</script>";
     }
 
 ?>  
