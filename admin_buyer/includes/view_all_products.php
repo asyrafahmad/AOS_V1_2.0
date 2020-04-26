@@ -60,7 +60,7 @@
 				echo "<div class='row'>";        
 				echo "<div class='col-xl-12 text-gray-800'><h2>Kategori</h2></div>";
 				echo "</div>";
-				echo "<div class='row'  align='center'>"; 
+				echo "<div class='row' align='center'>"; 
 
 
 				$query  =  "SELECT * FROM categories_product ";    
@@ -98,7 +98,7 @@
 
 				$product_category = $_GET['p_c'];
 
-				echo "<div class='card shadow mb-4 py-3'>";    
+				// echo "<div class='card shadow mb-4 py-3'>";    
 				echo "<div class='card-body'> ";        
 				echo "<div class='row'>";        
 				echo "<div class='col-xl-12 text-gray-800'><h2>Sub-Kategori</h2></div>";
@@ -118,9 +118,9 @@
 
 
 					echo "<div class='col-xl-3 py-3'>";
-					echo "<div class='card shadow'>";
+					echo "<div class='card shadow '>";
 					echo "<div class='card-body'>";
-					echo "<div class='no-gutters align-items-center'>";
+					echo "<div class='no-gutters align-items-left'>";
 					echo "<a href='product.php?menu=$menu&b_p_id={$product_id}'><img width='50%' height='50%' src='../img/$product_image' ></a>";
 					echo "</div>";
 					echo "<h4>$product_name</h4>";
@@ -133,7 +133,7 @@
 
 				echo "</div>";  
 				echo "</div>"; 
-				echo "</div>";
+				// echo "</div>";
 			}
 		?>
 
@@ -164,14 +164,14 @@
 					$product_quantity = escape($row['product_quantity']);
 
 
-					echo "<div class='col-md-6 mb-3' align='center'>";
+					echo "<div class='col-md-4 mb-3' align='center'>";
 					echo "<label for='lastName'>";
-					echo "<img class='' src='../img/$product_image' width='50%' height='50%'>";   
+					echo "<img class='' src='../img/$product_image' width='50%' height='50%' >";   
 					echo "</label>";
 					echo "</div>";
 
 
-					echo "<div class='col-md-6 mb-3'";
+					echo "<div class='col-md-8 mb-3'";
 					echo "<p><h3><b>$product_name</b></h3></p>";
 					echo "<p>Huraian: $product_description</p>";
 					echo "<p>Harga: RM$product_current_price</p>";
