@@ -61,7 +61,7 @@
 
                     <a href="../admin_supplier/profile.php?source=edit_profile">
                       <img src="../img/<?php echo $_SESSION['user_image'] ?>">
-
+                    </a>
                     <a href="../admin_supplier/profile.php?source=edit_profile" class="profile">
                       <img src="../img/user/1.jpg">
                     </a>
