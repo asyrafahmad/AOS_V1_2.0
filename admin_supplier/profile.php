@@ -28,31 +28,29 @@
            </div>
           </div>
             <div class="card-body">
-        <?php
+            <?php
 
-            if(isset($_GET['source'])){
-                $source = $_GET['source'];
-            } 
-            else {
-                $source = '';
-            }
+                if(isset($_GET['source'])){
+                    $source = $_GET['source'];
+                } 
+                else {
+                    $source = '';
+                }
 
-            switch($source) {
-                    
-                case 'edit_profile';
-                    include "includes/edit_profile.php";
-                    break;
+                switch($source) {
+                        
+                     case 'edit_profile';
+                        include "includes/edit_profile.php";
+                        break;
 
-                case '200';
-                    echo "NICE 200";
-                    break;
+                    case '200';
+                        echo "NICE 200";
+                        break;
 
-                default:
-                    include "includes/view_all_order_products.php";
-                    break;
-            }
+                
+                }
 
-        ?>              
+            ?>              
             </div>
         </div>
       </div>
