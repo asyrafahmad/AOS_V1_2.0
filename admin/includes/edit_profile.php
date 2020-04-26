@@ -25,25 +25,31 @@ global $connection;
 
 	}
 
-
  	if(isset($_POST['edit_user_profile'])){
+        
+        $_SESSION['user_image'] = null;
         
         $user_image       = escape($_FILES['user_image']['name']);
         $user_image_temp  = escape($_FILES['user_image']['tmp_name']);
         $user_password    = escape($_POST['user_password']);
-		
-		$password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
-
+        
+        
+        $_SESSION['user_username'] = $user_username;
+        $_SESSION['user_image'] = $user_image;
+        
         move_uploaded_file($user_image_temp,"../img/$user_image" );
 
         //UPDATE query
         $query = "UPDATE user SET                               ";
         $query .= "user_image        = '{$user_image}',     ";
-        $query .= "user_password     = '{$password}'      ";
+        $query .= "user_password     = '{$user_password}'      ";
         $query .= "WHERE user_id     =  {$user_id}          ";
 
         $edit_user_query = mysqli_query($connection,$query);
         confirmQuery($edit_user_query);
+        
+        echo "<p class=''>Profil berjaya dikemaskini.</p>";
+        echo "<script>window.location='./profile.php?menu=$menu'</script>";
     }
 
 

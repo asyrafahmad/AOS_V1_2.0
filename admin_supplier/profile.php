@@ -47,9 +47,9 @@
                         echo "NICE 200";
                         break;
                         
-                   default:
-                    include "includes/edit_profile.php";
-                    break;
+                    default:
+                        include "includes/edit_profile.php";
+                        break;
 
                 
                 }
