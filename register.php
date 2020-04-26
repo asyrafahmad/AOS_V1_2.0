@@ -126,7 +126,7 @@
                     <input  class="form-control form-control-user" name="user_username" placeholder="ID Pengguna" required>
                 </div>
 				<div class="form-group">
-                  <input class="form-control form-control-user" name="user_email" placeholder="Emel" required>
+                  <input type="email" class="form-control form-control-user" name="user_email" placeholder="Emel" required>
                 </div>
                 <div class="form-group">
                   <input class="form-control form-control-user" name="user_phone" placeholder="Nombor Telefon" required>
