@@ -44,13 +44,24 @@
         $user_website     = escape($_POST['user_website']);
         $user_password    = escape($_POST['user_password']);
         
+        if(empty($user_image)){
+            
+            $query  =  "SELECT user_image FROM user WHERE user_role = '2' AND user_username = '{$user_username}' ";    
+            $get_picture = mysqli_query($connection, $query);
+
+            while ($row = mysqli_fetch_assoc($get_picture)){
+
+                $user_image = escape($row['user_image']);
+            }
+        }
+        
         $_SESSION['user_username'] = $user_username;
         $_SESSION['user_image'] = $user_image;
 		
-        move_uploaded_file($user_image_temp,"../img/$user_image" );
+        move_uploaded_file($user_image_temp, "../img/$user_image");
 
         //UPDATE query
-        $query = "UPDATE user SET                       ";
+        $query = "UPDATE user SET                           ";
         $query .= "user_image        = '{$user_image}',     ";
         $query .= "user_username     = '{$user_username}',  ";
         $query .= "user_email        = '{$user_email}',     ";

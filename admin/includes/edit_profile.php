@@ -5,14 +5,12 @@
     
 <?php
 
-if(isset($_SESSION['user_username'])){
-		
-		$user_username = $_SESSION['user_username'];
-	}
+    if(isset($_SESSION['user_username'])){
 
-echo $user_username;
+            $user_username = $_SESSION['user_username'];
+    }
 
-global $connection;
+    global $connection;
 
 	$query  =  "SELECT * FROM user WHERE user_role = '1' AND user_username= '{$user_username}' ";    
 	$select_user = mysqli_query($connection, $query);
@@ -33,9 +31,19 @@ global $connection;
         $user_image_temp  = escape($_FILES['user_image']['tmp_name']);
         $user_password    = escape($_POST['user_password']);
         
+        if(empty($user_image)){
+            
+            $query  =  "SELECT user_image FROM user WHERE  user_username = '{$user_username}' ";    
+            $get_picture = mysqli_query($connection, $query);
+
+            while ($row = mysqli_fetch_assoc($get_picture)){
+
+                $user_image = escape($row['user_image']);
+            }
+        }
         
-        $_SESSION['user_username'] = $user_username;
-        $_SESSION['user_image'] = $user_image;
+        $_SESSION['user_username']  = $user_username;
+        $_SESSION['user_image']     = $user_image;
         
         move_uploaded_file($user_image_temp,"../img/$user_image" );
 
@@ -53,57 +61,6 @@ global $connection;
     }
 
 
-
-
-
-
-
-
-
-
-
-
-//        $query  =  "SELECT * FROM user ";    
-//        $select_user = mysqli_query($connection, $query);
-//
-//        while ($row = mysqli_fetch_assoc($select_user)){
-//
-//            $user_id = escape($row['user_id']);
-//            $user_username = escape($row['user_username']);
-//            $user_phone = escape($row['user_phone']);
-//            $user_email = escape($row['user_email']);
-//            $user_website = escape($row['user_website']);
-//            $user_address = escape($row['user_address']);
-//                             
-//        }
-//    
-//
-//    
-//    if(isset($_POST['edit_user_profile'])){
-//        
-//        $user_image       = escape($_FILES['user_image']['name']);
-//        $user_image_temp  = escape($_FILES['user_image']['tmp_name']);
-//        $user_username        = escape($_POST['user_username']);
-//        $user_phone       = escape($_POST['user_phone']);
-//        $user_email       = escape($_POST['user_email']);
-//        $user_website     = escape($_POST['user_website']);
-//        $user_address     = escape($_POST['user_address']);
-//
-//        move_uploaded_file($user_image_temp,"../img/$user_image" );
-//
-//        //UPDATE query
-//        $query = "UPDATE user SET                               ";
-//        $query .= "user_image        = '{$user_image}',     ";
-//        $query .= "user_username         = '{$user_username}',      ";
-//        $query .= "user_phone        = '{$user_phone}',     ";
-//        $query .= "user_email        = '{$user_email}',     ";
-//        $query .= "user_website      = '{$user_website}',   ";
-//        $query .= "user_address      = '{$user_address}'    ";
-//        $query .= "WHERE supplier_id     =  {$supplier_id}          ";
-//
-//        $edit_user_query = mysqli_query($connection,$query);
-//        confirmQuery($edit_user_query);
-//    }
 ?>  
 
 

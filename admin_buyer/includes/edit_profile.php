@@ -46,7 +46,16 @@
         $user_address     = escape($_POST['user_address']);
         $user_password    = escape($_POST['user_password']);
 		
-//		$password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
+        if(empty($user_image)){
+            
+            $query  =  "SELECT user_image FROM user WHERE user_role = '2' AND user_username = '{$user_username}' ";    
+            $get_picture = mysqli_query($connection, $query);
+
+            while ($row = mysqli_fetch_assoc($get_picture)){
+
+                $user_image = escape($row['user_image']);
+            }
+        }
         
         $_SESSION['user_username'] = $user_username;
         $_SESSION['user_image'] = $user_image;
