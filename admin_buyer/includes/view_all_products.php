@@ -118,7 +118,7 @@
 
 
 					echo "<div class='col-xl-3 py-3'>";
-					echo "<div class='card shadow '>";
+					echo "<div class='card shadow sub_category'>";
 					echo "<div class='card-body'>";
 					echo "<div class='no-gutters align-items-left'>";
 					echo "<a href='product.php?menu=$menu&b_p_id={$product_id}'><img width='50%' height='50%' src='../img/$product_image' ></a>";

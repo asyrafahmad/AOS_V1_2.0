@@ -57,11 +57,11 @@
                   </li>
 
                 <div class="sidebar_bottom">
-                  <!-- <li id="profile" class="profile nav-item"> -->
+
                     <a href="profile.php?menu=<?php echo $menu; ?>&source=edit_profile" class="profile">
                       <img src="../img/<?php echo $_SESSION['user_image'] ?>">
+
                     </a>
-                  <!-- </li> -->
 
                   <li id="logout" class="nav-item p-4">
                     <a href="../includes/logout.php" class="nav-link">
