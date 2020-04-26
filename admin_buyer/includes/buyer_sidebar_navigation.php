@@ -14,7 +14,7 @@
           </button>
         </div>
 
-          <h1><a href="index.php" class="logo"><span><strong>AOS</strong></span></a></h1>
+          <h1><a href="index.php?menu=<?php echo $menu; ?>" class="logo"><span><strong>AOS</strong></span></a></h1>
 
               <ul class="list-unstyled components">
 
@@ -63,7 +63,7 @@
                           Toyyibpay
                       </a>
                       <ul class="collapse list-unstyled" id="toyyibpaySubmenu">
-                          <li id="creat_bill">
+                          <li id="create_bill">
                               <a href="toyyibpayApi.php?menu=<?php echo $menu; ?>&source=createBill" class="nav-link">Tambah Bill</a>
                           </li>
                       </ul>
