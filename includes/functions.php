@@ -199,7 +199,7 @@ function register_user($user_username, $user_email, $user_phone, $user_password,
     $email = mysqli_real_escape_string($connection, $user_email);
     $phone    = mysqli_real_escape_string($connection, $user_phone);
     $password = mysqli_real_escape_string($connection, $user_password);
-    $repassword = mysqli_real_escape_string($connection, $user_repassword);
+//    $repassword = mysqli_real_escape_string($connection, $user_repassword);
     $user_role = mysqli_real_escape_string($connection, $user_role);
 
     $password = password_hash( $password, PASSWORD_BCRYPT, array('cost' => 12));
