@@ -48,7 +48,7 @@
                         break;
 
                     default:
-                        include "";
+                        include "includes/edit_profile.php";
                         break;
                 }
 

@@ -28,7 +28,7 @@
             $user_password = escape($row['user_password']);
                              
         }
-    
+
 
     if(isset($_POST['edit_supplier_profile'])){
         
@@ -47,8 +47,6 @@
         $_SESSION['user_username'] = $user_username;
         $_SESSION['user_image'] = $user_image;
 		
-		$password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
-
         move_uploaded_file($user_image_temp,"../img/$user_image" );
 
         //UPDATE query
@@ -60,7 +58,7 @@
         $query .= "user_state        = '{$user_state}',     ";
         $query .= "user_address      = '{$user_address}',   ";
         $query .= "user_website      = '{$user_website}',   ";
-        $query .= "user_password     = '{$password}'   ";
+        $query .= "user_password     = '{$user_password}'   ";
         $query .= "WHERE user_id     =  {$user_id}          ";
 
         $edit_supplier_query = mysqli_query($connection,$query);
@@ -89,7 +87,7 @@
             
             <div class="col-md-6 mb-3">
                  <b for="product_image">Gambar :</b>
-                <input type="file"  name="user_image">
+                <input type="file"  name="user_image" value="<?php echo $user_image ?>" >
             </div>
                 </div>
                  <div class="row">
