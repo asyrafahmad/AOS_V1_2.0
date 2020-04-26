@@ -211,8 +211,8 @@ function register_user($user_username, $user_email, $user_phone, $user_password,
 		$user_role = 2;
         
         //insert into user table
-        $query = "INSERT INTO user (user_username, user_email, user_phone, user_password, user_role ) ";
-        $query .= "VALUES('{$username}','{$email}','{$phone}','{$password}', '{$user_role}')";
+        $query = "INSERT INTO user (user_username, user_email, user_phone, user_password, user_role, user_date_register ) ";
+        $query .= "VALUES('{$username}','{$email}','{$phone}','{$password}', '{$user_role}', now())";
         
         $register_user_query = mysqli_query($connection, $query);
         confirmQuery($register_user_query);
@@ -232,8 +232,8 @@ function register_user($user_username, $user_email, $user_phone, $user_password,
 		$user_role = 3;
         
         //insert into user table
-        $query = "INSERT INTO user (user_username, user_email, user_phone, user_password, user_role) ";
-        $query .= "VALUES('{$username}','{$email}','{$phone}','{$password}','{$user_role}')";
+        $query = "INSERT INTO user (user_username, user_email, user_phone, user_password, user_role, user_date_register) ";
+        $query .= "VALUES('{$username}','{$email}','{$phone}','{$password}','{$user_role}', now() )";
         
         $register_user_query = mysqli_query($connection, $query);
         confirmQuery($register_user_query);
