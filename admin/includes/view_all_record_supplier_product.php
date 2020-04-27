@@ -18,6 +18,8 @@
 				  
 				<?php
                   
+                  
+                    //PAGINATION
                     if(isset($_GET['page'])){
 
                         $page = $_GET['page'];
@@ -40,6 +42,8 @@
                     $count = mysqli_num_rows($find_count);
 
                     $count = $count/5;
+                    //PAGINATION
+                  
 				?>    
                   
                   <div  align="right">
@@ -87,6 +91,15 @@
                      <!-- Get data in db and display  -->
                     <?php
                         
+                        if(isset($_GET['payment_status'])){
+
+                            $the_product_id = $_GET['payment_status'];
+
+                            $query = "UPDATE product SET product_status = 'Selesai' WHERE product_id = $the_product_id  ";
+                            $payment_status_query = mysqli_query($connection, $query);
+                            
+                            //TODO: redirect to same page
+                        }
                       
                        
                       
@@ -125,7 +138,7 @@
                             echo "<td>$product_quantity  </td>";
                             echo "<td>$product_current_price  </td>";
                             echo "<td>$product_status</td>";
-                            echo "<td></td>";
+                            echo "<td><a class='btn btn-info' href='product.php?source=view_all_record_supplier_product&payment_status={$product_id}'>Selesai</a></td>";
                             echo "</tr>";
 							
 							$_SESSION['total'] = $var += $product_price ;
