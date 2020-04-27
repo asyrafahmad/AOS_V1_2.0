@@ -306,7 +306,7 @@
                   </div>
                   <!-- Card Body -->
                   <div class="card-body">
-                    <div id="totalSupplier" style="width: 100%; height: 100%;"></div>  
+                    <div id="totalSupplier" style="width: 100%; height: 250px;"></div>  
                   </div>
                 </div>
               </div>
@@ -320,7 +320,7 @@
                   </div>
                   <!-- Card Body -->
                   <div class="card-body">
-                    <div id="totalProduct" style="width: 100%; height: 100%;"></div>  
+                    <div id="totalProduct" style="width: 100%; height: 250px;"></div>  
                   </div>
                 </div>
               </div>

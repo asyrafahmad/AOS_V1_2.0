@@ -149,39 +149,39 @@
           google.charts.load('current', {'packages':['bar']});
           google.charts.load("current", {packages:["corechart"]});
                        
-                    google.charts.setOnLoadCallback(totalSupplier);  
+          google.charts.setOnLoadCallback(totalSupplier);  
           google.charts.setOnLoadCallback(totalProduct);
-              google.charts.setOnLoadCallback(averageProduct);
+          google.charts.setOnLoadCallback(averageProduct);
           google.charts.setOnLoadCallback(productBought);
           google.charts.setOnLoadCallback(productSoldEachMonth);
           google.charts.setOnLoadCallback(stockDemand);
           google.charts.setOnLoadCallback(quantityProductDemand);
                        
                        
-                    function totalSupplier(){ 
-                        var data = google.visualization.arrayToDataTable([  
-                                  ['Negeri', 'Jumlah'],  
-                                  <?php  
-                  //No of supplier from each state
-                  $chart_query = "SELECT user_state , count(*) as number FROM user WHERE user_role = '2' GROUP BY user_state ";  
-                  $result = mysqli_query($connection, $chart_query);
+            function totalSupplier(){ 
+                var data = google.visualization.arrayToDataTable([  
+                          ['Negeri', 'Jumlah'],  
+                          <?php  
+                //No of supplier from each state
+                $chart_query = "SELECT user_state , count(*) as number FROM user WHERE user_role = '2' GROUP BY user_state ";  
+                $result = mysqli_query($connection, $chart_query);
 
 
-                    while($row = mysqli_fetch_array($result))  
-                    {  
-                       echo "['".$row["user_state"]."', ".$row["number"]."],";  
-                    }  
-                   ?>  
-                                ]); 
-            
-                        var options = {  
-                              //title: 'Jumlah pembeli mengikut negeri',  
-                              //is3D:true,  
-                              pieHole: 0.1  
-                             };  
-                        var chart = new google.visualization.PieChart(document.getElementById('totalSupplier'));  
-                        chart.draw(data, options);  
-                    }
+                while($row = mysqli_fetch_array($result))  
+                {  
+                   echo "['".$row["user_state"]."', ".$row["number"]."],";  
+                }  
+                ?>  
+                            ]); 
+
+                    var options = {  
+                          //title: 'Jumlah pembeli mengikut negeri',  
+                          //is3D:true,  
+                          pieHole: 0.1  
+                         };  
+                    var chart = new google.visualization.PieChart(document.getElementById('totalSupplier'));  
+                    chart.draw(data, options);  
+            }
              
           function totalProduct() {
             var data = google.visualization.arrayToDataTable([

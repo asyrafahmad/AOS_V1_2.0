@@ -21,7 +21,6 @@
        <div class="col-xl-12">
           <div class="card p-4 border">
             <div class="card-title justify-content-between align-middle">
-              <i class="fas fa-angle-left fa-2x"></i>
               <div id="search" class="form-group has-search">
                 <span class="fa fa-search form-control-feedback"></span>
                 <input type="text" class="form-control" placeholder="Search">
@@ -50,6 +49,14 @@
                         
                         case 'edit_product';
                             include "includes/edit_product.php";
+                            break;
+                        
+                        case 'product_category';
+                            include "includes/product_category.php";
+                            break;
+                        
+                        case 'view_all_record_supplier_product';
+                            include "includes/view_all_record_supplier_product.php";
                             break;
 
                         case '200';

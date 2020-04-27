@@ -1,3 +1,4 @@
+
 <?php ob_start();   ?>
 <?php include "../includes/db_connection.php";   ?>
 <!-- to call file and make it available  -->
@@ -5,13 +6,12 @@
 
     
 <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Pesanan Produk</h1>
-          <p class="mb-4">Pesanan Produk. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
+          <p class="mb-4">Pesanan Barangan. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Tempahan Produk</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Pesanan Barangan</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -21,60 +21,51 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Tempahan ID</th>
-                      <th>Produk</th>
-                      <th>Jenis</th>
-                      <th>Kuantiti (Kg)</th>
-                      <th>Harga (RM) / Kg</th>
-<!--                      <th>Invoice</th>-->
-                      <th>Tarikh Tempahan</th>
+                      <th>Pemborong</th>
+                      <th>Invoice#</th>
+                      <th>Bayaran</th>
+                      <th>Tarikh Transaksi Dibuat</th>
                       <th>Status</th>
-                      <th>Lihat Tempahan</th>
-                      <th>Cetak</th>
-                      <th>Muat Turun</th>
                     </tr>
                   </thead>
                  
                   <tbody>
                      <!-- Get data in db and display  -->
                     <?php
-                      
-                        $query  =  "SELECT * FROM buyer_order_product ";    
-                        $buyer_order_product_query = mysqli_query($connection, $query);
+					  
+					    if(isset($_SESSION['user_id'])){
+		
+							$user_id = $_SESSION['user_id'];
+						}
+					  
 
-                        while ($row = mysqli_fetch_assoc($buyer_order_product_query)){
+                        $query  =  "SELECT * FROM order_product_history JOIN user ON order_product_history.buyer_id=user.user_id ";    
+                        $select_suppliers = mysqli_query($connection, $query);
 
-                            $b_o_product_id = escape($row['b_o_product_id']);
-                            $b_o_product_name = escape($row['b_o_product_name']);
-                            $b_o_product_type = escape($row['b_o_product_type']);
-                            $b_o_product_price = escape($row['b_o_product_price']);
-                            $b_o_product_quantity = escape($row['b_o_product_quantity']);
-//                            $b_o_product_invoice = escape($row['b_o_product_invoice']);
-                            $b_o_product_total_price = escape($row['b_o_product_total_price']);
-                            $b_o_product_booking_date = escape($row['b_o_product_booking_date']);
-                            $b_o_product_status = escape($row['b_o_product_status']);
-                            
-                            //Set as global
-                            $_SESSION['b_o_product_id'] = $b_o_product_id;
-                            $_SESSION['b_o_product_name'] = $b_o_product_name;
+                        while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                            $order_id = escape($row['order_id']);
+                            $user_username = escape($row['user_username']);
+                            $order_product_id = escape($row['order_product_id']);
+                            $order_billcode = escape($row['order_billcode']);
+                            $order_status = escape($row['order_status']);
+                            $order_payment = escape($row['order_payment']);
+                            $order_date_payment = escape($row['order_date_payment']);
+                           
                             
                             echo "<tr>";
-                            echo "<td>$b_o_product_id </td>";
-                            echo "<td>$b_o_product_name </td>";
-                            echo "<td>$b_o_product_type  </td>";
-                            echo "<td>$b_o_product_quantity  </td>";
-//                            echo "<td>$b_o_product_invoice  </td>";
-                            echo "<td>$b_o_product_total_price  </td>";
-                            echo "<td>$b_o_product_booking_date  </td>";
-                            echo "<td>$b_o_product_status  </td>";
-                            
-                            echo "<td><a class='btn btn-info' href='buyer.php?source=view_buyer_order_product&b_o_id={$b_o_product_id}'>Lihat Tempahan</a></td>";
-                            echo "<td><a href=''>Cetak</a></td>";
-                            echo "<td><a href=''>Download</a></td>";
+                            //TODO: BUYER NAME
+                            echo "<td>$user_username  </td>";
+                            echo "<td>#$order_product_id  </td>";
+                            echo "<td>RM$order_payment  </td>";
+                            echo "<td>$order_date_payment  </td>";
+                            echo "<td>$order_status  </td>";
+//                            echo "<td><a class='btn btn-info' href='order.php?menu=$menu&source=view_product&o_p_id={$order_id}'>Lihat Tempahan</a></td>";
+//                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";
                             echo "</tr>";
 
-                            }
-                     ?>
+                                }
+                         ?>
                   </tbody>
                 </table>
               </div>

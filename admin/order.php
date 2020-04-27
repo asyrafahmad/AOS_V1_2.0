@@ -12,7 +12,12 @@
     <div class="container-fluid">
       
     <div class="d-sm-flex align-items-center justify-content-between m-4">
-      <h1 class="h3 mb-0 text-gray-800">Profile</h1>
+      <h1 class="h3 mb-0 text-gray-800">Sejarah Pesanan</h1>
+      <div class="col-xl-1" align="center">
+          <div class="card shadow py-2 ">
+          <a href="order.php?menu=<?php echo $menu; ?>"><img height="32" width="32" src="../img/icon/add-to-cart.png" ></a>
+          </div>
+        </div>
     </div>
 
     <!-- Content Row -->
@@ -27,31 +32,31 @@
            </div>
           </div>
             <div class="card-body">
-              <?php
+            <?php
 
-                if(isset($_GET['source'])){
-                    $source = $_GET['source'];
-                } 
-                else {
-                    $source = '';
-                }
+                        if(isset($_GET['source'])){
+                            $source = $_GET['source'];
+                        } 
+                        else {
+                            $source = '';
+                        }
 
-                switch($source) {
-                        
-                     case 'edit_profile';
-                        include "includes/edit_profile.php";
-                        break;
+                        switch($source) {
+                                
+                            case 'view_product';
+                                include "includes/view_product.php";
+                                break;    
 
-                    case '200';
-                        echo "NICE 200";
-                        break;
+                            case '200';
+                                echo "NICE 200";
+                                break;
 
-                    default:
-                        include "includes/edit_profile.php";
-                        break;
-                }
+                            default:
+                                include "includes/view_all_buyer_order_product.php";
+                                break;
+                        }
 
-            ?>              
+                    ?>              
             </div>
         </div>
       </div>

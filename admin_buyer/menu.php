@@ -34,7 +34,7 @@
             <div class="col-8 col-md-12">
               <div class="card-body">
                 <h2 class="card-title font-weight-bold text-dark">E-Selling</h2>
-                  <p class="card-text"> Membeli sayur -sayuran secara borong.</p>
+                  <p class="card-text"> Membeli sayur-sayuran secara borong.</p>
               </div>
             </div>
           </div>

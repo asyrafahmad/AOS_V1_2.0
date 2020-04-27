@@ -21,7 +21,6 @@
      <div class="col-xl-12">
         <div class="card p-4 border">
           <div class="card-title justify-content-between align-middle">
-            <i class="fas fa-angle-left fa-2x"></i>
             <div id="search" class="form-group has-search">
               <span class="fa fa-search form-control-feedback"></span>
               <input type="text" class="form-control" placeholder="Search">
