@@ -5,13 +5,8 @@
 
     
 <!-- Page Heading -->
-          <p class="mb-4">Produk Petani. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
-
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Senarai E-Lodge Produk</h6>
-            </div>
             <div class="card-body">
               <div class="table-responsive">
                   
@@ -23,14 +18,14 @@
 
 <!--                      <th>ID</th>-->
                       <th>Gambar</th>
-                      <th>Nama Produk</th>
+                      <th>Produk</th>
                       <th>Kuantiti (Kg)</th>
                       <th>Tarikh Menuai</th>
 <!--
                       <th>Jumlah Ditempah</th>
                       <th>Status</th>
 -->
-                      <th>Tempah</th>
+                      <th></th>
                     </tr>
                   </thead>
                  
@@ -58,13 +53,13 @@
                             
                             echo "<tr>";
 //                            echo "<td>$elodge_product_id </td>";
-                            echo "<td><img width='100'  src='../img/$elodge_product_image'  alt='image' class='rounded-circle' /></td>";
+                            echo "<td align='center'><img width='100' src='../img/$elodge_product_image'  alt='image' class='rounded-circle' /></td>";
                             echo "<td>$elodge_product_name  </td>";
                             echo "<td>$elodge_product_quantity  </td>";
                             echo "<td>Bulan: $elodge_product_harvest_date  </td>";
 //                            echo "<td><p class='text-danger'>$elodge_product_amount_booked</p></td>";
 //                            echo "<td><p class='text-danger'>$elodge_product_status </p></td>";
-                            echo "<td><a class='btn btn-success' href='e-lodge.php?menu=$menu&source=book_elodge_product&b_e_p_id={$elodge_product_id}'>Tempah </a></td>";
+                            echo "<td align='center'><a class='btn btn-success' href='e-lodge.php?menu=$menu&source=book_elodge_product&b_e_p_id={$elodge_product_id}'>Tempah </a></td>";
                             echo "</tr>";
 
                                 }
