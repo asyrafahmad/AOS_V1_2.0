@@ -53,6 +53,13 @@ if(ifItIsMethod('post')){
             <div class="">
                 <input name="login" class="btn btn-primary btn-user btn-block mt-5" value="Log Masuk" type="submit">
             </div>
+            <hr>
+            <div class="text-center">
+              <a class="small" href="register.php">Daftar Akaun </a>
+            </div>
+            <div class="text-center">
+              <a class="small" href="forgotPassword.php?forgot=<?php echo uniqid(true); ?>">Lupa Katalaluan ?</a>
+            </div>
 <!--
             <hr>
             <a href="index.html" class="btn btn-google btn-user btn-block">
