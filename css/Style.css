@@ -47,6 +47,11 @@
   box-sizing: border-box;
 }
 
+html,body{
+  height: 100%;
+  margin: 0;
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -11382,6 +11387,14 @@ a.profile img{
     #sidebar.active a.profile img{
       display: none;
     }
+
+    .right-side{
+      display: none;
+    }
+
+    .login .form-group, .login input.btn-primary {
+      width: 100%;
+    }
 }
 
 .add-to-cart{
@@ -11391,4 +11404,42 @@ a.profile img{
 
 .sub_category:hover{
   border:2px solid #14CC60 ;
+}
+
+#whitewave{
+  background: url(../img/bg/wave2.svg) bottom no-repeat;
+  object-fit: cover;
+}
+
+.login{
+  height: 100%;
+  width: 100%;
+}
+
+.main{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.underline{
+  border-top:2px solid #14CC60;
+  width: 35%;
+}
+
+.login .form-group, .login input.btn-primary {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.login input.form-control{
+  background: rgba(177, 233, 163, 0.2);
+  color: #989898;
+  border-radius: 20px;
+  padding-left: 30px;
+  border: none;
 }
