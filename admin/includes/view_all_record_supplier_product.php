@@ -17,11 +17,10 @@
 				  
 				  
 				<?php
-                  
+                   $per_page=5;
                   
                     //PAGINATION
                     if(isset($_GET['page'])){
-
                         $page = $_GET['page'];
                     }
                     else{
@@ -33,15 +32,15 @@
                         $page_1 = 0;
                     }
                     else{
-                        $page_1 = ($page * 5) - 5;
+                        $page_1 = ($page * $per_page) - $per_page;
                     }
                   
 
-                    $querys  =  "SELECT * FROM product ";    
+                    $querys  =  "SELECT * FROM product  JOIN user ON product.product_supplier=user.user_id ";    
                     $find_count = mysqli_query($connection, $querys);
                     $count = mysqli_num_rows($find_count);
 
-                    $count = $count/5;
+                    $count = ceil($count/$per_page);
                     //PAGINATION
                   
 				?>    

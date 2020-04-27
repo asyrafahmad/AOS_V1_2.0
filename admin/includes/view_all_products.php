@@ -28,6 +28,7 @@
 						echo "<p>Produk telah dibuang.</p>";
 					}
                   
+                    $per_page = 5;
                   
                     if(isset($_GET['page'])){
 
@@ -42,7 +43,7 @@
                         $page_1 = 0;
                     }
                     else{
-                        $page_1 = ($page * 5) - 5;
+                        $page_1 = ($page * $per_page) - $per_page;
                     }
                   
 
@@ -50,11 +51,12 @@
                     $find_count = mysqli_query($connection, $querys);
                     $count = mysqli_num_rows($find_count);
 
-                    $count = $count/5;
+                    $count = ceil($count/$per_page);
 				?>    
                   
                   <div  align="right">
-                   <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                   <div class="dataTables_paginate paging_simple_numbers
+                               " id="dataTable_paginate">
                        <ul class="pagination">
                            <li class="paginate_button page-item previous" id="dataTable_previous"><a class="page-link">Page</a></li>
                            <?php
@@ -108,7 +110,7 @@
                       
 					  	$var = 0;
                       
-                        $query  =  "SELECT * FROM product LIMIT $page_1,5 ";    
+                        $query  =  "SELECT * FROM product LIMIT $page_1,$per_page ";    
                         $select_suppliers = mysqli_query($connection, $query);
 					  	
 

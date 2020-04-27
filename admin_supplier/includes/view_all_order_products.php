@@ -18,10 +18,14 @@
 				  
 				<?php
                   
+                    $user_id = $_SESSION['user_id'];
+                    $user_username = $_SESSION['user_username'];
+                  
+                  
+                    $per_page = 5;
                   
                     //PAGINATION
                     if(isset($_GET['page'])){
-
                         $page = $_GET['page'];
                     }
                     else{
@@ -33,15 +37,15 @@
                         $page_1 = 0;
                     }
                     else{
-                        $page_1 = ($page * 5) - 5;
+                        $page_1 = ($page * $per_page) - $per_page;
                     }
                   
 
-                    $querys  =  "SELECT * FROM product ";    
+                    $querys  =  "SELECT * FROM payment_product_history WHERE payment_supplier='{$user_username}'  ";    
                     $find_count = mysqli_query($connection, $querys);
                     $count = mysqli_num_rows($find_count);
 
-                    $count = $count/5;
+                    $count = ceil($count/$per_page);
                     //PAGINATION
                   
 				?>    
@@ -103,13 +107,12 @@
                       
                         // ----------------------------------------------------------------
                       
-                        $user_id = $_SESSION['user_id'];
-                        $user_username = $_SESSION['user_username'];
+               
                       
 					  	$var = 0;
                       
 //                        $query  =  "SELECT * FROM product WHERE product_supplier='{$user_id}'  LIMIT $page_1,5 ";     
-                        $query  =  "SELECT * FROM payment_product_history WHERE payment_supplier='{$user_username}'  LIMIT $page_1,5 ";     
+                        $query  =  "SELECT * FROM payment_product_history WHERE payment_supplier='{$user_username}'  LIMIT $page_1,$per_page ";     
                         $select_suppliers = mysqli_query($connection, $query);
 					  	
 
