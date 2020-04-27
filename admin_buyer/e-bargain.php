@@ -13,11 +13,6 @@
       
     <div class="d-sm-flex align-items-center justify-content-between m-4">
       <h1 class="h3 mb-0 text-gray-800">Produk</h1>
-      <div class="col-xl-1" align="center">
-          <div class="card shadow py-2 ">
-          <a href="order.php?menu=<?php echo $menu; ?>"><img height="32" width="32" src="../img/icon/add-to-cart.png" ></a>
-          </div>
-        </div>
     </div>
 
     <!-- Content Row -->
@@ -26,7 +21,6 @@
      <div class="col-xl-12">
         <div class="card p-4 border">
           <div class="card-title justify-content-between align-middle">
-            <i class="fas fa-angle-left fa-2x"></i>
             <div id="search" class="form-group has-search">
               <span class="fa fa-search form-control-feedback"></span>
               <input type="text" class="form-control" placeholder="Search">

@@ -139,7 +139,7 @@
             
            <div class="col-md-4 mb-3">
             <label for="firstName">Tarikh Menuai Pada Bulan</label>
-            <input type="number" class="border-secondary form-control" name="elodge_product_harvest_date"  oninput="maxLengthCheck(this)" maxlength ="2" min="1" max="12">
+            <input type="number" class="border-secondary form-control" name="elodge_product_harvest_date"  oninput="maxLengthCheck(this)" maxlength ="2" min="1" max="12" value="<?php echo $elodge_product_harvest_date; ?>">
           </div>
             <script>
               function maxLengthCheck(object)
