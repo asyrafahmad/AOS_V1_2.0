@@ -38,7 +38,7 @@
                           }
                       
                             echo "<div class='card-body'> ";        
-                            echo "<div class='row'>";
+                            echo "<div class='row' align='center'>";
                           
                         $query  =  "SELECT * FROM product WHERE product_supplier = '{$user_id}'    ";    
                         $select_suppliers = mysqli_query($connection, $query);
@@ -60,7 +60,7 @@
                             $product_date_modified = escape($row['product_date_modified']);
                             
                   
-                                echo "<div class='col-xl-2'>";
+                                echo "<div class='col-xl-3'>";
                                 echo "<div class='card shadow '>";
                                 echo "<div class='card-body'>";
                                 echo "<div class='no-gutters align-items-center'>";
@@ -151,29 +151,19 @@
                             $product_date_submit = escape($row['product_date_submit']);
                             $product_date_modified = escape($row['product_date_modified']);
                             
-                            //Set as global
                             $_SESSION['product_id'] = $product_id;
                             $_SESSION['product_name'] = $product_name;
                             
                             echo "<tr>";
-//                            echo "<td>$product_id </td>";
-//                            echo "<td>$product_category </td>";
                             echo "<td><img width='100'  src='../img/$product_image'  alt='image' class='rounded-circle' </td>";
                             echo "<td>$product_name  </td>";
-//                            echo "<td>$product_type  </td>";
-//                            echo "<td>$product_gred  </td>";
                             echo "<td>$product_quantity  </td>";
-//                            echo "<td>$product_description  </td>";
                             echo "<td>$product_price  </td>";
-//                            echo "<td>$product_current_price  </td>";
                             echo "<td>$product_date_submit</td>";
                             echo "<td>$product_date_modified</td>";
                             
-//                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
-//                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";
                             echo "<td><a class='btn btn-info' href='product.php?source=view_product&p_id={$product_id}'>Lihat </a></td>";
                             echo "<td><a class='btn btn-info' href='product.php?source=edit_product&p_id={$product_id}'>Kemaskini </a></td>";
-//                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";
                             echo "<td></td>";
                             echo "</tr>";
 
