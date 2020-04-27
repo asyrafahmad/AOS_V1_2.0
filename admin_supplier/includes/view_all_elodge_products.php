@@ -78,8 +78,7 @@
                       <th>Nama Pemborong</th>
                       <th>Lihat</th>
                       <th>Kemaskini</th>
-                      <th>Padam</th>
-                      <th>Muat Turun Panduan</th>
+<!--                      <th>Padam</th>-->
                     </tr>
                   </thead>
                  
@@ -124,8 +123,7 @@
                             
                             echo "<td><a class='btn btn-info' href='e-lodge.php?source=view_elodge&e_p_id={$elodge_product_id}'>Lihat </a></td>";
                             echo "<td><a class='btn btn-info' href='e-lodge.php?source=edit_elodge&e_p_id={$elodge_product_id}'>Kemaskini </a></td>";
-                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Anda pasti untuk padam maklumat ini? ');  \"  href='e-lodge.php?delete={$elodge_product_id} '>Padam </a></td>";
-                            echo "<td><a href=''>Download</a></td>";
+//                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Anda pasti untuk padam maklumat ini? ');  \"  href='e-lodge.php?delete={$elodge_product_id} '>Padam </a></td>";
                             echo "</tr>";
 
                         }

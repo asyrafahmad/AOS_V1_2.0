@@ -23,8 +23,8 @@
     <div class="row">
 
       <!-- Petani -->
-      <div class="col-xl-3 mb-2">
-        <div class="card py-2 border">
+      <div class="col-xl-3  mb-2">
+        <div class="card py-2 shadow border">
           <div class="card-body dashboard">
             <div class="icon-bg" style="background: #d4d5f9;">
               <img class="img-icon" src="../img/icon/supplier.png" height="32" width="32">
@@ -47,7 +47,7 @@
 
       <!-- Pemborong -->
       <div class="col-xl-3 mb-2">
-        <div class="card py-2 border">
+        <div class="card py-2 shadow border">
           <div class="card-body dashboard">
             <div class="icon-bg" style="background: #A8F4E5;">
               <img class="img-icon" src="../img/icon/Buyer.png" height="32" width="32">
@@ -70,7 +70,7 @@
 
       <!-- Product -->
       <div class="col-xl-3 mb-2">
-        <div class="card py-2 border">
+        <div class="card py-2 shadow border">
           <div class="card-body dashboard">
             <div class="icon-bg" style="background: #FF9E9E;">
               <img class="img-icon" src="../img/icon/product.png" height="32" width="32">
@@ -93,7 +93,7 @@
 
       <!-- E-Lodge -->
       <div class="col-xl-3 mb-2">
-        <div class="card py-2 border">
+        <div class="card py-2 shadow border">
           <div class="card-body dashboard">
             <div class="icon-bg" style="background: #FF9E9E;">
               <img class="img-icon" src="../img/icon/file.png" height="32" width="32">
@@ -371,16 +371,6 @@
               </div>
             </div>
                 
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-              <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                  <span>Copyright &copy; Agro Online System 2020 - Ver1.0</span>
-                </div>
-              </div>
-            </footer>
-            <!-- End of Footer -->
 
 
 

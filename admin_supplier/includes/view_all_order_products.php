@@ -24,7 +24,7 @@
                       <th>Produk</th>
                       <th>Kuantiti (Kg)</th>
                       <th>Jumlah Bayaran (RM)</th>
-                      <th>Tarikh Tempahan Dihantar</th>
+                      <th>Tarikh Pembayaran Dibuat</th>
                       <th>Status Bayaran</th>
                       <th>Lihat Tempahan</th>
 <!--

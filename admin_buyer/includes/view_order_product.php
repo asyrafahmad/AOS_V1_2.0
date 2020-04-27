@@ -271,7 +271,7 @@
 				else{ 
 					
 					echo "<script>alert('Tiada barang di dalam troli')</script>"; 
-//					header("Location: ../includes/product.php" );
+					echo "<script>window.location='./product.php?menu=$menu'</script>";
 				}  
 			?>
                 

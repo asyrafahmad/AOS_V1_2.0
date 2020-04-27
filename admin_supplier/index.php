@@ -24,7 +24,7 @@
 
       <!-- Product -->
       <div class="col-xl-4 mb-2">
-        <div class="card py-2 border">
+        <div class="card py-2 shadow border">
           <div class="card-body dashboard">
             <div class="icon-bg" style="background: #d4d5f9;">
               <img class="img-icon" src="../img/icon/product.png" height="32" width="32">
@@ -46,7 +46,7 @@
 
       <!-- Complete Payment -->
       <div class="col-xl-4 mb-2">
-        <div class="card py-2 border">
+        <div class="card py-2 shadow border">
           <div class="card-body dashboard">
             <div class="icon-bg" style="background: #A8F4E5;">
               <img class="img-icon" src="../img/icon/Buyer.png" height="32" width="32">
@@ -68,7 +68,7 @@
 
       <!-- E-lodge -->
       <div class="col-xl-4 mb-2">
-        <div class="card py-2 border">
+        <div class="card py-2 shadow border">
           <div class="card-body dashboard">
             <div class="icon-bg" style="background: #FF9E9E;">
               <img class="img-icon" src="../img/icon/file.png" height="32" width="32">
