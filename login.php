@@ -55,10 +55,10 @@ if(ifItIsMethod('post')){
             </div>
             <hr>
             <div class="text-center">
-              <a class="small" href="register.php">Daftar Akaun </a>
+              <a style="color: #000;" class="small" href="register.php">Daftar Akaun </a>
             </div>
             <div class="text-center">
-              <a class="small" href="forgotPassword.php?forgot=<?php echo uniqid(true); ?>">Lupa Katalaluan ?</a>
+              <a style="color: #000;" class="small" href="forgotPassword.php?forgot=<?php echo uniqid(true); ?>">Lupa Katalaluan ?</a>
             </div>
 <!--
             <hr>
