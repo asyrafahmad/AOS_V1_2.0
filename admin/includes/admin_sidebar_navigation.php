@@ -81,11 +81,10 @@
 
 
                 <div class="sidebar_bottom">
-                  <!-- <li id="profile" class="profile nav-item"> -->
                   <a class="profile" href="../admin/profile.php?source=edit_profile" >
-                  <img src="../img/<?php echo $_SESSION['user_image'] ?>" >
-                  <!-- </li> -->
-
+                    <img src="../img/<?php echo $_SESSION['user_image'] ?>" >
+                  </a>
+                    
                   <li id="logout" class="nav-item p-4">
                     <a href="../includes/logout.php" class="nav-link">
                         <img src="../img/icon/logout.svg" height="24px">
