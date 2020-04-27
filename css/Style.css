@@ -11392,3 +11392,10 @@ a.profile img{
 .sub_category:hover{
   border:2px solid #14CC60 ;
 }
+
+/*pagination clicked button*/
+.pagination li .active_link{
+    color: #fff;
+    background-color: #2c9faf;
+    border-color: #2a96a5;
+}
