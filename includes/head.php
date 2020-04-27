@@ -20,6 +20,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<!-- <body class="bg-gradient-primary"> -->
+<body id="whitewave">
 
 <?php session_start(); ?>
