@@ -90,15 +90,7 @@
                      <!-- Get data in db and display  -->
                     <?php
                         
-                        if(isset($_GET['payment_status'])){
-
-                            $the_product_id = $_GET['payment_status'];
-
-                            $query = "UPDATE product SET product_status = 'Selesai' WHERE product_id = $the_product_id  ";
-                            $payment_status_query = mysqli_query($connection, $query);
-                            
-                            //TODO: redirect to same page
-                        }
+                       
                       
                        
                       
@@ -125,18 +117,20 @@
                             $product_current_price = escape($row['product_current_price']);
                             $product_status = escape($row['product_status']);
                             
+                            $user_username = escape($row['user_username']);
+                            
                             //Set as global
                             $_SESSION['product_id'] = $product_id;
                             $_SESSION['product_name'] = $product_name;
                             
                             echo "<tr>";
-                            echo "<td>$product_id </td>";
+                            echo "<td>$user_username </td>";
 //                            echo "<td>$product_category </td>";
                             echo "<td><img height='10%' width='30%'  src='../img/$product_image'  alt='image' class='rounded-circle' </td>";
                             echo "<td>$product_name  </td>";
                             echo "<td>$product_gred  </td>";
                             echo "<td>$product_quantity  </td>";
-                            echo "<td>$product_current_price  </td>";
+                            echo "<td>$product_price  </td>";
                             echo "<td>$product_status</td>";
                             echo "<td><a class='btn btn-info' href='product.php?source=view_all_record_supplier_product&payment_status={$product_id}'>Selesai</a></td>";
                             echo "</tr>";
@@ -144,6 +138,22 @@
 							$_SESSION['total'] = $var += $product_price ;
 
                        }
+                      
+                      
+                       if(isset($_GET['payment_status'])){
+
+                            $the_product_id = $_GET['payment_status'];
+
+                            $query = "UPDATE product SET product_status = 'Selesai' WHERE product_id = $the_product_id  ";
+                            $payment_status_query = mysqli_query($connection, $query);
+                            
+                            
+                            $query = "INSERT INTO payment_product_history (payment_supplier, payment_product, payment_gred, payment_quantity, payment_price, payment_status, payment_date)";
+                            $query .= "VALUES( '{$user_username}', '{$product_name}', '{$product_gred}', '{$product_quantity}', '{$product_price}', 'Selesai', now() )  ";
+
+                            $payment_product_query  =   mysqli_query($connection, $query);
+                            confirmQuery($payment_product_query);
+                        }
 					  
                   ?>
                   </tbody>
