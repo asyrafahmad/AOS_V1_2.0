@@ -22,79 +22,23 @@
 
   <!-- Custom styles for this template-->
   <link href="css/Style.css" rel="stylesheet">
-	
-	<style>
-		
-
-	
-	.radio-toolbar {
-	  margin: 10px;
-	}
-
-	.radio-toolbar input[type="radio"] {
-	  opacity: 0;
-	  position: fixed;
-	  width: 0;
-	}
-
-	.radio-toolbar label {
-		display: inline-block;
-		background-color: #00FF7F;
-		padding: 10px 20px;
-		font-family: sans-serif, Arial;
-		font-size: 16px;
-		border: 2px solid #00FF00;
-		border-radius: 4px;
-	}
-
-	.radio-toolbar label:hover {
-	  background-color: #dfd;
-	}
-
-	.radio-toolbar input[type="radio"]:focus + label {
-		border: 2px dashed #00FF00;
-	}
-
-	.radio-toolbar input[type="radio"]:checked + label {
-		background-color: #bfb;
-		border-color: #4c4;
-	}
-
-		
-		
-	</style>
 
 </head>
 
     
 
-    
-   
-    
-    
-<body class="bg-gradient-primary">
-  <div class="container">
-    <div class="card o-hidden border-0 shadow-lg my-5">
-      <div class="card-body p-0">
-		 
-		<!--row start-->
-        <div class="row">
-          <div class="col-lg-5 ">
-			<div class="p-5">
-				<div class="text-center">
-					<img src="img/bg/register.png" height="80%" width="110%" alt="MakmurLogo">
-					<h1 class="h4 text-gray-900 mb-4"><b>Selamat Datang!</b></h1>
-				</div>
-			</div>
-		  </div>
-			
-          <div class="col-lg-7">
-            <div class="p-5">
-              <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4"><b>DAFTAR AKAUN</b></h1>
-              </div>
-                
-              <form class ="user" role="form" method="post" autocomplete="off">
+<body id="whitewave">
+  <div class="container login">
+
+    <!-- Outer Row -->
+    <div class="row main">
+      <div class="col-xl-6 col-lg-6 col-sm-12">
+        <div class="left-side text-center">
+          <img src="img/bg/MakmurLogo.png" width="100">
+          <h4 class="text-gray-900 mt-4"><strong>Daftar Akaun</strong></h4>
+          <hr class="underline" style="width: 10%;">
+
+          <form class ="user" role="form" method="post" autocomplete="off">
 
 				  
 			
@@ -110,33 +54,34 @@
 				</div>
 -->
 				  
-				<div class="" align="center">
-					<div class="radio-toolbar">
+				<div class="row justify-content-center my-3 choose-user" align="center">
+					<div class="col-xl-4 col-sm-2 radio-toolbar">
 						<input type="radio"  id="Petani" name="user_role" value="Petani">
 						<label for="Petani">Petani</label>
-
+					</div>
+					<div class="col-xl-4 col-sm-2 radio-toolbar">
 						<input type="radio"  class="btn info" id="Pemborong" name="user_role" value="Pemborong">
 						<label for="Pemborong">Pemborong</label>
 					</div>
-					</div>
+				</div>
 				  
 				  
 				  
                 <div class="form-group">
-                    <input  class="form-control form-control-user" name="user_username" placeholder="ID Pengguna" required>
+                    <input  class="form-control " name="user_username" placeholder="ID Pengguna" required>
                 </div>
 				<div class="form-group">
-                  <input type="email" class="form-control form-control-user" name="user_email" placeholder="Emel" required>
+                  <input type="email" class="form-control" name="user_email" placeholder="Emel" required>
                 </div>
                 <div class="form-group">
-                  <input class="form-control form-control-user" name="user_phone" placeholder="Nombor Telefon" required>
+                  <input class="form-control" name="user_phone" placeholder="Nombor Telefon" required>
                 </div>
-                <div class="form-group row">
+                <div class="row form-group">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" name="user_password" placeholder="Katalaluan" required>
+                    <input type="password" class="form-control " name="user_password" placeholder="Katalaluan" required>
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" name="user_repassword" placeholder="Ulang Katalaluan" required>
+                    <input type="password" class="form-control" name="user_repassword" placeholder="Ulang Katalaluan" required>
                   </div>
                 </div>
 
@@ -202,26 +147,25 @@
 				?>
 				  
                 <div class="">
-                    <input type="submit" name="register"  class="btn btn-primary btn-user btn-block" value="Daftar">
+                    <input type="submit" name="register"  class="btn btn-primary btn-user btn-block mt-4" value="Daftar">
                 </div>
               </form>
-<!--
               <hr>
-              <div class="text-center">
-                <a class="small" href="forgot-password.html">Forgot Password?</a>
+              <div class="text-center" style="color: #fff;">
+                <p class="small" >Sudah mempunyai akaun? <a class="" style="color: #000;" href="login.php">Log Masuk</a></p>
               </div>
--->
-			<hr>
-              <div class="text-center">
-                <p class="small">Sudah mempunyai akaun? <a class="" href="login.php">Log Masuk</a></p>
-              </div>
-            </div>
-          </div>
+
         </div>
-		<!--row end-->
-		  
       </div>
+
+      <div class="col-xl-6 col-lg-6 col-sm-12">
+        <div class="right-side text-center">
+          <img src="img/bg/register.png" width="80%">
+        </div>
+      </div>
+
     </div>
+
   </div>
 
   <!-- Bootstrap core JavaScript-->
