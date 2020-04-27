@@ -5,26 +5,17 @@
 
     
 <!-- Page Heading -->
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-body">
-              <div class="table-responsive">
-                  
-                  
-<!--           TODO: put elodge_product table-->
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
 
-<!--                      <th>ID</th>-->
+
+              <div class="table-responsive">     
+<!--           TODO: put elodge_product table-->
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                  <thead class="thead-light">
+                    <tr>
                       <th>Gambar</th>
-                      <th>Produk</th>
+                      <th>Nama Produk</th>
                       <th>Kuantiti (Kg)</th>
                       <th>Tarikh Menuai</th>
-<!--
-                      <th>Jumlah Ditempah</th>
-                      <th>Status</th>
--->
                       <th></th>
                     </tr>
                   </thead>
@@ -50,22 +41,19 @@
                             //Set as global
                             $_SESSION['elodge_product_id'] = $elodge_product_id;
                             $_SESSION['elodge_product_name'] = $elodge_product_name;
-                            
-                            echo "<tr>";
-//                            echo "<td>$elodge_product_id </td>";
-                            echo "<td align='center'><img width='100' src='../img/$elodge_product_image'  alt='image' class='rounded-circle' /></td>";
-                            echo "<td>$elodge_product_name  </td>";
-                            echo "<td>$elodge_product_quantity  </td>";
-                            echo "<td>Bulan: $elodge_product_harvest_date  </td>";
-//                            echo "<td><p class='text-danger'>$elodge_product_amount_booked</p></td>";
-//                            echo "<td><p class='text-danger'>$elodge_product_status </p></td>";
-                            echo "<td align='center'><a class='btn btn-success' href='e-lodge.php?menu=$menu&source=book_elodge_product&b_e_p_id={$elodge_product_id}'>Tempah </a></td>";
-                            echo "</tr>";
+                      ?>
 
-                                }
+                            <tr>
+                              <td class="text-center"><img width='50' src='../img/<?php echo $elodge_product_image ?>'  alt='image' /></td>
+                              <td class=""><?php echo "$elodge_product_name"?></td>
+                              <td class=""><?php echo "$elodge_product_quantity"?></td>
+                              <td class=""><?php echo "$elodge_product_harvest_date"?></td>
+                              <td class="text-center"><a class="btn btn-success" href="e-lodge.php?menu=$menu&source=book_elodge_product&b_e_p_id={$elodge_product_id}">Tempah </a></td>
+                            </tr>
+
+                      <?php
+                            }
                          ?>
                   </tbody>
                 </table>
               </div>
-            </div>
-          </div>
