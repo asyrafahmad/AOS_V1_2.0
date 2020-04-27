@@ -75,14 +75,13 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Produk ID</th>
-<!--                      <th>Kategori Produk</th>-->
+                      <th>Nama Petani</th>
                       <th>Gambar produk</th>
                       <th>Produk</th>
                       <th>Gred</th>
                       <th>Kuantiti (Kg)</th>
                       <th>Harga (RM) / Kg</th>
-                      <th>Status</th>
+                      <th>Status Bayaran</th>
                       <th>Pembayaran</th>
                     </tr>
                   </thead>
@@ -107,7 +106,8 @@
                       
 					  	$var = 0;
                       
-                        $query  =  "SELECT * FROM product LIMIT $page_1,5 ";    
+//                        $query  =  "SELECT * FROM product LIMIT $page_1,5 ";    
+                        $query  =  "SELECT * FROM product  JOIN user ON product.product_supplier=user.user_id LIMIT $page_1,5";     
                         $select_suppliers = mysqli_query($connection, $query);
 					  	
 
