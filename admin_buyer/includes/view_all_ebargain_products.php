@@ -5,18 +5,13 @@
 
     
 <!-- Page Heading -->
-          <p class="mb-4">Produk Petani. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
-
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
               
         
             <div class="card-header py-2">
                 <div class="row">
-                  <div class="col-md-6">
-                     <h6 class="m-2 font-weight-bold text-primary">Senarai E-Bargain Produk</h6>
-                  </div>
-                  <div class="col-md-6" align="center">
+                  <div class="col-md-12" align="right">
                      <div align="right"><a class='btn btn-success' href='e-bargain.php?source=add_ebargain'>+ Produk </a></div>
                   </div>
                 </div>
