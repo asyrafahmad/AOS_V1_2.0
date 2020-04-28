@@ -12,7 +12,7 @@
     <div class="container-fluid">
       
     <div class="d-sm-flex align-items-center justify-content-between m-4">
-      <h1 class="h3 mb-0 text-gray-800">Produk</h1>
+      <h1 class="h3 mb-0 text-gray-800">Senarai Produk E-Lodge</h1>
     </div>
 
     <!-- Content Row -->
@@ -20,7 +20,7 @@
 
      <div class="col-xl-12">
         <div class="card p-4 border">
-          <div class="card-title justify-content-between align-items-center">
+          <div class="card-title justify-content-end align-items-center">
             <div class="form-group has-search">
               <span class="fa fa-search form-control-feedback"></span>
               <input type="text" class="form-control" placeholder="Search">
