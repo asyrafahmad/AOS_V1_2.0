@@ -12,7 +12,7 @@
     <div class="container-fluid">
       
     <div class="d-sm-flex align-items-center justify-content-between m-4">
-      <h1 class="h3 mb-0 text-gray-800">Senarai Produk E-Lodge</h1>
+      <h1 class="h3 mb-0 text-gray-800">Produk</h1>
     </div>
 
     <!-- Content Row -->

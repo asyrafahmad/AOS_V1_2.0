@@ -7,7 +7,7 @@
 <!-- Page Heading -->
 
           <!-- DataTales Example -->
-          <div class="card shadow mb-4">
+          <!-- <div class="card shadow mb-4"> -->
        
 			  
 	
@@ -125,4 +125,4 @@
                 </table>
               </div>
            <!--  </div> -->
-          </div>
+          <!-- </div> -->
