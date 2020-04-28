@@ -20,7 +20,7 @@
 
      <div class="col-xl-12">
         <div class="card p-4 border">
-          <div class="card-title justify-content-between align-items-center">
+          <div class="card-title justify-content-end align-items-center">
             <div class="form-group has-search">
               <span class="fa fa-search form-control-feedback"></span>
               <input type="text" class="form-control" placeholder="Search">
