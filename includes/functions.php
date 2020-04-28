@@ -274,6 +274,8 @@ function register_user($user_username, $user_email, $user_phone, $user_password,
          $db_user_username = $row['user_username'];
          $db_user_password = $row['user_password'];
          $db_user_image = $row['user_image'];
+         $db_user_email = $row['user_email'];
+         $db_user_phone = $row['user_phone'];
 
 		 $password = crypt($password, $db_user_password);
 
@@ -282,6 +284,8 @@ function register_user($user_username, $user_email, $user_phone, $user_password,
              $_SESSION['user_id'] = $db_user_id;
              $_SESSION['user_username'] = $db_user_username;
              $_SESSION['user_image'] = $db_user_image;
+             $_SESSION['user_email'] = $db_user_email;
+             $_SESSION['user_phone'] = $db_user_phone;
 
              is_admin($db_user_username);
          }

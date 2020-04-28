@@ -38,30 +38,28 @@
                      <!-- Get data in db and display  -->
                     <?php
 					  
-					    if(isset($_SESSION['user_id'])){
+					    if(isset($_SESSION['user_username'])){
 		
-							$user_id = $_SESSION['user_id'];
+							$user_username = $_SESSION['user_username'];
 						}
 					  
 
-                        $query  =  "SELECT * FROM order_product_history WHERE buyer_id = '{$user_id}'	";    
+                        $query  =  "SELECT * FROM payment_product_history WHERE payment_supplier_name = '{$user_username}'	";    
                         $select_suppliers = mysqli_query($connection, $query);
 
                         while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-                            $order_id = escape($row['order_id']);
-                            $order_product_id = escape($row['order_product_id']);
-                            $order_billcode = escape($row['order_billcode']);
-                            $order_status = escape($row['order_status']);
-                            $order_payment = escape($row['order_payment']);
-                            $order_date_payment = escape($row['order_date_payment']);
+                            $payment_invoice     = escape($row['payment_invoice']);
+                            $payment_price       = escape($row['payment_price']);
+                            $payment_date     = escape($row['payment_date']);
+                            $payment_status       = escape($row['payment_status']);
                            
                             
                             echo "<tr>";
-                            echo "<td>#$order_product_id  </td>";
-                            echo "<td>RM$order_payment  </td>";
-                            echo "<td>$order_date_payment  </td>";
-                            echo "<td>$order_status  </td>";
+                            echo "<td>#$payment_invoice  </td>";
+                            echo "<td>$payment_price  </td>";
+                            echo "<td>$payment_date  </td>";
+                            echo "<td>$payment_status  </td>";
 //                            echo "<td><a class='btn btn-info' href='order.php?menu=$menu&source=view_product&o_p_id={$order_id}'>Lihat Tempahan</a></td>";
 //                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";
                             echo "</tr>";
