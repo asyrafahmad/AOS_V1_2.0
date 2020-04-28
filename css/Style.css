@@ -164,13 +164,13 @@ sup {
 }
 
 a {
-  color: #4e73df;
+  color: #000;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #224abe;
+  color: #14CC60;
   text-decoration: none;
 }
 
@@ -11392,6 +11392,10 @@ a.profile img{
     #sidebar.active a.profile img{
       display: none;
     }
+    
+    #search{
+      width: 100%;
+    }
 
     .right-side{
       display: none;
@@ -11550,17 +11554,18 @@ a.profile img{
   }
 
 /*table elodge*/
-@media screen and (max-width: 992px) {
-  table {
+/*@media screen and (max-width: 992px) {
+
+  table  {
     display: block;
   }
-  table > *, table tr, table td, table th {
+  table  > *, table tr, table td, table th {
     display: block;
   }
-  table thead {
+  table thead  {
     display: none;
   }
-  table tbody tr {
+  table tbody tr  {
     height: auto;
     padding: 37px 0;
     border: 1px solid #e3e6f0;
@@ -11571,7 +11576,7 @@ a.profile img{
     padding-left: 55% !important;
   }
 
-  .table td{
+  td{
     border:none;
   }
 
@@ -11616,4 +11621,4 @@ a.profile img{
     padding-left: 15px;
     padding-right: 15px;
   }
-  }
+}*/

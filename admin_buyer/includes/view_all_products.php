@@ -55,7 +55,7 @@
 			<!-- select category items--> 
 			<?php
 
-				echo "<div class='card shadow mb-4 py-3'>";    
+				// echo "<div class='card shadow mb-4 py-3'>";    
 				echo "<div class='card-body'> ";        
 				echo "<div class='row'>";        
 				echo "<div class='col-xl-12 text-gray-800'><h2>Kategori</h2></div>";
@@ -86,7 +86,7 @@
 				}
 				echo "</div>";  
 				echo "</div>"; 
-				echo "</div>";
+				// echo "</div>";
 			?>
 
 

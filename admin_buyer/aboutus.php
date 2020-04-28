@@ -11,7 +11,7 @@
 
     <div class="container-fluid">
       
-    <div class="d-sm-flex align-items-center justify-content-between m-4">
+    <div class="d-sm-flex align-items-center justify-content-end m-4">
       
     </div>
 

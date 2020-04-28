@@ -7,7 +7,7 @@
 <!-- Page Heading -->
 
 
-              <div class="table-responsive">     
+              <div class="table-responsive elodge">     
 <!--           TODO: put elodge_product table-->
                 <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead class="thead-light">
