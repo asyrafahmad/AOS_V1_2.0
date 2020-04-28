@@ -71,16 +71,17 @@
 					$cat_product_title = escape($row['cat_product_title']);
 					$cat_product_image = escape($row['cat_product_image']);
 
-					echo "<div class='col-xl-4 py-3'>";
+					echo "<div class='col-xl-3 col-md-4 col-sm-4 py-3'>";
 					echo "<div class='card shadow'>";
 					echo "<div class='card-body'>";
 					echo "<div class='no-gutters align-items-center'>";
-					echo "<a href='product.php?menu=$menu&p_c=$cat_product_title'><img width='40%' height='40%' src='../img/$cat_product_image' ></a><br>";
-					echo "<a class='align-items-center'>$cat_product_title</a>";
+					echo "<a href='product.php?menu=$menu&p_c=$cat_product_title'><img class='img-category mb-2' width='40%' height='40%' src='../img/$cat_product_image' ></a><br>";
+					echo "<a class='align-items-center cat-title'>$cat_product_title</a>";
 					echo "</div>";   
 					echo "</div>";   
 					echo "</div>";   
-					echo "</div>";   
+					echo "</div>";
+
 
 				}
 				echo "</div>";  
@@ -117,11 +118,11 @@
 					$product_image = escape($row['product_image']);
 
 
-					echo "<div class='col-xl-3 py-3'>";
+					echo "<div class='col-xl-3 col-md-4 col-sm-6 py-3'>";
 					echo "<div class='card shadow sub_category'>";
 					echo "<div class='card-body'>";
 					echo "<div class='no-gutters align-items-left'>";
-					echo "<a href='product.php?menu=$menu&b_p_id={$product_id}'><img width='50%' height='50%' src='../img/$product_image' ></a>";
+					echo "<a href='product.php?menu=$menu&b_p_id={$product_id}'><img class='img-category mb-2' src='../img/$product_image' ></a>";
 					echo "</div>";
 					echo "<h4>$product_name</h4>";
 					echo "<h6>RM$product_current_price</h6>";
