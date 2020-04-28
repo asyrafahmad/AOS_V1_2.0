@@ -1,25 +1,23 @@
       
-  <?php session_start(); ?>
+<?php session_start(); ?>
     
 
 <?php
 
+global $connection;
 
-//     	global $connection;
-//        $query  =  "SELECT * FROM user ";    
-//        $select_buyer = mysqli_query($connection, $query);
-//
-//        while ($row = mysqli_fetch_assoc($select_buyer)){
-//
-//            $buyer_id = escape($row['buyer_id']);
-//            $buyer_name = escape($row['buyer_name']);
-//            $buyer_phone = escape($row['buyer_phoneNo']);
-//            $buyer_email = escape($row['buyer_email']);
-//            $buyer_website = escape($row['buyer_website']);
-//            $buyer_state = escape($row['buyer_state']);
-//            $buyer_address = escape($row['buyer_address']);
-//                             
-//        }
+//*TODO: data transaction need to store into db (name,email,phone,price,status,date)
+
+echo $user_username      = $_SESSION['user_username'];
+echo $user_email         = $_SESSION['user_email'];
+echo $user_phone         = $_SESSION['user_phone'];
+echo $payment_price      = $_SESSION['total_price_afterConvert'];
+echo $payment_status     = 0;
+
+$query  = "INSERT INTO payment_product_history (payment_supplier_name, payment_supplier_email, payment_supplier_phone, payment_price, payment_status, payment_order_date)  ";
+$query .= "VALUES ('{$user_username}', '{$user_email}', '{$user_phone}', '{$payment_price}', '{$payment_status}', now() )";
+$add_order_query = mysqli_query($connection, $query);
+
 
 
 
@@ -44,86 +42,110 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-//CREATE CATEGORY
-  $some_data = array(
-    'catname' => 'Agro Online System', //CATEGORY NAME
-    'catdescription' => 'Paymeny for Agro Online System', //PROVIDE YOUR CATEGORY DESCRIPTION
-    'userSecretKey' => '39kqy7he-mmwt-3vkz-w9tx-2drrcdl6ndjt' //PROVIDE USER SECRET KEY HERE
-      
-  );  
-
-  $curl = curl_init();
-
-  curl_setopt($curl, CURLOPT_POST, 1);
-  curl_setopt($curl, CURLOPT_URL, 'https://dev.toyyibpay.com/index.php/api/createCategory');  //PROVIDE API LINK HERE
-  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($curl, CURLOPT_POSTFIELDS, $some_data);
-
-  $result = curl_exec($curl);
-
-  $info = curl_getinfo($curl);  
-  curl_close($curl);
-
-  $obj = json_decode($result);
-//  echo $result;
-
-//categoryCode = 76q6uc4k
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
-echo $_SESSION['user_username'];
-echo $_SESSION['user_email'];
-echo $_SESSION['user_phone'];
-   
-
-
-//CREATE BILL
-  $some_data = array(
-    'userSecretKey'=>'39kqy7he-mmwt-3vkz-w9tx-2drrcdl6ndjt',
-    'categoryCode'=>'76q6uc4k',
-    'billName'=> $_SESSION['user_username'],
-    'billDescription'=>'Bayaran untuk pembelian produk',
-    'billPriceSetting'=>1,
-    'billPayorInfo'=>1,
+//
+////CREATE CATEGORY
+//  $some_data = array(
+//    'catname' => 'Agro Online System', //CATEGORY NAME
+//    'catdescription' => 'Paymeny for Agro Online System', //PROVIDE YOUR CATEGORY DESCRIPTION
+//    'userSecretKey' => '39kqy7he-mmwt-3vkz-w9tx-2drrcdl6ndjt' //PROVIDE USER SECRET KEY HERE
+//      
+//  );  
+//
+//  $curl = curl_init();
+//
+//  curl_setopt($curl, CURLOPT_POST, 1);
+//  curl_setopt($curl, CURLOPT_URL, 'https://dev.toyyibpay.com/index.php/api/createCategory');  //PROVIDE API LINK HERE
+//  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+//  curl_setopt($curl, CURLOPT_POSTFIELDS, $some_data);
+//
+//  $result = curl_exec($curl);
+//
+//  $info = curl_getinfo($curl);  
+//  curl_close($curl);
+//
+//  $obj = json_decode($result);
+////  echo $result;
+//
+////categoryCode = 76q6uc4k
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//
+////CREATE BILL
+//  $some_data = array(
+//    'userSecretKey'=>'39kqy7he-mmwt-3vkz-w9tx-2drrcdl6ndjt',
+//    'categoryCode'=>'76q6uc4k',
+//    'billName'=> $_SESSION['user_username'],
+//    'billDescription'=>'Bayaran untuk pembelian produk',
+//    'billPriceSetting'=>1,
+//    'billPayorInfo'=>1,
+////    'billAmount'=>$_SESSION['total_price_afterConvert'],
 //    'billAmount'=>$_SESSION['total_price_afterConvert'],
-    'billAmount'=>$_SESSION['total_price_afterConvert'],
-    'billReturnUrl'=>'http://localhost/DEVELOPMENT/AOS_1.0_V1/admin_buyer/toyyibpayApi.php?source=thankyou',
-    'billCallbackUrl'=>'http://localhost/DEVELOPMENT/AOS_1.0_V1/admin_buyer/toyyibpayApi.php?source=thankyou',
-    'billExternalReferenceNo' => 'AFR341DFI',
-    'billTo'=>$_SESSION['user_username'],
-    'billEmail'=> $_SESSION['user_email'],
-    'billPhone'=> $_SESSION['user_phone'],   
-//    'billTo'=>'asas',
-//    'billEmail'=> 'asa',
-//    'billPhone'=> '1212',
-    'billSplitPayment'=>0,
-    'billSplitPaymentArgs'=>'',
-    'billPaymentChannel'=>'2',
-    'billDisplayMerchant'=>1,
-    'billContentEmail'=>'Thank you for purchasing our product!',
-    'billChargeToCustomer'=>1
-  );  
-
-  $curl = curl_init();
-  curl_setopt($curl, CURLOPT_POST, 1);
-  curl_setopt($curl, CURLOPT_URL, 'https://dev.toyyibpay.com/index.php/api/createBillMultiPayment');  
-  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($curl, CURLOPT_POSTFIELDS, $some_data);
-
-  $result = curl_exec($curl);
-  $info = curl_getinfo($curl);  
-  curl_close($curl);
-  $obj = json_decode($result,true);
-//  echo $result;
-
-  $billcode=$obj[0]['BillCode'];
-
+//    'billReturnUrl'=>'http://localhost/DEVELOPMENT/AOS_V1_2.0/admin_buyer/toyyibpayApi.php?menu=eselling&source=thankyou',
+//    'billCallbackUrl'=>'http://localhost/DEVELOPMENT/AOS_V1_2.0/admin_buyer/toyyibpayApi.php?menu=eselling&source=thankyou',
+//    'billExternalReferenceNo' => 'AFR341DFI',
+//    'billTo'=>$_SESSION['user_username'],
+//    'billEmail'=> $_SESSION['user_email'],
+//    'billPhone'=> $_SESSION['user_phone'],   
+////    'billTo'=>'asas',
+////    'billEmail'=> 'asa',
+////    'billPhone'=> '1212',
+//    'billSplitPayment'=>0,
+//    'billSplitPaymentArgs'=>'',
+//    'billPaymentChannel'=>'2',
+//    'billDisplayMerchant'=>1,
+//    'billContentEmail'=>'Thank you for purchasing our product!',
+//    'billChargeToCustomer'=>1
+//  );  
+//
+//  $curl = curl_init();
+//  curl_setopt($curl, CURLOPT_POST, 1);
+//  curl_setopt($curl, CURLOPT_URL, 'https://dev.toyyibpay.com/index.php/api/createBillMultiPayment');  
+//  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+//  curl_setopt($curl, CURLOPT_POSTFIELDS, $some_data);
+//
+//  $result = curl_exec($curl);
+//  $info = curl_getinfo($curl);  
+//  curl_close($curl);
+//  $obj = json_decode($result,true);
+////  echo $result;
+//
+//  $billcode=$obj[0]['BillCode'];
+//
 
 
 //https://dev.toyyibpay.com/index.php/api/createBillMultiPayment
 //https://dev.toyyibpay.com/u7zkqqqz
 //billCode=rm3k8iu8
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
