@@ -114,6 +114,8 @@
                             // echo "<td class='text-info'>$book_buyer_name</td>";
 //                            echo "<td>$elodge_product_status</td>";
                             
+
+                            //View List
                             echo "<td class='text-center align-middle'><a class='btn ' href='e-lodge.php?source=view_elodge&e_p_id={$elodge_product_id}'><i class='fas fa-eye'></i></a>
                             <a class='btn' href='e-lodge.php?source=edit_elodge&e_p_id={$elodge_product_id}'><i class='fas fa-edit'></i></a></td>";
 //                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Anda pasti untuk padam maklumat ini? ');  \"  href='e-lodge.php?delete={$elodge_product_id} '>Padam </a></td>";
