@@ -50,7 +50,7 @@
         <div class="">
             <form action="" method="post">
                 <div class="table-responsive">
-                <table class="table">
+                <table class="table order">
                     <thead>
                       <tr>
                        <th>Gambar</th>

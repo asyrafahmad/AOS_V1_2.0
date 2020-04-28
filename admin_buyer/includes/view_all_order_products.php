@@ -6,7 +6,6 @@
 
     
 <!-- Page Heading -->
-          <p class="mb-4">Pesanan Barangan. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">

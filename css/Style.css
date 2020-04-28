@@ -164,13 +164,13 @@ sup {
 }
 
 a {
-  color: #4e73df;
+  color: #000;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #224abe;
+  color: #14CC60;
   text-decoration: none;
 }
 
@@ -2329,8 +2329,8 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #fff;
-  background-color: #1cc88a;
-  border-color: #1cc88a;
+  background-color: #14CC60;
+  border-color: #14CC60;
 }
 
 .btn-success:hover {
@@ -4427,7 +4427,7 @@ input[type="button"].btn-block {
 
 .card-img {
   width: 100%;
-  border-radius: calc(0.35rem - 1px);
+  /*border-radius: calc(0.35rem - 1px);*/
 }
 
 .card-img-top {
@@ -11012,7 +11012,7 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 img {
-    border-radius: 30%;
+    /*border-radius: 30%;*/
 }
 
 
@@ -11392,6 +11392,10 @@ a.profile img{
     #sidebar.active a.profile img{
       display: none;
     }
+    
+    #search{
+      width: 100%;
+    }
 
     .right-side{
       display: none;
@@ -11403,6 +11407,16 @@ a.profile img{
 
     .choose-user{
       display: inline-flex;
+    }
+
+    .product_image{
+      max-width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .product_detail a{
+      width: 100%;
     }
 
 }
@@ -11506,20 +11520,52 @@ a.profile img{
     max-width: 67px;
     max-height: 67px;
     border-radius: 0;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  .product_image{
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product_name{
+    text-transform: capitalize;
+    font-weight: bolder;
+    color: #000;
+  }
+
+  .product_description{
+    text-transform: capitalize;
+  }
+
+  .product_price{
+    background: rgb(133,135,150, 0.1);
+    padding: 10px;
+    font-weight: bold;
+    color: #14CC60;
+  }
+
+  .img-container{
+    height: 100%;
+    margin: 0;
   }
 
 /*table elodge*/
-@media screen and (max-width: 992px) {
-  table {
+/*@media screen and (max-width: 992px) {
+
+  table  {
     display: block;
   }
-  table > *, table tr, table td, table th {
+  table  > *, table tr, table td, table th {
     display: block;
   }
-  table thead {
+  table thead  {
     display: none;
   }
-  table tbody tr {
+  table tbody tr  {
     height: auto;
     padding: 37px 0;
     border: 1px solid #e3e6f0;
@@ -11530,7 +11576,7 @@ a.profile img{
     padding-left: 55% !important;
   }
 
-  .table td{
+  td{
     border:none;
   }
 
@@ -11575,4 +11621,4 @@ a.profile img{
     padding-left: 15px;
     padding-right: 15px;
   }
-  }
+}*/

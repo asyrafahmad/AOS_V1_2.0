@@ -5,8 +5,6 @@
 
     
 <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Produk</h1>
-          <p class="mb-4">Produk Petani. <a target="_blank" href="">@PenerajuMedia.Sdn.Bhd</a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -16,9 +14,6 @@
 				  
 		    <div class="card-header py-2">
                 <div class="row">
-					<div class="col-md-6">
-						 <h6 class="m-2 font-weight-bold text-primary">Senarai E-Lodge Produk</h6>
-					</div>
 <!--
 					<div class="col-md-4">
 						<form >
@@ -35,7 +30,7 @@
 -->
 					
 				
-				  <div class="col-md-6" align="center">
+				  <div class="col-md-12" align="center">
                      <div align="right"><a class="btn btn-success" href="e-lodge.php?source=add_elodge">+ Produk </a></div>
                   </div>
                 </div>
@@ -59,25 +54,23 @@
 			  
 			  
 			  
-            <div class="card-body">
+            <!-- <div class="card-body"> -->
 				
               <div class="table-responsive">
                   		  
                   
 <!--           TODO: put elodge_product table-->
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
 
 <!--                      <th>ID</th>-->
-                      <th>Gambar</th>
-                      <th>Nama Produk</th>
+                      <th colspan="2" class="ml-2">Produk</th>
                       <th>Kuantiti (Kg)</th>
-                      <th>Tarikh Menuai</th>
+                      <th>Bulan Menuai</th>
                       <th>Jumlah Tempahan</th>
-                      <th>Nama Pemborong</th>
-                      <th>Lihat</th>
-                      <th>Kemaskini</th>
+                      <!-- <th>Nama Pemborong</th> -->
+                      <th></th>
 <!--                      <th>Padam</th>-->
                     </tr>
                   </thead>
@@ -113,16 +106,16 @@
                             
                             echo "<tr>";
 //                            echo "<td>$elodge_product_id </td>";
-                            echo "<td><img height='15%' width='80%'  src='../img/$elodge_product_image'  alt='image' class='rounded-circle' </td>";
-                            echo "<td>$elodge_product_name  </td>";
-                            echo "<td>$elodge_product_quantity  </td>";
-                            echo "<td>Bulan $elodge_product_harvest_date  </td>";
-                            echo "<td class='text-info'>$elodge_product_amount_booked</td>";
-                            echo "<td class='text-info'>$book_buyer_name</td>";
+                            echo "<td><img src='../img/$elodge_product_image'  alt='image' class='img-category ml-2' </td>";
+                            echo "<td class='align-middle'>$elodge_product_name  </td>";
+                            echo "<td class='align-middle'>$elodge_product_quantity  </td>";
+                            echo "<td class='align-middle'>$elodge_product_harvest_date  </td>";
+                            echo "<td class='text-info align-middle '>$elodge_product_amount_booked</td>";
+                            // echo "<td class='text-info'>$book_buyer_name</td>";
 //                            echo "<td>$elodge_product_status</td>";
                             
-                            echo "<td><a class='btn btn-info' href='e-lodge.php?source=view_elodge&e_p_id={$elodge_product_id}'>Lihat </a></td>";
-                            echo "<td><a class='btn btn-info' href='e-lodge.php?source=edit_elodge&e_p_id={$elodge_product_id}'>Kemaskini </a></td>";
+                            echo "<td class='text-center align-middle'><a class='btn ' href='e-lodge.php?source=view_elodge&e_p_id={$elodge_product_id}'><i class='fas fa-eye'></i></a>
+                            <a class='btn' href='e-lodge.php?source=edit_elodge&e_p_id={$elodge_product_id}'><i class='fas fa-edit'></i></a></td>";
 //                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Anda pasti untuk padam maklumat ini? ');  \"  href='e-lodge.php?delete={$elodge_product_id} '>Padam </a></td>";
                             echo "</tr>";
 
@@ -131,5 +124,5 @@
                   </tbody>
                 </table>
               </div>
-            </div>
+           <!--  </div> -->
           </div>
