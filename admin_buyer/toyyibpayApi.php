@@ -1,3 +1,130 @@
+
+<?php  include "../includes/admin_header.php"; ?>
+
+<div class="wrapper d-flex align-items-stretch">
+
+  <?php include "includes/buyer_sidebar_navigation.php" ?>
+  
+  <!-- Page Content  -->
+  <div id="content" class="">
+
+    <?php include "../includes/topbar_nav.php" ?>
+
+    <div class="container-fluid">
+      
+    <div class="row d-sm-flex align-items-center justify-content-between m-4">
+      <h1 class="h3 mb-0 text-gray-800">Produk</h1>
+      <div class="add-to-cart" align="center">
+        <div class="card p-2 ">
+        <a href="order.php?menu=<?php echo $menu; ?>"><img height="32" width="32" src="../img/icon/add-to-cart.png" ></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+     <div class="col-xl-12">
+        <div class="card p-4 border">
+          <div class="card-title justify-content-between align-middle">
+            <div id="search" class="form-group has-search">
+              <span class="fa fa-search form-control-feedback"></span>
+              <input type="text" class="form-control" placeholder="Search">
+           </div>
+          </div>
+            <div class="card-body">
+            <?php
+
+            if(isset($_GET['source'])){
+                $source = $_GET['source'];
+            } 
+            else {
+                $source = '';
+            }
+
+            switch($source) {
+                    
+                case 'createBill';
+                    include "includes/createBill.php";
+                    break;
+        
+                case 'thankyou';
+                            include "includes/thankyou.php";
+                            break;    
+                            
+                        case 'view_all_order_products';
+                            include "includes/view_all_order_products.php";
+                            break;
+                        
+                        case 'view_all_elodge_order_products';
+                            include "includes/view_all_elodge_order_products.php";
+                            break;
+                        
+                        case 'status_order_product';
+                            include "includes/status_order_product.php";
+                            break;
+                        
+                        case 'store_into_db';
+                            include "includes/store_into_db.php";
+                            break;
+
+                        case '200';
+                            echo "NICE 200";
+                            break;
+
+                        default:
+                            include "includes/view_order_product.php";
+                            break;
+                    }
+
+                ?>                   
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+
+ 
+
+    </div>
+      
+      <!-- Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Agro Online System 2020 - Ver1.0</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+  </div>
+
+
+</div>
+
+
+<?php  include "../includes/admin_footer.php"; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <?php  include "../includes/admin_header.php"; ?>
 
 <div class="wrapper d-flex align-items-stretch">

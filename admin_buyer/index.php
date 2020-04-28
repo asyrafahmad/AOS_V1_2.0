@@ -31,9 +31,8 @@
             </div>
             <h1 class="pt-2 font-weight-bold text-dark dashboard-font">
             <?php 
-              global $connection;
 
-              $query = "SELECT * FROM supplier";
+              $query = "SELECT * FROM user WHERE user_role = '2' ";
               $select_all_suppliers = mysqli_query($connection,$query);
               $suppliers_count = mysqli_num_rows($select_all_suppliers);
 
@@ -54,7 +53,6 @@
             </div>
             <h1 class="pt-2 font-weight-bold text-dark dashboard-font">
             <?php 
-              global $connection;
 
               $query = "SELECT * FROM user WHERE user_role = '3' ";
               $select_all_buyers = mysqli_query($connection,$query);
@@ -77,7 +75,6 @@
             </div>
             <h1 class="pt-2 font-weight-bold text-dark dashboard-font">
               <?php 
-                global $connection;
 
                 $query = "SELECT * FROM product ";
                 $select_all_products = mysqli_query($connection,$query);
@@ -86,7 +83,7 @@
                 echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>{$products_count}</div>";
               ?>
             </h1>
-            <h5>Product</h5>
+            <h5>Produk</h5>
           </div>
         </div>
       </div>
@@ -100,9 +97,10 @@
             </div>
             <h1 class="pt-2 font-weight-bold text-dark dashboard-font">
               <?php 
-                global $connection;
-
-                $query = "SELECT * FROM elodge_product ";
+                
+                $user_username = $_SESSION['user_username'];
+                
+                $query = "SELECT * FROM elodge_product_book WHERE book_buyer_name = '{$user_username}'";
                 $select_all_elodge_products = mysqli_query($connection,$query);
                 $elodge_products_count = mysqli_num_rows($select_all_elodge_products);
 
