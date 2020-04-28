@@ -31,8 +31,12 @@
             </div>
             <h1 class="pt-2 font-weight-bold text-dark dashboard-font">
               <?php 
+    
                 global $connection;
-                $query = "SELECT * FROM product";
+        
+                $user_id = $_SESSION['user_id'];
+    
+                $query = "SELECT * FROM product WHERE product_supplier = '{$user_id}' ";
                 $select_all_products = mysqli_query($connection,$query);
                 $product_count = mysqli_num_rows($select_all_products);
 
@@ -52,9 +56,11 @@
               <img class="img-icon" src="../img/icon/Buyer.png" height="32" width="32">
             </div>
             <h1 class="pt-2 font-weight-bold text-dark dashboard-font">
-              <?php 
-                global $connection;
-                $query = "SELECT * FROM product";
+              <?php
+                
+                $user_username = $_SESSION['user_username'];
+                
+                $query = "SELECT * FROM payment_product_history WHERE payment_supplier = '{$user_username}' AND payment_status = 'Selesai' ";
                 $select_all_products = mysqli_query($connection,$query);
                 $product_count = mysqli_num_rows($select_all_products);
 
@@ -75,8 +81,8 @@
             </div>
             <h1 class="pt-2 font-weight-bold text-dark dashboard-font">
               <?php 
-                global $connection;
-                $query = "SELECT * FROM product";
+                
+                $query = "SELECT * FROM elodge_product WHERE elodge_supplier = '{$user_id}'";
                 $select_all_products = mysqli_query($connection,$query);
                 $product_count = mysqli_num_rows($select_all_products);
 

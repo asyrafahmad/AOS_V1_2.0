@@ -116,26 +116,6 @@
     </div>
     
 
-    <?php 
-      $var = 0;
-      
-//            $query  =  "SELECT MONTHNAME(product_date_submit) as month, product_price, product_name FROM product WHERE product_name = 'Guava' AND MONTH(product_date_submit)   ";    
-      $query  =  "SELECT MONTH(product_date_submit) as month, AVG(product_price) as product_price FROM product WHERE product_name = 'Guava' GROUP BY MONTH(product_date_submit)  ";    
-                    $select_suppliers = mysqli_query($connection, $query);
-      $number_of_rows = mysqli_num_rows ( $select_suppliers );
-  
-          while ($row = mysqli_fetch_assoc($select_suppliers)){
-          
-            echo $row['month'];
-            echo $row['product_price'];
-            
-            //$average_total_price = ($var += $product_price);
-          }
-  
-//            echo $month;
-//            echo $average_total_price/$number_of_rows;
-  
-  ?> 
 
          <script type="text/javascript" src="../js/barChartProductSupplier.js"></script>
 
@@ -177,7 +157,7 @@
                     var options = {  
                           //title: 'Jumlah pembeli mengikut negeri',  
                           //is3D:true,  
-                          pieHole: 0.1  
+                          pieHole: 0.3  
                          };  
                     var chart = new google.visualization.PieChart(document.getElementById('totalSupplier'));  
                     chart.draw(data, options);  
@@ -200,7 +180,7 @@
 
             var options = {
 //              title: 'My Daily Activities',
-              pieHole: 0.1,
+              pieHole: 0.3,
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('totalProduct'));

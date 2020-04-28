@@ -4,9 +4,9 @@
 
 <?php
 
-//
+
 //     	global $connection;
-//        $query  =  "SELECT * FROM buyer ";    
+//        $query  =  "SELECT * FROM user ";    
 //        $select_buyer = mysqli_query($connection, $query);
 //
 //        while ($row = mysqli_fetch_assoc($select_buyer)){
@@ -20,8 +20,8 @@
 //            $buyer_address = escape($row['buyer_address']);
 //                             
 //        }
-//
-//
+
+
 
 
 
@@ -72,7 +72,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
-
+echo $_SESSION['user_username'];
+echo $_SESSION['user_email'];
+echo $_SESSION['user_phone'];
    
 
 
@@ -81,20 +83,20 @@
     'userSecretKey'=>'39kqy7he-mmwt-3vkz-w9tx-2drrcdl6ndjt',
     'categoryCode'=>'76q6uc4k',
     'billName'=> $_SESSION['user_username'],
-    'billDescription'=>'Payment for buying product',
-    'billPriceSetting'=>0,
-    'billPayorInfo'=>0,
+    'billDescription'=>'Bayaran untuk pembelian produk',
+    'billPriceSetting'=>1,
+    'billPayorInfo'=>1,
 //    'billAmount'=>$_SESSION['total_price_afterConvert'],
-    'billAmount'=>'',
+    'billAmount'=>$_SESSION['total_price_afterConvert'],
     'billReturnUrl'=>'http://localhost/DEVELOPMENT/AOS_1.0_V1/admin_buyer/toyyibpayApi.php?source=thankyou',
-    'billCallbackUrl'=>'',
+    'billCallbackUrl'=>'http://localhost/DEVELOPMENT/AOS_1.0_V1/admin_buyer/toyyibpayApi.php?source=thankyou',
     'billExternalReferenceNo' => 'AFR341DFI',
-//    'billTo'=>'Asyraf Ahmad',
-//    'billEmail'=> $_SESSION['user_email'],
-//    'billPhone'=> $_SESSION['user_phone'],   
-    'billTo'=>'',
-    'billEmail'=> '',
-    'billPhone'=> '',
+    'billTo'=>$_SESSION['user_username'],
+    'billEmail'=> $_SESSION['user_email'],
+    'billPhone'=> $_SESSION['user_phone'],   
+//    'billTo'=>'asas',
+//    'billEmail'=> 'asa',
+//    'billPhone'=> '1212',
     'billSplitPayment'=>0,
     'billSplitPaymentArgs'=>'',
     'billPaymentChannel'=>'2',
@@ -105,50 +107,49 @@
 
   $curl = curl_init();
   curl_setopt($curl, CURLOPT_POST, 1);
-  curl_setopt($curl, CURLOPT_URL, 'https://dev.toyyibpay.com/index.php/api/createBill');  
+  curl_setopt($curl, CURLOPT_URL, 'https://dev.toyyibpay.com/index.php/api/createBillMultiPayment');  
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($curl, CURLOPT_POSTFIELDS, $some_data);
 
   $result = curl_exec($curl);
   $info = curl_getinfo($curl);  
   curl_close($curl);
-  $obj = json_decode($result);
+  $obj = json_decode($result,true);
 //  echo $result;
 
-  	//to get billCode as SESSION
-	foreach($obj as $key => $val){
-		foreach($val as $_key => $_val) {
-			$_SESSION['billCode']= $_val;
-		}
-	}
+  $billcode=$obj[0]['BillCode'];
 
+
+
+//https://dev.toyyibpay.com/index.php/api/createBillMultiPayment
+//https://dev.toyyibpay.com/u7zkqqqz
 //billCode=rm3k8iu8
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 //RUN BILL
-  $some_data = array(
-    'userSecretKey' => '39kqy7he-mmwt-3vkz-w9tx-2drrcdl6ndjt',
-    'billCode' => $_SESSION['billCode'],
-    'billpaymentAmount' => $_SESSION['total_price_afterConvert'],
-    'billpaymentPayorName' => $_SESSION['user_username'],
-    'billpaymentPayorPhone'=> $_SESSION['user_phone'],
-    'billpaymentPayorEmail'=> $_SESSION['user_email'],
-    'billBankID'=>''
-  );  
-
-  $curl = curl_init();
-  curl_setopt($curl, CURLOPT_POST, 1);
-  curl_setopt($curl, CURLOPT_URL, 'https://dev.toyyibpay.com/index.php/api/runBill');  
-  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($curl, CURLOPT_POSTFIELDS, $some_data);
-
-  $result = curl_exec($curl);
-  $info = curl_getinfo($curl);  
-  curl_close($curl);
-  $obj = json_decode($result);
-  echo $result;
-		
+//  $some_data = array(
+//    'userSecretKey' => '39kqy7he-mmwt-3vkz-w9tx-2drrcdl6ndjt',
+//    'billCode' => $_SESSION['billCode'],
+//    'billpaymentAmount' => $_SESSION['total_price_afterConvert'],
+//    'billpaymentPayorName' => $_SESSION['user_username'],
+//    'billpaymentPayorPhone'=> $_SESSION['user_phone'],
+//    'billpaymentPayorEmail'=> $_SESSION['user_email'],
+//    'billBankID'=>''
+//  );  
+//
+//  $curl = curl_init();
+//  curl_setopt($curl, CURLOPT_POST, 1);
+//  curl_setopt($curl, CURLOPT_URL, 'https://dev.toyyibpay.com/index.php/api/runBill');  
+//  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+//  curl_setopt($curl, CURLOPT_POSTFIELDS, $some_data);
+//
+//  $result = curl_exec($curl);
+//  $info = curl_getinfo($curl);  
+//  curl_close($curl);
+//  $obj = json_decode($result);
+//  echo $result;
+//		
 
 
 
@@ -177,3 +178,7 @@
 
 ?>
 
+
+<script type="text/javascript">
+   window.location.href="https://dev.toyyibpay.com/<?php echo $billcode;?>"; 
+</script>
