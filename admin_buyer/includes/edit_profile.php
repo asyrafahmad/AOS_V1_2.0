@@ -59,8 +59,7 @@
         
         $_SESSION['user_username'] = $user_username;
         $_SESSION['user_image'] = $user_image;
-        $_SESSION['user_email'] = $user_email;
-        $_SESSION['user_phone'] = $user_phone;
+
 
         move_uploaded_file($user_image_temp,"../img/$user_image" );
 

@@ -255,7 +255,11 @@
 					
 				echo "<div class='col-xs-1' align='center'>";
                 echo "<td><a class='btn btn-success' href='./includes/createBill.php?menu=$menu'>Seterusnya </a></td>";
-            	echo "</div>"
+            	echo "</div>";
+                    
+                    
+                    
+                    
 			?>
                 
                 
