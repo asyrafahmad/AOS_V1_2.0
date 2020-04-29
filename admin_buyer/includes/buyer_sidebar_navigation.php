@@ -18,20 +18,13 @@
 
               <ul class="list-unstyled components">
 
-                  <li id="dashboard" class="nav-item">
-                    <a href="index.php" class="nav-link">
-                          <img src="../img/icon/dashboard.svg" height="24px">
-                          Dashboard
-                    </a>
-                  </li>
-
-                  <li id="menu" class="nav-item">
+            
+                <li id="menu" class="nav-item">
                     <a href="menu.php" class="nav-link">
                           <img src="../img/icon/dashboard.svg" height="24px">
                           Menu
                     </a>
                   </li>
-
 
               <?php
                  if(isset($_GET['menu'])){
@@ -41,6 +34,15 @@
                       $menu = $_GET['menu'];
                         
               ?> 
+                  
+                  <li id="dashboard" class="nav-item">
+                    <a href="index.php?menu=<?php echo $menu; ?>" class="nav-link">
+                          <img src="../img/icon/dashboard.svg" height="24px">
+                          Dashboard
+                    </a>
+                  </li>
+
+                
 
                   <li id="product" class="nav-item">
                     <a href="product.php?menu=<?php echo $menu; ?>" class="nav-link">
@@ -81,6 +83,13 @@
                           $menu = $_GET['menu'];
                           
                       ?>
+                  
+                  <li id="dashboard" class="nav-item">
+                    <a href="index.php?menu=<?php echo $menu; ?>" class="nav-link">
+                          <img src="../img/icon/dashboard.svg" height="24px">
+                          Dashboard
+                    </a>
+                  </li>
 
                   <span>
                   <li id="elodge" class="nav-item">
@@ -107,6 +116,14 @@
                           $menu = $_GET['menu'];
                           
                   ?>
+                  
+                  
+                  <li id="dashboard" class="nav-item">
+                    <a href="index.php?menu=<?php echo $menu; ?>" class="nav-link">
+                          <img src="../img/icon/dashboard.svg" height="24px">
+                          Dashboard
+                    </a>
+                  </li>
 
                   <li id="ebargain" class="nav-item">
                     <a href="../admin_buyer/e-bargain.php?menu=<?php echo $menu; ?>" class="nav-link">
