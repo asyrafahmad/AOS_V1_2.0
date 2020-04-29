@@ -9377,7 +9377,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #4e73df !important;
+  color: #14CC60 !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -11524,6 +11524,10 @@ a.profile img{
     display: inline-block;
   }
 
+  .product_detail{
+    text-align: left;
+  }
+
   .product_image{
     padding: 1rem;
     display: flex;
@@ -11546,6 +11550,7 @@ a.profile img{
     padding: 10px;
     font-weight: bold;
     color: #14CC60;
+    margin-top: 3rem;
   }
 
   .img-container{
@@ -11622,3 +11627,6 @@ a.profile img{
     padding-right: 15px;
   }
 }*/
+
+
+/*Upload Image*/
