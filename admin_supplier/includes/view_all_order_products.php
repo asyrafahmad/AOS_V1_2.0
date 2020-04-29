@@ -5,8 +5,6 @@
 
     
 <!-- Page Heading -->
-          <p class="mb-">Produk Pasaran. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
-
           <!-- DataTales Example -->
           <div class="card shadow mb-">
             <div class="card-header py-3">
