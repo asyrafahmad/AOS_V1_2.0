@@ -117,7 +117,7 @@
 
 
 					<div class="col-md-4">
-						<label for="lastname"></label>
+						<!-- <label for="lastname"></label> -->
 						<div class="img-container">
 							<img class="card-img product_image" src="../img/<?php echo $product_image;?>">
 						</div>

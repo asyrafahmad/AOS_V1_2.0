@@ -59,20 +59,37 @@
                             $product_date_modified = escape($row['product_date_modified']);
                             
                   
-                                echo "<div class='col-xl-3'>";
-                                echo "<div class='card shadow '>";
-                                echo "<div class='card-body'>";
-                                echo "<div class='no-gutters align-items-center'>";
-                                echo "<a href='product.php?source=view_product&p_id={$product_id}'><img style='height:80px;' src='../img/$product_image' alt=''></a>";
-                                echo "</div>";
-                                echo "<h4 align='center'><b>$product_name</b></h4>";
-                                echo "<h6>Gred: $product_gred </h6>";
-                                echo "<h6>Kuantiti: $product_quantity </h6>";
-                                echo "<h6>RM$product_price</h6>";
-                                echo "<h6><a class='btn btn-info' href='product.php?source=edit_product&p_id={$product_id}'>Kemaskini </a></h6>";
-                                echo "</div>";  
-                                echo "</div>"; 
-                                echo "</div>";
+                                // echo "<div class='col-xl-3'>";
+                                // echo "<div class='card shadow '>";
+                                // echo "<div class='card-body'>";
+                                // echo "<div class='no-gutters align-items-center'>";
+                                // echo "<a href='product.php?source=view_product&p_id={$product_id}'><img style='height:80px;' src='../img/$product_image' alt=''></a>";
+                                // echo "</div>";
+                                // echo "<h4 align='center'><b>$product_name</b></h4>";
+                                // echo "<h6>Gred: $product_gred </h6>";
+                                // echo "<h6>Kuantiti: $product_quantity </h6>";
+                                // echo "<h6>RM$product_price</h6>";
+                                // echo "<h6><a class='btn btn-info' href='product.php?source=edit_product&p_id={$product_id}'>Kemaskini </a></h6>";
+                                // echo "</div>";  
+                                // echo "</div>"; 
+                                // echo "</div>";
+
+                              echo "<div class='col-xl-3 col-md-4 col-sm-6 py-3'>";
+                              echo "<div class='card shadow'>";
+                              echo "<div class='card-body'>";
+                              echo "<div class='no-gutters align-items-left'>";
+                              echo "<a href='product.php?source=view_product&p_id={$product_id}'><img class='img-category mb-2' src='../img/$product_image' ></a>";
+                              echo "</div>";
+                              echo "<h4>$product_name</h4>";
+                              echo "<div class='text-justify pl-4'>";
+                              echo "<h6 class='mt-3'>Gred : $product_gred</h4>";
+                              echo "<h6>Kuantiti : $product_quantity kg</h4>";
+                              echo "<h6>RM$product_price</h6>";
+                              echo "</div>";
+                              echo "<a class='btn btn-success mt-3' href='product.php?source=edit_product&p_id={$product_id}'>Kemaskini</a>";
+                              echo "</div>";  
+                              echo "</div>"; 
+                              echo "</div>";
                             }
                             
                             echo "</div>";  
