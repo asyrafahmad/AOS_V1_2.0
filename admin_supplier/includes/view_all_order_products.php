@@ -41,7 +41,7 @@
                     }
                   
 
-                    $querys  =  "SELECT * FROM payment_product_history WHERE payment_supplier='{$user_username}'  ";    
+                    $querys  =  "SELECT * FROM product WHERE product_supplier='{$user_id}'  ";    
                     $find_count = mysqli_query($connection, $querys);
                     $count = mysqli_num_rows($find_count);
 
@@ -79,12 +79,12 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Invois</th>
+                      <th>Invois#</th>
                       <th>Produk</th>
                       <th>Gred</th>
                       <th>Kuantiti (Kg)</th>
                       <th>Harga (RM) / Kg</th>
-                      <th>Tarikh Bayaran</th>
+<!--                      <th>Tarikh Bayaran</th>-->
                       <th>Status Bayaran</th>
                     </tr>
                   </thead>
@@ -111,30 +111,27 @@
                       
 					  	$var = 0;
                       
-//                        $query  =  "SELECT * FROM product WHERE product_supplier='{$user_id}'  LIMIT $page_1,5 ";     
-                        $query  =  "SELECT * FROM payment_product_history WHERE payment_supplier='{$user_username}'  LIMIT $page_1,$per_page ";     
+                        $query  =  "SELECT * FROM product WHERE product_supplier='{$user_id}'  LIMIT $page_1,$per_page ";       
                         $select_suppliers = mysqli_query($connection, $query);
 					  	
 
                         while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-                            $payment_invoice = escape($row['payment_invoice']);
-                            $payment_supplier = escape($row['payment_supplier']);
-                            $payment_product = escape($row['payment_product']);
-                            $payment_gred = escape($row['payment_gred']);
-                            $payment_quantity = escape($row['payment_quantity']);
-                            $payment_price = escape($row['payment_price']);
-                            $payment_status = escape($row['payment_status']);
-                            $payment_date = escape($row['payment_date']);
+//                            $payment_invoice = escape($row['payment_invoice']);
+                            $product_name = escape($row['product_name']);
+                            $product_gred = escape($row['product_gred']);
+                            $product_quantity = escape($row['product_quantity']);
+                            $product_price = escape($row['product_price']);
+                            $product_status = escape($row['product_status']);
                       
                             echo "<tr>";
-                            echo "<td>$payment_invoice  </td>";
-                            echo "<td>$payment_product  </td>";
-                            echo "<td>$payment_gred  </td>";
-                            echo "<td>$payment_quantity  </td>";
-                            echo "<td>$payment_price</td>";
-                            echo "<td>$payment_date</td>";
-                            echo "<td>$payment_status</td>";
+                            echo "<td>#</td>";
+                            echo "<td>$product_name  </td>";
+                            echo "<td>$product_gred  </td>";
+                            echo "<td>$product_quantity  </td>";
+                            echo "<td>$product_price</td>";
+//                            echo "<td>$payment_date</td>";
+                            echo "<td>$product_status</td>";
                             echo "</tr>";
 							
                        }
