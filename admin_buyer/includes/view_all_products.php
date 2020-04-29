@@ -113,26 +113,28 @@
 					$product_image = escape($row['product_image']);
 					$product_quantity = escape($row['product_quantity']);
 
-
-					echo "<div class='col-md-4 mb-3'>";
-					echo "<label for='lastName'>";
-					echo "<img class='' src='../img/$product_image' width='70%' height='50%' >";   
-					echo "</label>";
-					echo "</div>";
+					?>
 
 
-					echo "<div class='col-md-8 mb-3'";
-					echo "<p><h3><b>$product_name</b></h3></p>";
-					echo "<p>Huraian: $product_description</p>";
-					echo "<p>Harga: RM$product_current_price</p>";
-					echo "<p>Kuantiti: $product_quantity</p>";
-					echo "<a class='btn btn-success' href='order.php?menu=$menu&add=$product_id'>Tambah ke troli</a>";
-					echo "</div>";
+					<div class="col-md-4">
+						<label for="lastname"></label>
+						<div class="img-container">
+							<img class="card-img product_image" src="../img/<?php echo $product_image;?>">
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="card-body product_detail">
+							 <h1 class="card-title product_name"><?php echo $product_name;?></h1>
+							 <p class="card-text"><?php echo $product_description;?></p>
+							 <h3 class="card-text product_price">RM<?php echo $product_current_price;?></h3>
+							 <p class="card-text">Stok : <?php echo $product_quantity;?></p>
+							 <a class="btn btn-success" href="order.php?menu=$menu$add=$product_id">Tambah ke troli </a>
+						</div>
+					</div>
+
+					<?php
 				} 
 
-				echo "</div>";  
-				echo "</div>"; 
-				echo "</div>";
 		   }
 //		<!-- view sub-category items--> 
 
