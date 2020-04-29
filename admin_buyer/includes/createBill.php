@@ -27,7 +27,7 @@ $user_username      = $_SESSION['user_username'];
 $user_email         = $_SESSION['user_email'];
 $user_phone         = $_SESSION['user_phone'];
 $payment_price      = $_SESSION['total_price_afterConvert']/100;
-$payment_status     = 0;
+$payment_status     = 'Dalam Proses';
 
 $query  = "INSERT INTO payment_product_history (payment_supplier_name, payment_supplier_email, payment_supplier_phone, payment_price, payment_status, payment_order_date)  ";
 $query .= "VALUES ('{$user_username}', '{$user_email}', '{$user_phone}', '{$payment_price}', '{$payment_status}', now() )";

@@ -6,6 +6,7 @@
 
     
 <!-- Page Heading -->
+          <p class="mb-4">Pesanan Barangan. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -50,14 +51,14 @@
 
                             $payment_invoice     = escape($row['payment_invoice']);
                             $payment_price       = escape($row['payment_price']);
-                            $payment_date     = escape($row['payment_date']);
-                            $payment_status       = escape($row['payment_status']);
+                            $payment_order_date        = escape($row['payment_order_date']);
+                            $payment_status      = escape($row['payment_status']);
                            
                             
                             echo "<tr>";
                             echo "<td>#$payment_invoice  </td>";
                             echo "<td>$payment_price  </td>";
-                            echo "<td>$payment_date  </td>";
+                            echo "<td>$payment_order_date  </td>";
                             echo "<td>$payment_status  </td>";
 //                            echo "<td><a class='btn btn-info' href='order.php?menu=$menu&source=view_product&o_p_id={$order_id}'>Lihat Tempahan</a></td>";
 //                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";

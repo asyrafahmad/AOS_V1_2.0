@@ -81,8 +81,8 @@ echo $order_id;
 //    $quporder->execute();
         
         $query = "UPDATE payment_product_history SET                    ";
-        $query .= "payment_status        = 'Berjaya',            ";
-        $query .= "payment_date        = now()            ";
+        $query .= "payment_status       = 'Berjaya',            ";
+        $query .= "payment_date         = now()            ";
         $query .= "WHERE payment_id     =  '{$order_id}'          ";
 
         $edit_buyer_query = mysqli_query($connection,$query);
