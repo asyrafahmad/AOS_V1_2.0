@@ -20,9 +20,6 @@ $connection = mysqli_connect(DB_HOST, DB_USER,DB_PASS,DB_NAME);
 
 
 
-
-//*TODO: data transaction need to store into db (name,email,phone,price,status,date)
-
 $user_username      = $_SESSION['user_username'];
 $user_email         = $_SESSION['user_email'];
 $user_phone         = $_SESSION['user_phone'];
@@ -34,32 +31,10 @@ $query .= "VALUES ('{$user_username}', '{$user_email}', '{$user_phone}', '{$paym
 $add_order_query = mysqli_query($connection, $query);
 
 
-
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//GET BANK FPX API (ID AND BANK NAME)
-//$curl = curl_init();
-//
-//  curl_setopt($curl, CURLOPT_POST, 0);
-//  curl_setopt($curl, CURLOPT_URL, 'https://dev.toyyibpay.com/index.php/api/getBankFPX');  
-//  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-//
-//  $result = curl_exec($curl);
-//  $info = curl_getinfo($curl);  
-//  curl_close($curl);
-//
-//  echo $result;
-
-//[{"CODE":"ABB0233","NAME":"Affin Bank"},{"CODE":"ABMB0212","NAME":"Alliance Bank (Offline)"},{"CODE":"AMBB0209","NAME":"AmBank"},{"CODE":"BIMB0340","NAME":"Bank Islam"},{"CODE":"BMMB0341","NAME":"Bank Muamalat"},{"CODE":"BKRM0602","NAME":"Bank Rakyat"},{"CODE":"BSN0601","NAME":"BSN (Offline)"},{"CODE":"BCBB0235","NAME":"CIMB Clicks"},{"CODE":"HLB0224","NAME":"Hong Leong Bank"},{"CODE":"HSBC0223","NAME":"HSBC"},{"CODE":"KFH0346","NAME":"KFH"},{"CODE":"MBB0228","NAME":"Maybank2E"},{"CODE":"MB2U0227","NAME":"Maybank2U"},{"CODE":"OCBC0229","NAME":"OCBC Bank"},{"CODE":"PBB0233","NAME":"Public Bank"},{"CODE":"RHB0218","NAME":"RHB Bank (Offline)"},{"CODE":"TEST0021","NAME":"SBI Bank A"},{"CODE":"TEST0022","NAME":"SBI Bank B"},{"CODE":"TEST0023","NAME":"SBI Bank C"},{"CODE":"SCB0216","NAME":"Standard Chartered (Offline)"},{"CODE":"UOB0226","NAME":"UOB Bank (Offline)"}]	
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 //CREATE CATEGORY
+
+
   $some_data = array(
     'catname' => 'Agro Online System', //CATEGORY NAME
     'catdescription' => 'Paymeny for Agro Online System', //PROVIDE YOUR CATEGORY DESCRIPTION
@@ -85,9 +60,9 @@ $add_order_query = mysqli_query($connection, $query);
 //categoryCode = 76q6uc4k
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 //CREATE BILL
+
+
   $some_data = array(
     'userSecretKey'=>'39kqy7he-mmwt-3vkz-w9tx-2drrcdl6ndjt',
     'categoryCode'=>'76q6uc4k',
@@ -95,7 +70,6 @@ $add_order_query = mysqli_query($connection, $query);
     'billDescription'=>'Bayaran untuk pembelian produk',
     'billPriceSetting'=>1,
     'billPayorInfo'=>1,
-//    'billAmount'=>$_SESSION['total_price_afterConvert'],
     'billAmount'=>$_SESSION['total_price_afterConvert'],
     'billReturnUrl'=>'http://localhost/DEVELOPMENT/AOS_V1_2.0/admin_buyer/toyyibpayApi.php?menu=eselling&source=thankyou',
     'billCallbackUrl'=>'http://localhost/DEVELOPMENT/AOS_V1_2.0/admin_buyer/toyyibpayApi.php?menu=eselling&source=thankyou',
@@ -103,9 +77,6 @@ $add_order_query = mysqli_query($connection, $query);
     'billTo'=>$_SESSION['user_username'],
     'billEmail'=> $_SESSION['user_email'],
     'billPhone'=> $_SESSION['user_phone'],   
-//    'billTo'=>'asas',
-//    'billEmail'=> 'asa',
-//    'billPhone'=> '1212',
     'billSplitPayment'=>0,
     'billSplitPaymentArgs'=>'',
     'billPaymentChannel'=>'2',

@@ -26,7 +26,7 @@
        
         if(!empty($product_name)  &&  !empty($product_type)  &&  !empty($product_quantity) &&  !empty($product_price) &&  !empty($product_gred )){
                  
-            $query = "INSERT INTO product (product_image, product_name, product_description, product_type, product_gred, product_quantity, product_price, product_date_submit, product_supplier, product_status    )";
+            $query = "INSERT INTO product (product_image, product_name, product_description, product_type, product_gred, product_quantity, product_price, product_date_submit, product_supplier, product_status)";
             $query .= "VALUES( '{$product_image}', '{$product_name}', '{$product_description}', '{$product_type}', '{$product_gred}', '{$product_quantity}', '{$product_price}' , now(), '{$user_id}', 'Belum Selesai'  )  ";
 
             $create_post_query  =   mysqli_query($connection, $query);
