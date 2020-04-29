@@ -56,6 +56,8 @@
                       </a>
                   </li>
 
+<!--
+                    //*Testing purpose
                   <span>
                   <li id="toyyibpay" class="nav-item">
                       <a href="#toyyibpaySubmenu" data-toggle="collapse" aria-expanded="false" class="nav-link">
@@ -69,6 +71,7 @@
                       </ul>
                   </li>
                   </span>
+-->
 
                     <?php      
                       }

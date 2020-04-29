@@ -40,15 +40,15 @@ echo $order_id;
 
 <?php
 
-    $status=1;
+//    $status=1;
 
 
-//    $refno=$_POST['refno'];               //payment_invoice
-//    $status=$_POST['status'];             //payment_status (1= success, 2=pending, 3=fail)
-//    $reason=$_POST['reason'];             //payment_reason
-//    $billcode=$_POST['billcode'];         //payment_billcode
-//    $order_id=$_POST['order_id'];         //payment_order_id (Your external payment reference no, if specified)
-//    $amount=$_POST['amount'];             //payment_price
+    $refno=$_POST['refno'];               //payment_invoice
+    $status=$_POST['status'];             //payment_status (1=success, 2=pending, 3=fail)
+    $reason=$_POST['reason'];             //payment_reason
+    $billcode=$_POST['billcode'];         //payment_billcode
+    $order_id=$_POST['order_id'];         //payment_order_id (Your external payment reference no, if specified)
+    $amount=$_POST['amount'];             //payment_price
 
 
 ////ORIGINAL
@@ -74,16 +74,27 @@ echo $order_id;
 
     if($status==1){
         
+//    //ACTUAL code
+//    $quporder=sqlquery("UPDATE payment_product_history SET payment_invoice=?, payment_status=?, payment_reason=?, payment_billCode=?, payment_price=?, payment_date=now() WHERE payment_order_id=?");
+//    $quporder->bindValue(1, $refno);
+//    $quporder->bindValue(2, "Berjaya");
+//    $quporder->bindValue(3, $reason);
+//    $quporder->bindValue(4, $billcode);
+//    $quporder->bindValue(5, $amount);
+//    $quporder->bindValue(6, $order_id);
+//    $quporder->execute()
+
         
-//    $quporder="UPDATE payment_product_history SET  payment_status=? WHERE payment_order_id=?";
-//    $quporder->bindValue(1, "Berjaya");
-//    $quporder->bindValue(2, "#102030");
-//    $quporder->execute();
-        
-        $query = "UPDATE payment_product_history SET                    ";
-        $query .= "payment_status        = 'Berjaya',            ";
-        $query .= "payment_date        = now()            ";
-        $query .= "WHERE payment_id     =  '{$order_id}'          ";
+        //MODIFIED code
+        $query = "UPDATE payment_product_history SET       ";
+        $query .= "payment_status       = 'Berjaya',       ";
+        $query .= "payment_date         =  now()           ";
+        $query .= "payment_invoice      = '$refno'         ";
+        $query .= "payment_reason       = '$reason''       ";
+        $query .= "payment_billCode     = '$billcode'      ";
+        $query .= "payment_order_id     = '$order_id'      ";
+        $query .= "payment_price        = '$amount'        ";
+        $query .= "WHERE payment_id     = '{$order_id}'    ";
 
         $edit_buyer_query = mysqli_query($connection,$query);
         
@@ -100,15 +111,30 @@ echo $order_id;
     }
     if($status==2){
         
-    $quporder=sqlquery("UPDATE payment_product_history SET payment_invoice=?, payment_status=?, payment_reason=?, payment_billcode=?, payment_price=?, payment_date=now() WHERE payment_order_id=?");
-    $quporder->bindValue(1, $refno);
-    $quporder->bindValue(2, "Menunggu");
-    $quporder->bindValue(3, $reason);
-    $quporder->bindValue(4, $billcode);
-    $quporder->bindValue(5, $amount);
-    $quporder->bindValue(6, $order_id);
-    $quporder->execute();
-    
+//    //ACTUAL code
+//    $quporder=sqlquery("UPDATE payment_product_history SET payment_invoice=?, payment_status=?, payment_reason=?, payment_billCode=?, payment_price=?, payment_date=now() WHERE payment_order_id=?");
+//    $quporder->bindValue(1, $refno);
+//    $quporder->bindValue(2, "Menunggu");
+//    $quporder->bindValue(3, $reason);
+//    $quporder->bindValue(4, $billcode);
+//    $quporder->bindValue(5, $amount);
+//    $quporder->bindValue(6, $order_id);
+//    $quporder->execute();
+        
+        
+        //MODIFIED code
+        $query = "UPDATE payment_product_history SET       ";
+        $query .= "payment_status       = 'Dalam Proses',  ";
+        $query .= "payment_date         =  now()           ";
+        $query .= "payment_invoice      = '$refno'         ";
+        $query .= "payment_reason       = '$reason''       ";
+        $query .= "payment_billCode     = '$billcode'      ";
+        $query .= "payment_order_id     = '$order_id'      ";
+        $query .= "payment_price        = '$amount'        ";
+        $query .= "WHERE payment_id     = '{$order_id}'    ";
+
+        $edit_buyer_query = mysqli_query($connection,$query);  
+        
 ?>
 
     <div class="text-center mt-5">
@@ -122,14 +148,30 @@ echo $order_id;
     }
     if($status==3){
         
-    $quporder=sqlquery("UPDATE payment_product_history SET payment_invoice=?, payment_status=?, payment_reason=?, payment_billcode=?, payment_price=?, payment_date=now() WHERE payment_order_id=?");
-    $quporder->bindValue(1, $refno);
-    $quporder->bindValue(2, "Gagal");
-    $quporder->bindValue(3, $reason);
-    $quporder->bindValue(4, $billcode);
-    $quporder->bindValue(5, $amount);
-    $quporder->bindValue(6, $order_id);
-    $quporder->execute();
+//    //ACTUAL code
+//    $quporder=sqlquery("UPDATE payment_product_history SET payment_invoice=?, payment_status=?, payment_reason=?, payment_billCode=?, payment_price=?, payment_date=now() WHERE payment_order_id=?");
+//    $quporder->bindValue(1, $refno);
+//    $quporder->bindValue(2, "Gagal");
+//    $quporder->bindValue(3, $reason);
+//    $quporder->bindValue(4, $billcode);
+//    $quporder->bindValue(5, $amount);
+//    $quporder->bindValue(6, $order_id);
+//    $quporder->execute();
+        
+        
+        //MODIFIED code
+        $query = "UPDATE payment_product_history SET       ";
+        $query .= "payment_status       = 'Gagal',  ";
+        $query .= "payment_date         =  now()           ";
+        $query .= "payment_invoice      = '$refno'         ";
+        $query .= "payment_reason       = '$reason''       ";
+        $query .= "payment_billCode     = '$billcode'      ";
+        $query .= "payment_order_id     = '$order_id'      ";
+        $query .= "payment_price        = '$amount'        ";
+        $query .= "WHERE payment_id     = '{$order_id}'    ";
+
+        $edit_buyer_query = mysqli_query($connection,$query); 
+        
 ?>
 
     <div class="text-center mt-5">
