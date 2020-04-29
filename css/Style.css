@@ -11630,3 +11630,42 @@ a.profile img{
 
 
 /*Upload Image*/
+.image-upload{
+  position: relative;
+  max-width: 42px;
+  display: inline-block;
+  height: 42px;
+  border-radius: 100%;
+  background: #FFFFFF;
+  border: 1px solid #14CC60;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-weight: normal;
+  transition: all .2s ease-in-out;
+  margin-top: -1.5rem;
+}
+
+
+.image-upload > input
+{
+    display: none;
+}
+
+.image-upload i
+{
+    cursor: pointer;
+    color: #14CC60;
+    margin-top: 0.7rem;
+}
+
+#imagePreview{
+  width: 200px;
+  max-width: 250px;
+  margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  border: 1px solid #14CC60;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+}
+
