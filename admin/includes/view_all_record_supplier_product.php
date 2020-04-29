@@ -80,8 +80,10 @@
                       <th>Gred</th>
                       <th>Kuantiti (Kg)</th>
                       <th>Harga (RM) / Kg</th>
+                      <th>Tarikh Produk Ditambah</th>
+                      <th>Status Produk Dikemaskini</th>
                       <th>Status Bayaran</th>
-                      <th>Pembayaran</th>
+                      <th>Pembayaran</th> <p>Nota: Tekan <b>Selesai</b> jika pembayaran ke petani telah dilakukan.</p>
                     </tr>
                   </thead>
                  
@@ -115,6 +117,8 @@
                             $product_price = escape($row['product_price']);
                             $product_current_price = escape($row['product_current_price']);
                             $product_status = escape($row['product_status']);
+                            $product_date_submit = escape($row['product_date_submit']);
+                            $product_date_modified = escape($row['product_date_modified']);
                             
                             $user_username = escape($row['user_username']);
                             
@@ -125,11 +129,13 @@
                             echo "<tr>";
                             echo "<td>$user_username </td>";
 //                            echo "<td>$product_category </td>";
-                            echo "<td><img height='10%' width='30%'  src='../img/$product_image'  alt='image' class='rounded-circle' </td>";
+                            echo "<td><img height='10%' width='80%'  src='../img/$product_image'  alt='image' class='rounded-circle' </td>";
                             echo "<td>$product_name  </td>";
                             echo "<td>$product_gred  </td>";
                             echo "<td>$product_quantity  </td>";
                             echo "<td>$product_price  </td>";
+                            echo "<td>$product_date_submit  </td>";
+                            echo "<td>$product_date_modified  </td>";
                             echo "<td>$product_status</td>";
                             echo "<td><a class='btn btn-info' href='product.php?source=view_all_record_supplier_product&payment_status={$product_id}'>Selesai</a></td>";
                             echo "</tr>";
