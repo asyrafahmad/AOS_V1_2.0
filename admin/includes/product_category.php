@@ -15,7 +15,7 @@
                 <!--TODO: add product category-->
                 <?php add_category(); ?>
 
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <h3 class="bg-success"><?php display_message(); ?></h3>
 
                     <form action="" method="post">
@@ -47,8 +47,9 @@
 					?>    
                   
                 
-                <div class="col-md-8">
-                    <table class="table">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                    <table class="table table-hover" id="dataTable" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -80,6 +81,7 @@
                         ?>
                         </tbody>
                     </table>
+                    <div>
                 </div>
 
                 
