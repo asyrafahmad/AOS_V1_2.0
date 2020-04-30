@@ -106,7 +106,7 @@
                             
                             echo "<tr>";
 //                            echo "<td>$elodge_product_id </td>";
-                            echo "<td><img src='../img/$elodge_product_image'  alt='image' class='img-category' </td>";
+                            echo "<td><img src='../img/$elodge_product_image'  alt='image' class='img-category ml-2' </td>";
                             echo "<td class='align-middle'>$elodge_product_name  </td>";
                             echo "<td class='align-middle'>$elodge_product_quantity  </td>";
                             echo "<td class='align-middle'>$elodge_product_harvest_date  </td>";
