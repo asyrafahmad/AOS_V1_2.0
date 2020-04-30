@@ -86,7 +86,15 @@
                   </span>
        
 
-
+                  <span>
+                    <li id="aboutus" class="nav-item">
+                    <a href="../admin/aboutus.php" class="nav-link">
+                        <img src="../img/icon/aboutus.svg" height="24px">
+                          Mengenai Kami
+                      </a>
+                  </li>
+                  </span>
+                
 
                 <div class="sidebar_bottom">
                   <a class="profile" href="../admin/profile.php?source=edit_profile" >
