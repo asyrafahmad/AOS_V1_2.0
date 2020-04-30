@@ -5,8 +5,6 @@
 
     
 <!-- Page Heading -->
-          <p class="mb-">Produk Pasaran. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
-
           <!-- DataTales Example -->
           <div class="card shadow mb-">
             <div class="card-header py-3">
@@ -81,25 +79,23 @@
                   
                   
 <!--           TODO: put product table-->
+              <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Produk ID</th>
+                      <th>ID</th>
 <!--                      <th>Kategori Produk</th>-->
-                      <th>Gambar produk</th>
-                      <th>Produk</th>
+                      <th colspan="2" class="ml-2">Produk</th>
                       <th>Gred</th>
                       <th>Kuantiti (Kg)</th>
 <!--                      <th>Deskripsi</th>-->
                       <th>Harga Semasa (RM) / Kg</th>
-                      <th>Harga Jualan(RM) / Kg</th>
-                      <th>Lihat</th>
-                      <th>Kemaskini</th>
-                      <th>Padam</th>
+                      <th>Harga Jualan (RM) / Kg</th>
+                      <th></th>
                     </tr>
                   </thead>
                  
-                  <tbody>
+                  <tbody class="align-middle">
                      <!-- Get data in db and display  -->
                     <?php
                         
@@ -134,19 +130,19 @@
                             echo "<tr>";
                             echo "<td>$product_id </td>";
 //                            echo "<td>$product_category </td>";
-                            echo "<td><img height='10%' width='90%'  src='../img/$product_image'  alt='image' class='rounded-circle' </td>";
+                            echo "<td><img height='10%' width='90%'  src='../img/$product_image'  alt='image' class='img-category' </td>";
                             echo "<td>$product_name  </td>";
                             echo "<td>$product_gred  </td>";
-                            echo "<td>$product_quantity  </td>";
+                            echo "<td width='110'>$product_quantity  </td>";
 //                            echo "<td>$product_description  </td>";
-                            echo "<td>$product_current_price  </td>";
-                            echo "<td>$product_price  </td>";
+                            echo "<td width='110'>$product_current_price  </td>";
+                            echo "<td width='110'>$product_price  </td>";
                             
 //                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
 //                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";
-                            echo "<td><a class='btn btn-info' href='product.php?source=view_product&p_id={$product_id}'>Lihat </a></td>";
-                            echo "<td><a class='btn btn-info' href='product.php?source=edit_product&p_id={$product_id}'>Kemaskini </a></td>";
-                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Anda pasti untuk padam maklumat ini? ');  \"  href='product.php?delete={$product_id} '>Padam </a></td>";
+                            echo "<td class='text-center'><a class='btn' href='product.php?source=view_product&p_id={$product_id}'><i class='fas fa-eye'></i> </a>";
+                            echo "<a class='btn' href='product.php?source=edit_product&p_id={$product_id}'><i class='fas fa-edit'></i> </a>";
+                            echo "<a class='btn' onClick=\"javascript: return confirm('Anda pasti untuk padam maklumat ini? ');  \"  href='product.php?delete={$product_id} '><i class='fas fa-trash-alt'></i></a></td>";
                             echo "</tr>";
 							
 							$_SESSION['total'] = $var += $product_price ;
@@ -156,6 +152,7 @@
                   ?>
                   </tbody>
                 </table>
+              </div>
               </div>
             </div>
           </div>
