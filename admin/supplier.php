@@ -19,7 +19,7 @@
     <div class="row">
      <div class="col-xl-12">
         <div class="card p-4 border">
-          <div class="card-title justify-content-between align-middle">
+<!--          <div class="card-title justify-content-between align-middle">-->
               
 
             <script>
@@ -117,6 +117,7 @@
                           break;
 
                       default:
+                          echo "<div class='card-title justify-content-between align-middle'>";
                           echo "<div id='search_area' class='form-group has-search'>";
                           echo "<span class='fa fa-search form-control-feedback'></span>";
                           echo "<input type='text' name='search_supplier' id='search_supplier' placeholder='' class='form-control' />";
@@ -124,11 +125,12 @@
                           echo "</div>";
                           echo "<div class='card-body'>";
                           echo "<div id='view_all_suppliers'></div>";       //Search data purposes
+                          echo "</div>";
                           break;
                   }
 
               ?>              
-            </div>
+<!--            </div>-->
         </div>
         </div>
     </div>
