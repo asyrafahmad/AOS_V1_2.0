@@ -138,7 +138,7 @@
                   ?>
 
                   <li id="aboutus" class="nav-item">
-                    <a href="../admin_buyer/aboutus.php?menu=<?php echo $menu; ?>&" class="nav-link">
+                    <a href="../admin_buyer/aboutus.php?menu=<?php echo $menu; ?>" class="nav-link">
                         <img src="../img/icon/aboutus.svg" height="24px">
                           Mengenai Kami
                       </a>
