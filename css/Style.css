@@ -11173,13 +11173,11 @@ input[type=text] {
       color: #000;
       border-radius: 30px;
       padding: 10px 10px;}
-
+      
   #sidebar .custom-menu {
-    /*display: inline-block;*/
     position: absolute;
     top: 20px;
     right: 0;
-    /*margin-right: -20px;*/
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s; 
