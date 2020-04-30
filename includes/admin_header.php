@@ -21,13 +21,17 @@
   <!-- Custom styles for this page -->
   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     
+  <!-- Search data from db -->
+  <script src="../js/search_data.min.js"></script>
+    
   <!-- Category css-->
 <!--  <link href="../css/category.css" rel="stylesheet">        -->
+    
+    
+
       
   <?php session_start(); ?>
 	
-	
-		
 	
 	<?php
 	

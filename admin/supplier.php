@@ -17,16 +17,51 @@
 
     <!-- Content Row -->
     <div class="row">
-
      <div class="col-xl-12">
         <div class="card p-4 border">
           <div class="card-title justify-content-between align-middle">
-            <div id="search" class="form-group has-search">
-              <span class="fa fa-search form-control-feedback"></span>
-              <input type="text" class="form-control" placeholder="Search">
-           </div>
-          </div>
-            <div class="card-body">
+              
+
+            <script>
+                  
+                $(document).ready(function(){
+                    
+                    load_data();
+
+                    function load_data(query)
+                    {
+                        $.ajax({
+                            url:"includes/view_all_suppliers.php",
+                            method:"POST",
+                            data:{query:query},
+                            success:function(data)
+                            {
+                            $('#view_all_suppliers').html(data);
+                            }
+                        });
+                    }
+                    
+                    $('#search_supplier').keyup(function()
+                    {
+                        var search = $(this).val();
+                        
+                        if(search != '')
+                        {
+                            load_data(search);
+                        }
+                        else
+                        {
+                            load_data();
+                        }
+                    });
+                });
+                
+            </script>
+              
+              
+
+                
+                
               <?php
 
                   if(isset($_GET['source'])){
@@ -58,11 +93,10 @@
                           include "includes/view_elodge_supplier.php";
                           break;
               
-              case 'view_elodge_details';
+                      case 'view_elodge_details';
                           include "includes/view_elodge_details.php";
                           break;
                 
-                      
                           
                           
                           
@@ -83,15 +117,20 @@
                           break;
 
                       default:
-                          include "includes/view_all_suppliers.php";
+                          echo "<div id='search_area' class='form-group has-search'>";
+                          echo "<span class='fa fa-search form-control-feedback'></span>";
+                          echo "<input type='text' name='search_supplier' id='search_supplier' placeholder='' class='form-control' />";
+                          echo "</div>";
+                          echo "</div>";
+                          echo "<div class='card-body'>";
+                          echo "<div id='view_all_suppliers'></div>";       //Search data purposes
                           break;
                   }
 
               ?>              
             </div>
         </div>
-      </div>
-
+        </div>
     </div>
 
 
