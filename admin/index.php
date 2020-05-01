@@ -222,7 +222,7 @@
 //                title: 'Purata Harga Guava Mengikut Bulan',
 //                subtitle: 'in millions of dollars (USD)'
               },
-              width: 900,
+              width: 1000,
               height: 500
               };
 
@@ -239,7 +239,7 @@
                <?php
                                 global $connection;
 
-                                $query  =  "SELECT COUNT(*) as count, MONTHNAME(product_date_submit) as month FROM product GROUP BY MONTHNAME(product_date_submit) ";    
+                                $query  =  "SELECT COUNT(*) as count, MONTHNAME(product_date_submit) as month FROM product GROUP BY MONTHNAME(product_date_submit) ORDER BY  {MONTHNAME(product_date_submit)} ";    
                                 $select_suppliers = mysqli_query($connection, $query);
                                 $all_product_count = mysqli_num_rows($select_suppliers);
 
@@ -254,7 +254,7 @@
               ]);
 
               var options = {
-                width: 800,
+                width: 950,
                 legend: { position: 'none' },
                 chart: {
                 title: 'Jumlah produk dijual setiap bulan',
