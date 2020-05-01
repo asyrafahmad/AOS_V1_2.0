@@ -130,9 +130,9 @@
 				<div class="col-md-8">
 					<div class="card-body product_detail">
 						<div class="row">
-							<div class="col-md-12">
+							<div class="col-md-10">
 								<label for="firstName">Nama Produk</label>
-									<select name="product_name" id="" class="btn border-secondary form-control">
+									<select name="product_name" id="" class="btn border-secondary form-control text-left">
 										<option value="<?php echo $product_name; ?>"><?php echo $product_name; ?></option>
 										<optgroup label="Buah-buahan">
 											<option value="Belimbing">Belimbing</option>
@@ -190,9 +190,9 @@
 							
 						</div>	
 						<div class="row mt-3">
-							<div class="col-md-12">
+							<div class="col-md-10">
 								<label for="firstName">Jenis Produk</label>
-								<select name="product_type" class="btn border-secondary form-control">
+								<select name="product_type" class="btn border-secondary form-control text-left">
 								<option value="<?php echo $product_type; ?>"><?php echo $product_type; ?></option>
 								<?php
 								
@@ -213,10 +213,10 @@
 							
 						</div>
 						<div class="row mt-3">
-							<div class="col-md-12">
+							<div class="col-md-10">
 								<label for="lastName">Gred</label>
 				            	<!-- <input type="text" class="form-control" name="product_gred" placeholder="" value="<?php echo $product_gred; ?>" required=""> -->
-								<select name="product_gred" class="btn border-secondary form-control">
+								<select name="product_gred" class="btn border-secondary form-control text-left">
 									<option value="<?php echo $product_gred; ?>"><?php echo $product_gred; ?></option>
 										<option value="A">A</option>
 										<option value="B">B</option>
@@ -246,7 +246,7 @@
 						<div class="row mt-5 justify-content-end">
 							<div class="col-md-4">
 								<div class="form-group" >
-						            <input class="btn btn-primary" style="width: 100%;" type="submit" name="edit_product" value="Hantar">
+						            <input class="btn btn-primary" style="width: 100%;" type="submit" name="edit_product" value="Simpan">
 						        </div>
 							</div>
 						</div>			
