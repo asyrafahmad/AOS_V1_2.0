@@ -11173,7 +11173,7 @@ input[type=text] {
       color: #000;
       border-radius: 30px;
       padding: 10px 10px;}
-      
+
   #sidebar .custom-menu {
     position: absolute;
     top: 20px;
@@ -11551,6 +11551,10 @@ a.profile img{
     margin-top: 3rem;
   }
 
+  .option{
+    display: flex;
+  }
+
   .img-container{
     height: 100%;
     margin: 0;
@@ -11656,6 +11660,14 @@ a.profile img{
     margin-top: 0.7rem;
 }
 
+.upload > input{
+  display: none;
+}
+
+.upload{
+  background: pink;
+}
+
 #imagePreview{
   width: 200px;
   max-width: 250px;
@@ -11667,3 +11679,6 @@ a.profile img{
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
 }
 
+.input-category{
+  border: 1px solid #d1d3e2 !important;
+}
