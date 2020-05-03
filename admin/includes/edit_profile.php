@@ -87,7 +87,7 @@
             
           <div class="col-md-6 mb-3">
             <label for="firstName">Katalaluan</label>
-            <input type="password" class="btn border-secondary form-control" name="user_password" placeholder="" value="<?php echo $user_password ?>" required="">
+            <input type="password" class="border-secondary form-control" name="user_password" placeholder="" value="<?php echo $user_password ?>" required="">
             <div class="invalid-feedback">
               Valid first name is required.
             </div>

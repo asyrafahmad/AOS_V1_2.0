@@ -150,7 +150,7 @@
            <?php
                           global $connection;
 
-                          $query  =  "SELECT COUNT(*) as count, MONTHNAME(product_date_submit) as month FROM product GROUP BY MONTHNAME(product_date_submit) ";    
+                          $query  =  "SELECT COUNT(*) as count, MONTHNAME(product_date_submit) as month FROM product GROUP BY MONTHNAME(product_date_submit) ORDER BY  {MONTHNAME(product_date_submit)} ";    
                           $select_suppliers = mysqli_query($connection, $query);
                           $all_product_count = mysqli_num_rows($select_suppliers);
 
@@ -164,12 +164,20 @@
                           ?>
           ]);
 
-          var options = {
-          chart: {
-          //                title: 'Jumlah Jualan Produk Setiap Bulan',
-          //                subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-          }
-          };
+             var options = {
+                width: 950,
+                legend: { position: 'none' },
+                chart: {
+                title: 'Jumlah produk dijual setiap bulan',
+//                subtitle: 'popularity by percentage' 
+                },
+                axes: {
+                x: {
+                  0: { side: 'top', label: 'Jumlah produk'} // Top x-axis.
+                }
+                },
+                bar: { groupWidth: "90%" }
+              };
 
           var chart = new google.charts.Bar(document.getElementById('stockDemand'));
 

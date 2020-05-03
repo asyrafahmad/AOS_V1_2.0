@@ -149,7 +149,7 @@
           </div>
           <div class="col-md-6 mb-3 ">
             <label for="lastName">Katalaluan</label>
-            <input type="password" class="btn border-secondary form-control" name="user_password" placeholder="" value="<?php echo $user_password ?>" required="">
+            <input type="password" class="border-secondary form-control" name="user_password" placeholder="" value="<?php echo $user_password ?>" required="">
           </div>
             
         

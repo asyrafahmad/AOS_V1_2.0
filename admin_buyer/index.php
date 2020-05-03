@@ -117,14 +117,13 @@
       <?php  
          $query = "SELECT buyer_state, count(*) as number FROM buyer GROUP BY buyer_state";  
          $result = mysqli_query($connection, $query);  
-         ?>  
+       ?>  
 
-       <script type="text/javascript" src="../js/barChartProductSupplier.js"></script>
-
-       <script type="text/javascript">
+            <script type="text/javascript" src="../js/barChartProductSupplier.js"></script>
+            <script type="text/javascript">
                                           
           google.charts.load('current', {'packages':['corechart']});  
-          google.charts.load("current", {packages:["corechart"]});
+          google.charts.load('current', {'packages':['corechart']});
           google.charts.load('current', {'packages':['line']});
           google.charts.load('current', {'packages':['bar']});
           google.charts.load('current', {'packages':['bar']});
@@ -199,7 +198,7 @@
                   echo "[".$row["month"].",  ".$row["product_price"]."],";  
                 }
                ?>
-              [5,  15],
+                [5,  15],
                 [6,  13],
                 [7,  12],
                 [8,  1],
@@ -227,16 +226,18 @@
             function productBought() {
               var data = new google.visualization.arrayToDataTable([
                 ['Bulan', 'Jumlah Produk'],
+                  
               <?php  
-                $query  =  "SELECT count(*) as count, MONTH(order_date_payment) as month FROM order_product_history WHERE order_status = 'Successful' GROUP BY MONTH(order_date_payment)";    
-                $select_order_product = mysqli_query($connection, $query);
-                $order_product_count = mysqli_num_rows($select_order_product);
+                    $query  =  "SELECT count(*) as count, MONTH(payment_date) as month FROM payment_product_history WHERE payment_status = 'Berjaya' GROUP BY MONTH(payment_date)";    
+                    $select_order_product = mysqli_query($connection, $query);
+                    $order_product_count = mysqli_num_rows($select_order_product);
 
-                while ($row = mysqli_fetch_assoc($select_order_product)){
+                    while ($row = mysqli_fetch_assoc($select_order_product)){
 
-                  echo "[".$row["month"].",  ".$row["count"]."],";  
-                }
+                      echo "[".$row["month"].",  ".$row["count"]."],";  
+                    }
                ?>
+                  
               ]);
 
               var options = {
@@ -287,6 +288,7 @@
               totalSupplier();
               totalProduct();
               averageProduct();
+              productBought();
               stockDemand();
             });
                        
