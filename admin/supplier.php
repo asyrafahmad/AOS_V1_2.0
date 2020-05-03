@@ -117,7 +117,7 @@
                           break;
 
                       default:
-                          echo "<div class='card-title justify-content-between align-middle'>";
+                          echo "<div class='card-title justify-content-end align-middle'>";
                           echo "<div id='search_area' class='form-group has-search'>";
                           echo "<span class='fa fa-search form-control-feedback'></span>";
                           echo "<input type='text' name='search_supplier' id='search_supplier' placeholder='' class='form-control' />";
