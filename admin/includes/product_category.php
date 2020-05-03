@@ -20,24 +20,20 @@
 
                     <form action="" method="post">
 
-                        <div class="row mb-4">
-                            <h2 for="category-title">Kategori</h2>
-                        </div>
-
                         <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-4">
+                            <div class="row justify-content-end">
+                                <div class="col-md-4 mt-1">
                                     <input name="cat_product_title" type="text" class="form-control input-category" style="margin: 0;" placeholder="Nama Kategori" >
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 mt-1">
                                     <div class="input-group mb-3">
                                       <div class="custom-file">
                                         <input type="file" class="custom-file-input" name="cat_product_image">
-                                        <label class="custom-file-label" for="cat_product_image">Pilih Gambar Kategori</label>
+                                        <label class="custom-file-label" for="cat_product_image">Gambar</label>
                                       </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 mt-1">
                                     <div class="form-group">
                                         <input name="add_product_category" type="submit" class="btn btn-primary" value="Tambah Kategori" style="margin: 0;">
                                     </div>

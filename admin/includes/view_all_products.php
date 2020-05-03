@@ -130,7 +130,7 @@
                             echo "<tr>";
                             echo "<td>$product_id </td>";
 //                            echo "<td>$product_category </td>";
-                            echo "<td><img height='10%' width='90%'  src='../img/$product_image'  alt='image' class='img-category' </td>";
+                            echo "<td><img height='10%' width='90%' src='../img/$product_image'  alt='image' class='img-category' value='$product_image'></td>";
                             echo "<td>$product_name  </td>";
                             echo "<td>$product_gred  </td>";
                             echo "<td width='110'>$product_quantity  </td>";
