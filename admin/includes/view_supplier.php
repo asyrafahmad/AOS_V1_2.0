@@ -32,20 +32,40 @@
 ?>
                         
    <!-- DataTales Example -->
-	<div class="col-xl-12 col-lg-5" align="center">
-          <div class="card shadow ">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary" align="center">Profil Petani</h6>
-            </div>
-            <div class="card-body" >
-              <div class="card-body">
-				  <td align="center"><img height="25%" width="25%"  src="../img/<?php echo $user_image;  ?>"   ></td>
-				  <td><p for="user_name"><b>Nama: </b> <?php echo strtoupper("$user_username");  ?>  </p></td>
-				  <td><p for="user_phone" ><b>No Telefon: </b>0<?php echo strtoupper("$user_phone");  ?>  </p></td>
-				  <td><p for="user_email" ><b>Emel: </b> <?php echo strtoupper("$user_email");  ?>  </p></td>
-				  <td><p for="user_address" ><b>Alamat: </b> <?php echo strtoupper("$user_address");  ?>  </p></td>
-				  <td><p for="user_website" ><b>Website: </b> <?php echo strtoupper("$user_website");  ?>  </p></td>
-				</div>
-            </div>
+   <div class="row justify-content-center">
+    <div class="col-xl-12 col-lg-6">
+    <div class="card shadow ">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary" align="center">Profil Petani</h6>
+      </div>
+      <div class="card-body" >
+        <div class="row"  align="center">
+          <div class="col-xl-12">
+            <td align="center"><img class="img_profile mb-5" src="../img/<?php echo $user_image;  ?>"   ></td>
           </div>
-     </div>
+        </div>
+        <div class="row justify-content-center">
+          <table class="table_profile">
+            <tr>
+              <td width="100" ><b>Nama </b> </td>
+              <td width="200" for="user_name"><?php echo strtoupper("$user_username");  ?>  </td>
+            </tr>
+            <tr>
+              <td width="100"><b>Emel </b> </td>
+              <td width="200" for="user_email">0<?php echo strtoupper("$user_phone");  ?>  </td>
+            </tr>
+            <tr>
+              <td width="100"><b>Alamat </b> </td>
+              <td width="200" for="user_address"><?php echo strtoupper("$user_address");  ?>  </td>
+            </tr>
+            <tr>
+              <td width="100"><b>Website </b> </td>
+              <td width="200" for="user_website"><?php echo strtoupper("$user_website");  ?>  </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>  
+   </div>
+

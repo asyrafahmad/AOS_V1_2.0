@@ -11682,3 +11682,19 @@ a.profile img{
 .input-category{
   border: 1px solid #d1d3e2 !important;
 }
+
+.img_profile{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #14CC60;
+  background: #fff;
+}
+
+table.table_profile{
+  margin: 1rem;
+}
+
+table.table_profile td{
+  padding-bottom: 15px;
+}
