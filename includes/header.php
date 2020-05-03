@@ -21,6 +21,8 @@
   <!-- Custom styles for this page -->
   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+  <link rel="icon" type="image/ico" href="../img/bg/logo-152-03.png">
+
 </head>
 
     

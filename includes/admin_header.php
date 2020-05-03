@@ -24,8 +24,9 @@
   <!-- Search data from db -->
   <script src="../js/search_data.min.js"></script>
     
-  <!-- Category css-->
-<!--  <link href="../css/category.css" rel="stylesheet">        -->
+  <link rel="icon" type="image/ico" href="../img/bg/logo-152-03.png">
+
+
     
     
 

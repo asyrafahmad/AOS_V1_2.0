@@ -23,6 +23,8 @@
   <!-- Custom styles for this template-->
   <link href="css/Style.css" rel="stylesheet">
 
+  <link rel="icon" type="image/ico" href="img/bg/logo-152-03.png">
+
 </head>
 
 <body class="bg-gradient-primary">

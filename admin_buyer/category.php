@@ -1,16 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
 <?php include "../includes/db_connection.php";   ?>
 <?php include "../includes/functions.php";   ?>
 
@@ -18,11 +6,6 @@
 
 
 <?php header('Link: <../css/category.css>;rel=stylesheet'); ?>
-
-
-
-
-
 
 <div class="wrapper">
 
