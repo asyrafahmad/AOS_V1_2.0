@@ -61,7 +61,7 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">Nama Petani</label>
-            <input type="text" class="form-control" name="user_name" placeholder="" value="" required="">
+            <input type="text" class="form-control" name="user_username" placeholder="" value="" required="">
             <div class="invalid-feedback">
               Valid first name is required.
             </div>

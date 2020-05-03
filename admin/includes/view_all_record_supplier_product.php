@@ -5,7 +5,6 @@
 
     
 <!-- Page Heading -->
-          <p class="mb-">Produk Pasaran. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-">
@@ -129,7 +128,7 @@
                             echo "<tr>";
                             echo "<td>$user_username </td>";
 //                            echo "<td>$product_category </td>";
-                            echo "<td><img height='10%' width='80%'  src='../img/$product_image'  alt='image' class='rounded-circle' </td>";
+                            echo "<td><img class='img-category' src='../img/$product_image' alt='image'</td>";
                             echo "<td>$product_name  </td>";
                             echo "<td>$product_gred  </td>";
                             echo "<td>$product_quantity  </td>";

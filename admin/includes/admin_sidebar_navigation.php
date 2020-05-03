@@ -14,7 +14,7 @@
           </button>
         </div>
 
-          <h1><a href="index.php" class="logo"><span><strong>AOS</strong></span></a></h1>
+          <h1 align="center"><a href="index.php" class="logo"><img src="../img/bg/logo-02.png" class="logo"></a></h1>
 
               <ul class="list-unstyled components">
 
@@ -82,16 +82,6 @@
                               <a href="order.php?source=view_all_buyer_order_product" class="nav-link">Sejarah Pesanan</a>
                           </li>
                       </ul>
-                  </li>
-                  </span>
-       
-
-                  <span>
-                    <li id="aboutus" class="nav-item">
-                    <a href="../admin/aboutus.php" class="nav-link">
-                        <img src="../img/icon/aboutus.svg" height="24px">
-                          Mengenai Kami
-                      </a>
                   </li>
                   </span>
                 

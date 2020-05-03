@@ -11213,6 +11213,10 @@ a.profile img{
   height: 40px;
 }
 
+#sidebar.active .logo{
+  width: 60px;
+}
+
 #close{
   background: #14CC60;
   color: #fff;
@@ -11560,77 +11564,6 @@ a.profile img{
     margin: 0;
   }
 
-/*table elodge*/
-/*@media screen and (max-width: 992px) {
-
-  table  {
-    display: block;
-  }
-  table  > *, table tr, table td, table th {
-    display: block;
-  }
-  table thead  {
-    display: none;
-  }
-  table tbody tr  {
-    height: auto;
-    padding: 37px 0;
-    border: 1px solid #e3e6f0;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-  }
-  table tbody tr td {
-    padding-left: 55% !important;
-  }
-
-  td{
-    border:none;
-  }
-
-  table tbody tr td:last-child {
-    margin-bottom: 0;
-    position: relative;
-    left: -60px;
-    border-top: none;
-  }
-  
-  table tbody tr td:before {
-    position: absolute;
-    width: 40%;
-    left: 70px;
-    align-items: center;
-  }
-
-  .text-center{
-    text-align: left !important; 
-  }
-
-  table tbody tr td:nth-child(1):before {
-    content: "Gambar";
-  }
-  table tbody tr td:nth-child(2):before {
-    content: "Produk";
-  }
-  table tbody tr td:nth-child(3):before {
-    content: "Kuantiti(Kg)";
-  }
-  table tbody tr td:nth-child(4):before {
-    content: "Tarikh Menuai";
-  }
-  table tbody tr td:nth-child(5):before {
-    content: "";
-  }
-
-}
-
-@media (max-width: 576px) {
-  .container-table100 {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}*/
-
-
 /*Upload Image*/
 .image-upload{
   position: relative;
@@ -11697,4 +11630,8 @@ table.table_profile{
 
 table.table_profile td{
   padding-bottom: 15px;
+}
+
+.logo{
+  width: 100px;
 }

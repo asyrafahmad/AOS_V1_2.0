@@ -5,9 +5,6 @@
 
     
 <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Produk</h1>
-          <p class="mb-4">Produk Petani. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
-
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -69,7 +66,7 @@
                             
                             echo "<tr>";
 //                            echo "<td>$elodge_product_id </td>";
-                            echo "<td><img width='100'  src='../img/$elodge_product_image'  alt='image' class='rounded-circle' </td>";
+                            echo "<td><img src='../img/$elodge_product_image'  alt='image' class='img-category' </td>";
                             echo "<td>$elodge_product_name  </td>";
                             echo "<td>$elodge_product_quantity  </td>";
                             echo "<td>$elodge_product_harvest_date  </td>";

@@ -14,7 +14,7 @@
           </button>
         </div>
 
-          <h1><a href="index.php?menu=<?php echo $menu; ?>" class="logo"><span><strong>AOS</strong></span></a></h1>
+          <h1 align="center"><a href="index.php" class="logo"><img src="../img/bg/logo-02.png" class="logo"></a></h1>
 
               <ul class="list-unstyled components">
 

@@ -52,11 +52,13 @@
         </div>
         <div class="card-body">
 
-
+        <div class="row">
           <div class="col-md-6 mb-3">
              <b for="product_image">Gambar :</b>
             <input type="file"  name="user_image">
           </div>
+        </div>
+          
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">Nama</label>
@@ -106,9 +108,13 @@
           </div>
         </div>  
 
-        <div class="form-group">
-                <input class="btn btn-primary" type="submit" name="add_buyer" value="Hantar">
-        </div>  
+        <div class="row justify-content-end px-3">
+           <div class="form-group">
+                  <input class="btn btn-primary" type="submit" name="add_buyer" value="Hantar">
+          </div>   
+        </div>
+
+        
     </div>
 </div>
 

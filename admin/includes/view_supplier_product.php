@@ -8,9 +8,6 @@
 
 
 <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Petani</h1>
-          <p class="mb-4">Senarai Petani <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
-
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -74,7 +71,7 @@
                             echo "<tr>";
 //                            echo "<td>$product_id </td>";
 //                            echo "<td>$product_category </td>";
-                            echo "<td><img width='100'  src='../img/$product_image'  alt='image' class='rounded-circle' </td>";
+                            echo "<td><img src='../img/$product_image'  alt=' image' class='img_category' </td>";
                             echo "<td>$product_name  </td>";
 //                            echo "<td>$product_type  </td>";
 //                            echo "<td>$product_gred  </td>";

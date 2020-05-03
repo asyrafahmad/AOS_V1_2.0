@@ -5,8 +5,6 @@
 
 
 <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Pemborong</h1>
-          <p class="mb-4">Senarai Pemborong. <a target="_blank" href="https://datatables.net">@PenerajuMedia.Sdn.Bhd</a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -26,10 +24,8 @@
                       <th>Nama Pemborong</th>
                       <th>Emel</th>
                       <th>Nombor Telefon</th>
-                      <th>Tarikh Buka Akaun</th>
-                      <th>Profil Pemborong</th>
-                      <th>Kemaskini Profil Pemborong</th>
-                      <th>Sejarah Pembelian</th>
+                      <th>Tarikh Daftar</th>
+                      <th colspan="3"></th>
 <!--                      <th>Padam</th>-->
                     </tr>
                   </thead>
@@ -61,7 +57,7 @@
                             
                             echo "<tr>";
                             echo "<td>$user_id </td>";
-                            echo "<td><img width='100'  src='../img/$user_image'  alt='image' class='rounded-circle' ></td>";
+                            echo "<td><img src='../img/$user_image'  alt='image' class='img-category' ></td>";
                             echo "<td>$user_username  </td>";
                             echo "<td>$user_email  </td>";
                             echo "<td>0$user_phone  </td>";
@@ -69,9 +65,9 @@
                             
 //                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
 //                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";
-                            echo "<td><a class='btn btn-info' href='buyer.php?source=view_buyer&buyer_id={$user_id}'>Lihat Profil</a></td>";
-                            echo "<td><a class='btn btn-info' href='buyer.php?source=edit_buyer&buyer_id={$user_id}'>Kemaskini </a></td>";
-                            echo "<td><a class='btn btn-info' href='buyer.php?source=view_buyer_history&buyer_id={$user_id}'>Lihat </a></td>";
+                            echo "<td width='170' align='center'><a class='btn' href='buyer.php?source=view_buyer&buyer_id={$user_id}' data-toggle='tooltip' data-placement='top' title='Lihat Profil'><i class='fas fa-eye'></i></a>
+                              <a class='btn' href='buyer.php?source=edit_buyer&buyer_id={$user_id}' data-toggle='tooltip' data-placement='top' title='Kemaskini'><i class='fas fa-edit'></i></a>
+                              <a class='btn' href='buyer.php?source=view_buyer_history&buyer_id={$user_id}' data-toggle='tooltip' data-placement='top' title='Sejarah Pembelian'><i class='fas fa-history'></i></a></td>";
 //                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='buyer.php?delete={$user_id} '>Padam </a></td>";
                             echo "</tr>";
 
