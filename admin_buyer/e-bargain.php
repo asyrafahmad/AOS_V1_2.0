@@ -20,13 +20,53 @@
 
      <div class="col-xl-12">
         <div class="card p-4 border">
-          <div class="card-title justify-content-end align-middle">
-            <div id="search" class="form-group has-search">
-              <span class="fa fa-search form-control-feedback"></span>
-              <input type="text" class="form-control" placeholder="Search">
-           </div>
-          </div>
             <div class="card-body col-xl-12">
+                
+           
+                
+                
+                <script>
+                  
+                $(document).ready(function(){
+                    
+                    load_data();
+
+                    function load_data(query)
+                    {
+                        $.ajax({
+                            url:"includes/view_all_ebargain_products.php",
+                            method:"POST",
+                            data:{query:query},
+                            success:function(data)
+                            {
+                            $('#view_all_ebargain_products').html(data);
+                            }
+                        });
+                    }
+                    
+                    $('#search_ebargain_product').keyup(function()
+                    {
+                        var search = $(this).val();
+                        
+                        if(search != '')
+                        {
+                            load_data(search);
+                        }
+                        else
+                        {
+                            load_data();
+                        }
+                    });
+                });
+                
+            </script>    
+                
+                
+                
+                
+                
+                
+                
             <?php
 
                 if(isset($_GET['source'])){
@@ -51,7 +91,17 @@
                         break;
 
                     default:
-                        include "includes/view_all_ebargain_products.php";
+//                        include "includes/view_all_ebargain_products.php";
+                        
+                        echo "<div class='card-title justify-content-end align-middle'>";
+                        echo "<div id='search_area' class='form-group has-search'>";
+                        echo "<span class='fa fa-search form-control-feedback'></span>";
+                        echo "<input type='text' name='search_ebargain_product' id='search_ebargain_product' placeholder='' class='form-control' />";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "<div class='card-body'>";
+                        echo "<div id='view_all_ebargain_products'></div>";       //Search data purposes
+                        echo "</div>";
                         break;
                 }
 
