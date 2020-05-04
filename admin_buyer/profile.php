@@ -25,12 +25,6 @@
 
      <div class="col-xl-12">
         <div class="card p-4 border">
-          <div class="card-title justify-content-end align-middle">
-            <div id="search" class="form-group has-search">
-              <span class="fa fa-search form-control-feedback"></span>
-              <input type="text" class="form-control" placeholder="Search">
-           </div>
-          </div>
             <div class="card-body">
         <?php
 

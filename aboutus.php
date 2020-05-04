@@ -47,12 +47,7 @@
               <h5 class="card-title"></h5>
                 
               <?php
-    
-                   if(isset($_SESSION['user_id'])){
-
-                        $user_id = $_SESSION['user_id'];
-                    }
-
+                
                     //Add ebargain data
                     if(isset($_POST['aboutus_form'])){
 
@@ -62,8 +57,8 @@
 
                         if(!empty($a_u_phone)  &&  !empty($a_u_message)){
 
-                            $query = "INSERT INTO aboutus (a_u_phone, a_u_message, a_u_user_id)  ";
-                            $query .= "VALUES('{$a_u_phone}', '{$a_u_message}', '{$user_id}')  ";
+                            $query = "INSERT INTO aboutus (a_u_phone, a_u_message)  ";
+                            $query .= "VALUES('{$a_u_phone}', '{$a_u_message}')  ";
                             $aboutus_query  =   mysqli_query($connection, $query);
                             confirmQuery($aboutus_query);
 

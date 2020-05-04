@@ -58,19 +58,19 @@
                    if(isset($_SESSION['user_id'])){
 
                         $user_id = $_SESSION['user_id'];
+                        $user_phone = $_SESSION['user_phone'];
                     }
 
                     //Add ebargain data
                     if(isset($_POST['aboutus_form'])){
 
-                        $a_u_phone              = escape($_POST['phone_number']);
                         $a_u_message            = escape($_POST['message']);
 
 
-                        if(!empty($a_u_phone)  &&  !empty($a_u_message)){
+                        if(!empty($a_u_message)){
 
                             $query = "INSERT INTO aboutus (a_u_phone, a_u_message, a_u_user_id)  ";
-                            $query .= "VALUES('{$a_u_phone}', '{$a_u_message}', '{$user_id}')  ";
+                            $query .= "VALUES('{$user_phone}', '{$a_u_message}', '{$user_id}')  ";
                             $aboutus_query  =   mysqli_query($connection, $query);
                             confirmQuery($aboutus_query);
 
@@ -86,11 +86,8 @@
                 
                 
               <form action="" method="post" enctype="multipart/form-data">
-                <div class="form-group mb-2">
-                  <input class="form-control form-control-user" name="phone_number" placeholder="Nombor Telefon Anda">
-                </div>
                 <div class="form-group mb-4">
-                  <input class="form-control form-control-user" name="message" placeholder="Mesej">
+                    <textarea type="text" class="form-control form-control-user" name="message" placeholder="Mesej"></textarea>
                 </div>
                <div class="form-group text-center">
                   <input class="btn btn-primary" type="submit" name="aboutus_form" value="Hantar">

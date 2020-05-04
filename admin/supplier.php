@@ -117,6 +117,9 @@
                           break;
 
                       default:
+                          
+//                          include "includes/view_all_suppliers.php";
+                          
                           echo "<div class='card-title justify-content-end align-middle'>";
                           echo "<div id='search_area' class='form-group has-search'>";
                           echo "<span class='fa fa-search form-control-feedback'></span>";
