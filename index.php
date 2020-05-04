@@ -1,134 +1,85 @@
-<?php session_start(); ?>
-<?php include "includes/functions.php"; ?> 
-<?php  include "includes/db_connection.php"; ?>    
-    
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AOS</title>
+	<link rel="stylesheet" href="https:cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-  <title>Agro Online System - Login</title>
 
-  <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,+900&display=swap">
 
-  <!-- Custom styles for this template-->
-  <link href="css/Style.css" rel="stylesheet">
-
-  <link rel="icon" type="image/ico" href="img/bg/logo-152-03.png">
-
+	<link rel="stylesheet" href="css/mainpage.css">
 </head>
 
-<body class="bg-gradient-primary">
+<body>
 
-    
+	<div class="container-fluid">
 
-    
-<?php
-    
-		checkIfUserIsLoggedInAndRedirect('./admin/index.php');
+		<nav class="navbar p-4">
+		  <a class="navbar-brand" href="#">
+		    <img src="img/bg/logo-02.png" width="80" height="100%" alt="AOS">
+		  </a>
 
-		if(ifItIsMethod('post')){
+		  <ul class="nav__list">
+		  	<li><a href="register.php"><button type="button" class="btn btn-outline-success btn__signup">Sign Up</button></a></li>
+		  	<li><a href="login.php"><button type="button" class="btn btn-outline-success btn__signin">Sign In</button></a></li>
+		  </ul>
 
-			if(isset($_POST['inputUsername']) && isset($_POST['inputPassword'])){
+		</nav>
+		
+		<div class="col-md-12">
+			<div class="row justify-content-end mb-3">
+				<div class="col-4 mainpage__search">
+					<div class="input-group">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="search"><i class="fas fa-search"></i></span>
+					  </div>
+					  <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search">
+					</div>
+				</div>
+			</div>
 
-		          login_user($_POST['inputUsername'], $_POST['inputPassword']);
+			<div class="row justify-content-center" class="mainpage__main">
+				<div class="col-md-4 col-sm-12 mainpage__left">
+					<div class="mainpage__desc" >
+						<h2><b>Agro Online System</b></h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+						<div class="row justify-content-center mt-5">
+							<a href="aboutus.php" class="btn btn-success">Mengenai Kami</a>
+						</div>
+					</div>
+				</div>
 
-			}else {
+				<div class="col-6 mainpage__right ml-5">
+					<div class="mainpage__desc px-5" >
+						<div class="row">
+							<h4>Kategori</h4>	
+						</div>
+						
+						<div class="row">
+							<div class="mt-2">
+								<div class="card" style="width: 140px;">
+								  <img src="img/banana.png" class="img-category" alt="..." >
+								  <div class="card-body">
+								    <p class="card-text">Nama Kategori</p>
+								  </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>			
+			</div>	
+		</div>
+		
+	</div>
 
-                //echo "Failed";
-				redirect('./login.php');
-			}
+</body>
+</html>
 
-		}
-
-?>
-    
-    
-    
-    
-    
-  <div class="container">
-
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
-
-      <div class="col-xl-10 col-lg-12 col-md-9">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-              <div class="col-lg-6">
-                <div class="p-5">
-                  <div class="text-center">
-                    <img src="img/PenerajuMedia.jpg" height="150" alt="Italian Trulli">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                  </div>
-                    
-                    
-                    
-                    
-                    
-                    
-                <form id="login-form" role="form" autocomplete="off" class="user" method="post">
-                    <div class="form-group">
-                      <input class="form-control form-control-user" name="inputUsername" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control form-control-user" name="inputPassword" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
-                      </div>
-                    </div>
-                    <div class="">
-                        <input name="login" class="btn btn-primary btn-user btn-block" value="Submit" type="submit">
-                    </div>
-<!--
-                    <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
--->
-                  </form>
-                    
-                    
-                    
-                    
-<!--
-                  <hr>
-                  <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                  </div>
--->
-                  <div class="text-center">
-                    <a class="small" href="register.php">Create an Account!</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-<?php  include "includes/footer.php"; ?>    
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
