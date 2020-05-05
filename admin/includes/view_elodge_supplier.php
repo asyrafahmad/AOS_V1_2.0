@@ -1,8 +1,4 @@
 <?php ob_start();   ?>
-<?php include "../includes/db_connection.php";   ?>
-<!-- to call file and make it available  -->
-<?php include "../includes/functions.php";   ?>
-
     
 <!-- Page Heading -->
           <!-- DataTales Example -->
@@ -14,78 +10,127 @@
               <div class="table-responsive">
                   
                   
-<!--           TODO: put elodge_product table-->
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-
-<!--                      <th>ID</th>-->
-                      <th>Gambar</th>
-                      <th>Nama Produk</th>
-                      <th>Baki Kuantiti </th>
-                      <th>Tarikh Menuai</th>
-                      <th>Nama Petani</th>
-                      <th>Lebih Lanjut</th>
-                      <th>Garis Panduan</th>
-<!--
-                      <th>Jumlah Ditempah</th>
-                      <th>Status</th>
--->
-<!--
-                      <th>Lihat</th>
-                      <th>Kemaskini</th>
--->
-<!--                      <th>Padam</th>-->
-                    </tr>
-                  </thead>
-                 
-                  <tbody>
-                     <!-- Get data in db and display  -->
-                    <?php
-                      
+                <?php
+                  
+                   $connection = mysqli_connect("localhost", "root", "", "agro_db");
+                  
+                   $per_page = 5;
+                  
+                    if(isset($_SESSION['page'])){
+                         $page = $_SESSION['page']; 
+                    }
+                    else{
+                        $page = "";
+                    } 
                     
-                          
-                        $query  =  "SELECT * FROM elodge_product JOIN user ON  elodge_product.elodge_supplier = user.user_id";    
-                        $select_suppliers = mysqli_query($connection, $query);
+                    if($page == "" || $page == 1){
+                        $page_1 = 0;
+                    }
+                    else{
+                        $page_1 = ($page * $per_page) - $per_page;
+                    }
+                  
 
-                        while ($row = mysqli_fetch_assoc($select_suppliers)){
+                    $querys  =  "SELECT * FROM elodge_product ";    
+                    $find_count = mysqli_query($connection, $querys);
+                    $count = mysqli_num_rows($find_count);
 
-                            $elodge_product_id              = escape($row['elodge_product_id']);
-                            $elodge_product_name            = escape($row['elodge_product_name']);
-                            $elodge_product_image           = escape($row['elodge_product_image']);
-                            $elodge_product_quantity        = escape($row['elodge_product_quantity']);
-                            $elodge_product_harvest_date    = escape($row['elodge_product_harvest_date']);
-                            $elodge_product_amount_booked   = escape($row['elodge_product_amount_booked']);
-                            $elodge_product_status          = escape($row['elodge_product_status']);
-							
-                            $user_username          		= escape($row['user_username']);
-                            
-                            //Set as global
-                            $_SESSION['elodge_product_id'] = $elodge_product_id;
-                            $_SESSION['elodge_product_name'] = $elodge_product_name;
-                            
-                            echo "<tr>";
-//                            echo "<td>$elodge_product_id </td>";
-                            echo "<td><img src='../img/$elodge_product_image'  alt='image' class='img-category' </td>";
-                            echo "<td>$elodge_product_name  </td>";
-                            echo "<td>$elodge_product_quantity  </td>";
-                            echo "<td>$elodge_product_harvest_date  </td>";
-                            echo "<td>$user_username</td>";
-                            echo "<td><a class='btn btn-info' href='supplier.php?source=view_elodge_details&e_p_id={$elodge_product_id}'>Lihat </a></td>";
-                            echo "<td><input type='file'  name='user_image'></td>";     
-//                            echo "<td></td>";
-//                            echo "<td>$elodge_product_status</td>";
-                            
-//                            echo "<td><a class='btn btn-info' href='e-lodge.php?source=view_elodge&e_p_id={$elodge_product_id}'>Lihat </a></td>";
-//                            echo "<td><a class='btn btn-info' href='e-lodge.php?source=edit_elodge&e_p_id={$elodge_product_id}'>Kemaskini </a></td>";
-//                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";
-//                            echo "<td></td>";
-                            echo "</tr>";
-
+                    $count = ceil($count/$per_page);
+                  
+                ?>
+                  
+                 <div  align="right">
+                   <div class="dataTables_paginate paging_simple_numbers
+                               " id="dataTable_paginate">
+                       <ul class="pagination">
+                           <li class="paginate_button page-item previous" id="dataTable_previous"><a class="page-link">Page</a></li>
+                           <?php
+                                for($i = 1; $i <= $count; $i++){
+                                    
+                                    if($i == $page){
+                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='supplier.php?source=view_elodge_supplier&page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link active_link'>{$i}</a> </li>";
+                                    }
+                                    else{
+                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='supplier.php?source=view_elodge_supplier&page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link'>{$i}</a> </li>";
+                                    }
+                                    
+                                    
                                 }
-                         ?>
-                  </tbody>
+                           ?>
+                           
+                        </ul>
+                  </div>
+                </div>  
+                  
+                <div class="table-responsive">  
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                   <?php
+
+
+                        $connect = mysqli_connect("localhost", "root", "", "agro_db");
+                        $output = '';
+
+                        if(isset($_POST["query"]))
+                        {
+                            $search = mysqli_real_escape_string($connect, $_POST["query"]);
+                            
+                            $query = "SELECT * FROM elodge_product JOIN user ON  elodge_product.elodge_supplier = user.user_id WHERE elodge_product_name LIKE '%".$search."%' OR elodge_product_quantity LIKE '%".$search."%'  OR elodge_product_harvest_date LIKE '%".$search."%'  ";
+                        }
+                        else
+                        {
+                            $query = "SELECT * FROM elodge_product JOIN user ON  elodge_product.elodge_supplier = user.user_id";
+                        }
+
+                        $var = 0;
+                      
+                        $result = mysqli_query($connect, $query);
+
+                        if(mysqli_num_rows($result) > 0)
+                        {
+                            $output .= '<thead>
+                                        <tr>
+                                        <th>Gambar</th>
+                                        <th>Produk</th>
+                                        <th>Baki Kuantiti</th>
+                                        <th>Tarikh Menuai</th>
+                                        <th>Nama Petani</th>
+                                        <th>Lebih Lanjut</th>
+                                        <th>Garis Panduan</th>
+                                        </tr>
+                                        <thead>';
+
+
+                            while($row = mysqli_fetch_array($result))
+                            {
+                                $output .= '<tbody>
+                                            <tr>
+                                            <td><img src="../img/'.$row["elodge_product_image"].'"  alt="image" class="img-category" </td>
+                                            <td class="align-middle">'.$row["elodge_product_name"].'</td>
+                                            <td class="align-middle">'.$row["elodge_product_quantity"].'</td>
+                                            <td class="align-middle">'.$row["elodge_product_harvest_date"].'</td>
+                                            <td class="align-middle">'.$row["user_username"].'</td>
+                                            <td><a class="btn btn-info" href="supplier.php?source=view_elodge_details&e_p_id='.$row["elodge_product_id"].'">Lihat </a></td>
+                                            <td><input type="file"  name="user_image"></td>
+                                            </tr>
+                                            <tbody>';
+                                
+                            }
+                            
+                          
+
+                            echo $output;
+                        }
+                        else
+                        {
+                            echo 'Data Not Found';
+                        }
+                      
+                      
+                            
+
+                    ?>
                 </table>
+               </div>
               </div>
             </div>
           </div>

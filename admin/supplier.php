@@ -24,6 +24,7 @@
 
             <script>
                   
+                // default : view_all_suppliers.php
                 $(document).ready(function(){
                     
                     load_data();
@@ -42,6 +43,39 @@
                     }
                     
                     $('#search_supplier').keyup(function()
+                    {
+                        var search = $(this).val();
+                        
+                        if(search != '')
+                        {
+                            load_data(search);
+                        }
+                        else
+                        {
+                            load_data();
+                        }
+                    });
+                });
+                
+                // source : view_elodge_supplier.php
+                $(document).ready(function(){
+                    
+                    load_data();
+
+                    function load_data(query)
+                    {
+                        $.ajax({
+                            url:"includes/view_elodge_supplier.php",
+                            method:"POST",
+                            data:{query:query},
+                            success:function(data)
+                            {
+                            $('#view_elodge_supplier').html(data);
+                            }
+                        });
+                    }
+                    
+                    $('#search_elodge_supplier').keyup(function()
                     {
                         var search = $(this).val();
                         
@@ -90,7 +124,17 @@
                           break; 
                       
                       case 'view_elodge_supplier';
-                          include "includes/view_elodge_supplier.php";
+//                          include "includes/view_elodge_supplier.php";
+                          
+                          echo "<div class='card-title justify-content-end align-middle'>";
+                          echo "<div id='search_area' class='form-group has-search'>";
+                          echo "<span class='fa fa-search form-control-feedback'></span>";
+                          echo "<input type='text' name='search_elodge_supplier' id='search_elodge_supplier' placeholder='' class='form-control' />";
+                          echo "</div>";
+                          echo "</div>";
+                          echo "<div class='card-body'>";
+                          echo "<div id='view_elodge_supplier'></div>";    
+                          echo "</div>";
                           break;
               
                       case 'view_elodge_details';
