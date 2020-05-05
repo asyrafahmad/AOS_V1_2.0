@@ -1,8 +1,8 @@
 <?php include "../includes/db_connection.php";   ?>
 <?php include "../includes/functions.php";   ?>
 
-
-<?php  include "../includes/admin_header.php"; ?>
+<?php 
+include "../includes/admin_header.php"; ?>
 
 <div class="wrapper d-flex align-items-stretch">
 
@@ -32,7 +32,7 @@
             <h1 class="pt-2 font-weight-bold text-dark dashboard-font">
             <?php 
               global $connection;
-
+    
               $query = "SELECT * FROM supplier";
               $select_all_suppliers = mysqli_query($connection,$query);
               $supplier_count = mysqli_num_rows($select_all_suppliers);

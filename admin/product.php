@@ -20,12 +20,90 @@
 
        <div class="col-xl-12">
           <div class="card p-4 border">
-            <div class="card-title justify-content-end align-middle">
-              <div id="search" class="form-group has-search">
-                <span class="fa fa-search form-control-feedback"></span>
-                <input type="text" class="form-control" placeholder="Search">
-             </div>
-            </div>
+          
+              
+              
+              
+              
+              
+               <script>
+                  
+                $(document).ready(function(){
+                    
+                    load_data();
+
+                    function load_data(query)
+                    {
+                        $.ajax({
+                            url:"includes/view_all_record_supplier_product.php",
+                            method:"POST",
+                            data:{query:query},
+                            success:function(data)
+                            {
+                            $('#view_all_record_supplier_product').html(data);
+                            }
+                        });
+                    }
+                    
+                    $('#search_supplier_products').keyup(function()
+                    {
+                        var search = $(this).val();
+                        
+                        if(search != '')
+                        {
+                            load_data(search);
+                        }
+                        else
+                        {
+                            load_data();
+                        }
+                    });
+                }); 
+                   
+                   
+                   
+                   $(document).ready(function(){
+                    
+                    load_data();
+
+                    function load_data(query)
+                    {
+                        $.ajax({
+                            url:"includes/view_all_products.php",
+                            method:"POST",
+                            data:{query:query},
+                            success:function(data)
+                            {
+                            $('#view_all_products').html(data);
+                            }
+                        });
+                    }
+                    
+                    $('#search_all_products').keyup(function()
+                    {
+                        var search = $(this).val();
+                        
+                        if(search != '')
+                        {
+                            load_data(search);
+                        }
+                        else
+                        {
+                            load_data();
+                        }
+                    });
+                });
+                
+            </script>
+              
+              
+              
+              
+              
+              
+              
+              
+              
               <div class="card-body">
                   
                   <?php
@@ -56,15 +134,39 @@
                             break;
                         
                         case 'view_all_record_supplier_product';
-                            include "includes/view_all_record_supplier_product.php";
-                            break;
+//                            include "includes/view_all_record_supplier_product.php";
+                            
+                          echo "<div class='card-title justify-content-end align-middle'>";
+                          echo "<div id='search_area' class='form-group has-search'>";
+                          echo "<span class='fa fa-search form-control-feedback'></span>";
+                          echo "<input type='text' name='search_supplier_products' id='search_supplier_products' placeholder='' class='form-control' />";
+                          echo "</div>";
+                          echo "</div>";
+                          echo "<div class='card-body'>";
+                          echo "<div id='view_all_record_supplier_product'></div>";       //Search data purposes
+                          echo "</div>";
+                          break;
 
                         case '200';
                             echo "NICE 200";
                             break;
 
                         default:
-                            include "includes/view_all_products.php";
+//                            include "includes/view_all_products.php";
+                            
+                     
+                    $_SESSION['page'] = $_GET['page'];
+                   
+                            
+                            echo "<div class='card-title justify-content-end align-middle'>";
+                            echo "<div id='search_area' class='form-group has-search'>";
+                            echo "<span class='fa fa-search form-control-feedback'></span>";
+                            echo "<input type='text' name='search_all_products' id='search_all_products' placeholder='' class='form-control' />";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "<div class='card-body'>";
+                            echo "<div id='view_all_products'></div>";       //Search data purposes
+                            echo "</div>";
                             break;
                     }
 

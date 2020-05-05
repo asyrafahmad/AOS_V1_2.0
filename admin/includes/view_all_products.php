@@ -1,9 +1,7 @@
-<?php ob_start();   ?>
-<?php include "../includes/db_connection.php";   ?>
-<!-- to call file and make it available  -->
-<?php include "../includes/functions.php";   ?>
+<?php 
+session_start();
 
-    
+?>
 <!-- Page Heading -->
           <!-- DataTales Example -->
           <div class="card shadow mb-">
@@ -16,6 +14,9 @@
 				  
 				<?php
                   
+                  
+                   $connection = mysqli_connect("localhost", "root", "", "agro_db");
+                  
 					if(isset($_GET['delete'])){
 
 						$product_id = $_GET['delete'];
@@ -26,16 +27,10 @@
 						echo "<p>Produk telah dibuang.</p>";
 					}
                   
+                  
                     $per_page = 5;
                   
-                    if(isset($_GET['page'])){
-
-                        $page = $_GET['page'];
-                    }
-                    else{
-                        $page = "";
-                    }
-                  
+                    $page = $_SESSION['page'];
                     
                     if($page == "" || $page == 1){
                         $page_1 = 0;
@@ -81,76 +76,79 @@
 <!--           TODO: put product table-->
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-<!--                      <th>Kategori Produk</th>-->
-                      <th colspan="2" class="ml-2">Produk</th>
-                      <th>Gred</th>
-                      <th>Kuantiti (Kg)</th>
-<!--                      <th>Deskripsi</th>-->
-                      <th>Harga Semasa (RM) / Kg</th>
-                      <th>Harga Jualan (RM) / Kg</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                 
-                  <tbody class="align-middle">
-                     <!-- Get data in db and display  -->
-                    <?php
-                        
-                      
-                       
-                      
-                        // ----------------------------------------------------------------
-                      
-					  	$var = 0;
-                      
-                        $query  =  "SELECT * FROM product LIMIT $page_1,$per_page ";    
-                        $select_suppliers = mysqli_query($connection, $query);
-					  	
+                  <?php
 
-                        while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-                            $product_id = escape($row['product_id']);
-                            $product_category = escape($row['product_category']);
-                            $product_type = escape($row['product_type']);
-                            $product_gred = escape($row['product_gred']);
-                            $product_image = escape($row['product_image']);
-                            $product_name = escape($row['product_name']);
-                            $product_description = escape($row['product_description']);
-                            $product_quantity = escape($row['product_quantity']);
-                            $product_price = escape($row['product_price']);
-                            $product_current_price = escape($row['product_current_price']);
-                            
-                            //Set as global
-                            $_SESSION['product_id'] = $product_id;
-                            $_SESSION['product_name'] = $product_name;
-                            
-                            echo "<tr>";
-                            echo "<td>$product_id </td>";
-//                            echo "<td>$product_category </td>";
-                            echo "<td><img height='10%' width='90%' src='../img/$product_image'  alt='image' class='img-category' value='$product_image'></td>";
-                            echo "<td>$product_name  </td>";
-                            echo "<td>$product_gred  </td>";
-                            echo "<td width='110'>$product_quantity  </td>";
-//                            echo "<td>$product_description  </td>";
-                            echo "<td width='110'>$product_current_price  </td>";
-                            echo "<td width='110'>$product_price  </td>";
-                            
-//                            echo "<td><a href='users.php?change_to_admin={$user_id} '>Admin </a></td>";
-//                            echo "<td><a href='users.php?change_to_subscriber={$user_id} '>Atlet </a></td>";
-                            echo "<td class='text-center'><a class='btn' href='product.php?source=view_product&p_id={$product_id}'><i class='fas fa-eye'></i> </a>";
-                            echo "<a class='btn' href='product.php?source=edit_product&p_id={$product_id}'><i class='fas fa-edit'></i> </a>";
-                            echo "<a class='btn' onClick=\"javascript: return confirm('Anda pasti untuk padam maklumat ini? ');  \"  href='product.php?delete={$product_id} '><i class='fas fa-trash-alt'></i></a></td>";
-                            echo "</tr>";
-							
-							$_SESSION['total'] = $var += $product_price ;
+                        $connect = mysqli_connect("localhost", "root", "", "agro_db");
+                        $output = '';
 
-                       }
-					  
-                  ?>
-                  </tbody>
+                        if(isset($_POST["query"]))
+                        {
+                            $search = mysqli_real_escape_string($connect, $_POST["query"]);
+                            $query = "SELECT * FROM product  WHERE product_name LIKE '%".$search."%' OR product_gred LIKE '%".$search."%' OR product_quantity LIKE '%".$search."%'  ";
+                        }
+                        else
+                        {
+                            $query = "SELECT * FROM product LIMIT $page_1,$per_page";
+                            
+                        }
+
+                        $var = 0;
+                      
+                        $result = mysqli_query($connect, $query);
+
+                        if(mysqli_num_rows($result) > 0)
+                        {
+                            $output .= '<thead>
+                                        <tr>
+                                        <th>ID</th>
+                                        <th>Produk</th>
+                                        <th>Gred</th>
+                                        <th>Kuantiti (Kg)</th>
+                                        <th>Harga Semasa (RM) / Kg</th>
+                                        <th>Harga Jualan (RM) / Kg</th>
+                                        <th width="20%"></th>
+                                        </tr>
+                                        <thead>';
+
+
+                            while($row = mysqli_fetch_array($result))
+                            {
+                                $output .= '<tbody>
+                                            <tr>
+                                            <td class="align-middle">'.$row["product_id"].'</td>
+                                            <td class="align-middle">'.$row["product_name"].'</td>
+                                            <td class="align-middle">'.$row["product_gred"].'</td>
+                                            <td class="align-middle">'.$row["product_quantity"].'</td>
+                                            <td class="align-middle">'.$row["product_current_price"].'</td>
+                                            <td class="align-middle">'.$row["product_price"].'</td>
+                                            <td class="text-center"><a class="btn" href="product.php?source=view_product&p_id='.$row["product_id"].'"><i class="fas fa-eye"></i></a>
+                                            <a class="btn" href="product.php?source=edit_product&p_id='.$row["product_id"].'"><i class="fas fa-edit"></i></a>
+                                            <a class="btn" onClick=\'javascript: return confirm("Anda pasti untuk padam maklumat ini? ");  \'  href="product.php?delete='.$row["product_id"].' "><i class="fas fa-trash-alt"></i></a></td>
+                                            </tr>
+                                            <tbody>';
+                                
+                                
+                                            $_SESSION["total"] = $var += $row["product_price"] ;
+                                
+                                
+                                           
+                                
+                            }
+                            
+                          
+
+                            echo $output;
+                        }
+                        else
+                        {
+                            echo 'Data Not Found';
+                        }
+                      
+                      
+                            
+
+                    ?>
                 </table>
               </div>
               </div>
