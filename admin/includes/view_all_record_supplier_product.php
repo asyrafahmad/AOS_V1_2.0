@@ -20,12 +20,12 @@
                   
 //                    $page = $_SESSION['page'];  
                   
-                   if(isset($_SESSION['page'])){
+                    if(isset($_SESSION['page'])){
                          $page = $_SESSION['page']; 
-                      }
-                      else{
-                         $page = "";
-                      } 
+                    }
+                    else{
+                        $page = "";
+                    } 
                   
                     if($page == "" || $page == 1){
                         $page_1 = 0;

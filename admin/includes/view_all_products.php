@@ -30,7 +30,12 @@ session_start();
                   
                     $per_page = 5;
                   
-                    $page = $_SESSION['page'];
+                    if(isset($_SESSION['page'])){
+                         $page = $_SESSION['page']; 
+                    }
+                    else{
+                        $page = "";
+                    } 
                     
                     if($page == "" || $page == 1){
                         $page_1 = 0;

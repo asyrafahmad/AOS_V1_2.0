@@ -170,8 +170,7 @@
 //                            include "includes/view_all_products.php";
                             
                             if(isset($_GET['page'])){
-
-                            $_SESSION['page'] = $_GET['page'];
+                                $_SESSION['page'] = $_GET['page'];
                             }
                             else{
                                 $page = "";
