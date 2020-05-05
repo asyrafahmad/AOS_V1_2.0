@@ -15,17 +15,18 @@
                   
                    $connection = mysqli_connect("localhost", "root", "", "agro_db");
                   
-                   $per_page=5;
-                  
-                    //PAGINATION
-                    if(isset($_GET['page'])){
-                        $page = $_GET['page'];
-                    }
-                    else{
-                        $page = "";
-                    }
-                  
                     
+                    $per_page=5;
+                  
+//                    $page = $_SESSION['page'];  
+                  
+                   if(isset($_SESSION['page'])){
+                         $page = $_SESSION['page']; 
+                      }
+                      else{
+                         $page = "";
+                      } 
+                  
                     if($page == "" || $page == 1){
                         $page_1 = 0;
                     }
@@ -82,7 +83,7 @@
                         }
                         else
                         {
-                            $query = "SELECT * FROM product  JOIN user ON product.product_supplier=user.user_id LIMIT $page_1,5 ";
+                            $query = "SELECT * FROM product JOIN user ON product.product_supplier=user.user_id LIMIT $page_1,5 ";
                             
                         }
 
@@ -129,7 +130,48 @@
                                             $_SESSION["total"] = $var += $row["product_price"] ;
                                 
                                 
-                                           
+                                            $user_username = $row["user_username"];
+                                            $product_name = $row["product_name"];
+                                            $product_gred = $row["product_gred"];
+                                            $product_quantity = $row["product_quantity"];
+                                            $product_price = $row["product_price"];
+                                
+                                
+                                           if(isset($_SESSION['payment_status_id'])){
+
+                                                $the_product_id = $_SESSION['payment_status_id'];
+
+                                                $query = "UPDATE product SET product_status = 'Selesai' WHERE product_id = $the_product_id  ";
+                                                $payment_status_query = mysqli_query($connection, $query);
+                                               
+                                               
+                                               
+                                                $query  =  "SELECT * FROM product JOIN supplier ON product.product_supplier = supplier.supplier_id WHERE product_id = $the_product_id  ";     
+//                                                $query  =  "SELECT * FROM product  WHERE product_id = $the_product_id  ";     
+                                                $select_suppliers = mysqli_query($connection, $query);
+
+
+                                                while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                                                    $product_id = $row['product_id'];
+                                                    $product_gred = $row['product_gred'];
+                                                    $product_name = $row['product_name'];
+                                                    $product_quantity = $row['product_quantity'];
+                                                    $product_price = $row['product_price'];
+                                                    
+                                                    $supplier_name = $row['supplier_name'];
+                                                }
+                                               
+                                               echo $supplier_name;
+
+                                                $query = "INSERT INTO payment_product_history (payment_supplier_name, payment_product, payment_gred, payment_quantity, payment_price, payment_status, payment_date)";
+                                                $query .= "VALUES( '{$product_id}', '{$product_name}', '{$product_gred}', '{$product_quantity}', '{$product_price}', 'Selesai', now() )  ";
+
+                                                $payment_product_query  =   mysqli_query($connection, $query);
+                                            }
+                                            else{
+                                                //TO: CONSOLE NO INPUT DATA
+                                            }
                                 
                             }
                             
@@ -151,22 +193,9 @@
             </div>
           </div>
 
+
 <?php 
 
 
-if(isset($_GET['payment_status_id'])){
-
-                                echo $the_product_id = $_GET['payment_status_id'];
-
-//                                $query = "UPDATE product SET product_status = 'Selesai' WHERE product_id = $the_product_id  ";
-//                                $payment_status_query = mysqli_query($connection, $query);
-//
-//
-//                                $query = "INSERT INTO payment_product_history (payment_supplier, payment_product, payment_gred, payment_quantity, payment_price, payment_status, payment_date)";
-//                                $query .= "VALUES( '$row[user_username]', '{$product_name}', '{$product_gred}', '{$product_quantity}', '{$product_price}', 'Selesai', now() )  ";
-//
-//                                $payment_product_query  =   mysqli_query($connection, $query);
-//                                confirmQuery($payment_product_query);
-                            }
 
 ?>

@@ -136,6 +136,21 @@
                         case 'view_all_record_supplier_product';
 //                            include "includes/view_all_record_supplier_product.php";
                             
+                            
+                          if(isset($_GET['page'])){
+                             $_SESSION['page'] = $_GET['page'];
+                          }
+                          else{
+                             $page = "";
+                          } 
+                            
+                          if(isset($_GET['payment_status_id'])){
+                             $_SESSION['payment_status_id'] = $_GET['payment_status_id'];
+                          }
+                          else{
+                             $page = "";
+                          }    
+                            
                           echo "<div class='card-title justify-content-end align-middle'>";
                           echo "<div id='search_area' class='form-group has-search'>";
                           echo "<span class='fa fa-search form-control-feedback'></span>";
@@ -154,10 +169,14 @@
                         default:
 //                            include "includes/view_all_products.php";
                             
-                     
-                    $_SESSION['page'] = $_GET['page'];
-                   
-                            
+                            if(isset($_GET['page'])){
+
+                            $_SESSION['page'] = $_GET['page'];
+                            }
+                            else{
+                                $page = "";
+                            }
+                    
                             echo "<div class='card-title justify-content-end align-middle'>";
                             echo "<div id='search_area' class='form-group has-search'>";
                             echo "<span class='fa fa-search form-control-feedback'></span>";
@@ -165,7 +184,7 @@
                             echo "</div>";
                             echo "</div>";
                             echo "<div class='card-body'>";
-                            echo "<div id='view_all_products'></div>";       //Search data purposes
+                            echo "<div id='view_all_products'></div>";     
                             echo "</div>";
                             break;
                     }

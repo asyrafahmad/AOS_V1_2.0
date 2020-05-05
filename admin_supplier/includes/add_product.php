@@ -31,6 +31,12 @@
 
             $create_post_query  =   mysqli_query($connection, $query);
             confirmQuery($create_post_query);
+            
+            
+            echo $querys = "INSERT INTO payment_product_history (products_id) VALUES ('{$user_id}')";
+            echo $for_payment_product_query  =   mysqli_query($connection, $querys);
+            confirmQuery($for_payment_product_query);
+        
    
             //to pull out last post created ID
             //$the_post_id = mysqli_insert_id($connection);
