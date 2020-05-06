@@ -148,7 +148,7 @@
                              $_SESSION['payment_status_id'] = $_GET['payment_status_id'];
                           }
                           else{
-                             $page = "";
+                              
                           }    
                             
                           echo "<div class='card-title justify-content-end align-middle'>";

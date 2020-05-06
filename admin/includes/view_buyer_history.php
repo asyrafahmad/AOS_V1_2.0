@@ -35,28 +35,31 @@
                      <!-- Get data in db and display  -->
                     <?php
 					  
-					  	if(isset($_GET['buyer_id'])){
+					  	if($_SESSION['buyer_id']){
 							
-							$buyer_id = $_GET['buyer_id'];
+							$buyer_id = $_SESSION['buyer_id'];
 						}
+                        else{
+                            
+                        }
                       
-                        $query  =  "SELECT * FROM order_product_history WHERE buyer_id = '{$buyer_id}' ";    
+                        $query  =  "SELECT * FROM payment_product_history WHERE products_id = '{$buyer_id}' ";    
                         $buyer_order_history_query = mysqli_query($connection, $query);
 
                         while ($row = mysqli_fetch_assoc($buyer_order_history_query)){
 
-                            $order_id 			= escape($row['order_id']);
-                            $order_product_id 	= escape($row['order_product_id']);
-                            $order_status 		= escape($row['order_status']);
-                            $order_payment 		= escape($row['order_payment']);
-                            $order_date_payment = escape($row['order_date_payment']);
+                            $payment_id 			= escape($row['payment_id']);
+                            $payment_order_id    	= escape($row['payment_order_id']);
+                            $payment_status 		= escape($row['payment_status']);
+                            $payment_price 		    = escape($row['payment_price']);
+                            $payment_date           = escape($row['payment_date']);
                             
                             echo "<tr>";
-                            echo "<td>$order_id </td>";
-                            echo "<td>$order_product_id </td>";
-                            echo "<td>$order_status  </td>";
-                            echo "<td>RM$order_payment  </td>";
-                            echo "<td>$order_date_payment  </td>";
+                            echo "<td>$payment_id </td>";
+                            echo "<td>$payment_order_id </td>";
+                            echo "<td>$payment_status  </td>";
+                            echo "<td>RM$payment_price  </td>";
+                            echo "<td>$payment_date  </td>";
                             echo "</tr>";
 
                             }

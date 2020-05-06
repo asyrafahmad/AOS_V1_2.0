@@ -147,7 +147,7 @@ session_start();
                         }
                         else
                         {
-                            echo 'Data Not Found';
+                            echo 'Tiada Maklumat';
                         }
                       
                       

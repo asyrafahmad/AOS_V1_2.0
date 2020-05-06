@@ -20,13 +20,46 @@
 
      <div class="col-xl-12">
         <div class="card p-4 border">
-          <div class="card-title justify-content-end align-middle">
-            <div id="search" class="form-group has-search">
-              <span class="fa fa-search form-control-feedback"></span>
-              <input type="text" class="form-control" placeholder="Search">
-           </div>
-          </div>
-            <div class="card-body">
+            
+            <script>
+                  
+                $(document).ready(function(){
+                    
+                    load_data();
+
+                    function load_data(query)
+                    {
+                        $.ajax({
+                            url:"includes/view_all_buyers.php",
+                            method:"POST",
+                            data:{query:query},
+                            success:function(data)
+                            {
+                            $('#view_all_buyers').html(data);
+                            }
+                        });
+                    }
+                    
+                    $('#search_buyer').keyup(function()
+                    {
+                        var search = $(this).val();
+                        
+                        if(search != '')
+                        {
+                            load_data(search);
+                        }
+                        else
+                        {
+                            load_data();
+                        }
+                    });
+                });
+            
+            </script>
+            
+            
+            
+            
               <?php
 
                   if(isset($_GET['source'])){
@@ -51,6 +84,15 @@
                           break; 
                       
                       case 'view_buyer_history';
+                          
+                          if(isset($_GET['buyer_id'])){
+							
+							$_SESSION['buyer_id'] = $_GET['buyer_id'];
+						  }
+                          else{
+                              
+                          }
+                          
                           include "includes/view_buyer_history.php";
                           break;
                       
@@ -67,12 +109,22 @@
                           break;
 
                       default:
-                          include "includes/view_all_buyers.php";
+//                          include "includes/view_all_buyers.php";
+                          
+                          
+                          echo "<div class='card-title justify-content-end align-middle'>";
+                          echo "<div id='search_area' class='form-group has-search'>";
+                          echo "<span class='fa fa-search form-control-feedback'></span>";
+                          echo "<input type='text' name='search_buyer' id='search_buyer' placeholder='Search' class='form-control' />";
+                          echo "</div>";
+                          echo "</div>";
+                          echo "<div class='card-body'>";
+                          echo "<div id='view_all_buyers'></div>";       //Search data purposes
+                          echo "</div>";
                           break;
                   }
 
-              ?>              
-            </div>
+              ?>     
         </div>
       </div>
 

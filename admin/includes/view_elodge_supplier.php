@@ -122,7 +122,7 @@
                         }
                         else
                         {
-                            echo 'Data Not Found';
+                            echo 'Tiada Maklumat';
                         }
                       
                       
