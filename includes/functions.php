@@ -34,10 +34,9 @@ function checkIfUserIsLoggedInAndRedirect($redirectLocation=null){
 
 function escape($string) {
 
-global $connection;
+    global $connection;
 
-return mysqli_real_escape_string($connection, trim($string));
-
+    return mysqli_real_escape_string($connection, trim($string));
 
 }
 
