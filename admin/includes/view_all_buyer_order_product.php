@@ -80,7 +80,7 @@ session_start();
                         if(isset($_POST["query"]))
                         {
                             $search = mysqli_real_escape_string($connect, $_POST["query"]);
-                            $query = "SELECT * FROM payment_product_history  WHERE payment_supplier_name LIKE '%".$search."%' OR payment_status LIKE '%".$search."%' OR payment_order_date LIKE '%".$search."%' OR payment_invoice LIKE '%".$search."%'  ";
+                            $query = "SELECT * FROM payment_product_history  WHERE payment_supplier_name LIKE '%".$search."%' OR payment_order_date LIKE '%".$search."%' OR payment_invoice LIKE '%".$search."%'  ";
                         }
                         else
                         {

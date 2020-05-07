@@ -20,7 +20,6 @@
 
      <div class="col-xl-12">
         <div class="card p-4 border">
-            <div class="card-body col-xl-12">
                 
            
                 
@@ -105,8 +104,7 @@
                         break;
                 }
 
-            ?>              
-            </div>
+            ?>         
         </div>
       </div>
 

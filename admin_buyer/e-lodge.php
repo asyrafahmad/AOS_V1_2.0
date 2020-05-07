@@ -25,13 +25,46 @@
 
      <div class="col-xl-12">
         <div class="card p-4 border">
-          <div class="card-title justify-content-end align-middle">
-            <div id="search" class="form-group has-search">
-              <span class="fa fa-search form-control-feedback"></span>
-              <input type="text" class="form-control" placeholder="Search">
-           </div>
-          </div>
-            <div class="card-body">
+          
+            
+            <script>
+                  
+                $(document).ready(function(){
+                    
+                    load_data();
+
+                    function load_data(query)
+                    {
+                        $.ajax({
+                            url:"includes/view_book_elodge_product.php",
+                            method:"POST",
+                            data:{query:query},
+                            success:function(data)
+                            {
+                            $('#view_book_elodge_product').html(data);
+                            }
+                        });
+                    }
+                    
+                    $('#search_elodge_product').keyup(function()
+                    {
+                        var search = $(this).val();
+                        
+                        if(search != '')
+                        {
+                            load_data(search);
+                        }
+                        else
+                        {
+                            load_data();
+                        }
+                    });
+                });
+                
+            </script> 
+            
+            
+            
             <?php
 
                 if(isset($_GET['source'])){
@@ -52,7 +85,17 @@
                         break; 
                     
                     case 'view_book_elodge_product';
-                        include "includes/view_book_elodge_product.php";
+//                        include "includes/view_book_elodge_product.php";
+                        
+                        echo "<div class='card-title justify-content-end align-middle'>";
+                        echo "<div id='search_area' class='form-group has-search'>";
+                        echo "<span class='fa fa-search form-control-feedback'></span>";
+                        echo "<input type='text' name='search_elodge_product' id='search_elodge_product' placeholder='' class='form-control' />";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "<div class='card-body'>";
+                        echo "<div id='view_book_elodge_product'></div>";       //Search data purposes
+                        echo "</div>";
                         break;
 
                     case '200';
@@ -64,8 +107,7 @@
                         break;
                 }
 
-            ?>              
-            </div>
+            ?>           
         </div>
       </div>
 
