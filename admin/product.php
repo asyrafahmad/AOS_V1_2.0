@@ -99,12 +99,6 @@
               
               
               
-              
-              
-              
-              
-              
-              <div class="card-body">
                   
                   <?php
 
@@ -188,8 +182,7 @@
                             break;
                     }
 
-                ?>                 
-              </div>
+                ?>       
           </div>
         </div>
 

@@ -55,7 +55,7 @@
                           <li id="add_supplier">
                               <a href="supplier.php?source=add_supplier" class="nav-link">Tambah Petani</a>
                           </li>
-                          <li id="view_all_buyer_order_product">
+                          <li id="list_supplier_product">
                               <a href="product.php?source=view_all_record_supplier_product" class="nav-link">Rekod Produk</a>
                           </li>
                           <li id="e_lodge">
@@ -78,8 +78,8 @@
                           <li id="add_buyer">
                               <a href="buyer.php?source=add_buyer" class="nav-link">Tambah Pemborong</a>
                           </li> 
-                          <li id="view_all_buyer_order_product">
-                              <a href="order.php?source=view_all_buyer_order_product" class="nav-link">Sejarah Pesanan</a>
+                          <li id="list_order">
+                              <a href="order.php" class="nav-link">Sejarah Pesanan</a>
                           </li>
                       </ul>
                   </li>

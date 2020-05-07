@@ -83,7 +83,7 @@
                         }
                         else
                         {
-                            $query = "SELECT * FROM product JOIN user ON product.product_supplier=user.user_id LIMIT $page_1,5 ";
+                            $query = "SELECT * FROM product JOIN user ON product.product_supplier=user.user_id LIMIT $page_1,$per_page ";
                             
                         }
 

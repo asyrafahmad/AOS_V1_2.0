@@ -71,7 +71,7 @@
                             echo "<tr>";
 //                            echo "<td>$product_id </td>";
 //                            echo "<td>$product_category </td>";
-                            echo "<td><img src='../img/$product_image'  alt=' image' class='img_category' </td>";
+                            echo "<td><img src='../img/$product_image' height='20%' width='30%' alt='image'  </td>";
                             echo "<td>$product_name  </td>";
 //                            echo "<td>$product_type  </td>";
 //                            echo "<td>$product_gred  </td>";
@@ -87,7 +87,6 @@
 //                            echo "<td><a class='btn btn-info' href='product.php?source=view_product&p_id={$product_id}'>Lihat </a></td>";
 //                            echo "<td><a class='btn btn-info' href='product.php?source=edit_product&p_id={$product_id}'>Kemaskini </a></td>";
 //                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Are you sure you want to delete? ');  \"  href='users.php?delete={$user_id} '>Padam </a></td>";
-                            echo "<td></td>";
                             echo "</tr>";
 
                                 }

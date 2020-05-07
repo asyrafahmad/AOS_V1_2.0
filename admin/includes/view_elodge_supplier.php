@@ -78,7 +78,7 @@
                         }
                         else
                         {
-                            $query = "SELECT * FROM elodge_product JOIN user ON  elodge_product.elodge_supplier = user.user_id";
+                            $query = "SELECT * FROM elodge_product  JOIN user ON  elodge_product.elodge_supplier = user.user_id LIMIT $page_1,$per_page";
                         }
 
                         $var = 0;
