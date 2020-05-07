@@ -13,11 +13,6 @@
       
     <div class="row d-sm-flex align-items-center justify-content-between m-4">
       <h1 class="h3 mb-0 text-gray-800">E-Lodge</h1>
-      <div class="add-to-cart" align="center">
-        <div class="card p-2 ">
-        <a href="order.php?menu=<?php echo $menu; ?>"><img height="32" width="32" src="../img/icon/add-to-cart.png" ></a>
-        </div>
-      </div>
     </div>
 
     <!-- Content Row -->

@@ -4,11 +4,76 @@
 <?php include "../includes/functions.php";   ?>
 
     
-<!-- Page Heading -->
+
+              <?php
+    
+                    if(isset($_SESSION['user_username'])){
+                          
+                         $user_username = $_SESSION['user_username'];
+                    }
+
+                    $connection = mysqli_connect("localhost", "root", "", "agro_db");
+
+                    if(isset($_GET['page'])){
+                        $page = $_GET['page']; 
+                    }
+                    else{
+                        $page = "";
+                    } 
+
+                    $per_page = 10;
+                  
+        
+                    
+                    if($page == "" || $page == 1){
+                        $page_1 = 0;
+                    }
+                    else{
+                        $page_1 = ($page * $per_page) - $per_page;
+                    }
+                  
+
+                    $querys  =  "SELECT * FROM elodge_product ";    
+                    $find_count = mysqli_query($connection, $querys);
+                    $count = mysqli_num_rows($find_count);
+
+                    $count = ceil($count/$per_page);
+				?>    
+
+
+
+              <div class="table-responsive">
+                  
+                   <div  align="right">
+                   <div class="dataTables_paginate paging_simple_numbers
+                               " id="dataTable_paginate">
+                       <ul class="pagination">
+                           <li class="paginate_button page-item previous" id="dataTable_previous"><a class="page-link">Page</a></li>
+                           <?php
+                                for($i = 1; $i <= $count; $i++){
+                                    
+                                    if($i == $page){
+                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='e-lodge.php?menu=elodge&source=view_all_elodge_products&page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link active_link'>{$i}</a> </li>";
+                                    }
+                                    else{
+                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='e-lodge.php?menu=elodge&source=view_all_elodge_products&page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link'>{$i}</a> </li>";
+                                    }
+                                    
+                                    
+                                }
+                           ?>
+                           
+                        </ul>
+                  </div>
+                </div>
+                </div>
+                 
+                
+
+
 
 
               <div class="table-responsive elodge">     
-<!--           TODO: put elodge_product table-->
                 <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead class="thead-light">
                     <tr>
@@ -25,7 +90,7 @@
                     <?php
                     
                           
-                        $query  =  "SELECT * FROM elodge_product ";    
+                        $query  =  "SELECT * FROM elodge_product LIMIT $page_1,$per_page ";    
                         $select_suppliers = mysqli_query($connection, $query);
 
                         while ($row = mysqli_fetch_assoc($select_suppliers)){
@@ -48,7 +113,7 @@
                               <td class=""><?php echo "$elodge_product_name"?></td>
                               <td class=""><?php echo "$elodge_product_quantity"?></td>
                               <td class=""><?php echo "$elodge_product_harvest_date"?></td>
-                              <td class="text-center"><a class="btn btn-success" href="e-lodge.php?menu=$menu&source=book_elodge_product&b_e_p_id={$elodge_product_id}">Tempah </a></td>
+                              <td class="text-center"><a class="btn btn-success" href="e-lodge.php?menu=elodge&source=book_elodge_product&b_e_p_id=<?php echo $elodge_product_id; ?>">Tempah </a></td>
                             </tr>
 
                       <?php
