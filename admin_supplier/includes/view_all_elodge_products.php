@@ -1,35 +1,74 @@
-<?php ob_start();   ?>
-<?php include "../includes/db_connection.php";   ?>
-<!-- to call file and make it available  -->
-<?php include "../includes/functions.php";   ?>
+<?php 
+
+session_start();
+?>
 
     
-<!-- Page Heading -->
+ <?php
+    
+                    if(isset($_SESSION['user_id'])){
+                          
+                      $user_id = $_SESSION['user_id'];
+                    }
 
-          <!-- DataTales Example -->
-          <!-- <div class="card shadow mb-4"> -->
-       
-			  
-	
+                    $connection = mysqli_connect("localhost", "root", "", "agro_db");
+
+
+                    $per_page = 10;
+                  
+                    if(isset($_SESSION['page'])){
+                         $page = $_SESSION['page']; 
+                    }
+                    else{
+                        $page = "";
+                    } 
+                    
+                    if($page == "" || $page == 1){
+                        $page_1 = 0;
+                    }
+                    else{
+                        $page_1 = ($page * $per_page) - $per_page;
+                    }
+                  
+
+                    $querys  =  "SELECT *, SUM(book_buyer_product_quantity) as sum  FROM elodge_product JOIN elodge_product_book ON elodge_product.elodge_product_id = elodge_product_book.book_buyer_product_id WHERE elodge_product.elodge_supplier = '{$user_id}' GROUP BY elodge_product_book.book_buyer_name  ";    
+                    $find_count = mysqli_query($connection, $querys);
+                    $count = mysqli_num_rows($find_count);
+
+                    $count = ceil($count/$per_page);
+				?>    
+
+
+
+              <div class="table-responsive">
+                  
+                   <div  align="right">
+                   <div class="dataTables_paginate paging_simple_numbers
+                               " id="dataTable_paginate">
+                       <ul class="pagination">
+                           <li class="paginate_button page-item previous" id="dataTable_previous"><a class="page-link">Page</a></li>
+                           <?php
+                                for($i = 1; $i <= $count; $i++){
+                                    
+                                    if($i == $page){
+                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='e-lodge.php?&page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link active_link'>{$i}</a> </li>";
+                                    }
+                                    else{
+                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='e-lodge.php?page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link'>{$i}</a> </li>";
+                                    }
+                                    
+                                    
+                                }
+                           ?>
+                           
+                        </ul>
+                  </div>
+                </div>
+                </div>
+
 				  
 		    <div class="card-header py-2">
                 <div class="row">
-<!--
-					<div class="col-md-4">
-						<form >
-							<div class="input-group">
-							  <input type="text" class="form-control bg-light border-1 " placeholder="Search for..." >
-							  <div class="input-group-append">
-								<button class="btn btn-primary" type="button">
-								  <i class="fas fa-search fa-sm"></i>
-								</button>
-							  </div>
-							</div>
-						 </form>
-					</div>
--->
-					
-				
 				  <div class="col-md-12" align="center">
                      <div align="right"><a class="btn btn-success" href="e-lodge.php?source=add_elodge">+ Produk </a></div>
                   </div>
@@ -38,92 +77,67 @@
 			  
 			  
 			  
+	
 			  
-			<?php
-				if(isset($_GET['delete'])){
-
-					$elodge_product_id = $_GET['delete'];
-
-					$elodge_product_query = "DELETE FROM elodge_product WHERE elodge_product_id = {$elodge_product_id}	";
-					$delete_query = mysqli_query($connection, $elodge_product_query);
-
-					echo "<p>Produk e-lodge telah dibuang.</p>";
-				}
-
-			?>  
-			  
-			  
-			  
-            <!-- <div class="card-body"> -->
-				
               <div class="table-responsive">
-                  		  
-                  
-<!--           TODO: put elodge_product table-->
                 <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
+                  <?php
+                    
+                       
 
-<!--                      <th>ID</th>-->
-                      <th colspan="2" class="ml-2">Produk</th>
-                      <th>Kuantiti (Kg)</th>
-                      <th>Bulan Menuai</th>
-                      <th>Jumlah Tempahan</th>
-                      <!-- <th>Nama Pemborong</th> -->
-                      <th></th>
-<!--                      <th>Padam</th>-->
-                    </tr>
-                  </thead>
-                 
-                  <tbody>
-                     <!-- Get data in db and display  -->
-                    <?php
-                      
-                      if(isset($_SESSION['user_id'])){
-                          
-                          $user_id = $_SESSION['user_id'];
-                      }
-                      
-                          
-                        $query  =  "SELECT *, SUM(book_buyer_product_quantity) as sum  FROM elodge_product JOIN elodge_product_book ON elodge_product.elodge_product_id = elodge_product_book.book_buyer_product_id WHERE elodge_product.elodge_supplier = '{$user_id}' GROUP BY elodge_product_book.book_buyer_name ";     
-                        $select_suppliers = mysqli_query($connection, $query);
+                        $connect = mysqli_connect("localhost", "root", "", "agro_db");
+                        $output = '';
 
-                        while ($row = mysqli_fetch_assoc($select_suppliers)){
-
-                            $elodge_product_id              = escape($row['elodge_product_id']);
-                            $elodge_product_name            = escape($row['elodge_product_name']);
-                            $elodge_product_image           = escape($row['elodge_product_image']);
-                            $elodge_product_quantity        = escape($row['elodge_product_quantity']);
-                            $elodge_product_harvest_date    = escape($row['elodge_product_harvest_date']);
-                            $elodge_product_amount_booked   = escape($row['sum']);
-                            $elodge_product_status          = escape($row['elodge_product_status']);
-                            
-                            $book_buyer_name          = escape($row['book_buyer_name']);
-                            
-                            //Set as global
-                            $_SESSION['elodge_product_id'] = $elodge_product_id;
-                            $_SESSION['elodge_product_name'] = $elodge_product_name;
-                            
-                            echo "<tr>";
-//                            echo "<td>$elodge_product_id </td>";
-                            echo "<td><img src='../img/$elodge_product_image'  alt='image' class='img-category ml-2' </td>";
-                            echo "<td class='align-middle'>$elodge_product_name  </td>";
-                            echo "<td class='align-middle'>$elodge_product_quantity  </td>";
-                            echo "<td class='align-middle'>$elodge_product_harvest_date  </td>";
-                            echo "<td class='text-info align-middle '>$elodge_product_amount_booked</td>";
-                            // echo "<td class='text-info'>$book_buyer_name</td>";
-//                            echo "<td>$elodge_product_status</td>";
-                            
-
-                            //View List
-                            echo "<td class='text-center align-middle'><a class='btn ' href='e-lodge.php?source=view_elodge&e_p_id={$elodge_product_id}'><i class='fas fa-eye'></i></a>
-                            <a class='btn' href='e-lodge.php?source=edit_elodge&e_p_id={$elodge_product_id}'><i class='fas fa-edit'></i></a></td>";
-//                            echo "<td><a class='btn btn-danger' onClick=\"javascript: return confirm('Anda pasti untuk padam maklumat ini? ');  \"  href='e-lodge.php?delete={$elodge_product_id} '>Padam </a></td>";
-                            echo "</tr>";
-
+                        if(isset($_POST["query"]))
+                        {
+                            $search = mysqli_real_escape_string($connect, $_POST["query"]);
+//                            $query = "SELECT * FROM payment_product_history WHERE  payment_invoice LIKE '%".$search."%' OR payment_order_date LIKE '%".$search."%'   ";
+                            $query = "SELECT *, SUM(book_buyer_product_quantity) as sum  FROM elodge_product JOIN elodge_product_book ON elodge_product.elodge_product_id = elodge_product_book.book_buyer_product_id WHERE elodge_product.elodge_supplier = '{$user_id}'  AND elodge_product.elodge_product_name LIKE '%".$search."%' GROUP BY elodge_product_book.book_buyer_product_name   ";
                         }
-                         ?>
-                  </tbody>
+                        else
+                        {
+                            $query = "SELECT *, SUM(book_buyer_product_quantity) as sum  FROM elodge_product JOIN elodge_product_book ON elodge_product.elodge_product_id = elodge_product_book.book_buyer_product_id WHERE elodge_product.elodge_supplier = '{$user_id}' GROUP BY elodge_product_book.book_buyer_product_name ORDER BY elodge_product.elodge_product_quantity DESC LIMIT $page_1,$per_page  ";                         
+                        }
+
+                        $result = mysqli_query($connect, $query);
+
+                        if(mysqli_num_rows($result) > 0)
+                        {
+                            
+                            
+                            $output .= '<thead>
+                                        <tr>
+                                        <th colspan="2" class="ml-2">Produk</th>
+                                        <th>Kuantiti (Kg)</th>
+                                        <th>Bulan Menuai</th>
+                                        <th>Jumlah Tempahan</th>
+                                        </tr>
+                                        <thead>';
+
+
+                            while($row = mysqli_fetch_array($result))
+                            {
+                                $output .= '<tbody>
+                                            <tr>
+                                            <td><img src="../img/'.$row['book_buyer_product_image'].'"  alt="image" class="img-category ml-2" </td>
+                                            <td class="align-middle">'.$row['book_buyer_product_name'].'</td>
+                                            <td class="align-middle">'.$row['elodge_product_quantity'].'</td>
+                                            <td class="align-middle">'.$row['elodge_product_harvest_date'].'</td>
+                                            <td class="text-info align-middle ">'.$row['sum'].'</td>
+                                            <td class="text-center align-middle"><a class="btn" href="e-lodge.php?source=view_elodge&e_p_id='.$row['elodge_product_id'].'"><i class="fas fa-eye"></i></a>
+                                            <a class="btn" href="e-lodge.php?source=edit_elodge&e_p_id='.$row['elodge_product_id'].'"><i class="fas fa-edit"></i></a></td>
+                                            </tr>
+                                            <tbody>';
+                            }
+
+                            echo $output;
+                        }
+                        else
+                        {
+                            echo 'Tiada Maklumat Dijumpai';
+                        }
+                                           
+                    ?>
                 </table>
               </div>
            <!--  </div> -->
