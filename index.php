@@ -32,17 +32,21 @@
 		</nav>
 		
 		<div class="col-md-12">
-			<div class="row justify-content-end mb-3">
-				<div class="col-4 mainpage__search">
-					<div class="input-group">
-					  <div class="input-group-prepend">
-					    <span class="input-group-text" id="search"><i class="fas fa-search"></i></span>
-					  </div>
-					  <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search">
-					</div>
-				</div>
-			</div>
 
+            
+            <?php
+                    echo "<div class='row justify-content-end mb-3'>";
+                    echo "<div id='search_area' class='col-4 mainpage__search'>";
+                    echo "<div class='input-group'>";
+                    echo "<div class='input-group-prepend'>";
+                    echo "<span class='input-group-text' id='search'><i class='fas fa-search'></i></span>";
+                    echo "</div>";
+                    echo "<input type='text' name='search_all_products' id='search_all_products' placeholder='Search' class='form-control' aria-label='Search' aria-describedby='search'/>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+            ?>
+            
 			<div class="row justify-content-center" class="mainpage__main">
 				<div class="col-md-4 col-sm-12 mainpage__left">
 					<div class="mainpage__desc" >
@@ -55,23 +59,154 @@
 				</div>
 
 				<div class="col-6 mainpage__right ml-5">
-					<div class="mainpage__desc px-5" >
+					<div class="mainpage__desc px-5">
 						<div class="row">
 							<h4>Kategori</h4>	
 						</div>
 						
-						<div class="row">
-							<div class="mt-2">
-								<div class="card" style="width: 140px;">
-								  <img src="img/banana.png" class="img-category" alt="..." >
-								  <div class="card-body">
-								    <p class="card-text">Nama Kategori</p>
-								  </div>
-								</div>
-							</div>
-						</div>
+ 
+                        
+                         <?php
+                        
+                            
+                        
+                            echo "<div class='card-body'> ";        
+                            echo "<div class='row' align='center'>"; 
+
+
+                            $connection = mysqli_connect("localhost", "root", "", "agro_db");
+
+                            function escape($string) {
+                                global $connection;
+
+                                return mysqli_real_escape_string($connection, trim($string));
+                            }
+
+                            $query  =  "SELECT * FROM categories_product ";    
+                            $select_categories_product = mysqli_query($connection, $query);
+
+                            while ($row = mysqli_fetch_assoc($select_categories_product)){
+
+                                $cat_product_id = escape($row['cat_product_id']);
+                                $cat_product_title = escape($row['cat_product_title']);
+                                $cat_product_image = escape($row['cat_product_image']);
+
+                                echo "<div class='mt-2'>";	
+                                echo "<div class='card ' style='width: 140px;'>";		
+                                echo "<a href='index.php?cat_product=$cat_product_title' align='center'><img class='img-category mb-2 ' width='40%' height='40%' src='img/$cat_product_image' ></a>";		  
+                                echo "<a class='cat-title' align='center'>$cat_product_title</a>";		 	  
+                                echo "<div class='card-body'>";		  	   
+                                echo "</div>";		  
+                                echo "</div>";		
+                                echo "</div>";	
+
+
+                            }
+                        
+                                echo "</div>";		
+                                echo "</div>";	
+                                echo "</div>"; 
+                        ?>
+                
+                        
 					</div>
-				</div>			
+				</div>
+				</div>
+                
+                
+                
+              	<div class="row justify-content-center" class="mainpage__main">
+				<div class="col-md-4 col-sm-12 mainpage__left"></div>  
+                
+                
+            
+                  <script>
+                  
+                        $(document).ready(function(){
+
+                            load_data();
+
+                            function load_data(query)
+                            {
+                                $.ajax({
+                                    url:"view_all_products.php",
+                                    method:"POST",
+                                    data:{query:query},
+                                    success:function(data)
+                                    {
+                                    $('#view_all_products').html(data);
+                                    }
+                                });
+                            }
+
+                            $('#search_all_products').keyup(function()
+                            {
+                                var search = $(this).val();
+
+                                if(search != '')
+                                {
+                                    load_data(search);
+                                }
+                                else
+                                {
+                                    load_data();
+                                }
+                            });
+                        });
+
+                    </script>    
+            
+
+                        
+                         <?php
+                         echo "<div id='view_all_products'></div>";
+
+                           if(isset($_GET['cat_product'])){
+                               
+                            $product_category = $_GET['cat_product'];
+                               
+                            echo "<div class='col-6 mainpage__right ml-5'>";    
+                            echo "<div class='mainpage__desc px-5'>";
+                            echo "<div class='row'>";
+                            echo "<h4>Sub Kategori</h4>";
+                            echo "</div>";
+
+                            echo "<div class='card-body'> ";        
+                            echo "<div class='row' align='center'>"; 
+                                
+                           
+                            $query  =  "SELECT * FROM product WHERE product_category = '{$product_category}' ";    
+                            $select_product = mysqli_query($connection, $query);
+
+                                while ($row = mysqli_fetch_assoc($select_product)){
+
+                                    $product_name = escape($row['product_name']);
+                                    $product_image = escape($row['product_image']);
+
+                                    echo "<div class='mt-2'>";	
+                                    echo "<div class='card ' style='width: 140px;'>";		
+                                    echo "<a href='login.php' align='center'><img class='img-category mb-2 ' width='40%' height='40%' src='img/$product_image' ></a>";
+                                    echo "<a class='cat-title' align='center'>$product_name</a>";		 	  
+                                    echo "<div class='card-body'>";		  	   
+                                    echo "</div>";		  
+                                    echo "</div>";		
+                                    echo "</div>";	
+
+                                }
+                               
+                                echo "</div>";		
+                                echo "</div>";	
+                                echo "</div>"; 	
+                                echo "</div>";	
+                                echo "</div>"; 
+                            }
+                                
+                        ?>
+                
+              
+                
+                
+               
 			</div>	
 		</div>
 		
