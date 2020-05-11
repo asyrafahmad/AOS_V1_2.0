@@ -17,6 +17,9 @@
   <script src="../js/demo/chart-area-demo.js"></script>
   <script src="../js/demo/pie_chart.js"></script>
 
+<!--CHart-->
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 </body>
 
 </html>

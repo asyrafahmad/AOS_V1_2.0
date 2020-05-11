@@ -97,8 +97,7 @@
 
 <!----------------------------------------------------------------------------------------------------------------------------------------------  --> 
      <?php  
-       $query = "SELECT buyer_state, count(*) as number FROM buyer GROUP BY buyer_state";  
-       $result = mysqli_query($connection, $query);  
+      
        ?>  
 
      <script type="text/javascript" src="../js/resizeChart.js"></script>
@@ -120,22 +119,26 @@
       google.charts.setOnLoadCallback(totalProductSellEachMonth);
       google.charts.setOnLoadCallback(quantityProductDemand);  
 
-         
+//              $query = "SELECT user_state, count(*) as number FROM user WHERE user_role = '3'  GROUP BY user_state";  
+//                    $result = mysqli_query($connection, $query); 
          
       function supplierEachState(){ 
         var data = google.visualization.arrayToDataTable([  
                   ['Negeri', 'Jumlah'],  
                   <?php  
-                  while($row = mysqli_fetch_array($result))  
-                  {  
-                       echo "['".$row["buyer_state"]."', ".$row["number"]."],";  
-                  }  
+                      $query = "SELECT user_state, count(*) as number FROM user WHERE user_role= '3' GROUP BY user_state";  
+                      $result = mysqli_query($connection, $query);  
+
+                      while($row = mysqli_fetch_array($result))  
+                      {  
+                           echo "['".$row["user_state"]."', ".$row["number"]."],";  
+                      }  
                   ?>  
              ]);  
         var options = {  
               //title: 'Jumlah pembeli mengikut negeri',  
               //is3D:true,  
-              pieHole: 0.5  
+              pieHole: 0.3  
              };  
         var chart = new google.visualization.PieChart(document.getElementById('supplierEachState'));  
         chart.draw(data, options);  
@@ -150,7 +153,7 @@
            <?php
                           global $connection;
 
-                          $query  =  "SELECT COUNT(*) as count, MONTHNAME(product_date_submit) as month FROM product GROUP BY MONTHNAME(product_date_submit) ORDER BY  {MONTHNAME(product_date_submit)} ";    
+                          $query  =  "SELECT COUNT(*) as count, MONTHNAME(product_date_submit) as month FROM product GROUP BY MONTHNAME(product_date_submit) ORDER BY  {MONTHNAME(product_date_submit)}";    
                           $select_suppliers = mysqli_query($connection, $query);
                           $all_product_count = mysqli_num_rows($select_suppliers);
 
