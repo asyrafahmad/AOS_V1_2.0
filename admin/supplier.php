@@ -164,6 +164,13 @@
                           
 //                          include "includes/view_all_suppliers.php";
                           
+                          if(isset($_GET['page'])){
+                                $_SESSION['page'] = $_GET['page'];
+                            }
+                            else{
+                                $page = "";
+                            }
+                          
                           echo "<div class='card-title justify-content-end align-middle'>";
                           echo "<div id='search_area' class='form-group has-search'>";
                           echo "<span class='fa fa-search form-control-feedback'></span>";

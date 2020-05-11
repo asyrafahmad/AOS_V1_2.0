@@ -6,13 +6,7 @@ session_start();
 
                     $connection = mysqli_connect("localhost", "root", "", "agro_db");
 
-                    if(isset($_SESSION['page'])){
-                        $page = $_SESSION['page']; 
-                    }
-                    else{
-                        $page = "";
-                    } 
-
+                  
                     $per_page = 5;
                   
                     if(isset($_SESSION['page'])){
