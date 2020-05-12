@@ -27,8 +27,8 @@
     //Update data
     if(isset($_POST['edit_buyer'])){
         
-        $user_image         = $_FILES['user_image']['name'];
-        $user_image_temp    = $_FILES['user_image']['tmp_name'];
+        $user_image         = escape($_FILES['user_image']['name']);
+        $user_image_temp    = escape($_FILES['user_image']['tmp_name']);
         $user_username      = escape($_POST['user_username']);
         $user_email         = escape($_POST['user_email']);
         $user_phone         = escape($_POST['user_phone']);

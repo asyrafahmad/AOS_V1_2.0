@@ -18,7 +18,7 @@
 
         while ($row = mysqli_fetch_assoc($select_elodge_query)){
 
-            $elodge_product_image            = escape($row['elodge_product_image']);
+            $elodge_product_image           = escape($row['elodge_product_image']);
             $elodge_product_name            = escape($row['elodge_product_name']);
             $elodge_product_quantity        = escape($row['elodge_product_quantity']);
             $elodge_product_harvest_date    = escape($row['elodge_product_harvest_date']);

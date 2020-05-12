@@ -158,20 +158,21 @@
             
 
                         
-                         <?php
-                         echo "<div id='view_all_products'></div>";
+                        <?php
+                    
+                           echo "<div id='view_all_products'></div>";
 
                            if(isset($_GET['cat_product'])){
                                
                             $product_category = $_GET['cat_product'];
                                
-                            echo "<div class='col-6 mainpage__right ml-5'>";    
+                            echo "<div class='col-6 mainpage__right ml-5 '>";    
                             echo "<div class='mainpage__desc px-5'>";
-                            echo "<div class='row'>";
+                            echo "<div class='row '>";
                             echo "<h4>Sub Kategori</h4>";
                             echo "</div>";
 
-                            echo "<div class='card-body'> ";        
+                            echo "<div class='card-body '> ";        
                             echo "<div class='row' align='center'>"; 
                                 
                            
@@ -183,7 +184,7 @@
                                     $product_name = escape($row['product_name']);
                                     $product_image = escape($row['product_image']);
 
-                                    echo "<div class='mt-2'>";	
+                                    echo "<div class='mt-2 '>";	
                                     echo "<div class='card ' style='width: 140px;'>";		
                                     echo "<a href='login.php' align='center'><img class='img-category mb-2 ' width='40%' height='40%' src='img/$product_image' ></a>";
                                     echo "<a class='cat-title' align='center'>$product_name</a>";		 	  

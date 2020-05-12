@@ -43,11 +43,11 @@
 
                         while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-                            $payment_supplier_name = escape($row['payment_supplier_name']);
-                            $payment_invoice = escape($row['payment_invoice']);
-                            $payment_price = escape($row['payment_price']);
-                            $payment_order_date = escape($row['payment_order_date']);
-                            $payment_status = escape($row['payment_status']);
+                            $payment_supplier_name  = escape($row['payment_supplier_name']);
+                            $payment_invoice        = escape($row['payment_invoice']);
+                            $payment_price          = escape($row['payment_price']);
+                            $payment_order_date     = escape($row['payment_order_date']);
+                            $payment_status         = escape($row['payment_status']);
                            
                             
                             echo "<tr>";

@@ -111,7 +111,13 @@
     }
     else{
         
-        $product_category = $_SESSION['p_c'];
+        if(isset($_SESSION['p_c'])){
+            $product_category = $_SESSION['p_c'];
+        }
+        else{
+            
+        }
+        
 
         $connect = mysqli_connect("localhost", "root", "", "agro_db");
         $output = '';
