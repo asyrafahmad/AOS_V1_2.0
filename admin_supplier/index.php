@@ -106,69 +106,163 @@
      <script type="text/javascript">
          
                           
-      google.charts.load('current', {'packages':['corechart']});
+//      google.charts.load('current', {'packages':['corechart']});
       google.charts.load('current', {'packages':['bar']});
       google.charts.load('current', {'packages':['bar']});
       google.charts.load('current', {'packages':['bar']});
       google.charts.load("current", {packages:["corechart"]});  
          
       
-      google.charts.setOnLoadCallback(supplierEachState);
+//      google.charts.setOnLoadCallback(supplierEachState);
       google.charts.setOnLoadCallback(stockDemand);
       google.charts.setOnLoadCallback(productSoldEachMonth);
       google.charts.setOnLoadCallback(totalProductSellEachMonth);
       google.charts.setOnLoadCallback(quantityProductDemand);  
 
-//              $query = "SELECT user_state, count(*) as number FROM user WHERE user_role = '3'  GROUP BY user_state";  
-//                    $result = mysqli_query($connection, $query); 
          
-      function supplierEachState(){ 
-        var data = google.visualization.arrayToDataTable([  
-                  ['Negeri', 'Jumlah'],  
-                  <?php  
-                      $query = "SELECT user_state, count(*) as number FROM user WHERE user_role= '3' GROUP BY user_state";  
-                      $result = mysqli_query($connection, $query);  
+//     -----------------------------------------------------------------------------------
+//      Pie chart using canvas.js
+         
+     window.onload = function () {
 
-                      while($row = mysqli_fetch_array($result))  
-                      {  
-                           echo "['".$row["user_state"]."', ".$row["number"]."],";  
-                      }  
-                  ?>  
-             ]);  
-        var options = {  
-              //title: 'Jumlah pembeli mengikut negeri',  
-              //is3D:true,  
-              pieHole: 0.3  
-             };  
-        var chart = new google.visualization.PieChart(document.getElementById('supplierEachState'));  
-        chart.draw(data, options);  
-      }
+            var chart = new CanvasJS.Chart("supplierEachState", {
+                theme: "light2",
+                animationEnabled: true,
+                title: {
+                    text: "Pembelian Mengikut Negeri"
+                },
+                subtitles: [{
+                    text: "",
+                    fontSize: 16
+                }],
+                data: [{
+                    type: "pie",
+                    indexLabelFontSize: 18,
+                    radius: 80,
+                    indexLabel: "{label} - {y}",
+//                    yValueFormatString: "###0.0\"%\"",        
+                    click: explodePie,
+                    dataPoints: 
+                    [ 
+                        <?php  
+                        
+                        global $connection; 
+                        
+                          $query = "SELECT user_state, count(*) as number FROM user WHERE user_role= '3' GROUP BY user_state";  
+                          $result = mysqli_query($connection, $query);  
 
+                          while($row = mysqli_fetch_array($result))  
+                          {  
+                               echo "{ y: ".$row["number"].", label: '".$row["user_state"]."'},";  
+                          }  
+                        ?>  
+                    ]
+                }]
+            });
+            chart.render();
 
+            function explodePie(e) {
+                for(var i = 0; i < e.dataSeries.dataPoints.length; i++) {
+                    if(i !== e.dataPointIndex)
+                        e.dataSeries.dataPoints[i].exploded = false;
+                }
+            }
+
+        }
+     
+//     -----------------------------------------------------------------------------------
+     
+     
+     
+//        window.onload = function () {
+//
+//        var chart = new CanvasJS.Chart("supplierEachState", {
+//            animationEnabled: true,
+//            theme: "light2", // "light1", "light2", "dark1", "dark2"
+//            title:{
+//                text: "Top Oil Reserves"
+//            },
+//            axisY: {
+//                title: "Reserves(MMbbl)"
+//            },
+//            data: [{        
+//                type: "column",  
+//                showInLegend: true, 
+//                legendMarkerColor: "grey",
+//                legendText: "MMbbl = one million barrels",
+//                dataPoints: [      
+//                    { y: 300878, label: "Venezuela" },
+//                    { y: 266455,  label: "Saudi" },
+//                    { y: 169709,  label: "Canada" },
+//                    { y: 158400,  label: "Iran" },
+//                    { y: 142503,  label: "Iraq" },
+//                    { y: 101500, label: "Kuwait" },
+//                    { y: 97800,  label: "UAE" },
+//                    { y: 80000,  label: "Russia" }
+//                ]
+//            }]
+//        });
+//        chart.render();
+//
+//        }
+//     
+//     
+     
+//     -----------------------------------------------------------------------------------     
+//     -----------------------------------------------------------------------------------
+         
+         
+         
+         
+//      function supplierEachState(){ 
+//        var data = google.visualization.arrayToDataTable([  
+//                  ['Negeri', 'Jumlah'],  
+//                  <?php  
+//                      $query = "SELECT user_state, count(*) as number FROM user WHERE user_role= '3' GROUP BY user_state";  
+//                      $result = mysqli_query($connection, $query);  
+//
+//                      while($row = mysqli_fetch_array($result))  
+//                      {  
+//                           echo "['".$row["user_state"]."', ".$row["number"]."],";  
+//                      }  
+//                  ?>  
+//             ]);  
+//        var options = {  
+//              //title: 'Jumlah pembeli mengikut negeri',  
+//              //is3D:true,  
+//              pieHole: 0.3  
+//             };  
+//        var chart = new google.visualization.PieChart(document.getElementById('supplierEachState'));  
+//        chart.draw(data, options);  
+//      }
+
+     
+//     -----------------------------------------------------------------------------------
+     
       function stockDemand() {
 
           var data = google.visualization.arrayToDataTable([
           ['Month', 'Produk Jualan'],
 
            <?php
-                          global $connection;
+                  global $connection;
 
-                          $query  =  "SELECT COUNT(*) as count, MONTHNAME(product_date_submit) as month FROM product GROUP BY MONTHNAME(product_date_submit) ORDER BY  {MONTHNAME(product_date_submit)}";    
-                          $select_suppliers = mysqli_query($connection, $query);
-                          $all_product_count = mysqli_num_rows($select_suppliers);
+                  $query  =  "SELECT COUNT(*) as count, MONTHNAME(product_date_submit) as month FROM product GROUP BY MONTHNAME(product_date_submit) ORDER BY  {MONTHNAME(product_date_submit)} ";    
+                  $select_suppliers = mysqli_query($connection, $query);
+                  $all_product_count = mysqli_num_rows($select_suppliers);
 
-                          while ($row = mysqli_fetch_assoc($select_suppliers)){
+                  while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-                              $month = escape($row['month']);
-                              $count = escape($row['count']);
+                      $month = escape($row['month']);
+                      $count = escape($row['count']);
 
-                              echo "['$month'" . "," . "'$count'],";
-                          }
-                          ?>
+                      echo "['$month'" . "," . "'$count'],";
+                  }
+            ?>
           ]);
 
              var options = {
-                width: 950,
+                width: 1000,
                 legend: { position: 'none' },
                 chart: {
                 title: 'Jumlah produk dijual setiap bulan',
@@ -187,7 +281,7 @@
           chart.draw(data, google.charts.Bar.convertOptions(options));
         }  
 
-
+//     -----------------------------------------------------------------------------------
 
         function productSoldEachMonth() {
           var data = google.visualization.arrayToDataTable([
@@ -232,7 +326,7 @@
           chart.draw(data, google.charts.Bar.convertOptions(options));
         }
          
-
+//     -----------------------------------------------------------------------------------
 
 
 
@@ -281,7 +375,7 @@
           }
             
 
-
+//     -----------------------------------------------------------------------------------
 
 
 
@@ -324,6 +418,22 @@
       });
          
       </script>
+        
+        
+        
+             <script>
+           
+            </script>   
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
     <div class="row">
       <div class="card-body">  
@@ -348,8 +458,9 @@
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Jumlah Jualan Produk Setiap Bulan</h6>
                     </div><br>
-                    <div id="stockDemand" style="width: 100%; height: 100%;"></div><br>
-                  
+                    <div class="card-body dashboard">
+                        <div id="stockDemand" style="width: 100%; height: 100%;"></div><br>
+                    </div>       
                </div>       
               </div>
         </div> 
@@ -363,9 +474,11 @@
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Pembelian Mengikut Kontan</h6>
                     </div><br>
-                    <div id="productSoldEachMonth" style="width: 95%; height: 800px;"></div><br>
-                  
-               </div>       
+                    <div class="card-body dashboard">
+                        <div id="productSoldEachMonth" style="width: 100%; height: 800px;"></div><br>
+                    </div>
+                    
+                 </div>       
               </div>
         </div> 
     </div>
