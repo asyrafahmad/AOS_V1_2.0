@@ -131,8 +131,8 @@
 //                            include "includes/view_all_record_supplier_product.php";
                             
                             
-                          if(isset($_GET['page'])){
-                             $_SESSION['page'] = $_GET['page'];
+                          if(isset($_GET['v_r_s_page'])){
+                             $_SESSION['v_r_s_page'] = $_GET['v_r_s_page'];
                           }
                           else{
                              $page = "";
@@ -163,8 +163,8 @@
                         default:
 //                            include "includes/view_all_products.php";
                             
-                            if(isset($_GET['page'])){
-                                $_SESSION['page'] = $_GET['page'];
+                            if(isset($_GET['p_page'])){
+                                $_SESSION['p_page'] = $_GET['p_page'];
                             }
                             else{
                                 $page = "";

@@ -4,18 +4,10 @@
 
                     $connection = mysqli_connect("localhost", "root", "", "agro_db");
 
-
-                    if(isset($_SESSION['page'])){
-                        $page = $_SESSION['page']; 
-                    }
-                    else{
-                        $page = "";
-                    } 
-
                     $per_page = 5;
                   
-                    if(isset($_SESSION['page'])){
-                         $page = $_SESSION['page']; 
+                    if(isset($_SESSION['s_page'])){
+                         $page = $_SESSION['s_page']; 
                     }
                     else{
                         $page = "";
@@ -55,10 +47,10 @@
                                 for($i = 1; $i <= $count; $i++){
                                     
                                     if($i == $page){
-                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='supplier.php?page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link active_link'>{$i}</a> </li>";
+                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='supplier.php?s_page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link active_link'>{$i}</a> </li>";
                                     }
                                     else{
-                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='supplier.php?page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link'>{$i}</a> </li>";
+                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='supplier.php?s_page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link'>{$i}</a> </li>";
                                     }
                                     
                                     

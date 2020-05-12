@@ -164,8 +164,8 @@
                           
 //                          include "includes/view_all_suppliers.php";
                           
-                          if(isset($_GET['page'])){
-                                $_SESSION['page'] = $_GET['page'];
+                          if(isset($_GET['s_page'])){
+                                $_SESSION['s_page'] = $_GET['s_page'];
                             }
                             else{
                                 $page = "";

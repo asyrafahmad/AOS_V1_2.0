@@ -9,8 +9,8 @@ session_start();
                   
                     $per_page = 5;
                   
-                    if(isset($_SESSION['page'])){
-                         $page = $_SESSION['page']; 
+                    if(isset($_SESSION['b_page'])){
+                         $page = $_SESSION['b_page']; 
                     }
                     else{
                         $page = "";
@@ -49,10 +49,10 @@ session_start();
                                 for($i = 1; $i <= $count; $i++){
                                     
                                     if($i == $page){
-                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='buyer.php?page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link active_link'>{$i}</a> </li>";
+                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='buyer.php?b_page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link active_link'>{$i}</a> </li>";
                                     }
                                     else{
-                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='buyer.php?page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link'>{$i}</a> </li>";
+                                        echo "<li class='paginate_button page-item previous' id='dataTable_previous'><a href='buyer.php?b_page={$i}' aria-controls='dataTable' data-dt-idx='0' tabindex='0' class='page-link'>{$i}</a> </li>";
                                     }
                                     
                                     

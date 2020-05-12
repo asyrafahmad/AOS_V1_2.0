@@ -111,8 +111,8 @@
                       default:
 //                          include "includes/view_all_buyers.php";
                           
-                           if(isset($_GET['page'])){
-                                $_SESSION['page'] = $_GET['page'];
+                           if(isset($_GET['b_page'])){
+                                $_SESSION['b_page'] = $_GET['b_page'];
                             }
                             else{
                                 $page = "";
