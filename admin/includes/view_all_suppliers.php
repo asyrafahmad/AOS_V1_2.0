@@ -86,7 +86,7 @@
                         }
                         else
                         {
-                            $query = "SELECT * FROM user WHERE user_role= '2' LIMIT $page_1,$per_page ";
+                            $query = "SELECT * FROM user WHERE user_role LIKE '2' LIMIT $page_1,$per_page ";
                         }
 
                         $result = mysqli_query($connect, $query);
@@ -125,7 +125,7 @@
                         }
                         else
                         {
-                            echo 'Data Not Found';
+                            echo 'Tiada Maklumat.';
                         }
 
 

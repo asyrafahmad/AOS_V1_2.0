@@ -76,11 +76,11 @@ session_start();
                         if(isset($_POST["query"]))
                         {
                             $search = mysqli_real_escape_string($connect, $_POST["query"]);
-                            $query = "SELECT * FROM user  WHERE user_username LIKE '%".$search."%' OR user_email LIKE '%".$search."%' OR user_date_register LIKE '%".$search."%'  ";
+                            $query = "SELECT * FROM user  WHERE user_role LIKE '3' AND  user_username LIKE '%".$search."%' OR user_email LIKE '%".$search."%' OR user_date_register LIKE '%".$search."%'  ";
                         }
                         else
                         {
-                            $query = "SELECT * FROM user WHERE user_role = '3' LIMIT $page_1,$per_page ";
+                            $query = "SELECT * FROM user WHERE user_role LIKE '3' LIMIT $page_1,$per_page ";
                             
                         }
 
@@ -108,8 +108,8 @@ session_start();
                                 $output .= '<tbody>
                                             <tr>
                                             <td class="align-middle">'.$row["user_id"].'</td>
+                                            <td><img width="100"  src="../img/'.$row["user_image"].'"  alt="image" class="img-category" </td>
                                             <td class="align-middle">'.$row["user_username"].'</td>
-                                            <td class="align-middle">'.$row["user_image"].'</td>
                                             <td class="align-middle">'.$row["user_email"].'</td>
                                             <td class="align-middle">'.$row["user_phone"].'</td>
                                             <td class="align-middle">'.$row["user_date_register"].'</td>
