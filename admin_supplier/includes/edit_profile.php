@@ -75,8 +75,8 @@
         $edit_supplier_query = mysqli_query($connection,$query);
         confirmQuery($edit_supplier_query);
         
-        echo "<p class=''>Profil berjaya dikemaskini.</p>";
-        echo "<script>window.location='./profile.php?menu=$menu'</script>";
+//        echo "<p class=''>Profil berjaya dikemaskini.</p>";
+        echo "<script>window.location='./profile.php'</script>";
     }
 
 ?>  
@@ -157,7 +157,7 @@
         </div>
       
         <div class="form-group">
-                <input class="btn btn-primary" type="submit" name="edit_supplier_profile" value="Kemaskini">
+                <input class="btn btn-primary" type="submit" name="edit_supplier_profile" value="Kemaskini"   <?php echo "onClick=\"javascript: return confirm('Profil berjaya dikemaskini. ');  \" " ?> >
         </div>
   
                   

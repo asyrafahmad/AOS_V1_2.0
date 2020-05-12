@@ -29,8 +29,6 @@
         $user_password = escape($row['user_password']);
 
     }
-//    $_SESSION['user_phone'] = $user_phone;
-//    $_SESSION['user_email'] = $user_email;
 
     if(isset($_POST['edit_buyer_profile'])){
         
@@ -48,7 +46,7 @@
 		
         if(empty($user_image)){
             
-            $query  =  "SELECT user_image FROM user WHERE user_role = '2' AND user_username = '{$user_username}' ";    
+            $query  =  "SELECT user_image FROM user WHERE user_username = '{$user_username}' ";    
             $get_picture = mysqli_query($connection, $query);
 
             while ($row = mysqli_fetch_assoc($get_picture)){
@@ -78,8 +76,9 @@
         $edit_buyer_query = mysqli_query($connection,$query);
         confirmQuery($edit_buyer_query);
         
-        echo "<p class=''>Profil berjaya dikemaskini.</p>";
+        
         echo "<script>window.location='./profile.php?menu=$menu'</script>";
+//        echo "<p class=''>Profil berjaya dikemaskini.</p>";
     }
     
 
@@ -99,6 +98,8 @@
             </div>
             <div class="card-body">
 
+                
+                
         <div class="row">
             
             <div class="col-md-6 mb-3">
@@ -162,7 +163,7 @@
         </div>
       
         <div class="form-group">
-            <input class="btn btn-primary" type="submit" name="edit_buyer_profile" value="Kemaskini">
+            <input class="btn btn-primary" type="submit" name="edit_buyer_profile" value="Kemaskini" <?php echo "onClick=\"javascript: return confirm('Profil berjaya dikemaskini. ');  \" " ?> >
         </div>
   
                   
