@@ -152,7 +152,7 @@
               </form>
               <hr>
               <div class="text-center" style="color: #fff;">
-                <p class="small" >Sudah mempunyai akaun? <a class="" style="color: #000;" href="login.php">Log Masuk</a></p>
+                <p class="small" style="color: #000;">Sudah mempunyai akaun? <a class="" style="color: #14BD0C;" href="login.php">Log Masuk</a></p>
               </div>
 
         </div>
