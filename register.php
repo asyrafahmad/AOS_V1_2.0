@@ -34,7 +34,7 @@
     <div class="row main">
       <div class="col-xl-6 col-lg-6 col-sm-12">
         <div class="left-side text-center">
-          <img src="img/bg/MakmurLogo.png" width="100">
+          <img src="img/bg/logo-02.png" width="100">
           <h4 class="text-gray-900 mt-4"><strong>Daftar Akaun</strong></h4>
           <hr class="underline" style="width: 10%;">
 
