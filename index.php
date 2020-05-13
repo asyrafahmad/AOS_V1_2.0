@@ -25,8 +25,8 @@
 		  </a>
 
 		  <ul class="nav__list">
-		  	<li><a href="register.php"><button type="button" class="btn btn-outline-success btn__signup">Sign Up</button></a></li>
-		  	<li><a href="login.php"><button type="button" class="btn btn-outline-success btn__signin">Sign In</button></a></li>
+		  	<li><a href="register.php"><button type="button" class="btn btn-outline-success btn__signup">Daftar</button></a></li>
+		  	<li><a href="login.php"><button type="button" class="btn btn-outline-success btn__signin">Log Masuk</button></a></li>
 		  </ul>
 
 		</nav>
@@ -170,8 +170,8 @@
                             echo "<h4><b>Sub Kategori</b></h4>";
                             echo "</div>";
  
-                            echo "<div class='card-body mainpage__subcategory'> ";        
-                            echo "<div class='row subcategory__card' align='center'>"; 
+                            echo "<div class='card-body'> ";        
+                            echo "<div class='row' align='center'>"; 
                                 
                            
                             $query  =  "SELECT * FROM product WHERE product_category = '{$product_category}' ";    
