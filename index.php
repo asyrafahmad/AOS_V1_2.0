@@ -179,12 +179,13 @@
 
                                 while ($row = mysqli_fetch_assoc($select_product)){
 
+                                    $product_id = escape($row['product_id']);
                                     $product_name = escape($row['product_name']);
                                     $product_image = escape($row['product_image']);
 
                                 echo "<div class='col-xl-3 col-md-4 col-sm-4 mt-2'>";  
                                 echo "<div class='card py-2'>";     
-                                echo "<a href='product.php' align='center''><img class='img-category mb-2' width='40%' height='40%' src='img/$product_image' ></a>";         
+                                echo "<a href='product.php?add=$product_id' align='center''><img class='img-category mb-2' width='40%' height='40%' src='img/$product_image' ></a>";         
                                 echo "<a class='align-items-center cat-title'>$product_name</a>";  
                                 echo "</div>";      
                                 echo "</div>";  

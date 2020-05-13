@@ -137,30 +137,34 @@
 
     <div class="row justify-content-between py-4 px-5 fixed-top topnav">
           
-  <button type="button" id="sidebarCollapse" class="btn" style="padding: 0;">
-      <img src="img/icon/menu.png" height="36">
-    </button>
-    <a href="admin_supplier/profile.php" class="profile">
-      <img src="img/<?php echo $_SESSION['user_image'] ?>">
-    </a>
+      <button type="button" id="sidebarCollapse" class="btn" style="padding: 0;">
+          <img src="img/icon/menu.png" height="36">
+        </button>
+        <a href="admin_supplier/profile.php" class="profile">
+          <img src="img/<?php echo $_SESSION['user_image'] ?>">
+        </a>
 
-</div>
+    </div>
 
     <div class="container-fluid">
       
-    <div class="row d-sm-flex align-items-center justify-content-between m-4">
-      <h1 class="h3 mb-0 text-gray-800">Produk</h1>
-      <div class="add-to-cart" align="center">
-        <div class="card p-2 ">
-        <a href="order.php?menu=<?php echo $menu; ?>"><img height="32" width="32" src="img/icon/add-to-cart.png" ></a>
+        <div class="row d-sm-flex align-items-center justify-content-between m-4">
+          <h1 class="h3 mb-0 text-gray-800">Produk</h1>
+          <div class="add-to-cart" align="center">
+            <div class="card p-2 ">
+            <a href="order.php?menu=<?php echo $menu; ?>"><img height="32" width="32" src="img/icon/add-to-cart.png" ></a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
+        
+        
+        
+        
     <!-- Content Row -->
     <div class="row">
 
-     <div class="col-xl-12">
+     <div class="col-xl-32">
         <div class="card p-4 border">
           
 
@@ -204,16 +208,16 @@
                         <?php
                         
                     
-                        
+                         $connection = mysqli_connect("localhost", "root", "", "agro_db");
                         
                           if(isset($_GET['add'])) {
                                 
-                                $query  =  "SELECT * FROM product WHERE product_id =". escape($_GET['add']) . " ";    
+                                $query  =  "SELECT * FROM product WHERE product_id =". $_GET['add'] . " ";    
                                 $order_product_query = mysqli_query($connection, $query);
 
                                 while ($row = mysqli_fetch_assoc($order_product_query)){
 
-                                    $product_quantity  = escape($row['product_quantity']);
+                                    $product_quantity  = $row['product_quantity'];
                                     
                                     //if order product doesn't exceed the quantity product store
                                     if($product_quantity != $_SESSION['product_quantity_'.$_GET['add']]){
@@ -222,7 +226,7 @@
 //                                         echo "<script>window.location='./order.php?menu=$menu'</script>";
                                     }
                                     else{
-                                        echo "<script>alert('Maaf ! Jumlah stok tidak mencukupi.')</script>";
+//                                        echo "<script>alert('Maaf ! Jumlah stok tidak mencukupi.')</script>";
                                     } 
                                 }
                             }
@@ -255,6 +259,7 @@
                                 $menu = $_GET['menu'];
                             }
                         
+                             $connection = mysqli_connect("localhost", "root", "", "agro_db");
                                 
                             $total = 0;                //variable for total amount of all items
                             $total2 = 0;                //variable for total amount of all items
@@ -277,41 +282,38 @@
                                     $id = substr($name, 17, $length);
 
                                     global $connection;
-									
-//									$send_order = query("INSERT INTO orders (order_amount, order_transaction, order_status) VALUES ('{$amount}', '{$trasaction}', '{$status}')")
-//									$last_id = last_id ();
-//									confirmQuery($send_order);
 
-                                    $query  =  "SELECT * FROM product WHERE product_id = " . escape($id) . " ";    
+
+                                    $query  =  "SELECT * FROM product WHERE product_id = " .$id . " ";    
                                     $add_to_cart_query = mysqli_query($connection, $query);
 
                                     while ($row = mysqli_fetch_assoc($add_to_cart_query)){
 
-                                        $product_id = escape($row['product_id']);
-                                        $product_image = escape($row['product_image']);
-                                        $product_name  = escape($row['product_name']);
-                                        $product_category  = escape($row['product_category']);
-                                        $product_gred  = escape($row['product_gred']);
-                                        $product_price  = escape($row['product_price']);
-                                        $product_quantity  = escape($row['product_quantity']);
-                                        $product_current_price  = escape($row['product_current_price']);
+                                        $product_id = $row['product_id'];
+                                        $product_image = $row['product_image'];
+                                        $product_name  = $row['product_name'];
+                                        $product_category  = $row['product_category'];
+                                        $product_gred  = $row['product_gred'];
+                                        $product_price  = $row['product_price'];
+                                        $product_quantity  = $row['product_quantity'];
+                                        $product_current_price  = $row['product_current_price'];
                                         
                                         $total_price = $product_price*$value;
                                         $total_price_afterConvert = ($product_price*$value)/0.01;
                                         $total_quantity += $value;
 
                                         echo"<tr>";
-                                        echo"<td><img class='' src='../img/$product_image' width='50' height='50'> </td>";
+                                        echo"<td><img class='' src='img/$product_image' width='50' height='50'> </td>";
                                         echo"<td>$product_name</td>";
                                         echo"<td>RM$product_price</td>";
                                         echo"<td>
-                                        <a class='btn btn-warning' href='order.php?menu=$menu&remove={$product_id}'><span class='glyphicon glyphicon-minus'>-</span></a>
+                                        <a class='btn btn-warning' href='order.php?remove={$product_id}'><span class='glyphicon glyphicon-minus'>-</span></a>
                                         <a class='btn'><span class='glyphicon glyphicon-minus'>$value</span></a>
-                                        <a class='btn btn-success' href='order.php?menu=$menu&add={$product_id}'><span class='glyphicon glyphicon-plus'>+</span></a></td>";
+                                        <a class='btn btn-success' href='order.php?add={$product_id}'><span class='glyphicon glyphicon-plus'>+</span></a></td>";
                                         echo"<td>RM$total_price</td>";
                                         echo"<td>
                                             
-                                            <a class='btn btn-danger' href='order.php?menu=$menu&delete={$product_id}'><span class='glyphicon glyphicon-remove'>x</span></a>
+                                            <a class='btn btn-danger' href='order.php?delete={$product_id}'><span class='glyphicon glyphicon-remove'>x</span></a>
                                             </td>";
                                         echo"</tr>";
                                         
@@ -382,14 +384,14 @@
                 
                 
          	<?php 
-                 if(isset($_GET['menu'])){
-                            
-                    $menu = $_GET['menu'];
-                }
-                        
-				
-		
+
+	
+				echo "<div class='col-xs-1' align='center'>";
+                echo "<td><a class='btn btn-success' href='login.php'>Seterusnya </a></td>";
+            	echo "</div>";
                     
+               
+			
                     
 			?>
                 
@@ -407,7 +409,6 @@
  </div> 
 </div>
 
-<br>
 
 
 
