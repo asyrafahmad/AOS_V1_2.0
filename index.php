@@ -48,7 +48,7 @@
             ?>
             
 			<div class="row justify-content-center" class="mainpage__main">
-				<div class="col-md-4 col-sm-12 mainpage__left">
+				<div class="col-md-4 col-sm-12 mainpage__left align-self-center my-5">
 					<div class="mainpage__desc" >
 						<h2><b>Agro Online System</b></h2>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -61,7 +61,7 @@
 				<div class="col-6 mainpage__right ml-5">
 					<div class="mainpage__desc px-5">
 						<div class="row">
-							<h4>Kategori</h4>	
+							<h4><b>Kategori</b></h4>	
 						</div>
 						
  
@@ -91,12 +91,10 @@
                                 $cat_product_title = escape($row['cat_product_title']);
                                 $cat_product_image = escape($row['cat_product_image']);
 
-                                echo "<div class='mt-2'>";	
-                                echo "<div class='card ' style='width: 140px;'>";		
-                                echo "<a href='index.php?cat_product=$cat_product_title' align='center'><img class='img-category mb-2 ' width='40%' height='40%' src='img/$cat_product_image' ></a>";		  
-                                echo "<a class='cat-title' align='center'>$cat_product_title</a>";		 	  
-                                echo "<div class='card-body'>";		  	   
-                                echo "</div>";		  
+                                echo "<div class='col-xl-3 col-md-4 col-sm-4 py-3 mt-2'>";	
+                                echo "<div class='card py-2'>";		
+                                echo "<a href='index.php?cat_product=$cat_product_title' align='center''><img class='img-category mb-2' width='40%' height='40%' src='img/$cat_product_image' ></a>";		  
+                                echo "<a class='align-items-center cat-title'>$cat_product_title</a>";  
                                 echo "</div>";		
                                 echo "</div>";	
 
@@ -169,11 +167,11 @@
                             echo "<div class='col-6 mainpage__right ml-5 '>";    
                             echo "<div class='mainpage__desc px-5'>";
                             echo "<div class='row '>";
-                            echo "<h4>Sub Kategori</h4>";
+                            echo "<h4><b>Sub Kategori</b></h4>";
                             echo "</div>";
-
-                            echo "<div class='card-body '> ";        
-                            echo "<div class='row' align='center'>"; 
+ 
+                            echo "<div class='card-body mainpage__subcategory'> ";        
+                            echo "<div class='row subcategory__card' align='center'>"; 
                                 
                            
                             $query  =  "SELECT * FROM product WHERE product_category = '{$product_category}' ";    
@@ -184,14 +182,12 @@
                                     $product_name = escape($row['product_name']);
                                     $product_image = escape($row['product_image']);
 
-                                    echo "<div class='mt-2 '>";	
-                                    echo "<div class='card ' style='width: 140px;'>";		
-                                    echo "<a href='login.php' align='center'><img class='img-category mb-2 ' width='40%' height='40%' src='img/$product_image' ></a>";
-                                    echo "<a class='cat-title' align='center'>$product_name</a>";		 	  
-                                    echo "<div class='card-body'>";		  	   
-                                    echo "</div>";		  
-                                    echo "</div>";		
-                                    echo "</div>";	
+                                echo "<div class='col-xl-3 col-md-4 col-sm-4 mt-2'>";  
+                                echo "<div class='card py-2'>";     
+                                echo "<a href='index.php?cat_product=$cat_product_title' align='center''><img class='img-category mb-2' width='40%' height='40%' src='img/$product_image' ></a>";         
+                                echo "<a class='align-items-center cat-title'>$product_name</a>";  
+                                echo "</div>";      
+                                echo "</div>";  
 
                                 }
                                
@@ -219,3 +215,5 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script src="../js/sb-admin-2.js"></script>
