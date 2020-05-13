@@ -184,7 +184,7 @@
 
                                 echo "<div class='col-xl-3 col-md-4 col-sm-4 mt-2'>";  
                                 echo "<div class='card py-2'>";     
-                                echo "<a href='index.php?cat_product=$cat_product_title' align='center''><img class='img-category mb-2' width='40%' height='40%' src='img/$product_image' ></a>";         
+                                echo "<a href='product.php' align='center''><img class='img-category mb-2' width='40%' height='40%' src='img/$product_image' ></a>";         
                                 echo "<a class='align-items-center cat-title'>$product_name</a>";  
                                 echo "</div>";      
                                 echo "</div>";  
