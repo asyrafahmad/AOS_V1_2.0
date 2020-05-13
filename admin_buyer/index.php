@@ -19,9 +19,27 @@
       <h1 class="h3 mb-0 text-gray-800">Dashboard</h1> 
     </div>
 
+        
+    <?php
+    
+                    echo $user_username = $_SESSION['user_username'];
+    
+//                    echo $query  =  "SELECT count(*) as count, payment_product FROM payment_product_history WHERE payment_status = 'Berjaya' GROUP BY payment_product ";    
+                    echo $query  =  "SELECT product_name, SUM(product_quantity) as sum_product FROM product JOIN payment_product_history ON product.product_name=payment_product_history.product_name ";    
+                    $select_order_product = mysqli_query($connection, $query);
+//                    $order_product_count = mysqli_num_rows($select_order_product);
+//
+//                    while ($row = mysqli_fetch_assoc($select_order_product)){
+//
+//                      echo "[".$row["payment_product"].",  ".$row["count"]."],";  
+//                    }
+    
+    ?>    
+        
     <!-- Content Row -->
     <div class="row">
 
+       
       <!-- Petani -->
       <div class="col-xl-3  mb-2">
         <div class="card py-2 shadow border">
@@ -114,10 +132,6 @@
     </div>
 
 
-      <?php  
-         $query = "SELECT buyer_state, count(*) as number FROM buyer GROUP BY buyer_state";  
-         $result = mysqli_query($connection, $query);  
-       ?>  
 
             <script type="text/javascript" src="../js/barChartProductSupplier.js"></script>
             <script type="text/javascript">
@@ -139,9 +153,13 @@
               var data = google.visualization.arrayToDataTable([  
                         ['Negeri', 'Jumlah'],  
                         <?php  
+                  
+                        $query = "SELECT user_state, count(*) as number FROM user WHERE user_role = '2' GROUP BY user_state";  
+                        $result = mysqli_query($connection, $query);  
+                  
                         while($row = mysqli_fetch_array($result))  
                         {  
-                             echo "['".$row["buyer_state"]."', ".$row["number"]."],";  
+                             echo "['".$row["user_state"]."', ".$row["number"]."],";  
                         }  
                         ?>  
                    ]);  
@@ -178,39 +196,35 @@
             chart.draw(data, options);
             }
              
+                
              
           function averageProduct() {
+              
+               
 
               var data = new google.visualization.DataTable();
-              data.addColumn('number', 'Bulan');
-              data.addColumn('number', 'Guava');
+              data.addColumn('number', 'Produk');
+              data.addColumn('number', '<?php  echo $graph_product = $_GET['g_p'];  ?>');
 
               data.addRows([
-              [0,  7],
-              [1,  7],
-              [2,  4],
                 <?php  
-                $query  =  "SELECT MONTH(product_date_submit) as month, AVG(product_price) as product_price FROM product WHERE product_name = 'Guava' GROUP BY MONTH(product_date_submit)  ";    
-                $select_suppliers = mysqli_query($connection, $query);
+                  
+                    $graph_product = $_GET['g_p'];  
+      
 
-                while ($row = mysqli_fetch_assoc($select_suppliers)){
+                    $query  =  "SELECT MONTH(product_date_submit) as month, AVG(product_price) as product_price FROM product WHERE product_name = '{$graph_product}' GROUP BY MONTH(product_date_submit)  ";    
+                    $select_suppliers = mysqli_query($connection, $query);
 
-                  echo "[".$row["month"].",  ".$row["product_price"]."],";  
-                }
+                    while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                      echo "[".$row["month"].",  ".$row["product_price"]."],";  
+                    }
                ?>
-                [5,  15],
-                [6,  13],
-                [7,  12],
-                [8,  1],
-                [9,  4],
-                [10,  6],
-                [11,  8],
-                [12,  11],
               ]);
 
               var options = {
               chart: {
-                title: 'Harga Purata Bagi Produk Guava untuk Setiap Bulan',
+                title: 'Harga Purata Bagi Produk <?php echo $graph_product = $_GET['g_p'];  ?> untuk Setiap Bulan',
 //                subtitle: 'in millions of dollars (USD)'
               },
               width: 900,
@@ -228,13 +242,15 @@
                 ['Bulan', 'Jumlah Produk'],
                   
               <?php  
-                    $query  =  "SELECT count(*) as count, MONTH(payment_date) as month FROM payment_product_history WHERE payment_status = 'Berjaya' GROUP BY MONTH(payment_date)";    
+//                   
+//                    $query  =  "SELECT count(*) as count, payment_product FROM payment_product_history WHERE payment_supplier_name = '$user_username' AND payment_status = 'Berjaya' GROUP BY payment_product ";    
+                    $query  =  "SELECT SUM(payment_quantity) as count, payment_product FROM payment_product_history WHERE payment_supplier_name = '$user_username' AND payment_status = 'Berjaya' GROUP BY payment_product ";    
                     $select_order_product = mysqli_query($connection, $query);
                     $order_product_count = mysqli_num_rows($select_order_product);
 
                     while ($row = mysqli_fetch_assoc($select_order_product)){
 
-                      echo "[".$row["month"].",  ".$row["count"]."],";  
+                      echo "[ '".$row["payment_product"]."',  ".$row["count"]."],";  
                     }
                ?>
                   
@@ -248,7 +264,7 @@
 //                subtitle: '' },
                 axes: {
                 x: {
-                  0: { side: 'top', label: 'Jumlah produk berjaya dijual'} // Top x-axis.
+                  0: { side: 'top', label: 'Jumlah produk berjaya dibeli'} // Top x-axis.
                 }
                 },
                 bar: { groupWidth: "90%" }
@@ -263,17 +279,30 @@
            function stockDemand() {
                
               var data = google.visualization.arrayToDataTable([
-                ['Year', 'Sales', 'Expenses', 'Profit'],
-                ['2014', 1000, 400, 200],
-                ['2015', 1170, 460, 250],
-                ['2016', 660, 1120, 300],
-                ['2017', 1030, 540, 350]
+                ['Produk', 'Stok Semasa', 'Kuantiti Permintaan'],
+//                ['Guava', 1000, 400],
+                
+                <?php
+                  
+                  $graph_product = $_GET['g_p']; 
+                  
+//                  $query  =  "SELECT product_name, SUM(product_quantity) as sum_product FROM product  ";    
+                  $query  =  "SELECT product_name, SUM(product_quantity) as sum_product FROM product JOIN payment_product_history ON product.product_name=payment_product_history.product_name ";    
+                    $select_suppliers = mysqli_query($connection, $query);
+
+                    while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                      echo "['".$row["product_name"]."',  ".$row["sum_product"].",  ".$row["sum_product"]."],";  
+                    }
+                  
+                ?>
+                
               ]);
 
               var options = {
                 chart: {
-                title: 'Company Performance',
-                subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                title: 'Stok Semasa & Kuantiti Permintaan',
+                subtitle: '',
                 }
               };
 
@@ -294,6 +323,35 @@
                        
             </script>
     
+        
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+<!--
+                  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(17px, 19px, 0px);">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+-->
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <canvas id="myAreaChart" width="261" height="160" class="chartjs-render-monitor" style="display: block; width: 261px; height: 160px;"></canvas>
+                  </div>
+                </div>
+              </div>
+        
+        
 
             <div class="row">
                   
@@ -333,7 +391,31 @@
               <div class="col-xl-12 col-lg-7">
                 <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Harga Purata Setiap Produk</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Harga Purata Setiap Produk (Pilih Produk)</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(17px, 19px, 0px);">
+                          <div class="dropdown-header text-primary">Produk</div>
+                          <div class="dropdown-divider"></div>
+                            
+                        <?php
+                            
+                            $query  =  "SELECT * FROM product GROUP BY product_name";    
+                            $select_product = mysqli_query($connection, $query);
+
+                            while ($row = mysqli_fetch_assoc($select_product)){
+
+                                $product_name  = escape($row['product_name']);
+
+                                echo "<a class='dropdown-item' href='index.php?menu=elodge&g_p=$product_name'>$product_name</a>";
+                             
+
+                            } 
+                        ?>                  
+                        </div>
+                  </div>
                 </div>
                 <div class="card-body">
                   <div id="averageProduct" style="width: 100%; height: 100%;"></div>  
@@ -362,7 +444,31 @@
               <div class="col-xl-12 col-lg-7">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Jumlah stok semasa dan kuantiti permintaan untuk setiap Produk</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(17px, 19px, 0px);">
+                          <div class="dropdown-header text-primary">Produk</div>
+                          <div class="dropdown-divider"></div>
+                            
+                        <?php
+                            
+                            $query  =  "SELECT * FROM product GROUP BY product_name";    
+                            $select_product = mysqli_query($connection, $query);
+
+                            while ($row = mysqli_fetch_assoc($select_product)){
+
+                                $product_name  = escape($row['product_name']);
+
+                                echo "<a class='dropdown-item' href='index.php?menu=elodge&s_d_p=$product_name'>$product_name</a>";
+                             
+
+                            } 
+                        ?>                  
+                        </div>
+                    </div>
                   </div>
                   <div class="card-body">
                    <div id="stockDemand" style="width: 100%; height: 100%;"></div>  
