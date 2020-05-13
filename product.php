@@ -46,14 +46,13 @@
 
 
     
-    
-       <nav id="sidebar" class="">
+    <nav id="sidebar" class="">
 
       <div class="p-4">
 
         <div class="row my-3">
           <button type="button" id="" class="btn btn-primary custom-menu">
-            <img src="img/icon/double-chevron.png" height="24">
+              <a href="index.php" ><img src="img/icon/double-chevron.png" height="24"></a>
           </button>
         </div>
 
@@ -69,7 +68,7 @@
 
             
                 <li id="menu" class="nav-item">
-                    <a href="menu.php" class="nav-link">
+                    <a href="index.php" class="nav-link">
                           <img src="img/icon/dashboard.svg" height="24px">
                           Menu
                     </a>
@@ -77,7 +76,7 @@
 
                   
                   <li id="dashboard" class="nav-item">
-                    <a href="index.php?menu=<?php echo $menu; ?>" class="nav-link">
+                    <a href="index.php" class="nav-link">
                           <img src="img/icon/dashboard.svg" height="24px">
                           Dashboard
                     </a>
@@ -86,21 +85,22 @@
                 
 
                   <li id="product" class="nav-item">
-                    <a href="product.php?menu=<?php echo $menu; ?>" class="nav-link">
+                    <a href="index.php" class="nav-link">
                           <img src="img/icon/product.svg" height="24px">
                           Produk
                     </a>
                   </li>
 
                   <li id="order_history" class="nav-item">
-                    <a href="order.php?menu=<?php echo $menu; ?>&source=view_all_order_products" class="nav-link">
+                    <a href="index.php" class="nav-link">
                           <img src="img/icon/history.svg" height="24px">
                           Sejarah Pesanan
                       </a>
                   </li>
 
+                
                   <li id="aboutus" class="nav-item">
-                    <a href="../admin_buyer/aboutus.php?menu=<?php echo $menu; ?>" class="nav-link">
+                    <a href="index.php" class="nav-link">
                         <img src="img/icon/aboutus.svg" height="24px">
                           Mengenai Kami
                       </a>
@@ -108,27 +108,21 @@
 
                 <div class="sidebar_bottom">
                   <!-- <li id="profile" class="profile nav-item"> -->
-                    <a href="profile.php?menu=<?php echo $menu; ?>&source=edit_profile" class="profile">
-                      <img src="img/<?php echo $_SESSION['user_image'] ?>">
+                    <a href="index.php" class="profile">
+                      <img src="img/human.png">
                     </a>
                   <!-- </li> -->
 
                   <li id="logout" class="nav-item p-4">
-                    <a href="../includes/logout.php" class="nav-link">
-                        <img src="img/icon/logout.svg" height="24px">
-                          Keluar
-                      </a>
                   </li>
 
 
-    
-    
-    
-    
-    
-    
-    
-    
+
+                </div>             
+              
+              </ul>
+        </div>
+    </nav>
     
     
   
@@ -152,7 +146,7 @@
           <h1 class="h3 mb-0 text-gray-800">Produk</h1>
           <div class="add-to-cart" align="center">
             <div class="card p-2 ">
-            <a href="order.php?menu=<?php echo $menu; ?>"><img height="32" width="32" src="img/icon/add-to-cart.png" ></a>
+            <a href="index.php"><img height="32" width="32" src="img/icon/add-to-cart.png" ></a>
             </div>
           </div>
         </div>
@@ -161,10 +155,9 @@
         
         
         
-    <!-- Content Row -->
     <div class="row">
 
-     <div class="col-xl-32">
+     <div class="col-xl-20">
         <div class="card p-4 border">
           
 
@@ -174,242 +167,54 @@
             
             
 
+<?php
 
-
-   
-<!-- Page Heading -->
-
-      <!-- Starting of profile content-->
-      <div class="card shadow mb-6">
-        <div class="card-body">
-            
-            
-        <div class="row" >
-            &nbsp;&nbsp;&nbsp;<h1>Troli</h1>
-        </div>
-            
-        <div class="">
-            <form action="" method="post">
-                <div class="table-responsive">
-                <table class="table order">
-                    <thead>
-                      <tr>
-                       <th>Gambar</th>
-                       <th>Nama produk</th>
-                       <th>Harga</th>
-                       <th>Kuantiti</th>
-                       <th>Jumlah Harga</th>
-                       <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        
-
-                        <?php
-                        
-                    
-                         $connection = mysqli_connect("localhost", "root", "", "agro_db");
-                        
-                          if(isset($_GET['add'])) {
-                                
-                                $query  =  "SELECT * FROM product WHERE product_id =". $_GET['add'] . " ";    
-                                $order_product_query = mysqli_query($connection, $query);
-
-                                while ($row = mysqli_fetch_assoc($order_product_query)){
-
-                                    $product_quantity  = $row['product_quantity'];
-                                    
-                                    //if order product doesn't exceed the quantity product store
-                                    if($product_quantity != $_SESSION['product_quantity_'.$_GET['add']]){
-                                        
-                                        $_SESSION['product_quantity_'.$_GET['add']] +=1;
-//                                         echo "<script>window.location='./order.php?menu=$menu'</script>";
-                                    }
-                                    else{
-//                                        echo "<script>alert('Maaf ! Jumlah stok tidak mencukupi.')</script>";
-                                    } 
-                                }
-                            }
-                        
-                        
-                            if(isset($_GET['remove'])){
-                                
-                                if($_SESSION['product_quantity_' . $_GET['remove']] > 0){
-                                    
-                                     $_SESSION['product_quantity_' . $_GET['remove']]--;
-                                }
-                                else{
-                                    echo "<script>alert('Gagal untuk membuang kuantiti')</script>";
-                                }
-                            }
-                        
-                        
-                            if(isset($_GET['delete'])){
-                                
-                                $_SESSION['product_quantity_' . $_GET['delete']] = 0;
-                            }
-                        
-                        
-                            //function cart()
-                            function cart(){
-                                
-                                
-                            if(isset($_GET['menu'])){
-                            
-                                $menu = $_GET['menu'];
-                            }
-                        
-                             $connection = mysqli_connect("localhost", "root", "", "agro_db");
-                                
-                            $total = 0;                //variable for total amount of all items
-                            $total2 = 0;                //variable for total amount of all items
-                            $total_quantity = 0;     //variable for total quantity of all items
-                                
-                            //STORE TO DB VARIABLES
-                            $item_name = 1;
-                            $item_number = 1;
-                            $amount = 1;
-                            $quantity = 1;
-                                
-                            foreach ($_SESSION as $name => $value){
-
-                                if($value > 0){
-
-                                if(substr($name, 0,17) == "product_quantity_"){
-
-                                    $length = strlen("product_quantity_");
-
-                                    $id = substr($name, 17, $length);
-
-                                    global $connection;
-
-
-                                    $query  =  "SELECT * FROM product WHERE product_id = " .$id . " ";    
-                                    $add_to_cart_query = mysqli_query($connection, $query);
-
-                                    while ($row = mysqli_fetch_assoc($add_to_cart_query)){
-
-                                        $product_id = $row['product_id'];
-                                        $product_image = $row['product_image'];
-                                        $product_name  = $row['product_name'];
-                                        $product_category  = $row['product_category'];
-                                        $product_gred  = $row['product_gred'];
-                                        $product_price  = $row['product_price'];
-                                        $product_quantity  = $row['product_quantity'];
-                                        $product_current_price  = $row['product_current_price'];
-                                        
-                                        $total_price = $product_price*$value;
-                                        $total_price_afterConvert = ($product_price*$value)/0.01;
-                                        $total_quantity += $value;
-
-                                        echo"<tr>";
-                                        echo"<td><img class='' src='img/$product_image' width='50' height='50'> </td>";
-                                        echo"<td>$product_name</td>";
-                                        echo"<td>RM$product_price</td>";
-                                        echo"<td>
-                                        <a class='btn btn-warning' href='order.php?remove={$product_id}'><span class='glyphicon glyphicon-minus'>-</span></a>
-                                        <a class='btn'><span class='glyphicon glyphicon-minus'>$value</span></a>
-                                        <a class='btn btn-success' href='order.php?add={$product_id}'><span class='glyphicon glyphicon-plus'>+</span></a></td>";
-                                        echo"<td>RM$total_price</td>";
-                                        echo"<td>
-                                            
-                                            <a class='btn btn-danger' href='order.php?delete={$product_id}'><span class='glyphicon glyphicon-remove'>x</span></a>
-                                            </td>";
-                                        echo"</tr>";
-                                        
-                                        
-                                        //STORE ITEM INTO DATABASE
-                                        echo "<input type='hidden' name='item_name_{$item_name}' value='{$product_name}'    >";
-                                        echo "<input type='hidden' name='item_number_{$item_number}' value='{$product_id}'  >";
-                                        echo "<input type='hidden' name='amount_{$amount}' value='{$total_price}'           >";
-                                        echo "<input type='hidden' name='quantity_{$quantity}' value='{$value}'             >";
-                                        
-                                        
-                                        $item_name++;
-                                        $item_number++;
-                                        $amount++;
-                                        $quantity++;
-                               
-
-                                        }
-                                    
-                                    
-                                    $_SESSION['total_price'] = $total += $total_price;
-                                    $_SESSION['total_price_afterConvert'] = $total2 += $total_price_afterConvert;
-                                    $_SESSION['item_total_quantity'] = $total_quantity;
-                                    $_SESSION['product_id'] = $product_name;
-                                    
-                                    
-                                    }
-                                }
-                                elseif($value == 0){
-                                    $_SESSION['item_total_price'] = $total;
-                                    $_SESSION['item_total_quantity'] = $total_quantity;
-                                    
-                                }
-
-                            }
-                                     
-                        }
-                        //function cart()
-                        
-                        
+        $product_id = $_GET['add'];
+          
+         $connection = mysqli_connect("localhost", "root", "", "agro_db");
     
-                        ?>
-                        
-                         <?php cart(); ?>
-                        
-                        <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><strong>Total: &nbsp;<span class="amount"><?php echo $_SESSION['item_total_quantity'] ?></span></strong></td>
-                        <td><strong><span class="amount">RM<?php echo $_SESSION['total_price']; ?></span></strong></td>
-                        <td></td>
-                        </tr>
-                        
-                        <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-                        
-                        
-                    </tbody>
-                </table>
-            </div>
-                
-                
-         	<?php 
-
-	
-				echo "<div class='col-xs-1' align='center'>";
-                echo "<td><a class='btn btn-success' href='login.php'>Seterusnya </a></td>";
-            	echo "</div>";
-                    
-               
-			
-                    
-			?>
-                
-
-                
-            </form>
             
-            
-            
- 
-            
-            
-        </div>
-            
- </div> 
-</div>
+        echo "<div class='card shadow mb-4 py-6'>";    
+        echo "<div class='card-body'> ";        
+        echo "<div class='row' align='center'>";
 
 
+        $query  =  "SELECT * FROM product WHERE product_id = '{$product_id}'";    
+        $select_product = mysqli_query($connection, $query);
+
+        while ($row = mysqli_fetch_assoc($select_product)){
+
+            $product_image = $row['product_image'];
+            $product_name  = $row['product_name'];
+            $product_description  = $row['product_description'];
+            $product_current_price = $row['product_current_price'];
+            $product_image = $row['product_image'];
+            $product_quantity = $row['product_quantity'];
+
+            echo "<div class='col-md-4'>";
+            echo "<div class='img-container'>";
+            echo "<img class='card-img product_image' src='img/$product_image'>";		
+            echo "</div>";	
+            echo "</div>";
+            echo "<div class='col-md-8'>";
+            echo "<div class='card-body product_detail'>";	
+            echo "<h1 class='card-title product_name'>$product_name</h1>";		 
+            echo "<p class='card-text'>$product_description</p>";		 
+            echo "<h3 class='card-text product_price'>RM$product_current_price</h3>";		 
+            echo "<p class='card-text'>Stok : $product_quantity</p>";		 
+            echo "<a class='btn btn-success' href='login.php'>Tambah ke troli </a>";		 
+            echo "</div>";
+            echo "</div>";
+
+        } 
+
+        echo "</div>";  
+        echo "</div>"; 
+        echo "</div>"; 
+
+
+?>
+  
 
 
             
