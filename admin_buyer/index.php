@@ -25,14 +25,22 @@
                     echo $user_username = $_SESSION['user_username'];
     
 //                    echo $query  =  "SELECT count(*) as count, payment_product FROM payment_product_history WHERE payment_status = 'Berjaya' GROUP BY payment_product ";    
-                    echo $query  =  "SELECT product_name, SUM(product_quantity) as sum_product FROM product JOIN payment_product_history ON product.product_name=payment_product_history.product_name ";    
-                    $select_order_product = mysqli_query($connection, $query);
-//                    $order_product_count = mysqli_num_rows($select_order_product);
+//                    echo $query  =  "SELECT product.product_name, SUM(product.product_quantity) as sum_product_quantity, SUM(payment_product_history.payment_quantity) as sum_product_demand FROM product JOIN payment_product_history ON product.product_name=payment_product_history.payment_product WHERE payment_supplier_name = '$user_username' AND payment_status = 'Berjaya' GROUP BY payment_product";    
+//                    $select_suppliers = mysqli_query($connection, $query);
+// 
+//                    while ($row = mysqli_fetch_assoc($select_suppliers)){
 //
-//                    while ($row = mysqli_fetch_assoc($select_order_product)){
-//
-//                      echo "[".$row["payment_product"].",  ".$row["count"]."],";  
+//                      echo "['".$row["product_name"]."',  ".$row["sum_product_quantity"].",  ".$row["sum_product_demand"]."],";  
 //                    }
+    
+    
+                    echo $query  =  "SELECT product.product_name, SUM(product.product_quantity) as sum_product_quantity, SUM(elodge_product_book.book_buyer_product_quantity) as sum_product_demand FROM product JOIN elodge_product_book ON product.product_name=elodge_product_book.book_buyer_product_name WHERE book_buyer_name = '$user_username' GROUP BY book_buyer_product_name";    
+                    $select_suppliers = mysqli_query($connection, $query);
+ 
+                    while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                      echo "['".$row["product_name"]."',  ".$row["sum_product_quantity"].",  ".$row["sum_product_demand"]."],";  
+                    }
     
     ?>    
         
@@ -316,13 +324,15 @@
 //                  $query  =  "SELECT product_name, SUM(product_quantity) as sum_product FROM product  ";    
                   
                   //TODO:
-//                  $query  =  "SELECT product_name, SUM(product_quantity) as sum_product FROM product JOIN payment_product_history ON product.product_name=payment_product_history.product_name ";    
-//                    $select_suppliers = mysqli_query($connection, $query);
-//
-//                    while ($row = mysqli_fetch_assoc($select_suppliers)){
-//
-//                      echo "['".$row["product_name"]."',  ".$row["sum_product"].",  ".$row["sum_product"]."],";  
-//                    }
+                  $user_username = $_SESSION['user_username'];
+                  
+                  $query  =  "SELECT product.product_name, SUM(product.product_quantity) as sum_product_quantity, SUM(elodge_product_book.book_buyer_product_quantity) as sum_product_demand FROM product JOIN elodge_product_book ON product.product_name=elodge_product_book.book_buyer_product_name WHERE book_buyer_name = '$user_username' GROUP BY book_buyer_product_name";    
+                    $select_suppliers = mysqli_query($connection, $query);
+ 
+                    while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                      echo "['".$row["product_name"]."',  ".$row["sum_product_quantity"].",  ".$row["sum_product_demand"]."],";  
+                    }
                   
                 ?>
                 
@@ -353,11 +363,11 @@
             </script>
     
         
+<!--
             <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
+                 Card Header - Dropdown 
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-<!--
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -370,15 +380,15 @@
                       <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                   </div>
--->
                 </div>
-                <!-- Card Body -->
+        
                 <div class="card-body">
                   <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
                     <canvas id="myAreaChart" width="261" height="160" class="chartjs-render-monitor" style="display: block; width: 261px; height: 160px;"></canvas>
                   </div>
                 </div>
               </div>
+-->
         
         
 
@@ -473,7 +483,7 @@
               <div class="col-xl-12 col-lg-7">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Jumlah stok semasa dan kuantiti permintaan untuk setiap Produk</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Jumlah stok semasa dan kuantiti permintaan untuk setiap Produk*</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
