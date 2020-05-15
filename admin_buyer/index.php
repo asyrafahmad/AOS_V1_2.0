@@ -204,27 +204,54 @@
 
               var data = new google.visualization.DataTable();
               data.addColumn('number', 'Produk');
-              data.addColumn('number', '<?php  echo $graph_product = $_GET['g_p'];  ?>');
+              data.addColumn('number', '<?php  
+                             if(isset($_GET['g_p'])){
+                                echo $graph_product = $_GET['g_p'];  
+                             }
+                             else{
+                             
+                             }  ?>');
 
               data.addRows([
                 <?php  
                   
-                    $graph_product = $_GET['g_p'];  
-      
+                    if(isset($_GET['g_p'])){
+                        
+                        $graph_product = $_GET['g_p'];  
 
-                    $query  =  "SELECT MONTH(product_date_submit) as month, AVG(product_price) as product_price FROM product WHERE product_name = '{$graph_product}' GROUP BY MONTH(product_date_submit)  ";    
-                    $select_suppliers = mysqli_query($connection, $query);
+                        $query  =  "SELECT MONTH(product_date_submit) as month, AVG(product_price) as product_price FROM product WHERE product_name = '{$graph_product}' GROUP BY MONTH(product_date_submit)  ";    
+                        $select_suppliers = mysqli_query($connection, $query);
 
-                    while ($row = mysqli_fetch_assoc($select_suppliers)){
+                        while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-                      echo "[".$row["month"].",  ".$row["product_price"]."],";  
+                          echo "[".$row["month"].",  ".$row["product_price"]."],";  
+                        }
+                    }
+                    else{
+                        
+                        $graph_product = '';
+                        
+                        $query  =  "SELECT MONTH(product_date_submit) as month, AVG(product_price) as product_price FROM product WHERE product_name = '{$graph_product}' GROUP BY MONTH(product_date_submit)  ";    
+                        $select_suppliers = mysqli_query($connection, $query);
+
+                        while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                          echo "[".$row["month"].",  ".$row["product_price"]."],";  
+                            
+                        }
                     }
                ?>
               ]);
 
               var options = {
               chart: {
-                title: 'Harga Purata Bagi Produk <?php echo $graph_product = $_GET['g_p'];  ?> untuk Setiap Bulan',
+                title: 'Harga Purata Bagi Produk <?php 
+                            if(isset($_GET['g_p'])){
+                                echo $graph_product = $_GET['g_p'];  
+                             }
+                             else{
+                             
+                             }  ?> untuk Setiap Bulan',
 //                subtitle: 'in millions of dollars (USD)'
               },
               width: 900,
@@ -284,16 +311,18 @@
                 
                 <?php
                   
-                  $graph_product = $_GET['g_p']; 
+//                  $graph_product = $_GET['g_p']; 
                   
 //                  $query  =  "SELECT product_name, SUM(product_quantity) as sum_product FROM product  ";    
-                  $query  =  "SELECT product_name, SUM(product_quantity) as sum_product FROM product JOIN payment_product_history ON product.product_name=payment_product_history.product_name ";    
-                    $select_suppliers = mysqli_query($connection, $query);
-
-                    while ($row = mysqli_fetch_assoc($select_suppliers)){
-
-                      echo "['".$row["product_name"]."',  ".$row["sum_product"].",  ".$row["sum_product"]."],";  
-                    }
+                  
+                  //TODO:
+//                  $query  =  "SELECT product_name, SUM(product_quantity) as sum_product FROM product JOIN payment_product_history ON product.product_name=payment_product_history.product_name ";    
+//                    $select_suppliers = mysqli_query($connection, $query);
+//
+//                    while ($row = mysqli_fetch_assoc($select_suppliers)){
+//
+//                      echo "['".$row["product_name"]."',  ".$row["sum_product"].",  ".$row["sum_product"]."],";  
+//                    }
                   
                 ?>
                 
