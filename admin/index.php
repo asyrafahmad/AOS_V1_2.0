@@ -192,34 +192,56 @@ include "../includes/admin_header.php"; ?>
 
               var data = new google.visualization.DataTable();
               data.addColumn('number', 'Bulan');
-              data.addColumn('number', 'Guava');
-
+              data.addColumn('number', '<?php 
+                             if(isset($_GET['g_p'])){
+                                echo $graph_product = $_GET['g_p'];  
+                             }
+                             else{
+                             
+                             }
+                             ?>');
               data.addRows([
-              [0,  7],
-              [1,  7],
-              [2,  4],
-                <?php  
-                $query  =  "SELECT MONTH(product_date_submit) as month, AVG(product_price) as product_price FROM product WHERE product_name = 'Guava' GROUP BY MONTH(product_date_submit)  ";    
-                $select_suppliers = mysqli_query($connection, $query);
+                <?php   
+                  
+                    if(isset($_GET['g_p'])){
+                        
+                        $graph_product = $_GET['g_p'];  
 
-                while ($row = mysqli_fetch_assoc($select_suppliers)){
+                        $query  =  "SELECT MONTH(product_date_submit) as month, AVG(product_price) as product_price FROM product WHERE product_name = '{$graph_product}' GROUP BY MONTH(product_date_submit)  ";    
+                        $select_suppliers = mysqli_query($connection, $query);
 
-                  echo "[".$row["month"].",  ".$row["product_price"]."],";  
-                }
+                        while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                          echo "[".$row["month"].",  ".$row["product_price"]."],";  
+                        }
+                    }
+                    else{
+                        
+                        $graph_product = '';
+                        
+                        $query  =  "SELECT MONTH(product_date_submit) as month, AVG(product_price) as product_price FROM product WHERE product_name = '{$graph_product}' GROUP BY MONTH(product_date_submit)  ";    
+                        $select_suppliers = mysqli_query($connection, $query);
+
+                        while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                          echo "[".$row["month"].",  ".$row["product_price"]."],";  
+                            
+                        }
+                    }
+                    
+                    
                ?>
-              [5,  15],
-                [6,  13],
-                [7,  12],
-                [8,  1],
-                [9,  4],
-                [10,  6],
-                [11,  8],
-                [12,  11],
               ]);
 
               var options = {
               chart: {
-//                title: 'Purata Harga Guava Mengikut Bulan',
+                title: 'Purata Harga Produk <?php  
+                            if(isset($_GET['g_p'])){
+                                echo $graph_product = $_GET['g_p'];  
+                             }
+                             else{
+                             
+                             }  ?> Mengikut Bulan',
 //                subtitle: 'in millions of dollars (USD)'
               },
               width: 1000,
@@ -237,20 +259,20 @@ include "../includes/admin_header.php"; ?>
                 ['Month', 'Produk Jualan'],
                 
                <?php
-                                global $connection;
+                    global $connection;
 
-                                $query  =  "SELECT COUNT(*) as count, MONTHNAME(product_date_submit) as month FROM product GROUP BY MONTHNAME(product_date_submit) ORDER BY  {MONTHNAME(product_date_submit)} ";    
-                                $select_suppliers = mysqli_query($connection, $query);
-                                $all_product_count = mysqli_num_rows($select_suppliers);
+                    $query  =  "SELECT COUNT(*) as count, MONTHNAME(product_date_submit) as month FROM product GROUP BY MONTHNAME(product_date_submit) ORDER BY  {MONTHNAME(product_date_submit)} ";    
+                    $select_suppliers = mysqli_query($connection, $query);
+                    $all_product_count = mysqli_num_rows($select_suppliers);
 
-                                while ($row = mysqli_fetch_assoc($select_suppliers)){
+                    while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-                                    $month = escape($row['month']);
-                                    $count = escape($row['count']);
+                        $month = escape($row['month']);
+                        $count = escape($row['count']);
 
-                                    echo "['$month'" . "," . "'$count'],";
-                                }
-                             ?>
+                        echo "['$month'" . "," . "'$count'],";
+                    }
+                 ?>
               ]);
 
               var options = {
@@ -459,6 +481,31 @@ include "../includes/admin_header.php"; ?>
       <div class="card shadow mb-4">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">Harga Purata Setiap Produk</h6>
+          
+          <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(17px, 19px, 0px);">
+                  <div class="dropdown-header text-primary">Produk</div>
+                  <div class="dropdown-divider"></div>
+
+                <?php
+
+                    $query  =  "SELECT * FROM product GROUP BY product_name";    
+                    $select_product = mysqli_query($connection, $query);
+
+                    while ($row = mysqli_fetch_assoc($select_product)){
+
+                        $product_name  = escape($row['product_name']);
+
+                        echo "<a class='dropdown-item' href='index.php?menu=elodge&g_p=$product_name'>$product_name</a>";
+
+
+                    } 
+                ?>                  
+                </div>
+          </div>
       </div>
       <div class="card-body">
         <div id="averageProduct" style="width: 100%; height: 100%;"></div>  

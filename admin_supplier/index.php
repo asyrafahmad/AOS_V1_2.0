@@ -19,6 +19,29 @@
       <h1 class="h3 mb-0 text-gray-800">Dashboard</h1> 
     </div>
 
+        
+    <?php
+    
+                    echo $user_username = $_SESSION['user_username'];
+    
+                    echo $query  =  "SELECT SUM(payment_quantity) as quantity, payment_product FROM payment_product_history WHERE payment_status= 'Berjaya' AND payment_supplier_name = '$user_username' GROUP BY payment_product ";    
+                  $select_suppliers = mysqli_query($connection, $query);
+
+                  while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                      $payment_product = escape($row['payment_product']);
+                      $payment_quantity = escape($row['quantity']);
+
+                      echo "['$payment_product'" . "," . "$payment_quantity],";
+                  }
+    
+    ?>        
+        
+        
+        
+        
+        
+        
     <!-- Content Row -->
     <div class="row">
 
@@ -288,17 +311,19 @@
             ['Nama Buah', 'Kuantiti'],
                   <?php
                   global $connection;
+              
+                  $user_username = $_SESSION['user_username'];
 
-                  $query  =  "SELECT * FROM product WHERE product_type = 'Buah-buahan' ";    
+                  $query  =  "SELECT SUM(payment_quantity) as quantity,payment_product FROM payment_product_history WHERE payment_status= 'Berjaya' AND payment_supplier_name = '$user_username' GROUP BY payment_product";    
                   $select_suppliers = mysqli_query($connection, $query);
                   $all_product_count = mysqli_num_rows($select_suppliers);
 
                   while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-                      $product_name = escape($row['product_name']);
-                      $product_quantity = escape($row['product_quantity']);
+                      $product_name = escape($row['payment_product']);
+                      $product_quantity = escape($row['quantity']);
 
-                      echo "['$product_name'" . "," . "{$product_quantity}],";
+                      echo "['$product_name'" . "," . "$product_quantity],";
                   }
                   ?> 
           ]);
@@ -475,7 +500,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">Pembelian Mengikut Kontan</h6>
                     </div><br>
                     <div class="card-body dashboard">
-                        <div id="productSoldEachMonth" style="width: 100%; height: 800px;"></div><br>
+                        <div id="productSoldEachMonth" style="width: 100%; height: 500px;"></div><br>
                     </div>
                     
                  </div>       
@@ -487,7 +512,7 @@
     <div class="col-xl-12 col-lg-7">
       <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Jumlah Pembelian untuk Setiap Produk*</h6>
         </div>
         <div class="card-body">
          <div id="quantityProductDemand" style="width: 100%; height: 100%;"></div>  
