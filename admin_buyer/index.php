@@ -313,41 +313,55 @@
              
            function stockDemand() {
                
-              var data = google.visualization.arrayToDataTable([
-                ['Produk', 'Stok Semasa', 'Kuantiti Permintaan'],
-//                ['Guava', 1000, 400],
-                
-                <?php
-                  
-//                  $graph_product = $_GET['g_p']; 
-                  
-//                  $query  =  "SELECT product_name, SUM(product_quantity) as sum_product FROM product  ";    
-                  
-                  //TODO:
-                  $user_username = $_SESSION['user_username'];
-                  
-                  $query  =  "SELECT product.product_name, SUM(product.product_quantity) as sum_product_quantity, SUM(elodge_product_book.book_buyer_product_quantity) as sum_product_demand FROM product JOIN elodge_product_book ON product.product_name=elodge_product_book.book_buyer_product_name WHERE book_buyer_name = '$user_username' GROUP BY book_buyer_product_name";    
-                    $select_suppliers = mysqli_query($connection, $query);
- 
-                    while ($row = mysqli_fetch_assoc($select_suppliers)){
+                  var data = google.visualization.arrayToDataTable([
+                    ['Produk', 'Stok Semasa', 'Kuantiti Permintaan'],
 
-                      echo "['".$row["product_name"]."',  ".$row["sum_product_quantity"].",  ".$row["sum_product_demand"]."],";  
+                    <?php
+
+
+                      if(isset($_GET['g_p'])){
+
+                          $user_username = $_SESSION['user_username'];
+                          $product_name = $_GET['g_p'];
+
+                          $query  =  "SELECT SUM(product.product_quantity) as sum_product_quantity, SUM(elodge_product_book.book_buyer_product_quantity) as sum_product_demand FROM product JOIN elodge_product_book ON product.product_name=elodge_product_book.book_buyer_product_name WHERE book_buyer_name = '$user_username' AND product.product_name = '$product_name' GROUP BY book_buyer_product_name";    
+                            $select_suppliers = mysqli_query($connection, $query);
+
+                            while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                              echo "['$product_name',  ".$row["sum_product_quantity"].",  ".$row["sum_product_demand"]."],";  
+                            }
+                      }
+                      else{
+
+                          $user_username = '';
+                          $product_name = '';
+
+                          $query  =  "SELECT SUM(product.product_quantity) as sum_product_quantity, SUM(elodge_product_book.book_buyer_product_quantity) as sum_product_demand FROM product JOIN elodge_product_book ON product.product_name=elodge_product_book.book_buyer_product_name WHERE book_buyer_name = '$user_username' AND product.product_name = '$product_name' GROUP BY book_buyer_product_name";    
+                            $select_suppliers = mysqli_query($connection, $query);
+
+                            while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                              echo "['$product_name',  ".$row["sum_product_quantity"].",  ".$row["sum_product_demand"]."],";  
+                            }
+                      }
+
+
+
+                    ?>
+
+                  ]);
+
+                  var options = {
+                    chart: {
+                    title: 'Stok Semasa & Kuantiti Permintaan',
+                    subtitle: '',
                     }
-                  
-                ?>
-                
-              ]);
+                  };
 
-              var options = {
-                chart: {
-                title: 'Stok Semasa & Kuantiti Permintaan',
-                subtitle: '',
-                }
-              };
+                  var chart = new google.charts.Bar(document.getElementById('stockDemand'));
 
-              var chart = new google.charts.Bar(document.getElementById('stockDemand'));
-
-              chart.draw(data, google.charts.Bar.convertOptions(options));
+                  chart.draw(data, google.charts.Bar.convertOptions(options));
               }
              
                        
@@ -494,14 +508,16 @@
                             
                         <?php
                             
-                            $query  =  "SELECT * FROM product GROUP BY product_name";    
+                            $user_username=$_SESSION['user_username'];
+                            
+                            $query  =  "SELECT * FROM elodge_product_book WHERE book_buyer_name = '$user_username' GROUP BY book_buyer_product_name";    
                             $select_product = mysqli_query($connection, $query);
 
                             while ($row = mysqli_fetch_assoc($select_product)){
 
-                                $product_name  = escape($row['product_name']);
+                                $book_buyer_product_name  = escape($row['book_buyer_product_name']);
 
-                                echo "<a class='dropdown-item' href='index.php?menu=elodge&s_d_p=$product_name'>$product_name</a>";
+                                echo "<a class='dropdown-item' href='index.php?menu=elodge&g_p=$book_buyer_product_name'>$book_buyer_product_name</a>";
                              
 
                             } 

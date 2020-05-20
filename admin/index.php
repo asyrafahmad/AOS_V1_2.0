@@ -125,6 +125,7 @@ include "../includes/admin_header.php"; ?>
           google.charts.load("current", {packages:["corechart"]});
           google.charts.load('current', {'packages':['line']});
           google.charts.load('current', {'packages':['bar']});
+          google.charts.load('current', {'packages':['bar']}); 
           google.charts.load('current', {'packages':['bar']});
           google.charts.load('current', {'packages':['bar']});
           google.charts.load("current", {packages:["corechart"]});
@@ -134,6 +135,7 @@ include "../includes/admin_header.php"; ?>
           google.charts.setOnLoadCallback(averageProduct);
           google.charts.setOnLoadCallback(productBought);
           google.charts.setOnLoadCallback(productSoldEachMonth);
+          google.charts.setOnLoadCallback(quantityElodgeProduct);
           google.charts.setOnLoadCallback(stockDemand);
           google.charts.setOnLoadCallback(quantityProductDemand);
                        
@@ -244,7 +246,7 @@ include "../includes/admin_header.php"; ?>
                              }  ?> Mengikut Bulan',
 //                subtitle: 'in millions of dollars (USD)'
               },
-              width: 1000,
+              width: 900,
               height: 500
               };
 
@@ -276,7 +278,7 @@ include "../includes/admin_header.php"; ?>
               ]);
 
               var options = {
-                width: 950,
+                width: 900,
                 legend: { position: 'none' },
                 chart: {
                 title: 'Jumlah produk dijual setiap bulan',
@@ -298,83 +300,183 @@ include "../includes/admin_header.php"; ?>
              
                
             function productSoldEachMonth() {
-                        var data = google.visualization.arrayToDataTable([
-                          ['Nama Buah', 'Kuantiti'],
-                                <?php
-                                global $connection;
+                var data = google.visualization.arrayToDataTable([
+                  ['Nama Buah', 'Kuantiti'],
+                        <?php
+                        global $connection;
 
-                                $query  =  "SELECT * FROM product WHERE product_type = 'Buah-buahan' ";    
-                                $select_suppliers = mysqli_query($connection, $query);
-                                $all_product_count = mysqli_num_rows($select_suppliers);
+                        $query  =  "SELECT payment_product, SUM(payment_quantity) as sum_product_quantity FROM payment_product_history WHERE payment_status = 'Berjaya' GROUP BY payment_product ";    
+                        $select_suppliers = mysqli_query($connection, $query);
 
-                                while ($row = mysqli_fetch_assoc($select_suppliers)){
+                        while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-                                    $product_name = escape($row['product_name']);
-                                    $product_quantity = escape($row['product_quantity']);
+                            $product_name = escape($row['payment_product']);
+                            $product_quantity = escape($row['sum_product_quantity']);
 
-                                    echo "['$product_name'" . "," . "{$product_quantity}],";
-                                }
-                                ?> 
-                        ]);
+                            echo "['$product_name'" . "," . "{$product_quantity}],";
+                        }
+                        ?> 
+                ]);
 
-                        var options = {
-                          chart: {
-                            title: '',
-                            subtitle: '',
-                          },
-                          bars: 'horizontal',
-                          series: {
-                            0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
-                            1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
-                          },
-                          axes: {
-                            x: {
-                              distance: {label: 'Jumlah'}, // Bottom x-axis.
-                              brightness: {side: 'top', label: 'apparent magnitude'} // Top x-axis.
+                var options = {
+                  chart: {
+                    title: '',
+                    subtitle: '',
+                  },
+                  bars: 'horizontal',
+                  series: {
+                    0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
+                    1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
+                  },
+                  axes: {
+                    x: {
+                      distance: {label: 'Jumlah'}, // Bottom x-axis.
+                      brightness: {side: 'top', label: 'apparent magnitude'} // Top x-axis.
+                    }
+                  }
+                };
+
+                var chart = new google.charts.Bar(document.getElementById('productSoldEachMonth'));
+
+                chart.draw(data, google.charts.Bar.convertOptions(options));
+              }
+             
+             
+             
+             
+             
+             function quantityElodgeProduct() {
+                var data = google.visualization.arrayToDataTable([
+                  ['Bulan', 'Kuantiti (<?php  
+                            if(isset($_GET['g_p'])){
+                                echo $graph_product = $_GET['g_p'];  
+                             }
+                             else{
+                             
+                             }  ?>)'],
+                
+                     <?php
+                    
+                        global $connection;
+                    
+                        if(isset($_GET['g_p'])){
+                    
+                            $product_name = $_GET['g_p'];
+
+                            $query  =  "SELECT elodge_product_name, SUM(elodge_product_quantity) as product_quantity, elodge_product_harvest_date FROM elodge_product WHERE elodge_product_name = '$product_name' GROUP BY elodge_product_harvest_date ORDER BY elodge_product_harvest_date ASC";    
+                            $select_suppliers = mysqli_query($connection, $query);
+                            $all_product_count = mysqli_num_rows($select_suppliers);
+
+                            while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                                $month = escape($row['elodge_product_harvest_date']);
+                                $quantity = escape($row['product_quantity']);
+
+                                echo "['$month'" . "," . "'$quantity'],";
                             }
-                          }
-                        };
-                          
-                        var chart = new google.charts.Bar(document.getElementById('productSoldEachMonth'));
+                        }
+                        else{
+                            
+                            $product_name = '';
 
-                        chart.draw(data, google.charts.Bar.convertOptions(options));
-                      }
+                            $query  =  "SELECT elodge_product_name, SUM(elodge_product_quantity) as product_quantity, elodge_product_harvest_date FROM elodge_product WHERE elodge_product_name = '$product_name' GROUP BY elodge_product_harvest_date ORDER BY elodge_product_harvest_date ASC";    
+                            $select_suppliers = mysqli_query($connection, $query);
+                            $all_product_count = mysqli_num_rows($select_suppliers);
+
+                            while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                                $month = escape($row['elodge_product_harvest_date']);
+                                $quantity = escape($row['product_quantity']);
+
+                                echo "['$month'" . "," . "'$quantity'],";
+                            }
+                        }
+                    
+                    
+                     ?>
+                ]);
+
+                var options = {
+                  chart: {
+                    title: 'Kuantiti Produk Elodge (<?php  
+                            if(isset($_GET['g_p'])){
+                                echo $graph_product = $_GET['g_p'];  
+                             }
+                             else{
+                             
+                             }  ?>)',
+                    subtitle: '',
+                  }
+                };
+
+                var chart = new google.charts.Bar(document.getElementById('quantityElodgeProduct'));
+
+                chart.draw(data, google.charts.Bar.convertOptions(options));
+              }
                        
              
              
-           function stockDemand() {
-              var data = google.visualization.arrayToDataTable([
-//                ['Year', 'Sales', 'Expenses', 'Profit'],
-                ['Produk', 'Kuantiti Semasa'],
-                <?php
-                                global $connection;
+         
+             
+             function stockDemand() {
+                var data = google.visualization.arrayToDataTable([
+                  ['Produk', 'Stok Semasa', 'Kuantiti Permintaan'],
 
-                                $query  =  "SELECT * FROM product WHERE product_type = 'Buah-buahan' ";    
-                                $select_suppliers = mysqli_query($connection, $query);
-                                $all_product_count = mysqli_num_rows($select_suppliers);
+                    <?php
 
-                                while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-                                    $product_name = escape($row['product_name']);
-                                    $product_quantity = escape($row['product_quantity']);
+                      if(isset($_GET['g_p'])){
 
-                                    echo "['$product_name'" . "," . "{$product_quantity}],";
-                                }
-                                ?> 
-              ]);
+                          $product_name = $_GET['g_p'];
 
-              var options = {
-                chart: {
-                title: 'Jumlah Stok & Kuantiti Permintaan Bagi Setiap Produk',
-                subtitle: '',
-                },
-                bars: 'horizontal' // Required for Material Bar Charts.
-              };
+                          $query  =  "SELECT SUM(product.product_quantity) as sum_product_quantity, SUM(elodge_product_book.book_buyer_product_quantity) as sum_product_demand FROM product JOIN elodge_product_book ON product.product_name=elodge_product_book.book_buyer_product_name WHERE  product.product_name = '$product_name' GROUP BY book_buyer_product_name";    
+                            $select_suppliers = mysqli_query($connection, $query);
 
-              var chart = new google.charts.Bar(document.getElementById('stockDemand'));
+                            while ($row = mysqli_fetch_assoc($select_suppliers)){
 
-              chart.draw(data, google.charts.Bar.convertOptions(options));
-          }
+                              echo "['$product_name',  ".$row["sum_product_quantity"].",  ".$row["sum_product_demand"]."],";  
+                            }
+                      }
+                      else{
+
+                          $product_name = '';
+
+                          $query  =  "SELECT SUM(product.product_quantity) as sum_product_quantity, SUM(elodge_product_book.book_buyer_product_quantity) as sum_product_demand FROM product JOIN elodge_product_book ON product.product_name=elodge_product_book.book_buyer_product_name WHERE  product.product_name = '$product_name' GROUP BY book_buyer_product_name";    
+                            $select_suppliers = mysqli_query($connection, $query);
+
+                            while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                              echo "['$product_name',  ".$row["sum_product_quantity"].",  ".$row["sum_product_demand"]."],";  
+                            }
+                      }
+
+
+
+                    ?>
+
+                ]);
+
+                var options = {
+                  chart: {
+                    title: 'Stok Semasa & Kuantiti Permintaan (<?php  
+                            if(isset($_GET['g_p'])){
+                                echo $graph_product = $_GET['g_p'];  
+                             }
+                             else{
+                             
+                             }  ?>)',
+                    subtitle: '',
+                  }
+                };
+
+                var chart = new google.charts.Bar(document.getElementById('stockDemand'));
+
+                chart.draw(data, google.charts.Bar.convertOptions(options));
+              }
+             
+             
+             
+             
              
              
              
@@ -430,11 +532,12 @@ include "../includes/admin_header.php"; ?>
               totalProduct();
               averageProduct();
               productEachMonth();
+              quantityElodgeProduct();
               stockDemand();
               quantityProductDemand();
             });
                        
-                    </script>
+      </script>
     
 
       
@@ -544,21 +647,101 @@ include "../includes/admin_header.php"; ?>
     </div>
    </div>
       
-      
-      
-      
-  <div class="row">
+        
+<!--
+        
+   <div class="row">
     <div class="col-xl-12 col-lg-7">
       <div class="card shadow mb-4">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Jumlah Stok & Kuantiti Permintaan Bagi Setiap Produk</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Kuantiti Produk Elodge mengikut Bulan</h6>
       </div>
       <div class="card-body">
-       <div id="stockDemand" style="width: 100%; height: 500px;"></div>  
+       <div id="quantityElodgeProduct" style="width: 100%; height: 100%;"></div>  
       </div>
       </div>
     </div>
    </div>
+-->
+      
+      
+      
+    <div class="row">
+      <div class="col-xl-12 col-lg-7">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Kuantiti Produk Elodge Mengikut Bulan (pilih produk)</h6>
+            <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(17px, 19px, 0px);">
+                  <div class="dropdown-header text-primary">Produk</div>
+                  <div class="dropdown-divider"></div>
+
+                <?php
+
+
+                    $query  =  "SELECT * FROM elodge_product ";    
+                    $select_product = mysqli_query($connection, $query);
+
+                    while ($row = mysqli_fetch_assoc($select_product)){
+
+                        $elodge_product_name  = escape($row['elodge_product_name']);
+
+                        echo "<a class='dropdown-item' href='index.php?g_p=$elodge_product_name'>$elodge_product_name</a>";
+
+
+                    } 
+                ?>                  
+                </div>
+            </div>
+          </div>
+          <div class="card-body">
+           <div id="quantityElodgeProduct" style="width: 100%; height: 100%;"></div>  
+          </div>
+        </div>
+      </div>
+    </div>
+        
+        
+    <div class="row">
+      <div class="col-xl-12 col-lg-7">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Jumlah Stok Semasa dan Kuantiti Permintaan Untuk Setiap Produk (pilih produk)</h6>
+            <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(17px, 19px, 0px);">
+                  <div class="dropdown-header text-primary">Produk</div>
+                  <div class="dropdown-divider"></div>
+
+                <?php
+
+
+                    $query  =  "SELECT * FROM elodge_product_book GROUP BY book_buyer_product_name";    
+                    $select_product = mysqli_query($connection, $query);
+
+                    while ($row = mysqli_fetch_assoc($select_product)){
+
+                        $book_buyer_product_name  = escape($row['book_buyer_product_name']);
+
+                        echo "<a class='dropdown-item' href='index.php?menu=elodge&g_p=$book_buyer_product_name'>$book_buyer_product_name</a>";
+
+
+                    } 
+                ?>                  
+                </div>
+            </div>
+          </div>
+          <div class="card-body">
+           <div id="stockDemand" style="width: 100%; height: 100%;"></div>  
+          </div>
+        </div>
+      </div>
+    </div>
             
       
   <div class="row">

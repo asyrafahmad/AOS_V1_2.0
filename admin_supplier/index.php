@@ -130,17 +130,19 @@
          
                           
 //      google.charts.load('current', {'packages':['corechart']});
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.load("current", {packages:["corechart"]});  
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.load('current', {'packages':['bar']});
          
       
 //      google.charts.setOnLoadCallback(supplierEachState);
-      google.charts.setOnLoadCallback(stockDemand);
-      google.charts.setOnLoadCallback(productSoldEachMonth);
-      google.charts.setOnLoadCallback(totalProductSellEachMonth);
-      google.charts.setOnLoadCallback(quantityProductDemand);  
+        google.charts.setOnLoadCallback(stockDemand);
+        google.charts.setOnLoadCallback(productSoldEachMonth);
+        google.charts.setOnLoadCallback(totalProductSellEachMonth);
+        google.charts.setOnLoadCallback(quantityProductDemand);   
+        google.charts.setOnLoadCallback(drawChart);
 
          
 //     -----------------------------------------------------------------------------------
@@ -285,7 +287,7 @@
           ]);
 
              var options = {
-                width: 1000,
+                width: 900,
                 legend: { position: 'none' },
                 chart: {
                 title: 'Jumlah produk dijual setiap bulan',
@@ -431,6 +433,62 @@
             var chart = new google.visualization.BarChart(document.getElementById("quantityProductDemand"));
             chart.draw(view, options);
           }
+         
+         
+         
+           function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                  ['Year', 'Sales', 'Expenses', 'Profit'],
+                  
+                    <?php
+
+
+                      if(isset($_GET['g_p'])){
+
+                          $user_username = $_SESSION['user_username'];
+                          $product_name = $_GET['g_p'];
+
+                          $query  =  "SELECT SUM(product.product_quantity) as sum_product_quantity, SUM(elodge_product_book.book_buyer_product_quantity) as sum_product_demand FROM product JOIN elodge_product_book ON product.product_name=elodge_product_book.book_buyer_product_name WHERE book_buyer_name = '$user_username' AND product.product_name = '$product_name' GROUP BY book_buyer_product_name";    
+                            $select_suppliers = mysqli_query($connection, $query);
+
+                            while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                              echo "['$product_name',  ".$row["sum_product_quantity"].",  ".$row["sum_product_demand"]."],";  
+                            }
+                      }
+                      else{
+
+                          $user_username = '';
+                          $product_name = '';
+
+                          $query  =  "SELECT SUM(product.product_quantity) as sum_product_quantity, SUM(elodge_product_book.book_buyer_product_quantity) as sum_product_demand FROM product JOIN elodge_product_book ON product.product_name=elodge_product_book.book_buyer_product_name WHERE book_buyer_name = '$user_username' AND product.product_name = '$product_name' GROUP BY book_buyer_product_name";    
+                            $select_suppliers = mysqli_query($connection, $query);
+
+                            while ($row = mysqli_fetch_assoc($select_suppliers)){
+
+                              echo "['$product_name',  ".$row["sum_product_quantity"].",  ".$row["sum_product_demand"]."],";  
+                            }
+                      }
+
+
+
+                    ?>
+                ]);
+
+                var options = {
+                  chart: {
+                    title: 'Stok Semasa & Kuantiti Permintaan',
+                    subtitle: '',
+                  }
+                };
+
+                var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                chart.draw(data, google.charts.Bar.convertOptions(options));
+              }
+         
+         
+         
 
          
       //RESPONSIVE CHART
@@ -440,6 +498,7 @@
           productSoldEachMonth();
           totalProductSellEachMonth();
           quantityProductDemand();
+          stockDemand();
       });
          
       </script>
@@ -520,6 +579,67 @@
       </div>
     </div>
   </div>
+        
+         <?php
+                            global $connection;
+                            
+                            $user_username=$_SESSION['user_username'];
+                            
+                            echo $query  =  "SELECT * FROM elodge_product_book WHERE book_buyer_name = '$user_username' GROUP BY book_buyer_product_name";    
+                            $select_product = mysqli_query($connection, $query);
+
+                            while ($row = mysqli_fetch_assoc($select_product)){
+
+                                $book_buyer_product_name  = escape($row['book_buyer_product_name']);
+
+                                echo "<a class='dropdown-item' href='index.php?g_p=$book_buyer_product_name'>$book_buyer_product_name</a>";
+                             
+
+                            } 
+                        ?>            
+    
+            <div class="row">
+              <div class="col-xl-12 col-lg-7">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Jumlah stok semasa dan kuantiti permintaan untuk setiap Produk*</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(17px, 19px, 0px);">
+                          <div class="dropdown-header text-primary">Produk</div>
+                          <div class="dropdown-divider"></div>
+                            
+                        <?php
+                            global $connection;
+                            
+                            $user_username=$_SESSION['user_username'];
+                            
+                            $query  =  "SELECT * FROM elodge_product_book WHERE book_buyer_name = '$user_username' GROUP BY book_buyer_product_name";    
+                            $select_product = mysqli_query($connection, $query);
+
+                            while ($row = mysqli_fetch_assoc($select_product)){
+
+                                $book_buyer_product_name  = escape($row['book_buyer_product_name']);
+
+                                echo "<a class='dropdown-item' href='index.php?g_p=$book_buyer_product_name'>$book_buyer_product_name</a>";
+                             
+
+                            } 
+                        ?>                  
+                        </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                   <div id="columnchart_material" style="width: 100%; height: 100%;"></div>  
+                  </div>
+                </div>
+              </div>
+            </div>
+                    
+        
+        
 
     </div>
 
